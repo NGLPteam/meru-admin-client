@@ -15,7 +15,7 @@
     "@eslint/js": "^8.57.0",
     "@graphql-eslint/eslint-plugin": "^3.20.1",
     "@next/eslint-plugin-next": "^14.1.0",
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
     "@typescript-eslint/parser": "^7.0.2",
     "depcheck": "^1.4.7",
     "eslint": "^8.57.0",
