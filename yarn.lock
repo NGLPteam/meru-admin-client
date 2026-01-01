@@ -829,6 +829,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.25.0":
+  version: 7.28.4
+  resolution: "@babel/runtime@npm:7.28.4"
+  checksum: 10c0/792ce7af9750fb9b93879cc9d1db175701c4689da890e6ced242ea0207c9da411ccf16dc04e689cc01158b28d7898c40d75598f4559109f761c12ce01e959bf7
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.16.7, @babel/template@npm:^7.18.10, @babel/template@npm:^7.20.7, @babel/template@npm:^7.22.15, @babel/template@npm:^7.23.9":
   version: 7.23.9
   resolution: "@babel/template@npm:7.23.9"
@@ -3617,7 +3624,7 @@ __metadata:
     relay-compiler-language-typescript: "npm:^15.0.1"
     relay-config: "npm:^12.0.1"
     relay-runtime: "npm:^16.2.0"
-    relay-test-utils: "npm:^16.2.0"
+    relay-test-utils: "npm:^20.1.1"
     sharp: "npm:^0.33.4"
     styled-components: "npm:^6.1.8"
     typescript: "npm:^5.3.3"
@@ -3741,7 +3748,7 @@ __metadata:
     relay-compiler-language-typescript: "npm:^15.0.1"
     relay-config: "npm:^12.0.1"
     relay-runtime: "npm:^16.2.0"
-    relay-test-utils: "npm:^16.2.0"
+    relay-test-utils: "npm:^20.1.1"
     remark-gfm: "npm:^4.0.0"
     sharp: "npm:^0.33.4"
     tailwindcss: "npm:^3.4.15"
@@ -11438,15 +11445,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"relay-test-utils@npm:^16.2.0":
-  version: 16.2.0
-  resolution: "relay-test-utils@npm:16.2.0"
+"relay-runtime@npm:20.1.1":
+  version: 20.1.1
+  resolution: "relay-runtime@npm:20.1.1"
   dependencies:
-    "@babel/runtime": "npm:^7.0.0"
+    "@babel/runtime": "npm:^7.25.0"
     fbjs: "npm:^3.0.2"
     invariant: "npm:^2.2.4"
-    relay-runtime: "npm:16.2.0"
-  checksum: 10c0/8a5c258dd363158eda608256b78261cb359c4038c3140b327ea9ba06d9f184616e849818b7264c6338eeaedeaffe1d1339738d84f1bfda49a96c87e0eed64617
+  checksum: 10c0/c12bc83902f6b93f9f2f855f6dd2c16ae4aaa3915c79819b6d5ab923c025856f43763959bea6054826f9d6f1f8006df09f260eb5b6bead8c4b20f79304fbae86
+  languageName: node
+  linkType: hard
+
+"relay-test-utils@npm:^20.1.1":
+  version: 20.1.1
+  resolution: "relay-test-utils@npm:20.1.1"
+  dependencies:
+    "@babel/runtime": "npm:^7.25.0"
+    fbjs: "npm:^3.0.2"
+    invariant: "npm:^2.2.4"
+    relay-runtime: "npm:20.1.1"
+  checksum: 10c0/0784d3a3169d579ed89e289e6d027b8a4ebe39b06a7b21316cbd305ed430be3dd6d7a9f2c73f814b2df25e3aecd6a3461dd2b8d4bd8a6a632a22b198ef59c9a9
   languageName: node
   linkType: hard
 
