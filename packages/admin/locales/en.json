@@ -262,7 +262,8 @@
         "initial_ordering_success": "Successfully updated initial ordering.",
         "initial_ordering_failure": "Failed to update initial ordering.",
         "harvest_source_success": "Harvest source updated successfully.",
-        "harvest_mapping_success": "Harvest mapping updated successfully."
+        "harvest_mapping_success": "Harvest mapping updated successfully.",
+        "submission_success": "Submission updated successfully."
       },
       "create": {
         "success": "$t({{ name }}) created successfully.",
@@ -419,7 +420,8 @@
         "button_label": "Purge",
         "confirm_body": "Are you sure you want to proceed? This action cannot be undone and may remove many entities."
       },
-      "review_submission": "Review Submission"
+      "review_submission": "Review",
+      "review_next": "Review Next"
     },
     "sort": {
       "ascending": "ascending",
@@ -576,7 +578,11 @@
         "decision_request_revisions": "Request Revisions",
         "decision_reject": "Reject",
         "comments_for_depositor": "Comments for Depositor",
-        "internal_notes": "Internal Notes"
+        "internal_notes": "Internal Notes",
+        "status": "Status",
+        "last_updated": "Last Updated",
+        "contributors": "Contributors",
+        "files": "Files"
       },
       "validation": {
         "year": "Must be a four digit year",

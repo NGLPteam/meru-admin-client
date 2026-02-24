@@ -9,19 +9,20 @@ import { OperationType } from "relay-runtime";
 // import { useSearchParams } from "next/navigation";
 // import { QueryTransitionWrapper } from "@wdp/lib/api/components";
 import { ModelListProps } from "components/composed/model/ModelList";
-import { useRouteSlug } from "hooks";
 import SubmissionLayout from "components/composed/submission/SubmissionLayout";
-import ErrorPage from "next/error";
+// import { useRouteSlug } from "hooks";
+// import ErrorPage from "next/error";
 // import { LoadingCircle } from "components/atomic";
 // import ModelListPageSkeleton from "components/composed/model/ModelListPageSkeleton";
 // import type { LayoutSubmissionQuery as LayoutQuery } from "@/relay/LayoutSubmissionQuery.graphql";
 
 export default function Layout<T extends OperationType>(props: Props<T>) {
-  const slug = useRouteSlug() as string;
-
-  if (!slug) return <ErrorPage statusCode={404} />;
+  const { PageComponent, pageComponentProps } = props;
 
   // TODO: Uncomment when real submission API is available
+  // const slug = useRouteSlug() as string;
+  // if (!slug) return <ErrorPage statusCode={404} />;
+  //
   // const queryVars = useBaseListQueryVars();
   // const searchParams = useSearchParams();
   //
@@ -36,17 +37,15 @@ export default function Layout<T extends OperationType>(props: Props<T>) {
   // const searchVars: Record<string, string> = {};
   // searchParams.forEach((value, key) => (searchVars[key] = value));
 
-  const { PageComponent, pageComponentProps } = props;
-
   return (
-    <SubmissionLayout slug={slug}>
+    <SubmissionLayout>
       <PageComponent {...pageComponentProps} />
     </SubmissionLayout>
   );
 
   // TODO: Uncomment when real submission API is available
   // return (
-  //   <SubmissionLayout data={item} {...pageComponentProps}>
+  //   <SubmissionLayout data={item}>
   //     <QueryTransitionWrapper<T>
   //       query={query}
   //       variables={{
