@@ -418,7 +418,8 @@
         "entity_purge_modal_header": "Delete {{ entityType }}",
         "button_label": "Purge",
         "confirm_body": "Are you sure you want to proceed? This action cannot be undone and may remove many entities."
-      }
+      },
+      "review_submission": "Review Submission"
     },
     "sort": {
       "ascending": "ascending",
@@ -569,7 +570,13 @@
         "field": "Field",
         "pattern": "Pattern",
         "pattern_description": "An ANSI-compatible regular expression to match against",
-        "schema_fields_placeholder": "Schema-specific fields will appear here after this feature is fully connected."
+        "schema_fields_placeholder": "Schema-specific fields will appear here after this feature is fully connected.",
+        "decision": "Decision",
+        "decision_approve": "Approve",
+        "decision_request_revisions": "Request Revisions",
+        "decision_reject": "Reject",
+        "comments_for_depositor": "Comments for Depositor",
+        "internal_notes": "Internal Notes"
       },
       "validation": {
         "year": "Must be a four digit year",
