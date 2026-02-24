@@ -199,7 +199,8 @@
       "permalinks": "Permalinks",
       "my_submissions": "My Submissions",
       "review_submissions": "Review Submissions",
-      "new_submission": "New Submission"
+      "new_submission": "New Submission",
+      "history": "History"
     },
     "messages": {
       "marked_for_purge": "Marked for purge",

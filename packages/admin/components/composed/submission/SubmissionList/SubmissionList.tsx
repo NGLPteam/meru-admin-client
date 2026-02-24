@@ -1,4 +1,5 @@
 import { graphql, useFragment } from "react-relay";
+import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import ModelListPage from "components/composed/model/ModelListPage";
 import ModelColumns from "components/composed/model/ModelColumns";
@@ -12,13 +13,13 @@ import type { ModelTableActionProps } from "@tanstack/react-table";
 
 type Props = {
   data?: SubmissionListFragment$key;
-  header?: string;
 };
 
-function SubmissionList({ data, header }: Props) {
+function SubmissionList({ data }: Props) {
   const connection = useFragment<SubmissionListFragment$key>(fragment, data);
 
   const { t } = useTranslation();
+  const router = useRouter();
 
   /* Replace real nodes with mock data while preserving pagination fragment refs */
   const dataWithMockNodes = connection
@@ -28,9 +29,13 @@ function SubmissionList({ data, header }: Props) {
       } as SubmissionListFragment$data)
     : undefined;
 
+  const isReview = router.pathname.startsWith("/submissions");
+  const detailRoute = isReview ? "submissions.detail" : "my-submissions.detail";
+
   const columns = [
     ModelColumns.NameColumn<SubmissionNode>({
       accessor: "title",
+      route: detailRoute,
       enableSorting: false,
     }),
     ModelColumns.StringColumn<SubmissionNode>({
@@ -48,7 +53,9 @@ function SubmissionList({ data, header }: Props) {
 
   const actions = {
     handleView: ({ row }: ModelTableActionProps<SubmissionNode>) =>
-      row.original.slug ? `/items/${row.original.slug}` : null,
+      row.original.slug
+        ? `/${isReview ? "submissions" : "my-submissions"}/${row.original.slug}`
+        : null,
   };
 
   const buttons = (
@@ -62,7 +69,7 @@ function SubmissionList({ data, header }: Props) {
   return (
     <ModelListPage<SubmissionListFragment$data, SubmissionNode>
       modelName="submission"
-      header={header ? t(`nav.${header}_submissions`) : undefined}
+      header={isReview ? t("nav.review_submissions") : t("nav.my_submissions")}
       columns={columns}
       data={dataWithMockNodes}
       actions={actions}
