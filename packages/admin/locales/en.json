@@ -198,7 +198,8 @@
       "new_metadata_mapping": "Metadata Mapping",
       "permalinks": "Permalinks",
       "my_submissions": "My Submissions",
-      "review_submissions": "Review Submissions"
+      "review_submissions": "Review Submissions",
+      "new_submission": "New Submission"
     },
     "messages": {
       "marked_for_purge": "Marked for purge",
@@ -273,7 +274,8 @@
         "harvest_source_success": "Harvest source created successfully.",
         "harvest_mapping_success": "Harvest mapping created successfully",
         "harvest_attempt_success": "Harvest attempt started successfully",
-        "harvest_metadata_mapping_success": "Harvest metadata mapping created successfully"
+        "harvest_metadata_mapping_success": "Harvest metadata mapping created successfully",
+        "submission_success": "Submission created successfully."
       },
       "delete": {
         "confirm_label": "Confirm Delete",
@@ -347,7 +349,10 @@
         "harvest_mapping": "$t(glossary.harvest_mapping)",
         "harvest_mapping_header": "Add Harvest Mapping",
         "harvest_attempt": "$t(glossary.harvest_attempt)",
-        "harvest_metadata_mapping": "$t(glossary.metadata_mapping)"
+        "harvest_metadata_mapping": "$t(glossary.metadata_mapping)",
+        "submission": "New Submission",
+        "contributor_row": "Add Contributor",
+        "file_row": "Add File"
       },
       "create": {
         "contributor_person": "Create Person",
@@ -562,7 +567,8 @@
         "max_records_description": "Default 80,000",
         "field": "Field",
         "pattern": "Pattern",
-        "pattern_description": "An ANSI-compatible regular expression to match against"
+        "pattern_description": "An ANSI-compatible regular expression to match against",
+        "schema_fields_placeholder": "Schema-specific fields will appear here after this feature is fully connected."
       },
       "validation": {
         "year": "Must be a four digit year",

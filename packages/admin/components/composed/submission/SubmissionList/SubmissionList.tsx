@@ -2,6 +2,7 @@ import { graphql, useFragment } from "react-relay";
 import { useTranslation } from "react-i18next";
 import ModelListPage from "components/composed/model/ModelListPage";
 import ModelColumns from "components/composed/model/ModelColumns";
+import { ButtonControlGroup, ButtonControlRoute } from "components/atomic";
 import type {
   SubmissionListFragment$data,
   SubmissionListFragment$key,
@@ -50,6 +51,14 @@ function SubmissionList({ data, header }: Props) {
       row.original.slug ? `/items/${row.original.slug}` : null,
   };
 
+  const buttons = (
+    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+      <ButtonControlRoute route="my-submissions.new" icon="plus">
+        {t("actions.add.submission")}
+      </ButtonControlRoute>
+    </ButtonControlGroup>
+  );
+
   return (
     <ModelListPage<SubmissionListFragment$data, SubmissionNode>
       modelName="submission"
@@ -57,6 +66,7 @@ function SubmissionList({ data, header }: Props) {
       columns={columns}
       data={dataWithMockNodes}
       actions={actions}
+      buttons={buttons}
       showSearch
       hideFilters
       disableSortBy
