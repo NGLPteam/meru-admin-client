@@ -1,6 +1,0 @@
-@define-mixin l-grid {
-  display: grid;
-  grid-template-columns: repeat(var(--grid-col-count, 12), 1fr);
-  row-gap: var(--grid-row-gap);
-  column-gap: var(--grid-column-gap);
-}

@@ -1,7 +1,0 @@
-.wrapper {
-  grid-area: chart;
-
-  &--chart {
-    scale: 115%;
-  }
-}

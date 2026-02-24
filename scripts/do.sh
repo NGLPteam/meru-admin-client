@@ -15,7 +15,7 @@ run_command() {
   local app="${2:-all}"
 
   case "$app" in
-    admin | frontend)
+    admin)
       >&2 echo "Running command '${cmd}' for WDP App '${app}'"
 
       yarn workspace "@wdp/$app" run "$cmd"

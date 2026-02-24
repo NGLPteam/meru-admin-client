@@ -1,5 +1,0 @@
-{
-  "extends": "@wdp/tsconfig/config.json",
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
-}

@@ -1,8 +1,0 @@
-ignores: [
-
-  # The next-auth package includes @auth/core as a dependency, and we want to use
-  # whichever version it includes. However, we do need to import from it directly, so it
-  # will be reported as a missing dependency by depcheck.
-  "@auth/core"
-
-]

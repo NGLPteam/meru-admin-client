@@ -11,17 +11,13 @@ node_modules
 
 # testing
 /packages/admin/coverage
-/packages/frontend/coverage
 
 # next.js
 /packages/admin/.next/
-/packages/frontend/.next/
 /packages/admin/out
-/packages/frontend/out
 
 # production
 /packages/admin/build
-/packages/frontend/build
 
 # misc
 .DS_Store

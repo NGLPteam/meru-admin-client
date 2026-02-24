@@ -1,8 +1,0 @@
-body {
-  min-block-size: 100dvh;
-}
-
-main {
-  flex-grow: 1;
-  width: 100%;
-}

@@ -1,7 +1,0 @@
-.label {
-  @mixin t-label-sm;
-
-  display: block;
-  padding-block-end: var(--padding-xs);
-  color: var(--color-light);
-}
