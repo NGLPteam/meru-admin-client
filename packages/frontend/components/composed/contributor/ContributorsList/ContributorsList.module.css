@@ -1,6 +1,0 @@
-.item {
-  &:not(:last-child)::after {
-    content: ",";
-    margin-inline-end: 0.5ch;
-  }
-}

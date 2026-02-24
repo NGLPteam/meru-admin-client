@@ -4,15 +4,13 @@ FROM base AS deps
 RUN apt-get update
 RUN apt-get install -y nano libglib2.0-0 libglib2.0-dev libvips libvips-tools libvips-dev
 ENV NODE_ENV production
-ENV WDP_APP frontend
+ENV WDP_APP admin
 WORKDIR /app
 COPY scripts ./scripts
 COPY package.json yarn.lock* .yarnrc.yml ./
 COPY packages/eslint/package.json ./packages/eslint/
 COPY packages/tsconfig/package.json ./packages/tsconfig/
 COPY packages/lib/package.json ./packages/lib/
-COPY packages/middleware/package.json ./packages/middleware/
-COPY packages/auth/package.json ./packages/auth/
 COPY packages/admin/package.json ./packages/admin/
 COPY .yarn ./.yarn/
 
@@ -52,8 +50,6 @@ COPY scripts ./scripts
 COPY packages/eslint ./packages/eslint
 COPY packages/tsconfig ./packages/tsconfig
 COPY packages/lib ./packages/lib
-COPY packages/middleware ./packages/middleware
-COPY packages/auth ./packages/auth
 COPY packages/admin ./packages/admin
 
 RUN corepack enable

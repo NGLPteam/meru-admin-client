@@ -1,8 +1,0 @@
-.wrapper {
-  gap: var(--padding-rg);
-
-  @mixin respond theme("screens.100") {
-    flex-direction: column;
-    align-items: start;
-  }
-}

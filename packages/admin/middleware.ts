@@ -1,5 +1,5 @@
-import { chain } from "@wdp/middleware";
-import https from "@wdp/middleware/src/https";
+import chain from "./lib/middleware/chain";
+import https from "./lib/middleware/https";
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
