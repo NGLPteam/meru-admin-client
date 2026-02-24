@@ -2,23 +2,13 @@ import { ComponentType } from "react";
 import { PreloadedQuery, GraphQLTaggedNode } from "react-relay";
 import { OperationType } from "relay-runtime";
 import { ModelListProps } from "components/composed/model/ModelList";
-import { useRouteSlug } from "hooks";
 import SubmissionLayout from "components/composed/submission/SubmissionLayout";
-import ErrorPage from "next/error";
 
 export default function Layout<T extends OperationType>(props: Props<T>) {
-  const slug = useRouteSlug() as string;
-
-  if (!slug) return <ErrorPage statusCode={404} />;
-
   const { PageComponent, pageComponentProps } = props;
 
   return (
-    <SubmissionLayout
-      slug={slug}
-      parentRoute="submissions"
-      detailRoute="submissions.detail"
-    >
+    <SubmissionLayout>
       <PageComponent {...pageComponentProps} />
     </SubmissionLayout>
   );

@@ -1,12 +1,9 @@
-import Layout from "./_layout";
+import SubmissionDetailsView from "components/composed/submission/SubmissionDetails";
+import Layout from "../_layout";
 import type { GetLayout } from "@wdp/lib/types/page";
 
 function SubmissionDetails() {
-  return (
-    <div className="t-copy-sm a-color-light l-container-wide">
-      Submission details coming soon.
-    </div>
-  );
+  return <SubmissionDetailsView />;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

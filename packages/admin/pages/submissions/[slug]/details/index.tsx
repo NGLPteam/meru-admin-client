@@ -1,17 +1,14 @@
 // import { graphql, usePreloadedQuery, PreloadedQuery } from "react-relay";
 // import type { detailsSubmissionQuery as Query } from "@/relay/detailsSubmissionQuery.graphql";
-import Layout from "./_layout";
+import SubmissionDetailsView from "components/composed/submission/SubmissionDetails";
+import Layout from "../_layout";
 import type { GetLayout } from "@wdp/lib/types/page";
 
 function SubmissionDetails() {
   // TODO: Uncomment when real submission API is available
   // const { item } = usePreloadedQuery<Query>(query, queryRef);
 
-  return (
-    <div className="t-copy-sm a-color-light l-container-wide">
-      Submission details coming soon.
-    </div>
-  );
+  return <SubmissionDetailsView />;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
