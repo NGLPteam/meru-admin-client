@@ -257,6 +257,13 @@ export const baseRoutes: BaseRoute[] = [
     name: "my-submissions",
     path: "/my-submissions",
     label: "glossary.submission_other",
+    routes: [
+      {
+        name: "my-submissions.new",
+        path: "/my-submissions/new",
+        label: "nav.new_submission",
+      },
+    ],
   },
   {
     name: "submissions",
