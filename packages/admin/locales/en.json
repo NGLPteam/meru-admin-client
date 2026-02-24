@@ -94,7 +94,9 @@
       "member": "member",
       "member_other": "members",
       "metadata": "metadata",
-      "metadata_mapping": "metadata mapping"
+      "metadata_mapping": "metadata mapping",
+      "submission": "submission",
+      "submission_other": "submissions"
     },
     "lists": {
       "admin_column": "Admin?",
@@ -144,6 +146,7 @@
       "began_at_column": "Started At",
       "ended_at_column": "Ended At",
       "status_column": "Status",
+      "collection_column": "Collection",
       "identifier_column": "Identifier",
       "entity_count_column": "Entity Count",
       "has_errors_column": "Has Errors",
@@ -193,7 +196,9 @@
       "harvest_mapping_new": "New Harvest Mapping",
       "metadata_mappings": "Metadata Mappings",
       "new_metadata_mapping": "Metadata Mapping",
-      "permalinks": "Permalinks"
+      "permalinks": "Permalinks",
+      "my_submissions": "My Submissions",
+      "review_submissions": "Review Submissions"
     },
     "messages": {
       "marked_for_purge": "Marked for purge",
