@@ -47,6 +47,13 @@ const PERMALINKS_LINK = {
   model: "permalink",
 };
 
+const SUBMISSIONS_LINK = {
+  label: "glossary.submission_other",
+  route: "submissions",
+  actions: "admin.access",
+  model: "submission",
+};
+
 /**
  * App data
  */
@@ -69,12 +76,17 @@ const appData = {
           CONTRIBUTORS_LINK,
           HARVESTING_LINK,
           PERMALINKS_LINK,
+          SUBMISSIONS_LINK,
         ],
       },
     ],
     account: {
       label: "nav.account_header",
       children: [
+        {
+          label: "nav.my_submissions",
+          route: "my-submissions",
+        },
         {
           label: "nav.profile",
           route: "profile",
@@ -99,6 +111,7 @@ const appData = {
           CONTRIBUTORS_LINK,
           HARVESTING_LINK,
           PERMALINKS_LINK,
+          SUBMISSIONS_LINK,
         ],
       },
     ],

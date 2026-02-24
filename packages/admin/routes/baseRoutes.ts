@@ -254,6 +254,16 @@ export const baseRoutes: BaseRoute[] = [
     ],
   },
   {
+    name: "my-submissions",
+    path: "/my-submissions",
+    label: "glossary.submission_other",
+  },
+  {
+    name: "submissions",
+    path: "/submissions",
+    label: "glossary.submission_other",
+  },
+  {
     name: "communities.search",
     path: "/communities/search",
     label: "Search Communities",
