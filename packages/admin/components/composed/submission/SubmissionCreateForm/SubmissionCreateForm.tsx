@@ -38,7 +38,7 @@ export default function SubmissionCreateForm({ data }: Props) {
       const newRoute = RouteHelper.findRouteByName(routeName);
       if (newRoute) router.push({ pathname: newRoute.path });
     },
-    [router]
+    [router],
   );
 
   const onSuccess = useOnSuccess<SubmissionCreateFormMutation, Fields>(() => {
@@ -52,16 +52,18 @@ export default function SubmissionCreateForm({ data }: Props) {
         subtitle: data.subtitle,
         parentId: data.parentId,
         schemaVersionSlug: data.schemaVersionSlug,
+        visibility: data.visibility,
         summary: data.summary,
         thumbnail: data.thumbnail,
         heroImage: data.heroImage,
         published: data.published,
       },
     }),
-    []
+    [],
   );
 
   const defaultValues = {
+    visibility: "VISIBLE" as Fields["visibility"],
     contributors: [] as Fields["contributors"],
     files: [] as Fields["files"],
   };
@@ -96,8 +98,8 @@ export default function SubmissionCreateForm({ data }: Props) {
           className="t-copy-sm a-color-light"
           style={
             {
-              "flexBasis": "var(--form-grid-item-width-wide)",
-              "paddingBlock": "var(--form-grid-row-gap)",
+              flexBasis: "var(--form-grid-item-width-wide)",
+              paddingBlock: "var(--form-grid-row-gap)",
             } as CSSProperties
           }
         >
@@ -121,7 +123,7 @@ export default function SubmissionCreateForm({ data }: Props) {
         <FilesFieldArray control={control} register={register} />
       </Forms.Grid>
     ),
-    []
+    [],
   );
 
   return (

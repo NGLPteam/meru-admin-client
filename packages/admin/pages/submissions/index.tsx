@@ -18,11 +18,7 @@ export default function Submissions() {
         loadingFallback={<LoadingPage />}
       >
         {({ queryRef }) =>
-          queryRef ? (
-            <ListQuery queryRef={queryRef} />
-          ) : (
-            <SubmissionList header="review" />
-          )
+          queryRef ? <ListQuery queryRef={queryRef} /> : <SubmissionList />
         }
       </QueryTransitionWrapper>
     </>
@@ -34,7 +30,7 @@ const ListQuery = ({ queryRef }: { queryRef: PreloadedQuery<Query> }) => {
     viewer: { items },
   } = usePreloadedQuery<Query>(query, queryRef);
 
-  return <SubmissionList data={items} header="review" />;
+  return <SubmissionList data={items} />;
 };
 
 const query = graphql`

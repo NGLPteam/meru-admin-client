@@ -263,12 +263,50 @@ export const baseRoutes: BaseRoute[] = [
         path: "/my-submissions/new",
         label: "nav.new_submission",
       },
+      {
+        name: "my-submissions.detail",
+        path: "/my-submissions/[slug]",
+        redirect: "/my-submissions/[slug]/details",
+        label: "glossary.submission",
+        routes: [
+          {
+            name: "my-submissions.detail.details",
+            path: "/my-submissions/[slug]/details",
+            label: "nav.details",
+          },
+          {
+            name: "my-submissions.detail.history",
+            path: "/my-submissions/[slug]/history",
+            label: "nav.history",
+          },
+        ],
+      },
     ],
   },
   {
     name: "submissions",
     path: "/submissions",
     label: "glossary.submission_other",
+    routes: [
+      {
+        name: "submissions.detail",
+        path: "/submissions/[slug]",
+        redirect: "/submissions/[slug]/details",
+        label: "glossary.submission",
+        routes: [
+          {
+            name: "submissions.detail.details",
+            path: "/submissions/[slug]/details",
+            label: "nav.details",
+          },
+          {
+            name: "submissions.detail.history",
+            path: "/submissions/[slug]/history",
+            label: "nav.history",
+          },
+        ],
+      },
+    ],
   },
   {
     name: "communities.search",
