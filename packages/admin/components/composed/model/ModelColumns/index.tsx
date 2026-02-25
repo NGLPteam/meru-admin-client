@@ -20,6 +20,7 @@ import PositionColumn from "./PositionColumn";
 import BeganAtColumn from "./BeganAtColumn";
 import EndedAtColumn from "./EndedAtColumn";
 import LinkColumn from "./LinkColumn";
+import StatusColumn from "./StatusColumn";
 
 const modelColumns = {
   CreatedAtColumn,
@@ -44,6 +45,7 @@ const modelColumns = {
   BeganAtColumn,
   EndedAtColumn,
   LinkColumn,
+  StatusColumn,
 };
 
 export default modelColumns;
