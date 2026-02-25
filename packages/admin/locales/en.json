@@ -421,7 +421,11 @@
         "confirm_body": "Are you sure you want to proceed? This action cannot be undone and may remove many entities."
       },
       "review_submission": "Review",
-      "review_next": "Review Next"
+      "review_next": "Review Next",
+      "submit_for_review": "Submit",
+      "submit_for_review_confirm": "Are you sure you're ready to submit this for review? It will be sent to a reviewer for evaluation.",
+      "resubmit_for_review": "Resubmit",
+      "resubmit_for_review_confirm": "Are you sure you're ready to resubmit this for review? It will be sent back to a reviewer for evaluation."
     },
     "sort": {
       "ascending": "ascending",
@@ -696,6 +700,9 @@
       "schema_filters": "Schema:",
       "show_all_schemas": "Show all schemas",
       "show_less": "Show less"
+    },
+    "submission_detail": {
+      "revisions_requested": "Revisions Requested"
     },
     "harvesting": {
       "mode": "Mode",

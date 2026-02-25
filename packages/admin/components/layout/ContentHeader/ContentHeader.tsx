@@ -10,6 +10,7 @@ import * as Styled from "./ContentHeader.styles";
 const ContentHeader = ({
   data,
   title,
+  titleTag,
   rightSide,
   headerStyle = "primary",
 }: Props) => {
@@ -24,6 +25,7 @@ const ContentHeader = ({
           <Styled.Title as={headerStyle === "primary" ? "h1" : "h2"}>
             <Markdown.Title>{title}</Markdown.Title>
           </Styled.Title>
+          {titleTag}
           {markedForPurge && (
             <Styled.PurgeTag>{t("messages.marked_for_purge")}</Styled.PurgeTag>
           )}
@@ -41,6 +43,8 @@ const ContentHeader = ({
 interface Props {
   /** Content title */
   title?: string | null;
+  /** Optional tag rendered inline with the title (e.g. status badge) */
+  titleTag?: React.ReactNode;
   /** Header style, default "primary" (h1) */
   headerStyle?: "primary" | "secondary";
   /** Optional right side content node. Can be a single button, multiple buttons, dropdown, etc. */

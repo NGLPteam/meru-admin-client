@@ -4,9 +4,12 @@ import { graphql } from "react-relay";
 import { useChildRouteLinks, useMaybeFragment, useRouteSlug } from "hooks";
 import {
   ButtonControlGroup,
+  ButtonControlConfirm,
   ButtonControlDrawer,
   ButtonControlRoute,
   NamedLink,
+  ReviewFeedback,
+  StatusBadge,
 } from "components/atomic";
 import { IconFactory } from "components/factories";
 import { PageHeader, BackToAll } from "components/layout";
@@ -38,9 +41,9 @@ export default function SubmissionLayout({
   const item = useMaybeFragment(fragment, data);
   const isEditing = router.asPath.endsWith("/edit");
 
-  // Fall back to mock data title when no API data is available
-  const title =
-    item?.title || MOCK_SUBMISSIONS.find((s) => s.slug === slug)?.title;
+  // Fall back to mock data when no API data is available
+  const submission = MOCK_SUBMISSIONS.find((s) => s.slug === slug);
+  const title = item?.title || submission?.title;
 
   // TODO (pagination): When real API data replaces mocks, "Review Next" will
   // need to fetch the next page of results at the boundary (e.g. after the last
@@ -50,6 +53,13 @@ export default function SubmissionLayout({
     currentIndex >= 0 && currentIndex < MOCK_SUBMISSIONS.length - 1
       ? MOCK_SUBMISSIONS[currentIndex + 1].slug
       : null;
+
+  const isPublished = submission?.status === "Published";
+
+  const handleSubmitForReview = (hideDialog: () => void) => {
+    // TODO: Wire up to real mutation when API is ready
+    hideDialog();
+  };
 
   const buttons = isEditing ? (
     <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
@@ -61,12 +71,12 @@ export default function SubmissionLayout({
         {t("common.cancel")}
       </ButtonControlRoute>
     </ButtonControlGroup>
-  ) : (
+  ) : !isPublished ? (
     <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
       <ButtonControlRoute route={editRoute} query={{ slug }} icon="edit">
         {t("common.edit")}
       </ButtonControlRoute>
-      {parentRoute === "submissions" && (
+      {parentRoute === "submissions" ? (
         <ButtonControlDrawer
           drawer="reviewSubmission"
           drawerQuery={{ drawerSlug: slug || "" }}
@@ -74,9 +84,34 @@ export default function SubmissionLayout({
         >
           {t("actions.review_submission")}
         </ButtonControlDrawer>
-      )}
+      ) : submission?.status === "Draft" ||
+        submission?.status === "Revisions Requested" ? (
+        <ButtonControlConfirm
+          modalLabel={
+            submission.status === "Draft"
+              ? t("actions.submit_for_review")
+              : t("actions.resubmit_for_review")
+          }
+          modalBody={
+            submission.status === "Draft"
+              ? t("actions.submit_for_review_confirm")
+              : t("actions.resubmit_for_review_confirm")
+          }
+          aria-label={
+            submission.status === "Draft"
+              ? t("actions.submit_for_review")
+              : t("actions.resubmit_for_review")
+          }
+          onClick={handleSubmitForReview}
+          icon="arrow"
+        >
+          {submission.status === "Draft"
+            ? t("actions.submit_for_review")
+            : t("actions.resubmit_for_review")}
+        </ButtonControlConfirm>
+      ) : null}
     </ButtonControlGroup>
-  );
+  ) : undefined;
 
   return (
     <>
@@ -99,10 +134,21 @@ export default function SubmissionLayout({
         </Styled.NavRow>
         <PageHeader
           title={title}
+          titleTag={
+            submission?.status ? (
+              <StatusBadge status={submission.status} />
+            ) : undefined
+          }
           tabRoutes={tabRoutes}
           tabLinksOnly
           buttons={buttons}
         />
+        {submission?.reviewComment && (
+          <ReviewFeedback
+            name={t("submission_detail.revisions_requested")}
+            message={submission.reviewComment}
+          />
+        )}
         {children}
       </section>
     </>
