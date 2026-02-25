@@ -43,6 +43,7 @@ export const colors = {
   },
   yellow: {
     dark: "#fab048",
+    tint: "#FFF3E0",
   },
 };
 

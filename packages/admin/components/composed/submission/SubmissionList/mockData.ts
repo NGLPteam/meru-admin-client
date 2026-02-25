@@ -7,6 +7,7 @@ export interface SubmissionNode {
   collection: string;
   updatedAt: string;
   allowedActions: string[];
+  reviewComment?: string;
 }
 
 export const MOCK_SUBMISSIONS: readonly SubmissionNode[] = [
@@ -17,16 +18,18 @@ export const MOCK_SUBMISSIONS: readonly SubmissionNode[] = [
     status: "Draft",
     collection: "Digital Humanities Quarterly",
     updatedAt: "2026-02-20T14:30:00Z",
-    allowedActions: [],
+    allowedActions: ["self.update"],
   },
   {
     id: "mock-submission-2",
     slug: "mock-submission-2",
     title: "Open Access and Community Engagement",
-    status: "In Review",
+    status: "Revisions Requested",
     collection: "Library Science Research",
     updatedAt: "2026-02-18T09:15:00Z",
-    allowedActions: [],
+    allowedActions: ["self.update"],
+    reviewComment:
+      "The methodology section needs more detail on the data collection process. Please also add citations for the claims made in the introduction.",
   },
   {
     id: "mock-submission-3",
@@ -44,7 +47,7 @@ export const MOCK_SUBMISSIONS: readonly SubmissionNode[] = [
     status: "Draft",
     collection: "Digital Humanities Quarterly",
     updatedAt: "2026-02-22T11:00:00Z",
-    allowedActions: [],
+    allowedActions: ["self.update"],
   },
   {
     id: "mock-submission-5",
@@ -53,6 +56,6 @@ export const MOCK_SUBMISSIONS: readonly SubmissionNode[] = [
     status: "In Review",
     collection: "Archives & Records",
     updatedAt: "2026-02-10T08:30:00Z",
-    allowedActions: [],
+    allowedActions: ["self.update"],
   },
 ];
