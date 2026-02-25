@@ -13,4 +13,6 @@ export * from "./buttons";
 export * from "./links";
 export * from "./loading";
 export * from "./MessageBlock";
+export * from "./ReviewFeedback";
+export * from "./StatusBadge";
 export * from "./images";
