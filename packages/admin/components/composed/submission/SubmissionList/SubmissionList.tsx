@@ -21,16 +21,22 @@ function SubmissionList({ data }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
 
+  const isReview = router.pathname.startsWith("/submissions");
+  const detailRoute = isReview ? "submissions.detail" : "my-submissions.detail";
+
   /* Replace real nodes with mock data while preserving pagination fragment refs */
+  const filteredSubmissions = isReview
+    ? MOCK_SUBMISSIONS.filter(
+        (s) => s.status === "In Review" || s.status === "Revisions Requested",
+      )
+    : MOCK_SUBMISSIONS;
+
   const dataWithMockNodes = connection
     ? ({
         ...connection,
-        nodes: MOCK_SUBMISSIONS,
+        nodes: filteredSubmissions,
       } as SubmissionListFragment$data)
     : undefined;
-
-  const isReview = router.pathname.startsWith("/submissions");
-  const detailRoute = isReview ? "submissions.detail" : "my-submissions.detail";
 
   const columns = [
     ModelColumns.NameColumn<SubmissionNode>({
@@ -38,8 +44,7 @@ function SubmissionList({ data }: Props) {
       route: detailRoute,
       enableSorting: false,
     }),
-    ModelColumns.StringColumn<SubmissionNode>({
-      id: "status",
+    ModelColumns.StatusColumn<SubmissionNode>({
       header: () => t("lists.status_column"),
     }),
     ModelColumns.StringColumn<SubmissionNode>({
@@ -52,9 +57,16 @@ function SubmissionList({ data }: Props) {
   ];
 
   const actions = {
+    handleEdit: ({ row }: ModelTableActionProps<SubmissionNode>) => {
+      if (row.original.slug) {
+        router.push(
+          `/${isReview ? "submissions" : "my-submissions"}/${row.original.slug}/details/edit`,
+        );
+      }
+    },
     handleView: ({ row }: ModelTableActionProps<SubmissionNode>) =>
       row.original.slug
-        ? `/${isReview ? "submissions" : "my-submissions"}/${row.original.slug}`
+        ? `/${isReview ? "submissions" : "my-submissions"}/${row.original.slug}/details`
         : null,
   };
 

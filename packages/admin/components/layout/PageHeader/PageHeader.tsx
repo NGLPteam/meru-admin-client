@@ -20,6 +20,7 @@ type SidebarNavProps = React.ComponentProps<typeof SidebarNav>;
  */
 const PageHeader = ({
   title,
+  titleTag,
   breadcrumbsProps,
   tabRoutes,
   tabLinksOnly,
@@ -39,6 +40,7 @@ const PageHeader = ({
         data={data}
         headerStyle={headerStyle}
         title={title}
+        titleTag={titleTag}
         rightSide={buttons}
       />
       {tabRoutes && (
@@ -62,6 +64,8 @@ interface Link extends NamedLinkProps {
 interface Props extends Pick<ContentHeaderProps, "headerStyle"> {
   /** Page title */
   title?: string | null;
+  /** Optional tag rendered inline with the title (e.g. status badge) */
+  titleTag?: React.ReactNode;
   /** Breadcrumb props to be passed down to Breadcrumbs component */
   breadcrumbsProps?: BreadcrumbProps;
   /** Child tabs (TabNav) */
