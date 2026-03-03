@@ -27,9 +27,13 @@ type Fields = Omit<CreateItemInput, "clientMutationId"> & {
 
 type Props = {
   data: SchemaSelectFragment$key;
+  initialCollection?: { id: string; title: string };
 };
 
-export default function SubmissionCreateForm({ data }: Props) {
+export default function SubmissionCreateForm({
+  data,
+  initialCollection,
+}: Props) {
   const { t } = useTranslation();
   const router = useRouter();
 
@@ -66,6 +70,7 @@ export default function SubmissionCreateForm({ data }: Props) {
     visibility: "VISIBLE" as Fields["visibility"],
     contributors: [] as Fields["contributors"],
     files: [] as Fields["files"],
+    ...(initialCollection ? { parentId: initialCollection.id } : {}),
   };
 
   const renderForm = useRenderForm<Fields>(
@@ -87,6 +92,11 @@ export default function SubmissionCreateForm({ data }: Props) {
           name="parentId"
           label="forms.fields.collection"
           required
+          initialOption={
+            initialCollection
+              ? { label: initialCollection.title, value: initialCollection.id }
+              : undefined
+          }
         />
         <Forms.SchemaSelect
           label="forms.schema.label"
