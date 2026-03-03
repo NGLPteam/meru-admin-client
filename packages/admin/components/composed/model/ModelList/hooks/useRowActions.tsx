@@ -23,6 +23,8 @@ type ActionConfig<D extends Record<string, unknown>> =
   | {
       handleClick: ({ row }: { row: Row<D> }) => void;
       modalConfirm?: boolean;
+      modalLabel?: ({ row }: { row: Row<D> }) => string;
+      modalBody?: ({ row }: { row: Row<D> }) => React.ReactNode;
       handleHide?: ({ row }: { row: Row<D> }) => boolean;
       handleLink?: ({ row }: { row: Row<D> }) => string | void;
     }
@@ -41,12 +43,14 @@ type ActionKeys =
   | "purge"
   | "view"
   | "enable"
-  | "disable";
+  | "disable"
+  | "publish";
 
 // Change the sort order of action buttons here
 const ACTION_ORDER = [
   "download",
   "view",
+  "publish",
   "edit",
   "enable",
   "disable",
@@ -112,6 +116,10 @@ const availableActions: ActionDefinitions = {
       <p className="t-copy-sm">{i18next.t("messages.disable.confirm_body")}</p>
     ),
   },
+  publish: {
+    label: i18next.t("nav.publish"),
+    modalLabel: i18next.t("actions.publish_confirm_label"),
+  },
 };
 
 function getButtonControlChildren<D extends Record<string, unknown>>(
@@ -132,6 +140,13 @@ function getButtonControlChildren<D extends Record<string, unknown>>(
   if (actionConfig?.handleHide && actionConfig?.handleHide({ row }))
     return <Fragment key={action}></Fragment>;
 
+  const dynamicModalLabel = actionConfig?.modalLabel
+    ? actionConfig.modalLabel({ row })
+    : actionDefinition.modalLabel;
+  const dynamicModalBody = actionConfig?.modalBody
+    ? actionConfig.modalBody({ row })
+    : actionDefinition.modalBody ?? null;
+
   const buttonControl = actionConfig?.modalConfirm ? (
     <ButtonControlConfirm
       key={action}
@@ -144,8 +159,8 @@ function getButtonControlChildren<D extends Record<string, unknown>>(
           if (hideDialog) hideDialog();
         },
       })}
-      modalLabel={actionDefinition.modalLabel}
-      modalBody={actionDefinition.modalBody ?? null}
+      modalLabel={dynamicModalLabel}
+      modalBody={dynamicModalBody}
       disabled={disableDelete && action === "delete"}
     >
       {actionDefinition.icon ? null : actionDefinition.label}
@@ -247,6 +262,8 @@ export interface Actions<T extends Record<string, unknown>> {
   hideEnable?: (props: ModelTableActionProps<T>) => boolean;
   handleDisable?: (props: ModelTableActionProps<T>) => void;
   hideDisable?: (props: ModelTableActionProps<T>) => boolean;
+  handlePublish?: (props: ModelTableActionProps<T>) => void;
+  publishModalBody?: (props: ModelTableActionProps<T>) => React.ReactNode;
 }
 
 function useRowActions<D extends Record<string, unknown>>(
@@ -302,6 +319,13 @@ function useRowActions<D extends Record<string, unknown>>(
           handleClick: actions.handleDisable,
           handleHide: actions.hideDisable,
           modalConfirm: true,
+        },
+      }),
+      ...(actions.handlePublish && {
+        publish: {
+          handleClick: actions.handlePublish,
+          modalConfirm: true,
+          modalBody: actions.publishModalBody,
         },
       }),
     }),

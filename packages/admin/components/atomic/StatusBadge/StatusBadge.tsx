@@ -7,6 +7,7 @@ const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
     bg: "var(--yellowtint)",
     color: "var(--yellowdark)",
   },
+  Approved: { bg: "var(--greentint)", color: "var(--greendark)" },
   Published: { bg: "var(--greentint)", color: "var(--greendark)" },
 };
 
