@@ -98,6 +98,12 @@ export const baseRoutes: BaseRoute[] = [
                 label: "nav.permalinks",
                 actions: ["self.update"],
               },
+              {
+                name: "collection.manage.submissions",
+                path: "/collections/[slug]/manage/submissions",
+                label: "glossary.submission_other",
+                actions: ["self.update"],
+              },
             ],
           },
         ],
