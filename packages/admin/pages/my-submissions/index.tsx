@@ -18,7 +18,11 @@ export default function MySubmissions() {
         loadingFallback={<LoadingPage />}
       >
         {({ queryRef }) =>
-          queryRef ? <ListQuery queryRef={queryRef} /> : <SubmissionList />
+          queryRef ? (
+            <ListQuery queryRef={queryRef} />
+          ) : (
+            <SubmissionList mode="my-submissions" />
+          )
         }
       </QueryTransitionWrapper>
     </>
@@ -30,7 +34,7 @@ const ListQuery = ({ queryRef }: { queryRef: PreloadedQuery<Query> }) => {
     viewer: { items },
   } = usePreloadedQuery<Query>(query, queryRef);
 
-  return <SubmissionList data={items} />;
+  return <SubmissionList data={items} mode="my-submissions" />;
 };
 
 const query = graphql`
