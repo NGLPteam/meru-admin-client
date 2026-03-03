@@ -7,13 +7,26 @@ type NamedLinkProps = React.ComponentProps<typeof NamedLink>;
  * A button control that opens a drawer
  */
 const ButtonControlRoute = forwardRef(
-  ({ icon, children, iconChecked, className, ...linkProps }: Props, ref) => {
+  (
+    {
+      icon,
+      children,
+      iconChecked,
+      iconLeft,
+      iconRotate,
+      className,
+      ...linkProps
+    }: Props,
+    ref,
+  ) => {
     return (
       <NamedLink passHref {...linkProps}>
         <ButtonControl
           as="a"
           icon={icon}
           iconChecked={iconChecked}
+          iconLeft={iconLeft}
+          iconRotate={iconRotate}
           className={className}
           ref={ref}
         >

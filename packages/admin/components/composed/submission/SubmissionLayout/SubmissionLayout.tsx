@@ -7,16 +7,14 @@ import {
   ButtonControlConfirm,
   ButtonControlDrawer,
   ButtonControlRoute,
-  NamedLink,
   ReviewFeedback,
   StatusBadge,
 } from "components/atomic";
-import { IconFactory } from "components/factories";
 import { PageHeader, BackToAll } from "components/layout";
 import HtmlHead from "components/global/HtmlHead";
 import { MOCK_SUBMISSIONS } from "components/composed/submission/SubmissionList/mockData";
 import type { SubmissionLayoutFragment$key } from "@/relay/SubmissionLayoutFragment.graphql";
-import * as Styled from "./SubmissionLayout.styles";
+import ReviewNav from "./ReviewNav";
 
 export default function SubmissionLayout({
   children,
@@ -49,6 +47,8 @@ export default function SubmissionLayout({
   // need to fetch the next page of results at the boundary (e.g. after the last
   // submission on a page, fetch the next page). For now we use the mock array.
   const currentIndex = MOCK_SUBMISSIONS.findIndex((s) => s.slug === slug);
+  const prevSlug =
+    currentIndex > 0 ? MOCK_SUBMISSIONS[currentIndex - 1].slug : null;
   const nextSlug =
     currentIndex >= 0 && currentIndex < MOCK_SUBMISSIONS.length - 1
       ? MOCK_SUBMISSIONS[currentIndex + 1].slug
@@ -117,21 +117,7 @@ export default function SubmissionLayout({
     <>
       <HtmlHead title={title} />
       <section>
-        <Styled.NavRow>
-          <BackToAll route={parentRoute} />
-          {nextSlug && parentRoute === "submissions" && (
-            <NamedLink
-              route="submissions.detail.details"
-              query={{ slug: nextSlug }}
-              passHref
-            >
-              <Styled.ReviewNextLink className="a-link">
-                <span>{t("actions.review_next")}</span>
-                <IconFactory icon="arrow" rotate={90} size="xs" />
-              </Styled.ReviewNextLink>
-            </NamedLink>
-          )}
-        </Styled.NavRow>
+        <BackToAll route={parentRoute} />
         <PageHeader
           title={title}
           titleTag={
@@ -150,6 +136,9 @@ export default function SubmissionLayout({
           />
         )}
         {children}
+        {parentRoute === "submissions" && !isEditing && (
+          <ReviewNav prevSlug={prevSlug} nextSlug={nextSlug} />
+        )}
       </section>
     </>
   );
