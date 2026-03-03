@@ -426,6 +426,7 @@
       },
       "review_submission": "Review",
       "review_next": "Review Next",
+      "review_previous": "Review Previous",
       "submit_for_review": "Submit",
       "submit_for_review_confirm": "Are you sure you're ready to submit this for review? It will be sent to a reviewer for evaluation.",
       "resubmit_for_review": "Resubmit",

@@ -73,6 +73,7 @@ export const ButtonControl = styled.button<{
 export const ButtonText = styled.span<{
   $size?: BaseProps["size"];
   $icon?: BaseProps["icon"];
+  $iconLeft?: boolean;
 }>`
   display: inline-block;
   white-space: nowrap;
@@ -83,9 +84,13 @@ export const ButtonText = styled.span<{
       padding-inline-start: ${pxToRem(4)};
     `}
 
-  ${({ $icon }) =>
+  ${({ $icon, $iconLeft }) =>
     $icon &&
-    css`
-      padding-inline-end: ${pxToRem(10)};
-    `}
+    ($iconLeft
+      ? css`
+          padding-inline-start: ${pxToRem(10)};
+        `
+      : css`
+          padding-inline-end: ${pxToRem(10)};
+        `)}
 `;
