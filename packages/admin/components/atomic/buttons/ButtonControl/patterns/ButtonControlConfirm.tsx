@@ -22,6 +22,7 @@ const ButtonControlConfirm = ({
   actions,
   allowedActions,
   loading,
+  disabled,
 }: Props) => {
   const dialog = useDialogState({ visible: false, animated: true });
 
@@ -46,6 +47,7 @@ const ButtonControlConfirm = ({
           icon={icon}
           onClick={handleClick}
           aria-label={actionLabel}
+          disabled={disabled}
           {...dialog}
         >
           {children}

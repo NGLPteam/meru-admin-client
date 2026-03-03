@@ -129,7 +129,7 @@
       "no_results": "No Results",
       "contribution_count": "{{count}} contribution",
       "contribution_count_other": "{{count}} contributions",
-      "selected_count": "<0>Selected: {{count}}</0> of <0>{{total}}</0>",
+      "selected_count": "<0>{{count}}</0> Selected",
       "showing_count": "Showing <0>{{start}} - {{end}}</0> of <0>{{total}}</0>",
       "sort": {
         "label": "Sort",
@@ -199,6 +199,10 @@
       "permalinks": "Permalinks",
       "my_submissions": "My Submissions",
       "review_submissions": "Review Submissions",
+      "submissions_header": "Submissions",
+      "publish_submissions": "Publish Submissions",
+      "review": "Review",
+      "publish": "Publish",
       "new_submission": "New Submission",
       "history": "History"
     },
@@ -425,7 +429,16 @@
       "submit_for_review": "Submit",
       "submit_for_review_confirm": "Are you sure you're ready to submit this for review? It will be sent to a reviewer for evaluation.",
       "resubmit_for_review": "Resubmit",
-      "resubmit_for_review_confirm": "Are you sure you're ready to resubmit this for review? It will be sent back to a reviewer for evaluation."
+      "resubmit_for_review_confirm": "Are you sure you're ready to resubmit this for review? It will be sent back to a reviewer for evaluation.",
+      "bulk_publish": "Bulk Publish",
+      "publish_confirm_label": "Confirm Publish",
+      "publish_confirm_body": "Are you sure you want to publish the {{count}} selected submission(s)?",
+      "publish_confirm_body_single": "Are you sure you want to publish \"{{title}}\"?",
+      "bulk_delete": "Delete",
+      "cancel": "Cancel",
+      "select_all": "Select all",
+      "clear_selection": "Clear selection",
+      "select_all_matching": "Select all {{count}} {{unit}}"
     },
     "sort": {
       "ascending": "ascending",
@@ -586,7 +599,8 @@
         "status": "Status",
         "last_updated": "Last Updated",
         "contributors": "Contributors",
-        "files": "Files"
+        "files": "Files",
+        "accepts_submissions": "This collection accepts submissions"
       },
       "validation": {
         "year": "Must be a four digit year",
@@ -750,6 +764,15 @@
       "mapping_details_column_set": "{{format}} to {{target}} ({{set}})",
       "view_target": "View Target",
       "mapping_breadcrumb": "{{format}} Mapping to {{target}}"
+    },
+    "counts": {
+      "range": "<0>{{start}}–{{end}}</0> of {{total}} {{unit}}",
+      "bulk_actions_match": "<0>{{total}}</0> {{unit}} selected"
+    },
+    "records": {
+      "annotations": {
+        "bulk_actions": "Bulk Actions"
+      }
     }
   }
 }

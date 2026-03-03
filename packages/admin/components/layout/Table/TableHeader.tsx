@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { flexRender } from "@tanstack/react-table";
+import { useTranslation } from "react-i18next";
 import { Checkbox } from "components/forms";
 import TableHeaderRow from "./TableHeaderRow";
 import * as Styled from "./Table.styles";
@@ -17,6 +18,7 @@ function TableHeader<T extends Record<string, unknown>>({
   /* eslint-disable react/jsx-key */
   /* keys are injected using the get props functions */
   const { setColumnCount } = useTableContext();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (headerGroups.length > 0 && setColumnCount) {
@@ -32,9 +34,10 @@ function TableHeader<T extends Record<string, unknown>>({
         return (
           <TableHeaderRow key={headerGroup.id}>
             {selectable ? (
-              <Styled.HeaderCell role="columnheader" data-select-cell="true">
+              <Styled.HeaderCell role="columnheader">
                 <Styled.SelectCellInner>
                   <Checkbox
+                    aria-label={t("actions.select_all")}
                     {...{
                       checked: allRowsSelected,
                       indeterminate: someRowsSelected,

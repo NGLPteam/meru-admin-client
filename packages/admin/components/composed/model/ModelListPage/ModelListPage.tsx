@@ -28,13 +28,21 @@ type ModelListPageProps<
   V extends Record<string, unknown> = Record<string, unknown>,
 > = Omit<ModelListProps<U, V>, "view"> &
   Pick<ModelListActionsProps, "viewOptions"> &
-  Pick<HeaderProps, "headerStyle" | "hideHeader"> & {
+  Pick<
+    HeaderProps,
+    "headerStyle" | "hideHeader" | "tabRoutes" | "tabLinksOnly"
+  > & {
     buttons?: React.ReactNode;
     header?: string | null;
     showSearch?: boolean;
     hideFilters?: boolean;
     searchData?: ModelListPageSearchFragment$key | null;
-  } & { countActions?: React.JSX.Element };
+    countActions?: React.JSX.Element;
+    /** Number of selected items, passed to PageCountActions */
+    selectedCount?: number;
+    /** Rendered between count row and table (e.g. SelectAll bar) */
+    selectionBar?: React.ReactNode;
+  };
 
 function ModelListPage<
   U extends PaginatedConnectionish,
@@ -46,11 +54,15 @@ function ModelListPage<
   headerStyle,
   hideHeader,
   header,
+  tabRoutes,
+  tabLinksOnly,
   showSearch,
   hideFilters,
   data,
   searchData,
   countActions,
+  selectedCount,
+  selectionBar,
   ...modelListProps
 }: ModelListPageProps<U, V>) {
   const { t } = useTranslation();
@@ -92,6 +104,8 @@ function ModelListPage<
         buttons={buttons}
         headerStyle={headerStyle}
         hideHeader={hideHeader}
+        tabRoutes={tabRoutes}
+        tabLinksOnly={tabLinksOnly}
       />
       <ModelListActions
         viewOptions={viewOptions}
@@ -109,7 +123,12 @@ function ModelListPage<
         }
       />
       {searchScope && <CurrentSearchFilters data={searchScope} />}
-      <ModelPageCountActions data={instance} actions={pageCountActions} />
+      <ModelPageCountActions
+        data={instance}
+        actions={pageCountActions}
+        selectedCount={selectedCount}
+      />
+      {selectionBar}
       <ModelList<U, V>
         {...modelListProps}
         data={data}

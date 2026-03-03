@@ -299,8 +299,19 @@ export const baseRoutes: BaseRoute[] = [
   {
     name: "submissions",
     path: "/submissions",
+    redirect: "/submissions/review",
     label: "glossary.submission_other",
     routes: [
+      {
+        name: "submissions.review",
+        path: "/submissions/review",
+        label: "nav.review",
+      },
+      {
+        name: "submissions.publish",
+        path: "/submissions/publish",
+        label: "nav.publish",
+      },
       {
         name: "submissions.detail",
         path: "/submissions/[slug]",

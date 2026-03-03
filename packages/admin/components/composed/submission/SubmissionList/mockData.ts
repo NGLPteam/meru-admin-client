@@ -58,4 +58,22 @@ export const MOCK_SUBMISSIONS: readonly SubmissionNode[] = [
     updatedAt: "2026-02-10T08:30:00Z",
     allowedActions: ["self.update"],
   },
+  {
+    id: "mock-submission-6",
+    slug: "mock-submission-6",
+    title: "Sustainable Funding Models for Open Repositories",
+    status: "Approved",
+    collection: "Library Science Research",
+    updatedAt: "2026-02-25T10:00:00Z",
+    allowedActions: ["self.update"],
+  },
+  {
+    id: "mock-submission-7",
+    slug: "mock-submission-7",
+    title: "Interoperability Standards for Digital Archives",
+    status: "Approved",
+    collection: "Archives & Records",
+    updatedAt: "2026-02-27T13:45:00Z",
+    allowedActions: ["self.update"],
+  },
 ];
