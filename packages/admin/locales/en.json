@@ -204,7 +204,8 @@
       "review": "Review",
       "publish": "Publish",
       "new_submission": "New Submission",
-      "history": "History"
+      "history": "History",
+      "my_publications": "My Publications"
     },
     "messages": {
       "marked_for_purge": "Marked for purge",
@@ -698,7 +699,9 @@
     },
     "dashboard": {
       "installation_header": "Installation",
-      "current_version_label": "Current Version"
+      "current_version_label": "Current Version",
+      "no_admin_access_title": "No Admin Access",
+      "no_admin_access_message": "This account has no admin access. If you're here to submit, you're in the right place and can ignore this message. If you expected to have admin access, please contact your site administrator."
     },
     "search": {
       "results": "Search results",
