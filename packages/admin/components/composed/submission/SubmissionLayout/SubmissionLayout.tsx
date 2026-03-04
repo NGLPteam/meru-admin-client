@@ -7,7 +7,7 @@ import {
   ButtonControlConfirm,
   ButtonControlDrawer,
   ButtonControlRoute,
-  ReviewFeedback,
+  MessageBanner,
   StatusBadge,
 } from "components/atomic";
 import { PageHeader, BackToAll } from "components/layout";
@@ -130,7 +130,8 @@ export default function SubmissionLayout({
           buttons={buttons}
         />
         {submission?.reviewComment && (
-          <ReviewFeedback
+          <MessageBanner
+            variant="warning"
             name={t("submission_detail.revisions_requested")}
             message={submission.reviewComment}
           />
