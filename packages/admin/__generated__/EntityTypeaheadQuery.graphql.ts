@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<176322e4f67e6047a767fb96e548b58a>>
+ * @generated SignedSource<<db9d9f81fde8282b99ef872b215169d6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -252,12 +252,9 @@ return {
                         "plural": false,
                         "selections": [
                           (v6/*: any*/),
+                          (v5/*: any*/),
                           {
-                            "kind": "InlineFragment",
-                            "selections": [
-                              (v5/*: any*/)
-                            ],
-                            "type": "Node",
+                            "kind": "TypeDiscriminator",
                             "abstractKey": "__isNode"
                           }
                         ],
@@ -279,12 +276,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "a0f06f1e4db3c9f8f74a98e52be92e22",
+    "cacheID": "3c9c6add5575445982416396e9203003",
     "id": null,
     "metadata": {},
     "name": "EntityTypeaheadQuery",
     "operationKind": "query",
-    "text": "query EntityTypeaheadQuery(\n  $query: String!\n  $schema: [String!]\n  $scope: EntityDescendantScopeFilter!\n) {\n  search(visibility: ALL) {\n    results(access: UPDATE, prefix: $query, page: 1, perPage: 25, order: TITLE_ASCENDING, schema: $schema, scope: $scope) {\n      edges {\n        node {\n          title\n          slug\n          entity {\n            __typename\n            ... on Node {\n              __isNode: __typename\n              id\n              __typename\n            }\n          }\n          id\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query EntityTypeaheadQuery(\n  $query: String!\n  $schema: [String!]\n  $scope: EntityDescendantScopeFilter!\n) {\n  search(visibility: ALL) {\n    results(access: UPDATE, prefix: $query, page: 1, perPage: 25, order: TITLE_ASCENDING, schema: $schema, scope: $scope) {\n      edges {\n        node {\n          title\n          slug\n          entity {\n            __typename\n            ... on Node {\n              __isNode: __typename\n              id\n              __typename\n            }\n            id\n          }\n          id\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();

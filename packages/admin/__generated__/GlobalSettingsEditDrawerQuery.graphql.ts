@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<cf74e9d891c93ba4ce0432c23c1b9789>>
+ * @generated SignedSource<<b88c846b1c1bc2b8bddd49d339f2fc46>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -165,6 +165,31 @@ return {
           {
             "alias": null,
             "args": null,
+            "concreteType": "DepositingSettings",
+            "kind": "LinkedField",
+            "name": "depositing",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "enabled",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "agreement",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
             "concreteType": "EntitiesSettings",
             "kind": "LinkedField",
             "name": "entities",
@@ -269,12 +294,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "623f1afc04dd7ce7f837ae455691e0f7",
+    "cacheID": "4d4c34bcf5c877f8a5516038c4b8746e",
     "id": null,
     "metadata": {},
     "name": "GlobalSettingsEditDrawerQuery",
     "operationKind": "query",
-    "text": "query GlobalSettingsEditDrawerQuery {\n  globalConfiguration {\n    ...GlobalSettingsEditFormFragment\n    id\n  }\n}\n\nfragment GlobalSettingsEditFormFragment on GlobalConfiguration {\n  site {\n    providerName\n    installationName\n    installationHomePageCopy\n    footer {\n      description\n      copyrightStatement\n    }\n    logoMode\n  }\n  theme {\n    color\n    font\n  }\n  entities {\n    suppressExternalLinks\n  }\n  logo {\n    ...SiteLogoUploadFragment\n  }\n  contributionRoles {\n    controlledVocabulary {\n      id\n    }\n    defaultItem {\n      id\n    }\n    id\n  }\n}\n\nfragment SiteLogoUploadFragment on SiteLogoAttachment {\n  originalFilename\n  storage\n  original {\n    url\n    alt\n  }\n}\n"
+    "text": "query GlobalSettingsEditDrawerQuery {\n  globalConfiguration {\n    ...GlobalSettingsEditFormFragment\n    id\n  }\n}\n\nfragment GlobalSettingsEditFormFragment on GlobalConfiguration {\n  site {\n    providerName\n    installationName\n    installationHomePageCopy\n    footer {\n      description\n      copyrightStatement\n    }\n    logoMode\n  }\n  theme {\n    color\n    font\n  }\n  depositing {\n    enabled\n    agreement\n  }\n  entities {\n    suppressExternalLinks\n  }\n  logo {\n    ...SiteLogoUploadFragment\n  }\n  contributionRoles {\n    controlledVocabulary {\n      id\n    }\n    defaultItem {\n      id\n    }\n    id\n  }\n}\n\nfragment SiteLogoUploadFragment on SiteLogoAttachment {\n  originalFilename\n  storage\n  original {\n    url\n    alt\n  }\n}\n"
   }
 };
 })();
