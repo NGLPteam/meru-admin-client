@@ -3,6 +3,7 @@ import { Dropdown, NamedLink, NavLink, DrawerLink } from "components/atomic";
 import { Authorize } from "components/auth";
 import { RouteHelper } from "routes";
 import { useIsAuthorized } from "hooks";
+import { useGlobalContext } from "contexts";
 import * as Styled from "./Header.styles";
 type NamedLinkProps = React.ComponentProps<typeof NamedLink>;
 type AuthorizeProps = React.ComponentProps<typeof Authorize>;
@@ -10,6 +11,7 @@ type AuthorizeProps = React.ComponentProps<typeof Authorize>;
 interface HeaderNavItem {
   label: string;
   actions?: AuthorizeProps["actions"];
+  depositing?: boolean;
 }
 
 interface HeaderNavLink extends HeaderNavItem {
@@ -28,6 +30,10 @@ interface Props {
 
 function HeaderNavLinks({ navigation }: Props) {
   const { t } = useTranslation();
+
+  const globalData = useGlobalContext();
+  const depositingEnabled =
+    globalData?.globalConfiguration?.depositing?.enabled ?? false;
 
   const canUpdateSettings = useIsAuthorized({
     actions: ["settings.update"],
@@ -53,9 +59,16 @@ function HeaderNavLinks({ navigation }: Props) {
       </DrawerLink>
     ) : null;
 
+  const filterDepositing = <T extends { depositing?: boolean }>(
+    items: T[],
+  ): T[] =>
+    depositingEnabled ? items : items.filter((item) => !item.depositing);
+
   const renderDropdown = (item: HeaderNavParent) => {
+    const filteredChildren = filterDepositing(item.children);
+
     // Check if the disclosure should be active
-    const active = item?.children?.some((item) => {
+    const active = filteredChildren.some((item) => {
       return RouteHelper.isRouteNameFuzzyActive(item.route);
     });
 
@@ -68,7 +81,7 @@ function HeaderNavLinks({ navigation }: Props) {
           </NavLink>
         }
         menuItems={[
-          ...item.children.map(
+          ...filteredChildren.map(
             (c, i) => maybeAuthorize(renderLink(c), c, i) as React.JSX.Element,
           ),
           renderGlobalSettings(),
@@ -93,7 +106,7 @@ function HeaderNavLinks({ navigation }: Props) {
 
   return (
     <>
-      {navigation.map((item, i) =>
+      {filterDepositing(navigation).map((item, i) =>
         maybeAuthorize(
           <Styled.Item key={i}>
             {item.children && renderDropdown(item)}

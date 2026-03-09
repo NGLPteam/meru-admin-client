@@ -15,6 +15,8 @@ function Footer() {
   const { t } = useTranslation();
 
   const data = useGlobalContext();
+  const depositingEnabled =
+    data?.globalConfiguration?.depositing?.enabled ?? false;
   const { globalAdmin } = useViewerContext();
 
   const siteData = useMaybeFragment<FooterFragment$key>(
@@ -52,9 +54,15 @@ function Footer() {
               <Styled.Header>{t(nav.header)}</Styled.Header>
               <Styled.List>
                 {nav.children &&
-                  nav.children.map((child, i) =>
-                    renderNavLink(child, i, Styled.ListItem),
-                  )}
+                  nav.children
+                    .filter(
+                      (child) =>
+                        depositingEnabled ||
+                        !("depositing" in child && child.depositing),
+                    )
+                    .map((child, i) =>
+                      renderNavLink(child, i, Styled.ListItem),
+                    )}
                 {globalAdmin && renderGlobalSettings()}
               </Styled.List>
             </div>

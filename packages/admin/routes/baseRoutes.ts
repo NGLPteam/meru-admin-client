@@ -103,6 +103,7 @@ export const baseRoutes: BaseRoute[] = [
                 path: "/collections/[slug]/manage/submissions",
                 label: "glossary.submission_other",
                 actions: ["self.update"],
+                depositing: true,
               },
             ],
           },
