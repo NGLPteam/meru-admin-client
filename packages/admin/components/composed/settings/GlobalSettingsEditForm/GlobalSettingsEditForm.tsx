@@ -109,6 +109,18 @@ export default function GlobalSettingsEditForm({
           required
           {...register("theme.font")}
         />
+        <Forms.Fieldset label={t("forms.fields.depositing_settings")}>
+          <Forms.Checkbox
+            label="forms.fields.depositing_enabled"
+            description="forms.fields.depositing_enabled_description"
+            {...register("depositing.enabled")}
+          />
+          <Forms.Textarea
+            label="forms.fields.depositing_agreement"
+            description="forms.fields.depositing_agreement_description"
+            {...register("depositing.agreement")}
+          />
+        </Forms.Fieldset>
         <Forms.Fieldset label={t("forms.fields.entity_settings")}>
           <Forms.Checkbox
             description="forms.fields.supress_external_links_description"
@@ -173,6 +185,10 @@ const fragment = graphql`
       color
       font
     }
+    depositing {
+      enabled
+      agreement
+    }
     entities {
       suppressExternalLinks
     }
@@ -209,6 +225,10 @@ const mutation = graphql`
         theme {
           color
           font
+        }
+        depositing {
+          enabled
+          agreement
         }
         entities {
           suppressExternalLinks

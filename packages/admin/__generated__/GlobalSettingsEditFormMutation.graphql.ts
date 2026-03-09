@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fad7115c57da5514e954b26a82e2801b>>
+ * @generated SignedSource<<6b7d762b7bd22f435cbbd3fdeca63e90>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -85,6 +85,10 @@ export type GlobalSettingsEditFormMutation$data = {
         readonly defaultItem: {
           readonly id: string;
         };
+      };
+      readonly depositing: {
+        readonly agreement: string;
+        readonly enabled: boolean;
       };
       readonly entities: {
         readonly suppressExternalLinks: boolean;
@@ -219,6 +223,31 @@ v3 = {
 v4 = {
   "alias": null,
   "args": null,
+  "concreteType": "DepositingSettings",
+  "kind": "LinkedField",
+  "name": "depositing",
+  "plural": false,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "enabled",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "agreement",
+      "storageKey": null
+    }
+  ],
+  "storageKey": null
+},
+v5 = {
+  "alias": null,
+  "args": null,
   "concreteType": "EntitiesSettings",
   "kind": "LinkedField",
   "name": "entities",
@@ -234,37 +263,37 @@ v4 = {
   ],
   "storageKey": null
 },
-v5 = {
+v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v6 = [
-  (v5/*: any*/)
+v7 = [
+  (v6/*: any*/)
 ],
-v7 = {
+v8 = {
   "alias": null,
   "args": null,
   "concreteType": "ControlledVocabulary",
   "kind": "LinkedField",
   "name": "controlledVocabulary",
   "plural": false,
-  "selections": (v6/*: any*/),
+  "selections": (v7/*: any*/),
   "storageKey": null
 },
-v8 = {
+v9 = {
   "alias": null,
   "args": null,
   "concreteType": "ControlledVocabularyItem",
   "kind": "LinkedField",
   "name": "defaultItem",
   "plural": false,
-  "selections": (v6/*: any*/),
+  "selections": (v7/*: any*/),
   "storageKey": null
 },
-v9 = {
+v10 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -347,6 +376,7 @@ return {
               (v2/*: any*/),
               (v3/*: any*/),
               (v4/*: any*/),
+              (v5/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -355,8 +385,8 @@ return {
                 "name": "contributionRoles",
                 "plural": false,
                 "selections": [
-                  (v7/*: any*/),
-                  (v8/*: any*/)
+                  (v8/*: any*/),
+                  (v9/*: any*/)
                 ],
                 "storageKey": null
               }
@@ -367,7 +397,7 @@ return {
             "kind": "InlineDataFragmentSpread",
             "name": "MutationForm_mutationErrors",
             "selections": [
-              (v9/*: any*/)
+              (v10/*: any*/)
             ],
             "args": null,
             "argumentDefinitions": []
@@ -404,6 +434,7 @@ return {
               (v2/*: any*/),
               (v3/*: any*/),
               (v4/*: any*/),
+              (v5/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -412,33 +443,33 @@ return {
                 "name": "contributionRoles",
                 "plural": false,
                 "selections": [
-                  (v7/*: any*/),
                   (v8/*: any*/),
-                  (v5/*: any*/)
+                  (v9/*: any*/),
+                  (v6/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v5/*: any*/)
+              (v6/*: any*/)
             ],
             "storageKey": null
           },
-          (v9/*: any*/)
+          (v10/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "7f985d39cbb85438551793738747bf6d",
+    "cacheID": "85da0bcfff9d47ec87f68604fb174955",
     "id": null,
     "metadata": {},
     "name": "GlobalSettingsEditFormMutation",
     "operationKind": "mutation",
-    "text": "mutation GlobalSettingsEditFormMutation(\n  $input: UpdateGlobalConfigurationInput!\n) {\n  updateGlobalConfiguration(input: $input) {\n    globalConfiguration {\n      site {\n        providerName\n        installationName\n        installationHomePageCopy\n        footer {\n          description\n          copyrightStatement\n        }\n        logoMode\n      }\n      theme {\n        color\n        font\n      }\n      entities {\n        suppressExternalLinks\n      }\n      contributionRoles {\n        controlledVocabulary {\n          id\n        }\n        defaultItem {\n          id\n        }\n        id\n      }\n      id\n    }\n    ...MutationForm_mutationErrors\n  }\n}\n\nfragment MutationForm_mutationErrors on StandardMutationPayload {\n  __isStandardMutationPayload: __typename\n  attributeErrors {\n    path\n    type\n    messages\n  }\n  globalErrors {\n    message\n  }\n}\n"
+    "text": "mutation GlobalSettingsEditFormMutation(\n  $input: UpdateGlobalConfigurationInput!\n) {\n  updateGlobalConfiguration(input: $input) {\n    globalConfiguration {\n      site {\n        providerName\n        installationName\n        installationHomePageCopy\n        footer {\n          description\n          copyrightStatement\n        }\n        logoMode\n      }\n      theme {\n        color\n        font\n      }\n      depositing {\n        enabled\n        agreement\n      }\n      entities {\n        suppressExternalLinks\n      }\n      contributionRoles {\n        controlledVocabulary {\n          id\n        }\n        defaultItem {\n          id\n        }\n        id\n      }\n      id\n    }\n    ...MutationForm_mutationErrors\n  }\n}\n\nfragment MutationForm_mutationErrors on StandardMutationPayload {\n  __isStandardMutationPayload: __typename\n  attributeErrors {\n    path\n    type\n    messages\n  }\n  globalErrors {\n    message\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "60811acbb3278bd741b4665fca735378";
+(node as any).hash = "7cdd95230e06d1c02f685a5256a470c2";
 
 export default node;
