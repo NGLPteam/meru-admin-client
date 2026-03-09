@@ -10,7 +10,7 @@ import {
 import { Authorize } from "components/auth";
 import { RouteHelper } from "routes";
 import { useIsAuthenticated } from "hooks";
-import { useViewerContext } from "contexts";
+import { useGlobalContext, useViewerContext } from "contexts";
 import * as Styled from "./Header.styles";
 type NamedLinkProps = React.ComponentProps<typeof NamedLink>;
 type AuthorizeProps = React.ComponentProps<typeof Authorize>;
@@ -28,6 +28,7 @@ interface HeaderNavLink extends HeaderNavItem {
 interface HeaderNavItem {
   label: string;
   actions?: AuthorizeProps["actions"];
+  depositing?: boolean;
 }
 
 interface Props {
@@ -39,6 +40,10 @@ const HeaderAccount = ({ accountNav }: Props) => {
 
   const isAuthenticated = useIsAuthenticated();
 
+  const globalData = useGlobalContext();
+  const depositingEnabled =
+    globalData?.globalConfiguration?.depositing?.enabled ?? false;
+
   const { avatar } = useViewerContext();
 
   const renderSignInOut = () => (
@@ -47,9 +52,16 @@ const HeaderAccount = ({ accountNav }: Props) => {
     </NavLink>
   );
 
+  const filterDepositing = <T extends { depositing?: boolean }>(
+    items: T[],
+  ): T[] =>
+    depositingEnabled ? items : items.filter((item) => !item.depositing);
+
   const renderDropdown = (item: HeaderNavParent) => {
+    const filteredChildren = filterDepositing(item.children);
+
     // Check if the disclosure should be active
-    const active = item?.children.some((item) => {
+    const active = filteredChildren.some((item) => {
       return RouteHelper.isRouteNameFuzzyActive(item.route);
     });
 
@@ -62,7 +74,7 @@ const HeaderAccount = ({ accountNav }: Props) => {
           </Styled.AvatarLink>
         }
         menuItems={[
-          ...item.children.map(renderLink),
+          ...filteredChildren.map(renderLink),
           <DrawerLink key="profile" drawer="editProfile" passHref>
             <NavLink>{t("nav.edit_profile")}</NavLink>
           </DrawerLink>,

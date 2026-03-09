@@ -52,6 +52,7 @@ const SUBMISSIONS_LINK = {
   route: "submissions",
   actions: "admin.access",
   model: "submission",
+  depositing: true,
 };
 
 /**
@@ -86,6 +87,7 @@ const appData = {
         {
           label: "nav.my_submissions",
           route: "my-submissions",
+          depositing: true,
         },
         {
           label: "nav.profile",
