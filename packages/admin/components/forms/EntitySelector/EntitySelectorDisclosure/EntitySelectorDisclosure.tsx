@@ -13,7 +13,7 @@ type EntitySelectorProps = React.ComponentProps<typeof EntitySelector>;
 type ControllerProps = React.ComponentProps<typeof EntitySelectorController>;
 
 interface Props extends Omit<EntitySelectorProps, "onSelect"> {
-  onSelect: (val: string) => void;
+  onSelect: (val: string, entity?: EntityOption) => void;
   selectableTypes: ControllerProps["selectableTypes"];
   startEntity?: EntityOption;
 }
@@ -35,7 +35,7 @@ export default function Disclosure(props: Props) {
   const internalOnSelect = useCallback(
     (entity: EntityOption | undefined) => {
       setSelected(entity);
-      onSelect(entity?.id ?? "");
+      onSelect(entity?.id ?? "", entity);
     },
     [setSelected, onSelect],
   );

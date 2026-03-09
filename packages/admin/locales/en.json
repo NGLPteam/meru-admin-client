@@ -209,6 +209,10 @@
     },
     "messages": {
       "marked_for_purge": "Marked for purge",
+      "submission_target_required_name": "Configuration Required",
+      "submission_target_required": "This collection must be configured as a submission target before submissions can be enabled. Save the form below to configure.",
+      "submissions_open_confirm": "Are you sure you want to open this collection for submissions?",
+      "submissions_close_confirm": "Are you sure you want to close submissions for this collection?",
       "unauthorized": "Unauthorized",
       "unauthorized_body": {
         "users": "Your account is not authorized to manage users.<0/>Please check with your account manager if you need access to this content.",
@@ -268,7 +272,9 @@
         "initial_ordering_failure": "Failed to update initial ordering.",
         "harvest_source_success": "Harvest source updated successfully.",
         "harvest_mapping_success": "Harvest mapping updated successfully.",
-        "submission_success": "Submission updated successfully."
+        "submission_success": "Submission updated successfully.",
+        "submission_target_success": "Submission settings updated.",
+        "submission_target_failure": "Failed to update submission settings."
       },
       "create": {
         "success": "$t({{ name }}) created successfully.",
@@ -440,7 +446,9 @@
       "cancel": "Cancel",
       "select_all": "Select all",
       "clear_selection": "Clear selection",
-      "select_all_matching": "Select all {{count}} {{unit}}"
+      "select_all_matching": "Select all {{count}} {{unit}}",
+      "submissions_opened": "Submissions are now open.",
+      "submissions_closed": "Submissions are now closed."
     },
     "sort": {
       "ascending": "ascending",
@@ -607,7 +615,23 @@
         "last_updated": "Last Updated",
         "contributors": "Contributors",
         "files": "Files",
-        "accepts_submissions": "This collection accepts submissions"
+        "accepts_submissions": "This collection accepts submissions",
+        "deposit_mode": "Deposit Mode",
+        "deposit_mode_direct": "Direct",
+        "deposit_mode_descendant": "Descendant",
+        "deposit_mode_description": "Select Direct to deposit into this collection; select Descendant to deposit into child entities, e.g. an issue of a journal.",
+        "deposit_targets": "Deposit Targets",
+        "deposit_targets_description": "Select the child entities that should accept submissions.",
+        "add_deposit_target": "Add Deposit Target",
+        "submission_instructions": "Submission Instructions",
+        "submission_instructions_description": "End-user facing instructions to appear on a How to Submit page for this collection. This field accepts markdown.",
+        "submission_internal_notes": "Internal Notes",
+        "agreement_required": "Certification required",
+        "agreement_content": "Certification Text",
+        "agreement_content_description": "If blank and certification is required, the default agreement for this installation will be used.",
+        "accepted_schemas": "Accepted Schemas",
+        "accepted_schemas_description": "Select which item schemas are accepted for submissions.",
+        "submissions_enabled": "Submissions enabled"
       },
       "validation": {
         "year": "Must be a four digit year",

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<16f1d4df36fa84a1a4a941504d28e279>>
+ * @generated SignedSource<<4f3748f6cf12bf4ff2892719f343c103>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,6 +12,9 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type GlobalContextFragment$data = {
   readonly globalConfiguration: {
+    readonly depositing: {
+      readonly enabled: boolean;
+    };
     readonly " $fragmentSpreads": FragmentRefs<"FooterFragment" | "HtmlHeadFragment" | "InstallationLogoFragment" | "InstallationNameFragment" | "ProviderBarFragment" | "UnauthorizedMessageFragment">;
   };
   readonly " $fragmentSpreads": FragmentRefs<"SchemaSelectorSchemasFragment">;
@@ -65,6 +68,24 @@ const node: ReaderFragment = {
           "args": null,
           "kind": "FragmentSpread",
           "name": "HtmlHeadFragment"
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "DepositingSettings",
+          "kind": "LinkedField",
+          "name": "depositing",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "enabled",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
         }
       ],
       "storageKey": null
@@ -123,6 +144,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "09c528f7a7a46d9d27b23078057da24f";
+(node as any).hash = "1bab3eec5d73360335825432d0c3c13a";
 
 export default node;

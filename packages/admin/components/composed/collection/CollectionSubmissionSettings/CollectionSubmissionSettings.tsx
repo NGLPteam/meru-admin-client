@@ -1,19 +1,26 @@
-import { useForm } from "react-hook-form";
+import { useFragment, graphql } from "react-relay";
 import { useTranslation } from "react-i18next";
 import capitalize from "lodash/capitalize";
 import { ContentHeader } from "components/layout";
-import Checkbox from "components/forms/Checkbox";
-import FormGrid from "components/forms/FormGrid";
+import { MessageBanner } from "components/atomic/MessageBanner";
+import type { CollectionSubmissionSettingsFragment$key } from "@/relay/CollectionSubmissionSettingsFragment.graphql";
+import type { submissionsManageSlugCollectionsPagesQuery$data } from "@/relay/submissionsManageSlugCollectionsPagesQuery.graphql";
+import SubmissionTargetConfigureForm from "./SubmissionTargetConfigureForm";
+import SubmissionTargetStateToggle from "./SubmissionTargetStateToggle";
+import * as Styled from "./CollectionSubmissionSettings.styles";
 
-type Fields = {
-  acceptsSubmissions: boolean;
-};
-
-export default function CollectionSubmissionSettings() {
+export default function CollectionSubmissionSettings({
+  data,
+  schemaVersionOptions,
+}: Props) {
   const { t } = useTranslation();
-  const { register } = useForm<Fields>({
-    defaultValues: { acceptsSubmissions: false },
-  });
+
+  const collection = useFragment<CollectionSubmissionSettingsFragment$key>(
+    fragment,
+    data,
+  );
+
+  const { collectionId, submissionTarget } = collection;
 
   return (
     <>
@@ -21,14 +28,37 @@ export default function CollectionSubmissionSettings() {
         headerStyle="secondary"
         title={capitalize(t("glossary.submission_other"))}
       />
-      <form>
-        <FormGrid>
-          <Checkbox
-            label="forms.fields.accepts_submissions"
-            {...register("acceptsSubmissions")}
+      <Styled.ToggleWrapper>
+        <SubmissionTargetStateToggle data={submissionTarget ?? null} />
+        {!submissionTarget && (
+          <MessageBanner
+            name={t("messages.submission_target_required_name")}
+            message={t("messages.submission_target_required")}
+            variant="info"
+            icon="statusWarning"
           />
-        </FormGrid>
-      </form>
+        )}
+      </Styled.ToggleWrapper>
+      <SubmissionTargetConfigureForm
+        collectionId={collectionId}
+        data={submissionTarget ?? null}
+        schemaVersionOptions={schemaVersionOptions}
+      />
     </>
   );
 }
+
+interface Props {
+  data: CollectionSubmissionSettingsFragment$key;
+  schemaVersionOptions: submissionsManageSlugCollectionsPagesQuery$data["schemaVersionOptions"];
+}
+
+const fragment = graphql`
+  fragment CollectionSubmissionSettingsFragment on Collection {
+    collectionId: id
+    submissionTarget {
+      ...SubmissionTargetConfigureFormFragment
+      ...SubmissionTargetStateToggleFragment
+    }
+  }
+`;

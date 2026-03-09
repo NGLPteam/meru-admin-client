@@ -5,13 +5,26 @@ import Layout from "./_layout";
 import type { GetLayout } from "@wdp/lib/types/page";
 
 function CollectionSubmissions({ queryRef }: Props) {
-  const { collection } = usePreloadedQuery<Query>(query, queryRef);
+  const { collection, schemaVersionOptions } = usePreloadedQuery<Query>(
+    query,
+    queryRef,
+  );
 
-  return collection ? <CollectionSubmissionSettings /> : null;
+  return collection ? (
+    <CollectionSubmissionSettings
+      data={collection}
+      schemaVersionOptions={schemaVersionOptions}
+    />
+  ) : null;
 }
 
 const getLayout: GetLayout<Props> = (props) => (
-  <Layout query={query} showLoadingCircle {...props} />
+  <Layout
+    query={query}
+    showLoadingCircle
+    refetchTags={["submissions"]}
+    {...props}
+  />
 );
 
 CollectionSubmissions.getLayout = getLayout;
@@ -24,6 +37,14 @@ const query = graphql`
   query submissionsManageSlugCollectionsPagesQuery($slug: Slug!) {
     collection(slug: $slug) {
       slug
+      ...CollectionSubmissionSettingsFragment
+    }
+    schemaVersionOptions(kind: ITEM) {
+      label
+      value
+      schemaVersion {
+        id
+      }
     }
   }
 `;
