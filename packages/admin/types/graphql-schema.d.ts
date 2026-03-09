@@ -427,11 +427,24 @@ export type AndOperatorInput = {
  * to provide time-sensensitive information and news about a specific entity in the system.
  *
  */
-export type Announcement = Node & Sluggable & {
+export type Announcement = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'Announcement';
   /** A body for the announcement */
   body: Scalars['String']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /** The entity that owns the announcement */
   entity: Entity;
   /** A header value for the announcement */
@@ -442,7 +455,10 @@ export type Announcement = Node & Sluggable & {
   slug: Scalars['Slug']['output'];
   /** A teaser for the announcement */
   teaser: Scalars['String']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /** The connection type for Announcement. */
@@ -547,6 +563,13 @@ export type AnyCommunityAccessGrantEdge = {
   /** The item at the end of the edge. */
   node: AnyCommunityAccessGrant;
 };
+
+/**
+ * An input for `submissionTargetConfigure` that accepts a submission target
+ * **or** an entity that can be configured.
+ *
+ */
+export type AnyConfigurableSubmissionTarget = Collection | Community | Item | SubmissionTarget | { __typename?: "%other" };
 
 /** A union of types that can be contributed to */
 export type AnyContributable = CollectionContribution | ItemContribution | { __typename?: "%other" };
@@ -802,15 +825,28 @@ export type AssetAssetDownloadsByRegionArgs = {
   usOnly?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type AssetAudio = Asset & Node & Sluggable & {
+export type AssetAudio = Asset & CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'AssetAudio';
   altText?: Maybe<Scalars['String']['output']>;
   assetDownloads: AnalyticsEventCountSummary;
   assetDownloadsByRegion: AnalyticsRegionCountSummary;
   attachable: Attachable;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   caption?: Maybe<Scalars['String']['output']>;
   contentType: Scalars['String']['output'];
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   downloadURL?: Maybe<Scalars['String']['output']>;
   /** @deprecated Use downloadURL instead */
   downloadUrl?: Maybe<Scalars['String']['output']>;
@@ -822,7 +858,10 @@ export type AssetAudio = Asset & Node & Sluggable & {
   /** Configurable metadata for the preview attachment */
   previewMetadata?: Maybe<ImageMetadata>;
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 
@@ -848,15 +887,28 @@ export type AssetConnection = Paginated & {
   pageInfo: PageInfo;
 };
 
-export type AssetDocument = Asset & Node & Sluggable & {
+export type AssetDocument = Asset & CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'AssetDocument';
   altText?: Maybe<Scalars['String']['output']>;
   assetDownloads: AnalyticsEventCountSummary;
   assetDownloadsByRegion: AnalyticsRegionCountSummary;
   attachable: Attachable;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   caption?: Maybe<Scalars['String']['output']>;
   contentType: Scalars['String']['output'];
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   downloadURL?: Maybe<Scalars['String']['output']>;
   /** @deprecated Use downloadURL instead */
   downloadUrl?: Maybe<Scalars['String']['output']>;
@@ -868,7 +920,10 @@ export type AssetDocument = Asset & Node & Sluggable & {
   /** Configurable metadata for the preview attachment */
   previewMetadata?: Maybe<ImageMetadata>;
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 
@@ -892,15 +947,28 @@ export type AssetEdge = {
   node: Asset;
 };
 
-export type AssetImage = Asset & Node & Sluggable & {
+export type AssetImage = Asset & CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'AssetImage';
   altText?: Maybe<Scalars['String']['output']>;
   assetDownloads: AnalyticsEventCountSummary;
   assetDownloadsByRegion: AnalyticsRegionCountSummary;
   attachable: Attachable;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   caption?: Maybe<Scalars['String']['output']>;
   contentType: Scalars['String']['output'];
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   downloadURL?: Maybe<Scalars['String']['output']>;
   /** @deprecated Use downloadURL instead */
   downloadUrl?: Maybe<Scalars['String']['output']>;
@@ -912,7 +980,10 @@ export type AssetImage = Asset & Node & Sluggable & {
   /** Configurable metadata for the preview attachment */
   previewMetadata?: Maybe<ImageMetadata>;
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 
@@ -950,15 +1021,28 @@ export type AssetKindFilter =
   | 'VIDEO'
   | '%future added value';
 
-export type AssetPdf = Asset & Node & Sluggable & {
+export type AssetPdf = Asset & CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'AssetPDF';
   altText?: Maybe<Scalars['String']['output']>;
   assetDownloads: AnalyticsEventCountSummary;
   assetDownloadsByRegion: AnalyticsRegionCountSummary;
   attachable: Attachable;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   caption?: Maybe<Scalars['String']['output']>;
   contentType: Scalars['String']['output'];
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   downloadURL?: Maybe<Scalars['String']['output']>;
   /** @deprecated Use downloadURL instead */
   downloadUrl?: Maybe<Scalars['String']['output']>;
@@ -970,7 +1054,10 @@ export type AssetPdf = Asset & Node & Sluggable & {
   /** Configurable metadata for the preview attachment */
   previewMetadata?: Maybe<ImageMetadata>;
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 
@@ -1091,15 +1178,28 @@ export type AssetSelectOption = {
   value: Scalars['String']['output'];
 };
 
-export type AssetUnknown = Asset & Node & Sluggable & {
+export type AssetUnknown = Asset & CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'AssetUnknown';
   altText?: Maybe<Scalars['String']['output']>;
   assetDownloads: AnalyticsEventCountSummary;
   assetDownloadsByRegion: AnalyticsRegionCountSummary;
   attachable: Attachable;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   caption?: Maybe<Scalars['String']['output']>;
   contentType: Scalars['String']['output'];
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   downloadURL?: Maybe<Scalars['String']['output']>;
   /** @deprecated Use downloadURL instead */
   downloadUrl?: Maybe<Scalars['String']['output']>;
@@ -1111,7 +1211,10 @@ export type AssetUnknown = Asset & Node & Sluggable & {
   /** Configurable metadata for the preview attachment */
   previewMetadata?: Maybe<ImageMetadata>;
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 
@@ -1126,15 +1229,28 @@ export type AssetUnknownAssetDownloadsByRegionArgs = {
   usOnly?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type AssetVideo = Asset & Node & Sluggable & {
+export type AssetVideo = Asset & CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'AssetVideo';
   altText?: Maybe<Scalars['String']['output']>;
   assetDownloads: AnalyticsEventCountSummary;
   assetDownloadsByRegion: AnalyticsRegionCountSummary;
   attachable: Attachable;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   caption?: Maybe<Scalars['String']['output']>;
   contentType: Scalars['String']['output'];
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   downloadURL?: Maybe<Scalars['String']['output']>;
   /** @deprecated Use downloadURL instead */
   downloadUrl?: Maybe<Scalars['String']['output']>;
@@ -1146,7 +1262,10 @@ export type AssetVideo = Asset & Node & Sluggable & {
   /** Configurable metadata for the preview attachment */
   previewMetadata?: Maybe<ImageMetadata>;
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 
@@ -1301,6 +1420,16 @@ export type Attribution = {
   roles: Array<ControlledVocabularyItem>;
 };
 
+export type AuthorizationResult = {
+  __typename?: 'AuthorizationResult';
+  /** Human-readable error message */
+  message?: Maybe<Scalars['String']['output']>;
+  /** Reasons of check failure */
+  reasons?: Maybe<FailureReasons>;
+  /** Result of applying a policy rule */
+  value: Scalars['Boolean']['output'];
+};
+
 /**
  * An enumerated value associated with the templating subsystem.
  *
@@ -1323,14 +1452,27 @@ export type BlurbBackground =
   | 'NONE'
   | '%future added value';
 
-export type BlurbTemplateDefinition = Node & Sluggable & TemplateDefinition & {
+export type BlurbTemplateDefinition = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & TemplateDefinition & {
   __typename?: 'BlurbTemplateDefinition';
   /**
    * The background gradient to use for this template. Affects presentation.
    *
    */
   background?: Maybe<BlurbBackground>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   layoutKind: LayoutKind;
   /**
@@ -1340,7 +1482,10 @@ export type BlurbTemplateDefinition = Node & Sluggable & TemplateDefinition & {
   slots: BlurbTemplateDefinitionSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /**
    * This controls how wide the template should render.
    *
@@ -1362,14 +1507,27 @@ export type BlurbTemplateDefinitionSlots = {
   subheader?: Maybe<TemplateSlotInlineDefinition>;
 };
 
-export type BlurbTemplateInstance = Node & Renderable & Sluggable & TemplateInstance & {
+export type BlurbTemplateInstance = CommonPermissions & HasDefaultTimestamps & Node & Renderable & Sluggable & TemplateInstance & {
   __typename?: 'BlurbTemplateInstance';
   /**
    * Whether all slots in this template are empty.
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Load the associated definition for this template.
    *
@@ -1415,7 +1573,10 @@ export type BlurbTemplateInstance = Node & Renderable & Sluggable & TemplateInst
   slots: BlurbTemplateInstanceSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -1526,8 +1687,6 @@ export type CrudPermissionGrid = {
  *
  */
 export type ChildEntity = {
-  /** Derived access control list */
-  accessControlList?: Maybe<AccessControlList>;
   /** A polymorphic connection for access grants from an entity */
   allAccessGrants: AnyAccessGrantConnection;
   /** A list of allowed actions for the given user on this entity (and its descendants). */
@@ -1547,7 +1706,10 @@ export type ChildEntity = {
   ancestorOfType?: Maybe<Entity>;
   /** Look up an announcement for this entity by slug */
   announcement?: Maybe<Announcement>;
-  /** Announcements for a specific entity */
+  /**
+   * A list of announcements associated with this entity.
+   *
+   */
   announcements: AnnouncementConnection;
   /** The role(s) that gave the permissions to access this resource, if any. */
   applicableRoles: Array<Role>;
@@ -1557,10 +1719,78 @@ export type ChildEntity = {
   assignedUsers: ContextualPermissionConnection;
   /** Previous entries in the hierarchy */
   breadcrumbs: Array<EntityBreadcrumb>;
+  /**
+   * Whether the current user has permission to alter the schema version of this entity.
+   *
+   * Submission drafts will be denied, even if the user would otherwise have permission.
+   *
+   */
+  canAlterSchemaVersion: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create assets under this entity.
+   *
+   */
+  canCreateAssets: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create collections under this entity.
+   *
+   */
+  canCreateCollections: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create items under this entity.
+   *
+   */
+  canCreateItems: AuthorizationResult;
+  /**
+   * Whether the current user has permission to deposit a new entity into this one.
+   *
+   */
+  canDeposit: AuthorizationResult;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to manage access to this entity.
+   *
+   * This opens up `grantAccess` and `revokeAccess` mutations.
+   *
+   */
+  canManageAccess: AuthorizationResult;
+  /**
+   * Whether the current user has permission to purge this entity.
+   *
+   */
+  canPurge: AuthorizationResult;
+  /**
+   * Whether the current user has permission to reparent this entity.
+   *
+   * Submission drafts will be denied, even if the user would otherwise have permission.
+   *
+   */
+  canReparent: AuthorizationResult;
+  /**
+   * Whether the current user has permission to revalidate this entity.
+   *
+   */
+  canRevalidate: AuthorizationResult;
+  /**
+   * Whether the current user has permission to review deposits to this entity.
+   *
+   */
+  canReview: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /** The community this entity belongs to */
   community: Community;
-  /** The date this entity was added to the WDP */
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Whether the entity is _currently_ hidden, based on the server's time zone.
    *
@@ -1572,7 +1802,9 @@ export type ChildEntity = {
    */
   currentlyVisible: Scalars['Boolean']['output'];
   /**
-   * Search and retrieve *all* descendants of this `Entity`, regardless of type.
+   * All descendants of this entity, regardless of type.
+   *
+   * Communities and collections can both contain collections and items. Items will only contain items.
    *
    */
   descendants: EntityDescendantConnection;
@@ -1621,8 +1853,13 @@ export type ChildEntity = {
   hiddenAsOf: Scalars['Boolean']['output'];
   /** If present, this is the timestamp the entity was hidden at */
   hiddenAt?: Maybe<Scalars['ISO8601DateTime']['output']>;
-  /** The depth of the hierarchical entity, taking into account any parent types */
+  /**
+   * The depth of the hierarchical entity, taking into account any parent types.
+   *
+   */
   hierarchicalDepth: Scalars['Int']['output'];
+  /** ID of the object. */
+  id: Scalars['ID']['output'];
   /** A machine-readable identifier for the entity. Not presently used, but will be necessary for synchronizing with upstream providers. */
   identifier: Scalars['String']['output'];
   /**
@@ -1631,8 +1868,15 @@ export type ChildEntity = {
    */
   layouts: EntityLayouts;
   leaf: Scalars['Boolean']['output'];
-  /** Available link targets for this entity */
+  /**
+   * Available link targets for this entity.
+   *
+   */
   linkTargetCandidates: LinkTargetCandidateConnection;
+  /**
+   * Links from this entity to other entities, along with metadata about those links.
+   *
+   */
   links: EntityLinkConnection;
   /**
    * Purely informational at this point, this signifies an entity that is currently marked for purge by itself or a parent.
@@ -1653,12 +1897,16 @@ export type ChildEntity = {
   /** Look up an ordering that is set up to handle a specific schema. */
   orderingForSchema?: Maybe<Ordering>;
   /**
-   * Retrieve a connection of orderings for the parent object.
+   * A list of orderings associated with this entity.
    *
    */
   orderings: OrderingConnection;
   /** Look up a page for this entity by slug */
   page?: Maybe<Page>;
+  /**
+   * A list of pages associated with this entity.
+   *
+   */
   pages: PageConnection;
   /** An array of hashes that can be requested to load in a context */
   permissions: Array<PermissionGrant>;
@@ -1671,17 +1919,40 @@ export type ChildEntity = {
    */
   rawDOI?: Maybe<Scalars['String']['output']>;
   root: Scalars['Boolean']['output'];
+  /**
+   * The schema definition that this entity conforms to.
+   *
+   */
   schemaDefinition: SchemaDefinition;
   /**
    * A list of schema properties associated with this instance or version.
    *
    */
   schemaProperties: Array<SchemaProperty>;
+  /**
+   * The hierarchical schema ranks for this entity, which compute the overall structure
+   * of its descendants by schema definition.
+   *
+   */
   schemaRanks: Array<HierarchicalSchemaRank>;
+  /**
+   * The schema version that this entity conforms to.
+   *
+   */
   schemaVersion: SchemaVersion;
   /** Search from this level of the API using it as the origin */
   search: SearchScope;
   slug: Scalars['Slug']['output'];
+  /**
+   * THe current submission status of this entity. Is it a draft, published, or unrelated?
+   *
+   */
+  submissionStatus: EntitySubmissionStatus;
+  /**
+   * The submission target that this entity can be submitted to, if any.
+   *
+   */
+  submissionTarget?: Maybe<SubmissionTarget>;
   /**
    * A human-readable subtitle for the entity.
    *
@@ -1701,8 +1972,10 @@ export type ChildEntity = {
    *
    */
   title: Scalars['String']['output'];
-  /** The date this entity was last updated within the WDP */
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /** If an entity is available in the frontend */
   visibility: EntityVisibility;
   /**
@@ -2003,22 +2276,20 @@ export type ChildEntityKind =
  */
 export type ClientLocation =
   /**
-   * The admin client (http://localhost:3000).
+   * The admin client (https://admin.sandbox.meru.host).
    *
    */
   | 'ADMIN'
   /**
-   * The frontend client (http://localhost:14700).
+   * The frontend client (https://sandbox.meru.host).
    *
    */
   | 'FRONTEND'
   | '%future added value';
 
 /** A collection of items */
-export type Collection = Accessible & Attachable & Attributable & ChildEntity & Contributable & Entity & EntityBase & ExposesPermissions & HarvestTarget & HasDoi & HasDefaultTimestamps & HasEntityAnalytics & HasEntityBreadcrumbs & HasHarvestModificationStatus & HasSchemaProperties & Node & OrderingEntryable & Permalinkable & ReferencesEntityVisibility & ReferencesGlobalEntityDates & SchemaInstance & Searchable & Sluggable & {
+export type Collection = Accessible & Attachable & Attributable & ChildEntity & CommonPermissions & Contributable & Entity & EntityBase & EntityContextualPermissions & EntityPermissions & ExposesPermissions & HarvestTarget & HasDoi & HasDefaultTimestamps & HasEntityAnalytics & HasEntityBreadcrumbs & HasHarvestModificationStatus & HasSchemaProperties & Node & OrderingEntryable & Permalinkable & ReferencesEntityVisibility & ReferencesGlobalEntityDates & SchemaInstance & Searchable & Sluggable & Submittable & {
   __typename?: 'Collection';
-  /** Derived access control list */
-  accessControlList?: Maybe<AccessControlList>;
   accessGrants: AnyCollectionAccessGrantConnection;
   /** A polymorphic connection for access grants from an entity */
   allAccessGrants: AnyAccessGrantConnection;
@@ -2039,7 +2310,10 @@ export type Collection = Accessible & Attachable & Attributable & ChildEntity & 
   ancestorOfType?: Maybe<Entity>;
   /** Look up an announcement for this entity by slug */
   announcement?: Maybe<Announcement>;
-  /** Announcements for a specific entity */
+  /**
+   * A list of announcements associated with this entity.
+   *
+   */
   announcements: AnnouncementConnection;
   /** The role(s) that gave the permissions to access this resource, if any. */
   applicableRoles: Array<Role>;
@@ -2061,6 +2335,72 @@ export type Collection = Accessible & Attachable & Attributable & ChildEntity & 
   /** Previous entries in the hierarchy */
   breadcrumbs: Array<EntityBreadcrumb>;
   /**
+   * Whether the current user has permission to alter the schema version of this entity.
+   *
+   * Submission drafts will be denied, even if the user would otherwise have permission.
+   *
+   */
+  canAlterSchemaVersion: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create assets under this entity.
+   *
+   */
+  canCreateAssets: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create collections under this entity.
+   *
+   */
+  canCreateCollections: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create items under this entity.
+   *
+   */
+  canCreateItems: AuthorizationResult;
+  /**
+   * Whether the current user has permission to deposit a new entity into this one.
+   *
+   */
+  canDeposit: AuthorizationResult;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to manage access to this entity.
+   *
+   * This opens up `grantAccess` and `revokeAccess` mutations.
+   *
+   */
+  canManageAccess: AuthorizationResult;
+  /**
+   * Whether the current user has permission to purge this entity.
+   *
+   */
+  canPurge: AuthorizationResult;
+  /**
+   * Whether the current user has permission to reparent this entity.
+   *
+   * Submission drafts will be denied, even if the user would otherwise have permission.
+   *
+   */
+  canReparent: AuthorizationResult;
+  /**
+   * Whether the current user has permission to revalidate this entity.
+   *
+   */
+  canRevalidate: AuthorizationResult;
+  /**
+   * Whether the current user has permission to review deposits to this entity.
+   *
+   */
+  canReview: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /**
    * The canonical permalink for this resource, if one is set.
    *
    */
@@ -2075,8 +2415,10 @@ export type Collection = Accessible & Attachable & Attributable & ChildEntity & 
   contributions: CollectionContributionConnection;
   /** Contributors to this element */
   contributors: AnyContributorConnection;
-  /** The date this entity was added to the WDP */
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Whether the entity is _currently_ hidden, based on the server's time zone.
    *
@@ -2088,7 +2430,9 @@ export type Collection = Accessible & Attachable & Attributable & ChildEntity & 
    */
   currentlyVisible: Scalars['Boolean']['output'];
   /**
-   * Search and retrieve *all* descendants of this `Entity`, regardless of type.
+   * All descendants of this entity, regardless of type.
+   *
+   * Communities and collections can both contain collections and items. Items will only contain items.
    *
    */
   descendants: EntityDescendantConnection;
@@ -2152,7 +2496,10 @@ export type Collection = Accessible & Attachable & Attributable & ChildEntity & 
   hiddenAsOf: Scalars['Boolean']['output'];
   /** If present, this is the timestamp the entity was hidden at */
   hiddenAt?: Maybe<Scalars['ISO8601DateTime']['output']>;
-  /** The depth of the hierarchical entity, taking into account any parent types */
+  /**
+   * The depth of the hierarchical entity, taking into account any parent types.
+   *
+   */
   hierarchicalDepth: Scalars['Int']['output'];
   id: Scalars['ID']['output'];
   /** A machine-readable identifier for the entity. Not presently used, but will be necessary for synchronizing with upstream providers. */
@@ -2164,8 +2511,15 @@ export type Collection = Accessible & Attachable & Attributable & ChildEntity & 
    */
   layouts: EntityLayouts;
   leaf: Scalars['Boolean']['output'];
-  /** Available link targets for this entity */
+  /**
+   * Available link targets for this entity.
+   *
+   */
   linkTargetCandidates: LinkTargetCandidateConnection;
+  /**
+   * Links from this entity to other entities, along with metadata about those links.
+   *
+   */
   links: EntityLinkConnection;
   /**
    * Purely informational at this point, this signifies an entity that is currently marked for purge by itself or a parent.
@@ -2186,12 +2540,16 @@ export type Collection = Accessible & Attachable & Attributable & ChildEntity & 
   /** Look up an ordering that is set up to handle a specific schema. */
   orderingForSchema?: Maybe<Ordering>;
   /**
-   * Retrieve a connection of orderings for the parent object.
+   * A list of orderings associated with this entity.
    *
    */
   orderings: OrderingConnection;
   /** Look up a page for this entity by slug */
   page?: Maybe<Page>;
+  /**
+   * A list of pages associated with this entity.
+   *
+   */
   pages: PageConnection;
   parent?: Maybe<CollectionParent>;
   /**
@@ -2212,6 +2570,10 @@ export type Collection = Accessible & Attachable & Attributable & ChildEntity & 
   /** Retrieve linked collections of the same schema type */
   relatedCollections: CollectionConnection;
   root: Scalars['Boolean']['output'];
+  /**
+   * The schema definition that this entity conforms to.
+   *
+   */
   schemaDefinition: SchemaDefinition;
   /**
    * The context for our schema instance. Includes form values and necessary referents.
@@ -2228,11 +2590,30 @@ export type Collection = Accessible & Attachable & Attributable & ChildEntity & 
    *
    */
   schemaProperty?: Maybe<SchemaProperty>;
+  /**
+   * The hierarchical schema ranks for this entity, which compute the overall structure
+   * of its descendants by schema definition.
+   *
+   */
   schemaRanks: Array<HierarchicalSchemaRank>;
+  /**
+   * The schema version that this entity conforms to.
+   *
+   */
   schemaVersion: SchemaVersion;
   /** Search from this level of the API using it as the origin */
   search: SearchScope;
   slug: Scalars['Slug']['output'];
+  /**
+   * THe current submission status of this entity. Is it a draft, published, or unrelated?
+   *
+   */
+  submissionStatus: EntitySubmissionStatus;
+  /**
+   * The submission target that this entity can be submitted to, if any.
+   *
+   */
+  submissionTarget?: Maybe<SubmissionTarget>;
   /**
    * A human-readable subtitle for the entity.
    *
@@ -2252,8 +2633,10 @@ export type Collection = Accessible & Attachable & Attributable & ChildEntity & 
    *
    */
   title: Scalars['String']['output'];
-  /** The date this entity was last updated within the WDP */
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /** Access grants for specific users */
   userAccessGrants: UserCollectionAccessGrantConnection;
   /** Not presently used */
@@ -2640,10 +3023,23 @@ export type CollectionVisibleAsOfArgs = {
  * Attributions for collections.
  *
  */
-export type CollectionAttribution = Attribution & Node & Sluggable & {
+export type CollectionAttribution = Attribution & CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'CollectionAttribution';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   contributor: ContributorBase;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   /**
    * A priority-ordered list of the roles the associated contributor had.
@@ -2651,7 +3047,10 @@ export type CollectionAttribution = Attribution & Node & Sluggable & {
    */
   roles: Array<ControlledVocabularyItem>;
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /** The connection type for Collection. */
@@ -2666,16 +3065,29 @@ export type CollectionConnection = Paginated & {
 };
 
 /** A contribution to a collection */
-export type CollectionContribution = Contribution & ContributionBase & Node & Sluggable & {
+export type CollectionContribution = CommonPermissions & Contribution & ContributionBase & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'CollectionContribution';
   /** A potentially-overridden value from person contributors */
   affiliation?: Maybe<Scalars['String']['output']>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   collection: Collection;
   /** The actual role */
   contributionRole: ControlledVocabularyItem;
   contributor: Contributor;
   contributorKind: ContributorKind;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /** A potentially-overridden display name value for all contributor types */
   displayName: Scalars['String']['output'];
   id: Scalars['ID']['output'];
@@ -2706,7 +3118,10 @@ export type CollectionContribution = Contribution & ContributionBase & Node & Sl
   slug: Scalars['Slug']['output'];
   /** A potentially-overridden value from person contributors */
   title?: Maybe<Scalars['String']['output']>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /** The connection type for CollectionContribution. */
@@ -2738,13 +3153,53 @@ export type CollectionEdge = {
   node: Collection;
 };
 
+/**
+ * The parent of a collection, which can be either a community or another collection.
+ *
+ */
 export type CollectionParent = Collection | Community | { __typename?: "%other" };
 
+/**
+ * Common permissions shared on most models.
+ *
+ */
+export type CommonPermissions = {
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+};
+
+/**
+ * A common interface for transition models, which represent state changes in a state machine.
+ * These models have `from_state`, `to_state`, and `most_recent` fields, as well as an optional
+ * association to a `User` who performed the transition.
+ *
+ */
+export type CommonTransition = {
+  /**
+   * Whether this is the most recent transition.
+   *
+   */
+  mostRecent: Scalars['Boolean']['output'];
+  /**
+   * The user who performed the transition, if available.
+   *
+   * Some transitions may happen through automated processes, so the user will not always be set.
+   *
+   */
+  user?: Maybe<User>;
+};
+
 /** A community of users */
-export type Community = Accessible & Attachable & Entity & EntityBase & ExposesPermissions & HarvestTarget & HasEntityAnalytics & HasEntityBreadcrumbs & HasSchemaProperties & Node & OrderingEntryable & Permalinkable & SchemaInstance & Searchable & Sluggable & {
+export type Community = Accessible & Attachable & CommonPermissions & Entity & EntityBase & EntityContextualPermissions & EntityPermissions & ExposesPermissions & HarvestTarget & HasDefaultTimestamps & HasEntityAnalytics & HasEntityBreadcrumbs & HasSchemaProperties & Node & OrderingEntryable & Permalinkable & SchemaInstance & Searchable & Sluggable & Submittable & {
   __typename?: 'Community';
-  /** Derived access control list */
-  accessControlList?: Maybe<AccessControlList>;
   accessGrants: AnyCommunityAccessGrantConnection;
   /** A polymorphic connection for access grants from an entity */
   allAccessGrants: AnyAccessGrantConnection;
@@ -2752,7 +3207,10 @@ export type Community = Accessible & Attachable & Entity & EntityBase & ExposesP
   allowedActions: Array<Scalars['String']['output']>;
   /** Look up an announcement for this entity by slug */
   announcement?: Maybe<Announcement>;
-  /** Announcements for a specific entity */
+  /**
+   * A list of announcements associated with this entity.
+   *
+   */
   announcements: AnnouncementConnection;
   /** The role(s) that gave the permissions to access this resource, if any. */
   applicableRoles: Array<Role>;
@@ -2772,14 +3230,85 @@ export type Community = Accessible & Attachable & Entity & EntityBase & ExposesP
   /** Previous entries in the hierarchy */
   breadcrumbs: Array<EntityBreadcrumb>;
   /**
+   * Whether the current user has permission to alter the schema version of this entity.
+   *
+   * Submission drafts will be denied, even if the user would otherwise have permission.
+   *
+   */
+  canAlterSchemaVersion: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create assets under this entity.
+   *
+   */
+  canCreateAssets: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create collections under this entity.
+   *
+   */
+  canCreateCollections: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create items under this entity.
+   *
+   */
+  canCreateItems: AuthorizationResult;
+  /**
+   * Whether the current user has permission to deposit a new entity into this one.
+   *
+   */
+  canDeposit: AuthorizationResult;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to manage access to this entity.
+   *
+   * This opens up `grantAccess` and `revokeAccess` mutations.
+   *
+   */
+  canManageAccess: AuthorizationResult;
+  /**
+   * Whether the current user has permission to purge this entity.
+   *
+   */
+  canPurge: AuthorizationResult;
+  /**
+   * Whether the current user has permission to reparent this entity.
+   *
+   * Submission drafts will be denied, even if the user would otherwise have permission.
+   *
+   */
+  canReparent: AuthorizationResult;
+  /**
+   * Whether the current user has permission to revalidate this entity.
+   *
+   */
+  canRevalidate: AuthorizationResult;
+  /**
+   * Whether the current user has permission to review deposits to this entity.
+   *
+   */
+  canReview: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /**
    * The canonical permalink for this resource, if one is set.
    *
    */
   canonicalPermalink?: Maybe<Permalink>;
   collections: CollectionConnection;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
-   * Search and retrieve *all* descendants of this `Entity`, regardless of type.
+   * All descendants of this entity, regardless of type.
+   *
+   * Communities and collections can both contain collections and items. Items will only contain items.
    *
    */
   descendants: EntityDescendantConnection;
@@ -2800,7 +3329,10 @@ export type Community = Accessible & Attachable & Entity & EntityBase & ExposesP
   heroImageLayout: HeroImageLayout;
   /** Configurable metadata for the hero_image attachment */
   heroImageMetadata?: Maybe<ImageMetadata>;
-  /** The depth of the hierarchical entity, taking into account any parent types */
+  /**
+   * The depth of the hierarchical entity, taking into account any parent types.
+   *
+   */
   hierarchicalDepth: Scalars['Int']['output'];
   id: Scalars['ID']['output'];
   /**
@@ -2808,8 +3340,15 @@ export type Community = Accessible & Attachable & Entity & EntityBase & ExposesP
    *
    */
   layouts: EntityLayouts;
-  /** Available link targets for this entity */
+  /**
+   * Available link targets for this entity.
+   *
+   */
   linkTargetCandidates: LinkTargetCandidateConnection;
+  /**
+   * Links from this entity to other entities, along with metadata about those links.
+   *
+   */
   links: EntityLinkConnection;
   /** A logo for the community */
   logo: ImageAttachment;
@@ -2828,12 +3367,16 @@ export type Community = Accessible & Attachable & Entity & EntityBase & ExposesP
   /** Look up an ordering that is set up to handle a specific schema. */
   orderingForSchema?: Maybe<Ordering>;
   /**
-   * Retrieve a connection of orderings for the parent object.
+   * A list of orderings associated with this entity.
    *
    */
   orderings: OrderingConnection;
   /** Look up a page for this entity by slug */
   page?: Maybe<Page>;
+  /**
+   * A list of pages associated with this entity.
+   *
+   */
   pages: PageConnection;
   /**
    * All permalinks associated with this resource.
@@ -2843,6 +3386,10 @@ export type Community = Accessible & Attachable & Entity & EntityBase & ExposesP
   /** An array of hashes that can be requested to load in a context */
   permissions: Array<PermissionGrant>;
   position?: Maybe<Scalars['Int']['output']>;
+  /**
+   * The schema definition that this entity conforms to.
+   *
+   */
   schemaDefinition: SchemaDefinition;
   /**
    * The context for our schema instance. Includes form values and necessary referents.
@@ -2859,11 +3406,30 @@ export type Community = Accessible & Attachable & Entity & EntityBase & ExposesP
    *
    */
   schemaProperty?: Maybe<SchemaProperty>;
+  /**
+   * The hierarchical schema ranks for this entity, which compute the overall structure
+   * of its descendants by schema definition.
+   *
+   */
   schemaRanks: Array<HierarchicalSchemaRank>;
+  /**
+   * The schema version that this entity conforms to.
+   *
+   */
   schemaVersion: SchemaVersion;
   /** Search from this level of the API using it as the origin */
   search: SearchScope;
   slug: Scalars['Slug']['output'];
+  /**
+   * THe current submission status of this entity. Is it a draft, published, or unrelated?
+   *
+   */
+  submissionStatus: EntitySubmissionStatus;
+  /**
+   * The submission target that this entity can be submitted to, if any.
+   *
+   */
+  submissionTarget?: Maybe<SubmissionTarget>;
   /**
    * A human-readable subtitle for the entity.
    *
@@ -2884,7 +3450,10 @@ export type Community = Accessible & Attachable & Entity & EntityBase & ExposesP
    *
    */
   title: Scalars['String']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /** Access grants for specific users */
   userAccessGrants: UserCommunityAccessGrantConnection;
   /** Not presently used */
@@ -3181,7 +3750,7 @@ export type CommunityEdge = {
 };
 
 /** A contextual permission for a user, role, and entity */
-export type ContextualPermission = ExposesPermissions & Node & Sluggable & {
+export type ContextualPermission = CommonPermissions & ExposesPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'ContextualPermission';
   /**
    * The derived access control list for this user and entity.
@@ -3195,7 +3764,20 @@ export type ContextualPermission = ExposesPermissions & Node & Sluggable & {
   accessGrants: Array<UserAccessGrant>;
   /** A list of allowed actions for the given user on this entity (and its descendants). */
   allowedActions: Array<Scalars['String']['output']>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   /** An array of hashes that can be requested to load in a context */
   permissions: Array<PermissionGrant>;
@@ -3205,7 +3787,10 @@ export type ContextualPermission = ExposesPermissions & Node & Sluggable & {
    */
   roles: Array<Role>;
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /**
    * The user that has the contextual permission.
    *
@@ -3404,14 +3989,27 @@ export type ContributionOrder =
  * Configuration for the controlled vocabulary used for contribution roles on a given `source`.
  *
  */
-export type ContributionRoleConfiguration = Node & Sluggable & {
+export type ContributionRoleConfiguration = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'ContributionRoleConfiguration';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /**
    * The set of items to use for contribution roles for this source.
    *
    */
   controlledVocabulary: ControlledVocabulary;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The default item to use when a contribution is created but no role is provided.
    * This is necessary as a fallback for harvesting and other use cases.
@@ -3425,7 +4023,10 @@ export type ContributionRoleConfiguration = Node & Sluggable & {
    */
   otherItem?: Maybe<ControlledVocabularyItem>;
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -3731,11 +4332,24 @@ export type ContributorBase = {
  * A specific attribution on a `Collection`.
  *
  */
-export type ContributorCollectionAttribution = ContributorAttribution & Node & Sluggable & {
+export type ContributorCollectionAttribution = CommonPermissions & ContributorAttribution & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'ContributorCollectionAttribution';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /** The collection the contributor has an attribution on. */
   collection: Collection;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The slug for the entity.
    *
@@ -3768,7 +4382,10 @@ export type ContributorCollectionAttribution = ContributorAttribution & Node & S
    *
    */
   title: Scalars['String']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 export type ContributorFilterKind =
@@ -3781,9 +4398,22 @@ export type ContributorFilterKind =
  * A specific attribution on a `Item`.
  *
  */
-export type ContributorItemAttribution = ContributorAttribution & Node & Sluggable & {
+export type ContributorItemAttribution = CommonPermissions & ContributorAttribution & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'ContributorItemAttribution';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The slug for the entity.
    *
@@ -3818,7 +4448,10 @@ export type ContributorItemAttribution = ContributorAttribution & Node & Sluggab
    *
    */
   title: Scalars['String']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 export type ContributorKind =
@@ -3878,14 +4511,27 @@ export type ContributorListFilter =
   | 'AUTHORS'
   | '%future added value';
 
-export type ContributorListTemplateDefinition = Node & Sluggable & TemplateDefinition & {
+export type ContributorListTemplateDefinition = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & TemplateDefinition & {
   __typename?: 'ContributorListTemplateDefinition';
   /**
    * The background gradient to use for this template. Affects presentation.
    *
    */
   background?: Maybe<ContributorListBackground>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Filter which contributors may appear based on their contribution role.
    *
@@ -3905,7 +4551,10 @@ export type ContributorListTemplateDefinition = Node & Sluggable & TemplateDefin
   slots: ContributorListTemplateDefinitionSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /**
    * This controls how wide the template should render.
    *
@@ -3925,7 +4574,7 @@ export type ContributorListTemplateDefinitionSlots = {
   header?: Maybe<TemplateSlotInlineDefinition>;
 };
 
-export type ContributorListTemplateInstance = Node & Renderable & Sluggable & TemplateHasContributionList & TemplateInstance & {
+export type ContributorListTemplateInstance = CommonPermissions & HasDefaultTimestamps & Node & Renderable & Sluggable & TemplateHasContributionList & TemplateInstance & {
   __typename?: 'ContributorListTemplateInstance';
   /**
    * Whether all slots in this template are empty.
@@ -3933,11 +4582,24 @@ export type ContributorListTemplateInstance = Node & Renderable & Sluggable & Te
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
   /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /**
    * The list of contributions to render as part of this template's content.
    *
    */
   contributionList: TemplateContributionList;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Load the associated definition for this template.
    *
@@ -3983,7 +4645,10 @@ export type ContributorListTemplateInstance = Node & Renderable & Sluggable & Te
   slots: ContributorListTemplateInstanceSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -4303,9 +4968,22 @@ export type ControlledVocabulariesProperty = HasControlledVocabulary & ScalarPro
  * See also `ControlledVocabularyItem` and `ControlledVocabularySource`.
  *
  */
-export type ControlledVocabulary = Node & Sluggable & {
+export type ControlledVocabulary = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'ControlledVocabulary';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * An optional internal description of the purpose/values contained within.
    *
@@ -4349,7 +5027,10 @@ export type ControlledVocabulary = Node & Sluggable & {
    */
   provides: Scalars['String']['output'];
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /**
    * A unique version for the controlled vocabulary (within the namespace/identifier).
    *
@@ -4419,14 +5100,27 @@ export type ControlledVocabularyFilterInput = {
  * An individual term within a `ControlledVocabulary`.
  *
  */
-export type ControlledVocabularyItem = Node & Sluggable & {
+export type ControlledVocabularyItem = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'ControlledVocabularyItem';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /**
    * Any children for this vocab item. Starting from a depth of 0 at the top level, items cannot nest any deeper than 2.
    *
    */
   children: Array<ControlledVocabularyItem>;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * An optional, internal description for this specific term.
    *
@@ -4459,7 +5153,10 @@ export type ControlledVocabularyItem = Node & Sluggable & {
    *
    */
   unselectable: Scalars['Boolean']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /**
    * An optional URL that should be linked to if present, using the `label` as link text,
    * when displaying.
@@ -4584,8 +5281,18 @@ export type ControlledVocabularyProperty = HasControlledVocabulary & ScalarPrope
  * a desired `provides` value in schemas.
  *
  */
-export type ControlledVocabularySource = Node & Sluggable & {
+export type ControlledVocabularySource = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'ControlledVocabularySource';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /**
    * The controlled vocabulary that provides terms, if selected / available.
    *
@@ -4593,7 +5300,10 @@ export type ControlledVocabularySource = Node & Sluggable & {
    *
    */
   controlledVocabulary?: Maybe<ControlledVocabulary>;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   /**
    * This conforms to the `wants` attribute in CV schema properties.
@@ -4601,7 +5311,10 @@ export type ControlledVocabularySource = Node & Sluggable & {
    */
   provides: Scalars['String']['output'];
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /** The connection type for ControlledVocabularySource. */
@@ -5337,6 +6050,226 @@ export type DateProperty = ScalarProperty & SchemaProperty & SearchableProperty 
 };
 
 /**
+ * Settings for depositing to this installation.
+ *
+ */
+export type DepositingSettings = {
+  __typename?: 'DepositingSettings';
+  /**
+   * The agreement that users must accept before depositing.
+   *
+   */
+  agreement: Scalars['String']['output'];
+  /**
+   * Whether depositing is enabled for this installation.
+   *
+   */
+  enabled: Scalars['Boolean']['output'];
+};
+
+/**
+ * Settings for depositing to this installation.
+ *
+ */
+export type DepositingSettingsInput = {
+  /**
+   * The agreement that users must accept before depositing.
+   *
+   */
+  agreement?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Whether depositing is enabled for this installation.
+   *
+   */
+  enabled?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/**
+ * A request for depositor access to a given submission target.
+ *
+ */
+export type DepositorRequest = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
+  __typename?: 'DepositorRequest';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user can approve or reject the request.
+   *
+   */
+  canTransition: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
+  id: Scalars['ID']['output'];
+  /**
+   * An optional message from the requester, which may be provided when making the depositor request and may be visible to management.
+   *
+   */
+  message?: Maybe<Scalars['String']['output']>;
+  slug: Scalars['Slug']['output'];
+  /**
+   * The current state of this depositor request.
+   *
+   */
+  state: DepositorRequestState;
+  /**
+   * The submission target that this depositor request is for.
+   *
+   */
+  submissionTarget: SubmissionTarget;
+  /** The date this record was last updated within the API. */
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
+  /**
+   * The user that made this depositor request.
+   *
+   */
+  user: User;
+};
+
+/** Autogenerated input type of DepositorRequestChangeState */
+export type DepositorRequestChangeStateInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The depositor request to update.
+   *
+   */
+  depositorRequestId: Scalars['ID']['input'];
+  /**
+   * The state to transition the depositor request to. Valid states are `approved` and `rejected`.
+   *
+   */
+  toState: DepositorRequestState;
+};
+
+/** Autogenerated return type of DepositorRequestChangeState. */
+export type DepositorRequestChangeStatePayload = StandardMutationPayload & {
+  __typename?: 'DepositorRequestChangeStatePayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /**
+   * The newly-modified depositor request, if successful.
+   *
+   */
+  depositorRequest?: Maybe<DepositorRequest>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+};
+
+/** The connection type for DepositorRequest. */
+export type DepositorRequestConnection = Paginated & {
+  __typename?: 'DepositorRequestConnection';
+  /** A list of edges. */
+  edges: Array<DepositorRequestEdge>;
+  /** A list of nodes. */
+  nodes: Array<DepositorRequest>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** Autogenerated input type of DepositorRequestCreate */
+export type DepositorRequestCreateInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * An optional message to include with the depositor request.
+   *
+   */
+  message?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The ID of the submission target for which to create the depositor request.
+   *
+   */
+  submissionTargetId: Scalars['ID']['input'];
+};
+
+/** Autogenerated return type of DepositorRequestCreate. */
+export type DepositorRequestCreatePayload = StandardMutationPayload & {
+  __typename?: 'DepositorRequestCreatePayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /**
+   * The newly-modified depositor request, if successful.
+   *
+   */
+  depositorRequest?: Maybe<DepositorRequest>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+};
+
+/**
+ * An edge in a connection for `DepositorRequest`.
+ *
+ */
+export type DepositorRequestEdge = {
+  __typename?: 'DepositorRequestEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: DepositorRequest;
+};
+
+/**
+ * Filters for DepositorRequest.
+ *
+ */
+export type DepositorRequestFilterInput = {
+  /**
+   * Filter the model's `created_at` with time constraints.
+   *
+   */
+  createdAt?: InputMaybe<TimeFilterMatch>;
+  inState?: InputMaybe<Array<DepositorRequestState>>;
+  /**
+   * Filter the model's `updated_at` with time constraints.
+   *
+   */
+  updatedAt?: InputMaybe<TimeFilterMatch>;
+};
+
+/**
+ * Sort a collection of `DepositorRequest` records by specific properties and directions.
+ *
+ */
+export type DepositorRequestOrder =
+  /** Sort depositor requests by their default order. */
+  | 'DEFAULT'
+  /** Sort depositor requests by oldest created date. */
+  | 'OLDEST'
+  /** Sort depositor requests by newest created date. */
+  | 'RECENT'
+  | '%future added value';
+
+/**
+ * Depositor request state enum
+ *
+ */
+export type DepositorRequestState =
+  | 'APPROVED'
+  | 'PENDING'
+  | 'REJECTED'
+  | '%future added value';
+
+/**
  * An enumerated value associated with the templating subsystem.
  *
  */
@@ -5385,7 +6318,7 @@ export type DescendantListSelectionMode =
   | 'PROPERTY'
   | '%future added value';
 
-export type DescendantListTemplateDefinition = Node & Sluggable & TemplateDefinition & {
+export type DescendantListTemplateDefinition = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & TemplateDefinition & {
   __typename?: 'DescendantListTemplateDefinition';
   /**
    * The background gradient to use for this template. Affects presentation.
@@ -5397,7 +6330,20 @@ export type DescendantListTemplateDefinition = Node & Sluggable & TemplateDefini
    *
    */
   browseStyle?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * When `selectionMode` is set to `DYNAMIC`, this uses the same basic structure
    * as schemas to define a dynamic ordering that is resolved at runtime and based
@@ -5521,7 +6467,10 @@ export type DescendantListTemplateDefinition = Node & Sluggable & TemplateDefini
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
   title?: Maybe<Scalars['String']['output']>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /**
    * Controls whether or not to use `selectionFallbackMode` if the entity list returned
    * via `selectionMode` turns out to be empty at runtime.
@@ -5559,14 +6508,27 @@ export type DescendantListTemplateDefinitionSlots = {
   subtitle?: Maybe<TemplateSlotInlineDefinition>;
 };
 
-export type DescendantListTemplateInstance = Node & Renderable & Sluggable & TemplateHasEntityList & TemplateHasSeeAllOrdering & TemplateInstance & {
+export type DescendantListTemplateInstance = CommonPermissions & HasDefaultTimestamps & Node & Renderable & Sluggable & TemplateHasEntityList & TemplateHasSeeAllOrdering & TemplateInstance & {
   __typename?: 'DescendantListTemplateInstance';
   /**
    * Whether all slots in this template are empty.
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Load the associated definition for this template.
    *
@@ -5622,7 +6584,10 @@ export type DescendantListTemplateInstance = Node & Renderable & Sluggable & Tem
   slots: DescendantListTemplateInstanceSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -5993,14 +6958,27 @@ export type DetailBackground =
   | 'NONE'
   | '%future added value';
 
-export type DetailTemplateDefinition = Node & Sluggable & TemplateDefinition & {
+export type DetailTemplateDefinition = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & TemplateDefinition & {
   __typename?: 'DetailTemplateDefinition';
   /**
    * The background gradient to use for this template. Affects presentation.
    *
    */
   background?: Maybe<DetailBackground>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   layoutKind: LayoutKind;
   showAnnouncements?: Maybe<Scalars['Boolean']['output']>;
@@ -6018,7 +6996,10 @@ export type DetailTemplateDefinition = Node & Sluggable & TemplateDefinition & {
   slots: DetailTemplateDefinitionSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /**
    * The variant rendering mode to use for this template. Affects presentation.
    *
@@ -6050,14 +7031,27 @@ export type DetailTemplateDefinitionSlots = {
   summary?: Maybe<TemplateSlotBlockDefinition>;
 };
 
-export type DetailTemplateInstance = Node & Renderable & Sluggable & TemplateInstance & {
+export type DetailTemplateInstance = CommonPermissions & HasDefaultTimestamps & Node & Renderable & Sluggable & TemplateInstance & {
   __typename?: 'DetailTemplateInstance';
   /**
    * Whether all slots in this template are empty.
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Load the associated definition for this template.
    *
@@ -6103,7 +7097,10 @@ export type DetailTemplateInstance = Node & Renderable & Sluggable & TemplateIns
   slots: DetailTemplateInstanceSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -6154,25 +7151,6 @@ export type Direction =
   | 'ASCENDING'
   | 'DESCENDING'
   | '%future added value';
-
-/**
- * User-specific access permissions for non-hierarchical records.
- *
- */
-export type EffectiveAccess = ExposesPermissions & {
-  __typename?: 'EffectiveAccess';
-  /** A list of allowed actions for the given user on this entity (and its descendants). */
-  allowedActions: Array<Scalars['String']['output']>;
-  /**
-   * The values that may appear in `allowed_actions`. This is for introspection
-   * and type-checking: the presence of a string here does _not_ mean the user
-   * has the effective capability.
-   *
-   */
-  availableActions: Array<Scalars['String']['output']>;
-  /** An array of hashes that can be requested to load in a context */
-  permissions: Array<PermissionGrant>;
-};
 
 export type EmailProperty = ScalarProperty & SchemaProperty & {
   __typename?: 'EmailProperty';
@@ -6360,30 +7338,40 @@ export type EntitiesProperty = HasAvailableEntities & ScalarProperty & SchemaPro
   type: SchemaPropertyType;
 };
 
-/** Settings specific to how entities should behave on this installation. */
+/**
+ * Settings specific to how entities should behave on this installation.
+ *
+ */
 export type EntitiesSettings = {
   __typename?: 'EntitiesSettings';
   /** Whether external links should be suppressed in certain schema field types. */
   suppressExternalLinks: Scalars['Boolean']['output'];
 };
 
-/** An object for updating EntitiesSettings */
+/**
+ * An object for updating EntitiesSettings.
+ *
+ */
 export type EntitiesSettingsInput = {
-  /** Whether external links should be suppressed in certain schema field types. */
+  /**
+   * Whether external links should be suppressed in certain schema field types.
+   *
+   */
   suppressExternalLinks?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** An entity that exists in the hierarchy. */
 export type Entity = {
-  /** Derived access control list */
-  accessControlList?: Maybe<AccessControlList>;
   /** A polymorphic connection for access grants from an entity */
   allAccessGrants: AnyAccessGrantConnection;
   /** A list of allowed actions for the given user on this entity (and its descendants). */
   allowedActions: Array<Scalars['String']['output']>;
   /** Look up an announcement for this entity by slug */
   announcement?: Maybe<Announcement>;
-  /** Announcements for a specific entity */
+  /**
+   * A list of announcements associated with this entity.
+   *
+   */
   announcements: AnnouncementConnection;
   /** The role(s) that gave the permissions to access this resource, if any. */
   applicableRoles: Array<Role>;
@@ -6394,7 +7382,75 @@ export type Entity = {
   /** Previous entries in the hierarchy */
   breadcrumbs: Array<EntityBreadcrumb>;
   /**
-   * Search and retrieve *all* descendants of this `Entity`, regardless of type.
+   * Whether the current user has permission to alter the schema version of this entity.
+   *
+   * Submission drafts will be denied, even if the user would otherwise have permission.
+   *
+   */
+  canAlterSchemaVersion: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create assets under this entity.
+   *
+   */
+  canCreateAssets: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create collections under this entity.
+   *
+   */
+  canCreateCollections: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create items under this entity.
+   *
+   */
+  canCreateItems: AuthorizationResult;
+  /**
+   * Whether the current user has permission to deposit a new entity into this one.
+   *
+   */
+  canDeposit: AuthorizationResult;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to manage access to this entity.
+   *
+   * This opens up `grantAccess` and `revokeAccess` mutations.
+   *
+   */
+  canManageAccess: AuthorizationResult;
+  /**
+   * Whether the current user has permission to purge this entity.
+   *
+   */
+  canPurge: AuthorizationResult;
+  /**
+   * Whether the current user has permission to reparent this entity.
+   *
+   * Submission drafts will be denied, even if the user would otherwise have permission.
+   *
+   */
+  canReparent: AuthorizationResult;
+  /**
+   * Whether the current user has permission to revalidate this entity.
+   *
+   */
+  canRevalidate: AuthorizationResult;
+  /**
+   * Whether the current user has permission to review deposits to this entity.
+   *
+   */
+  canReview: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /**
+   * All descendants of this entity, regardless of type.
+   *
+   * Communities and collections can both contain collections and items. Items will only contain items.
    *
    */
   descendants: EntityDescendantConnection;
@@ -6402,15 +7458,27 @@ export type Entity = {
   heroImage: ImageAttachment;
   /** Configurable metadata for the hero_image attachment */
   heroImageMetadata?: Maybe<ImageMetadata>;
-  /** The depth of the hierarchical entity, taking into account any parent types */
+  /**
+   * The depth of the hierarchical entity, taking into account any parent types.
+   *
+   */
   hierarchicalDepth: Scalars['Int']['output'];
+  /** ID of the object. */
+  id: Scalars['ID']['output'];
   /**
    * Access layouts for this entity.
    *
    */
   layouts: EntityLayouts;
-  /** Available link targets for this entity */
+  /**
+   * Available link targets for this entity.
+   *
+   */
   linkTargetCandidates: LinkTargetCandidateConnection;
+  /**
+   * Links from this entity to other entities, along with metadata about those links.
+   *
+   */
   links: EntityLinkConnection;
   /**
    * Purely informational at this point, this signifies an entity that is currently marked for purge by itself or a parent.
@@ -6422,26 +7490,53 @@ export type Entity = {
   /** Look up an ordering that is set up to handle a specific schema. */
   orderingForSchema?: Maybe<Ordering>;
   /**
-   * Retrieve a connection of orderings for the parent object.
+   * A list of orderings associated with this entity.
    *
    */
   orderings: OrderingConnection;
   /** Look up a page for this entity by slug */
   page?: Maybe<Page>;
+  /**
+   * A list of pages associated with this entity.
+   *
+   */
   pages: PageConnection;
   /** An array of hashes that can be requested to load in a context */
   permissions: Array<PermissionGrant>;
+  /**
+   * The schema definition that this entity conforms to.
+   *
+   */
   schemaDefinition: SchemaDefinition;
   /**
    * A list of schema properties associated with this instance or version.
    *
    */
   schemaProperties: Array<SchemaProperty>;
+  /**
+   * The hierarchical schema ranks for this entity, which compute the overall structure
+   * of its descendants by schema definition.
+   *
+   */
   schemaRanks: Array<HierarchicalSchemaRank>;
+  /**
+   * The schema version that this entity conforms to.
+   *
+   */
   schemaVersion: SchemaVersion;
   /** Search from this level of the API using it as the origin */
   search: SearchScope;
   slug: Scalars['Slug']['output'];
+  /**
+   * THe current submission status of this entity. Is it a draft, published, or unrelated?
+   *
+   */
+  submissionStatus: EntitySubmissionStatus;
+  /**
+   * The submission target that this entity can be submitted to, if any.
+   *
+   */
+  submissionTarget?: Maybe<SubmissionTarget>;
   /**
    * A human-readable subtitle for the entity.
    *
@@ -6634,6 +7729,21 @@ export type EntityBreadcrumb = Node & {
   slug: Scalars['String']['output'];
 };
 
+/**
+ * A common interface for something that exposes contextual permissions.
+ *
+ */
+export type EntityContextualPermissions = {
+  /** A list of allowed actions for the given user on this entity (and its descendants). */
+  allowedActions: Array<Scalars['String']['output']>;
+  /** The role(s) that gave the permissions to access this resource, if any. */
+  applicableRoles: Array<Role>;
+  /** The role(s) that the current user could assign to other users on this entity, if applicable. */
+  assignableRoles: Array<Role>;
+  /** An array of hashes that can be requested to load in a context */
+  permissions: Array<PermissionGrant>;
+};
+
 /** A descendant of an `Entity`. */
 export type EntityDescendant = {
   __typename?: 'EntityDescendant';
@@ -6781,9 +7891,22 @@ export type EntityLayouts = {
 };
 
 /** A link between different entities */
-export type EntityLink = Node & OrderingEntryable & Sluggable & {
+export type EntityLink = CommonPermissions & HasDefaultTimestamps & Node & OrderingEntryable & Sluggable & {
   __typename?: 'EntityLink';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   operator: EntityLinkOperator;
   scope: EntityLinkScope;
@@ -6796,7 +7919,10 @@ export type EntityLink = Node & OrderingEntryable & Sluggable & {
   targetCollection?: Maybe<Collection>;
   targetCommunity?: Maybe<Community>;
   targetItem?: Maybe<Item>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /** The connection type for EntityLink. */
@@ -6909,6 +8035,79 @@ export type EntityPermissionGrid = CrudPermissionGrid & ExposesPermissions & Per
   permissions: Array<PermissionGrant>;
   read: Scalars['Boolean']['output'];
   update: Scalars['Boolean']['output'];
+};
+
+/**
+ * Entities can optionally be submitted to.
+ *
+ */
+export type EntityPermissions = {
+  /**
+   * Whether the current user has permission to alter the schema version of this entity.
+   *
+   * Submission drafts will be denied, even if the user would otherwise have permission.
+   *
+   */
+  canAlterSchemaVersion: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create assets under this entity.
+   *
+   */
+  canCreateAssets: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create collections under this entity.
+   *
+   */
+  canCreateCollections: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create items under this entity.
+   *
+   */
+  canCreateItems: AuthorizationResult;
+  /**
+   * Whether the current user has permission to deposit a new entity into this one.
+   *
+   */
+  canDeposit: AuthorizationResult;
+  /**
+   * Whether the current user has permission to manage access to this entity.
+   *
+   * This opens up `grantAccess` and `revokeAccess` mutations.
+   *
+   */
+  canManageAccess: AuthorizationResult;
+  /**
+   * Whether the current user has permission to purge this entity.
+   *
+   */
+  canPurge: AuthorizationResult;
+  /**
+   * Whether the current user has permission to reparent this entity.
+   *
+   * Submission drafts will be denied, even if the user would otherwise have permission.
+   *
+   */
+  canReparent: AuthorizationResult;
+  /**
+   * Whether the current user has permission to revalidate this entity.
+   *
+   */
+  canRevalidate: AuthorizationResult;
+  /**
+   * Whether the current user has permission to review deposits to this entity.
+   *
+   */
+  canReview: AuthorizationResult;
+  /**
+   * THe current submission status of this entity. Is it a draft, published, or unrelated?
+   *
+   */
+  submissionStatus: EntitySubmissionStatus;
+  /**
+   * The submission target that this entity can be submitted to, if any.
+   *
+   */
+  submissionTarget?: Maybe<SubmissionTarget>;
 };
 
 /**
@@ -7131,6 +8330,36 @@ export type EntitySelectOption = HasEntityBreadcrumbs & {
   value: Scalars['ID']['output'];
 };
 
+/**
+ * An enum describing the submission state of an actual entity record.
+ *
+ * It can have an effect on the visibility and available of records from the frontend.
+ *
+ */
+export type EntitySubmissionStatus =
+  /**
+   * This entity has a submission in draft state.
+   *
+   * It will not be visible nor available from the frontend until it is published.
+   *
+   */
+  | 'SUBMISSION_DRAFT'
+  /**
+   * This entity has a submission in published state.
+   *
+   * It will be visible and available from the frontend.
+   *
+   */
+  | 'SUBMISSION_PUBLISHED'
+  /**
+   * This entity has no submission associated with it.
+   *
+   * Its submission state has no effect on the visibility nor availability of the entity from the frontend.
+   *
+   */
+  | 'UNSUBMITTED'
+  | '%future added value';
+
 /** The level of visibility an entity can have */
 export type EntityVisibility =
   | 'HIDDEN'
@@ -7162,19 +8391,23 @@ export type EqualsOperatorInput = {
   value: Scalars['JSON']['input'];
 };
 
-export type ExposesEffectiveAccess = {
-  /**
-   * User-specific access permissions for this object.
-   *
-   */
-  effectiveAccess: EffectiveAccess;
-};
-
+/**
+ * A common interface for something that exposes contextual permissions.
+ *
+ */
 export type ExposesPermissions = {
   /** A list of allowed actions for the given user on this entity (and its descendants). */
   allowedActions: Array<Scalars['String']['output']>;
   /** An array of hashes that can be requested to load in a context */
   permissions: Array<PermissionGrant>;
+};
+
+export type FailureReasons = {
+  __typename?: 'FailureReasons';
+  /** JSON-encoded map of reasons */
+  details: Scalars['String']['output'];
+  /** Human-readable errors */
+  fullMessages: Array<Scalars['String']['output']>;
 };
 
 export type FloatProperty = ScalarProperty & SchemaProperty & SearchableProperty & {
@@ -7418,6 +8651,8 @@ export type GlobalConfiguration = Node & {
    *
    */
   contributionRoles: ContributionRoleConfiguration;
+  /** Settings specific to depositing to this installation. */
+  depositing: DepositingSettings;
   /** Settings specific to how entities should behave on this installation. */
   entities: EntitiesSettings;
   id: Scalars['ID']['output'];
@@ -7528,14 +8763,27 @@ export type GroupProperty = SchemaProperty & {
  * A record of a single attempt at harvesting.
  *
  */
-export type HarvestAttempt = HasHarvestErrors & HasHarvestExtractionMappingTemplate & HasHarvestMetadataFormat & Node & QueriesHarvestMessage & Sluggable & {
+export type HarvestAttempt = CommonPermissions & HasDefaultTimestamps & HasHarvestErrors & HasHarvestExtractionMappingTemplate & HasHarvestMetadataFormat & Node & QueriesHarvestMessage & Sluggable & {
   __typename?: 'HarvestAttempt';
   /**
    * The time the attempt began.
    *
    */
   beganAt?: Maybe<Scalars['ISO8601DateTime']['output']>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The current state of the attempt.
    *
@@ -7644,7 +8892,10 @@ export type HarvestAttempt = HasHarvestErrors & HasHarvestExtractionMappingTempl
    *
    */
   targetEntity: HarvestTarget;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 
@@ -7704,7 +8955,7 @@ export type HarvestAttemptEdge = {
  * A progress report for entity data during a harvest attempt.
  *
  */
-export type HarvestAttemptEntityStatus = Node & Sluggable & {
+export type HarvestAttemptEntityStatus = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'HarvestAttemptEntityStatus';
   /**
    * Average time to fetch assets for a given entity in seconds (may be used in ETA calculations in the future).
@@ -7717,11 +8968,24 @@ export type HarvestAttemptEntityStatus = Node & Sluggable & {
    */
   assetsEta?: Maybe<Scalars['ISO8601DateTime']['output']>;
   /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /**
    * The percentage of completion based on current data expressed as a float between 0.0 and 1.0.
    *
    */
   completion?: Maybe<Scalars['Float']['output']>;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   slug: Scalars['Slug']['output'];
   /**
@@ -7749,7 +9013,10 @@ export type HarvestAttemptEntityStatus = Node & Sluggable & {
    *
    */
   totalEntitiesWithAssets?: Maybe<Scalars['Int']['output']>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /**
    * Average time to upsert a given entity in seconds (may be used in ETA calculations in the future).
    *
@@ -7944,14 +9211,27 @@ export type HarvestAttemptPruneEntitiesPayload = StandardMutationPayload & {
  * A progress report for record data during a harvest attempt.
  *
  */
-export type HarvestAttemptRecordStatus = Node & Sluggable & {
+export type HarvestAttemptRecordStatus = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'HarvestAttemptRecordStatus';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /**
    * The percentage of completion based on current data expressed as a float between 0.0 and 1.0.
    *
    */
   completion?: Maybe<Scalars['Float']['output']>;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Average time to extract a given record in seconds (may be used in ETA calculations in the future).
    *
@@ -7980,7 +9260,10 @@ export type HarvestAttemptRecordStatus = Node & Sluggable & {
    *
    */
   totalRecordsWaitingForUpsert?: Maybe<Scalars['Int']['output']>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -8053,9 +9336,22 @@ export type HarvestAttemptableHarvestAttemptsArgs = {
  * harvesting process.
  *
  */
-export type HarvestEntity = Node & QueriesHarvestMessage & Sluggable & {
+export type HarvestEntity = CommonPermissions & HasDefaultTimestamps & Node & QueriesHarvestMessage & Sluggable & {
   __typename?: 'HarvestEntity';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The real entity this is associated with (if available).
    *
@@ -8094,7 +9390,10 @@ export type HarvestEntity = Node & QueriesHarvestMessage & Sluggable & {
    */
   schemaVersion?: Maybe<SchemaVersion>;
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 
@@ -8120,14 +9419,27 @@ export type HarvestEntityHarvestMessagesArgs = {
  * An error that may occur during the harvesting process.
  *
  */
-export type HarvestError = Node & Sluggable & {
+export type HarvestError = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'HarvestError';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /**
    * A machine code that identifies the error for reprocessing and debugging.
    *
    */
   code?: Maybe<Scalars['String']['output']>;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   /**
    * A more descriptive issue of the message, if available.
@@ -8140,7 +9452,10 @@ export type HarvestError = Node & Sluggable & {
    */
   metadata: Scalars['JSON']['output'];
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -8216,9 +9531,22 @@ export type HarvestExample = {
  * It can produce a `HarvestAttempt`.
  *
  */
-export type HarvestMapping = HarvestAttemptable & HasHarvestExtractionMappingTemplate & HasHarvestMetadataFormat & HasHarvestOptions & Node & QueriesHarvestMessage & Sluggable & {
+export type HarvestMapping = CommonPermissions & HarvestAttemptable & HasDefaultTimestamps & HasHarvestExtractionMappingTemplate & HasHarvestMetadataFormat & HasHarvestOptions & Node & QueriesHarvestMessage & Sluggable & {
   __typename?: 'HarvestMapping';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The extraction mapping template used for this harvesting-related record
    * at its place in the hierarchy. It is an XML document that describes how
@@ -8324,7 +9652,10 @@ export type HarvestMapping = HarvestAttemptable & HasHarvestExtractionMappingTem
    *
    */
   targetEntity: HarvestTarget;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 
@@ -8628,7 +9959,7 @@ export type HarvestMappingUpdatePayload = StandardMutationPayload & {
  * A single log message recorded during some aspect of harvesting.
  *
  */
-export type HarvestMessage = Node & Sluggable & {
+export type HarvestMessage = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'HarvestMessage';
   /**
    * The time the message occurred. This field should be favored at
@@ -8636,7 +9967,20 @@ export type HarvestMessage = Node & Sluggable & {
    *
    */
   at: Scalars['ISO8601DateTime']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The harvest attempt associatd with the message, if available.
    *
@@ -8681,7 +10025,10 @@ export type HarvestMessage = Node & Sluggable & {
    *
    */
   tags: Array<Scalars['String']['output']>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /** The connection type for HarvestMessage. */
@@ -8803,9 +10150,22 @@ export type HarvestMetadataFormat =
  * for certain harvested entities, based on their metadata matching a specific mapping.
  *
  */
-export type HarvestMetadataMapping = Node & Sluggable & {
+export type HarvestMetadataMapping = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'HarvestMetadataMapping';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Which "field" this should try to match its `pattern` against.
    *
@@ -8824,7 +10184,10 @@ export type HarvestMetadataMapping = Node & Sluggable & {
    *
    */
   targetEntity: HarvestTarget;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /** The connection type for HarvestMetadataMapping. */
@@ -9126,9 +10489,22 @@ export type HarvestPruneMode =
  * It can produce one or more harvest entities.
  *
  */
-export type HarvestRecord = HasHarvestErrors & HasHarvestMetadataFormat & Node & QueriesHarvestMessage & Sluggable & {
+export type HarvestRecord = CommonPermissions & HasDefaultTimestamps & HasHarvestErrors & HasHarvestMetadataFormat & Node & QueriesHarvestMessage & Sluggable & {
   __typename?: 'HarvestRecord';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The number of entities this record can/will produce (if available).
    *
@@ -9191,7 +10567,10 @@ export type HarvestRecord = HasHarvestErrors & HasHarvestMetadataFormat & Node &
    *
    */
   underlyingDataFormat: UnderlyingDataFormat;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 
@@ -9314,9 +10693,22 @@ export type HarvestScheduleMode =
  * instead are fetched by the `HarvestSource` and internally managed based on its `protocol`.
  *
  */
-export type HarvestSet = Node & Sluggable & {
+export type HarvestSet = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'HarvestSet';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * An optional description for the set (if available).
    *
@@ -9339,7 +10731,10 @@ export type HarvestSet = Node & Sluggable & {
    */
   name: Scalars['String']['output'];
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /** The connection type for HarvestSet. */
@@ -9391,14 +10786,27 @@ export type HarvestSetOrder =
  * It can produce a `HarvestAttempt`.
  *
  */
-export type HarvestSource = HarvestAttemptable & HasHarvestExtractionMappingTemplate & HasHarvestMetadataFormat & HasHarvestOptions & Node & QueriesHarvestMessage & Sluggable & {
+export type HarvestSource = CommonPermissions & HarvestAttemptable & HasDefaultTimestamps & HasHarvestExtractionMappingTemplate & HasHarvestMetadataFormat & HasHarvestOptions & Node & QueriesHarvestMessage & Sluggable & {
   __typename?: 'HarvestSource';
   /**
    * The URL to fetch from. It should be just the base URL, without any OAI verbs or similar.
    *
    */
   baseURL: Scalars['String']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * An optional, wordier description for the source that may offer insight as to its intended
    * purpose within the installation.
@@ -9507,7 +10915,10 @@ export type HarvestSource = HarvestAttemptable & HasHarvestExtractionMappingTemp
    *
    */
   status: HarvestSourceStatus;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 
@@ -10025,10 +11436,14 @@ export type HasDoi = {
  *
  */
 export type HasDefaultTimestamps = {
-  /** The date this entity was added to the WDP */
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
-  /** The date this entity was last updated within the WDP */
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /** Entity models implement their own analytics views that come pre-filtered */
@@ -10192,9 +11607,22 @@ export type HeroImageLayout =
   | 'TWO_COLUMN'
   | '%future added value';
 
-export type HeroLayoutDefinition = LayoutDefinition & Node & Sluggable & {
+export type HeroLayoutDefinition = CommonPermissions & HasDefaultTimestamps & LayoutDefinition & Node & Sluggable & {
   __typename?: 'HeroLayoutDefinition';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   layoutKind: LayoutKind;
   slug: Scalars['Slug']['output'];
@@ -10208,10 +11636,13 @@ export type HeroLayoutDefinition = LayoutDefinition & Node & Sluggable & {
    *
    */
   templates: Array<AnyHeroTemplateDefinition>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
-export type HeroLayoutInstance = LayoutInstance & Node & Renderable & Sluggable & {
+export type HeroLayoutInstance = CommonPermissions & HasDefaultTimestamps & LayoutInstance & Node & Renderable & Sluggable & {
   __typename?: 'HeroLayoutInstance';
   /**
    * Whether all templates in this instance are hidden.
@@ -10223,7 +11654,20 @@ export type HeroLayoutInstance = LayoutInstance & Node & Renderable & Sluggable 
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The associated entity for this layout instance.
    *
@@ -10252,17 +11696,33 @@ export type HeroLayoutInstance = LayoutInstance & Node & Renderable & Sluggable 
    *
    */
   templates: Array<AnyHeroTemplateInstance>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
-export type HeroTemplateDefinition = Node & Sluggable & TemplateDefinition & {
+export type HeroTemplateDefinition = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & TemplateDefinition & {
   __typename?: 'HeroTemplateDefinition';
   /**
    * The background gradient to use for this template. Affects presentation.
    *
    */
   background?: Maybe<HeroBackground>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /** @deprecated This is a slot now. */
   descendantSearchPrompt?: Maybe<Scalars['String']['output']>;
   enableDescendantBrowsing?: Maybe<Scalars['Boolean']['output']>;
@@ -10285,7 +11745,10 @@ export type HeroTemplateDefinition = Node & Sluggable & TemplateDefinition & {
   slots: HeroTemplateDefinitionSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -10312,14 +11775,27 @@ export type HeroTemplateDefinitionSlots = {
   summary?: Maybe<TemplateSlotBlockDefinition>;
 };
 
-export type HeroTemplateInstance = Node & Renderable & Sluggable & TemplateInstance & {
+export type HeroTemplateInstance = CommonPermissions & HasDefaultTimestamps & Node & Renderable & Sluggable & TemplateInstance & {
   __typename?: 'HeroTemplateInstance';
   /**
    * Whether all slots in this template are empty.
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Load the associated definition for this template.
    *
@@ -10365,7 +11841,10 @@ export type HeroTemplateInstance = Node & Renderable & Sluggable & TemplateInsta
   slots: HeroTemplateInstanceSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -10795,16 +12274,28 @@ export type InAnyOperatorInput = {
   value: Array<Scalars['String']['input']>;
 };
 
-/** Configuration settings for the specific institution featured on this installation. */
+/**
+ * Configuration settings for the specific institution featured on this installation.
+ *
+ */
 export type InstitutionSettings = {
   __typename?: 'InstitutionSettings';
-  /** The name of the institution. */
+  /**
+   * The name of the institution.
+   *
+   */
   name: Scalars['String']['output'];
 };
 
-/** An object for updating the site's configuration */
+/**
+ * An object for updating the site's configuration.
+ *
+ */
 export type InstitutionSettingsInput = {
-  /** The name of the institution. */
+  /**
+   * The name of the institution.
+   *
+   */
   name?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -10886,10 +12377,8 @@ export type IntegerProperty = ScalarProperty & SchemaProperty & SearchableProper
 };
 
 /** An item that belongs to a collection */
-export type Item = Accessible & Attachable & Attributable & ChildEntity & Contributable & Entity & EntityBase & ExposesPermissions & HasDoi & HasDefaultTimestamps & HasEntityAnalytics & HasEntityBreadcrumbs & HasHarvestModificationStatus & HasSchemaProperties & Node & OrderingEntryable & Permalinkable & ReferencesEntityVisibility & ReferencesGlobalEntityDates & SchemaInstance & Searchable & Sluggable & {
+export type Item = Accessible & Attachable & Attributable & ChildEntity & CommonPermissions & Contributable & Entity & EntityBase & EntityContextualPermissions & EntityPermissions & ExposesPermissions & HasDoi & HasDefaultTimestamps & HasEntityAnalytics & HasEntityBreadcrumbs & HasHarvestModificationStatus & HasSchemaProperties & Node & OrderingEntryable & Permalinkable & ReferencesEntityVisibility & ReferencesGlobalEntityDates & SchemaInstance & Searchable & Sluggable & Submittable & {
   __typename?: 'Item';
-  /** Derived access control list */
-  accessControlList?: Maybe<AccessControlList>;
   accessGrants: AnyCollectionAccessGrantConnection;
   /** A polymorphic connection for access grants from an entity */
   allAccessGrants: AnyAccessGrantConnection;
@@ -10910,7 +12399,10 @@ export type Item = Accessible & Attachable & Attributable & ChildEntity & Contri
   ancestorOfType?: Maybe<Entity>;
   /** Look up an announcement for this entity by slug */
   announcement?: Maybe<Announcement>;
-  /** Announcements for a specific entity */
+  /**
+   * A list of announcements associated with this entity.
+   *
+   */
   announcements: AnnouncementConnection;
   /** The role(s) that gave the permissions to access this resource, if any. */
   applicableRoles: Array<Role>;
@@ -10932,6 +12424,72 @@ export type Item = Accessible & Attachable & Attributable & ChildEntity & Contri
   /** Previous entries in the hierarchy */
   breadcrumbs: Array<EntityBreadcrumb>;
   /**
+   * Whether the current user has permission to alter the schema version of this entity.
+   *
+   * Submission drafts will be denied, even if the user would otherwise have permission.
+   *
+   */
+  canAlterSchemaVersion: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create assets under this entity.
+   *
+   */
+  canCreateAssets: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create collections under this entity.
+   *
+   */
+  canCreateCollections: AuthorizationResult;
+  /**
+   * Whether the current user has permission to create items under this entity.
+   *
+   */
+  canCreateItems: AuthorizationResult;
+  /**
+   * Whether the current user has permission to deposit a new entity into this one.
+   *
+   */
+  canDeposit: AuthorizationResult;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to manage access to this entity.
+   *
+   * This opens up `grantAccess` and `revokeAccess` mutations.
+   *
+   */
+  canManageAccess: AuthorizationResult;
+  /**
+   * Whether the current user has permission to purge this entity.
+   *
+   */
+  canPurge: AuthorizationResult;
+  /**
+   * Whether the current user has permission to reparent this entity.
+   *
+   * Submission drafts will be denied, even if the user would otherwise have permission.
+   *
+   */
+  canReparent: AuthorizationResult;
+  /**
+   * Whether the current user has permission to revalidate this entity.
+   *
+   */
+  canRevalidate: AuthorizationResult;
+  /**
+   * Whether the current user has permission to review deposits to this entity.
+   *
+   */
+  canReview: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /**
    * The canonical permalink for this resource, if one is set.
    *
    */
@@ -10945,8 +12503,10 @@ export type Item = Accessible & Attachable & Attributable & ChildEntity & Contri
   contributions: ItemContributionConnection;
   /** Contributors to this element */
   contributors: AnyContributorConnection;
-  /** The date this entity was added to the WDP */
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Whether the entity is _currently_ hidden, based on the server's time zone.
    *
@@ -10958,7 +12518,9 @@ export type Item = Accessible & Attachable & Attributable & ChildEntity & Contri
    */
   currentlyVisible: Scalars['Boolean']['output'];
   /**
-   * Search and retrieve *all* descendants of this `Entity`, regardless of type.
+   * All descendants of this entity, regardless of type.
+   *
+   * Communities and collections can both contain collections and items. Items will only contain items.
    *
    */
   descendants: EntityDescendantConnection;
@@ -11013,7 +12575,10 @@ export type Item = Accessible & Attachable & Attributable & ChildEntity & Contri
   hiddenAsOf: Scalars['Boolean']['output'];
   /** If present, this is the timestamp the entity was hidden at */
   hiddenAt?: Maybe<Scalars['ISO8601DateTime']['output']>;
-  /** The depth of the hierarchical entity, taking into account any parent types */
+  /**
+   * The depth of the hierarchical entity, taking into account any parent types.
+   *
+   */
   hierarchicalDepth: Scalars['Int']['output'];
   id: Scalars['ID']['output'];
   /** A machine-readable identifier for the entity. Not presently used, but will be necessary for synchronizing with upstream providers. */
@@ -11026,8 +12591,15 @@ export type Item = Accessible & Attachable & Attributable & ChildEntity & Contri
    */
   layouts: EntityLayouts;
   leaf: Scalars['Boolean']['output'];
-  /** Available link targets for this entity */
+  /**
+   * Available link targets for this entity.
+   *
+   */
   linkTargetCandidates: LinkTargetCandidateConnection;
+  /**
+   * Links from this entity to other entities, along with metadata about those links.
+   *
+   */
   links: EntityLinkConnection;
   /**
    * Purely informational at this point, this signifies an entity that is currently marked for purge by itself or a parent.
@@ -11048,12 +12620,16 @@ export type Item = Accessible & Attachable & Attributable & ChildEntity & Contri
   /** Look up an ordering that is set up to handle a specific schema. */
   orderingForSchema?: Maybe<Ordering>;
   /**
-   * Retrieve a connection of orderings for the parent object.
+   * A list of orderings associated with this entity.
    *
    */
   orderings: OrderingConnection;
   /** Look up a page for this entity by slug */
   page?: Maybe<Page>;
+  /**
+   * A list of pages associated with this entity.
+   *
+   */
   pages: PageConnection;
   parent?: Maybe<ItemParent>;
   /**
@@ -11074,6 +12650,10 @@ export type Item = Accessible & Attachable & Attributable & ChildEntity & Contri
   /** Retrieve linked items of the same schema type */
   relatedItems: ItemConnection;
   root: Scalars['Boolean']['output'];
+  /**
+   * The schema definition that this entity conforms to.
+   *
+   */
   schemaDefinition: SchemaDefinition;
   /**
    * The context for our schema instance. Includes form values and necessary referents.
@@ -11090,11 +12670,30 @@ export type Item = Accessible & Attachable & Attributable & ChildEntity & Contri
    *
    */
   schemaProperty?: Maybe<SchemaProperty>;
+  /**
+   * The hierarchical schema ranks for this entity, which compute the overall structure
+   * of its descendants by schema definition.
+   *
+   */
   schemaRanks: Array<HierarchicalSchemaRank>;
+  /**
+   * The schema version that this entity conforms to.
+   *
+   */
   schemaVersion: SchemaVersion;
   /** Search from this level of the API using it as the origin */
   search: SearchScope;
   slug: Scalars['Slug']['output'];
+  /**
+   * THe current submission status of this entity. Is it a draft, published, or unrelated?
+   *
+   */
+  submissionStatus: EntitySubmissionStatus;
+  /**
+   * The submission target that this entity can be submitted to, if any.
+   *
+   */
+  submissionTarget?: Maybe<SubmissionTarget>;
   /**
    * A human-readable subtitle for the entity.
    *
@@ -11114,8 +12713,10 @@ export type Item = Accessible & Attachable & Attributable & ChildEntity & Contri
    *
    */
   title: Scalars['String']['output'];
-  /** The date this entity was last updated within the WDP */
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /** Access grants for specific users */
   userAccessGrants: UserCollectionAccessGrantConnection;
   /** Not presently used */
@@ -11478,10 +13079,23 @@ export type ItemVisibleAsOfArgs = {
  * Attributions for items.
  *
  */
-export type ItemAttribution = Attribution & Node & Sluggable & {
+export type ItemAttribution = Attribution & CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'ItemAttribution';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   contributor: ContributorBase;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   /**
    * A priority-ordered list of the roles the associated contributor had.
@@ -11489,7 +13103,10 @@ export type ItemAttribution = Attribution & Node & Sluggable & {
    */
   roles: Array<ControlledVocabularyItem>;
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /** The connection type for Item. */
@@ -11504,15 +13121,28 @@ export type ItemConnection = Paginated & {
 };
 
 /** A contribution to an item */
-export type ItemContribution = Contribution & ContributionBase & Node & Sluggable & {
+export type ItemContribution = CommonPermissions & Contribution & ContributionBase & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'ItemContribution';
   /** A potentially-overridden value from person contributors */
   affiliation?: Maybe<Scalars['String']['output']>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /** The actual role */
   contributionRole: ControlledVocabularyItem;
   contributor: Contributor;
   contributorKind: ContributorKind;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /** A potentially-overridden display name value for all contributor types */
   displayName: Scalars['String']['output'];
   id: Scalars['ID']['output'];
@@ -11544,7 +13174,10 @@ export type ItemContribution = Contribution & ContributionBase & Node & Sluggabl
   slug: Scalars['Slug']['output'];
   /** A potentially-overridden value from person contributors */
   title?: Maybe<Scalars['String']['output']>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /** The connection type for ItemContribution. */
@@ -11723,7 +13356,7 @@ export type LinkListSelectionMode =
   | 'MANUAL'
   | '%future added value';
 
-export type LinkListTemplateDefinition = Node & Sluggable & TemplateDefinition & {
+export type LinkListTemplateDefinition = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & TemplateDefinition & {
   __typename?: 'LinkListTemplateDefinition';
   /**
    * The background gradient to use for this template. Affects presentation.
@@ -11735,7 +13368,20 @@ export type LinkListTemplateDefinition = Node & Sluggable & TemplateDefinition &
    *
    */
   browseStyle?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * When `selectionMode` is set to `DYNAMIC`, this uses the same basic structure
    * as schemas to define a dynamic ordering that is resolved at runtime and based
@@ -11847,7 +13493,10 @@ export type LinkListTemplateDefinition = Node & Sluggable & TemplateDefinition &
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
   title?: Maybe<Scalars['String']['output']>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /**
    * Controls whether or not to use `selectionFallbackMode` if the entity list returned
    * via `selectionMode` turns out to be empty at runtime.
@@ -11885,14 +13534,27 @@ export type LinkListTemplateDefinitionSlots = {
   subtitle?: Maybe<TemplateSlotInlineDefinition>;
 };
 
-export type LinkListTemplateInstance = Node & Renderable & Sluggable & TemplateHasEntityList & TemplateHasSeeAllOrdering & TemplateInstance & {
+export type LinkListTemplateInstance = CommonPermissions & HasDefaultTimestamps & Node & Renderable & Sluggable & TemplateHasEntityList & TemplateHasSeeAllOrdering & TemplateInstance & {
   __typename?: 'LinkListTemplateInstance';
   /**
    * Whether all slots in this template are empty.
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Load the associated definition for this template.
    *
@@ -11948,7 +13610,10 @@ export type LinkListTemplateInstance = Node & Renderable & Sluggable & TemplateH
   slots: LinkListTemplateInstanceSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -12079,9 +13744,22 @@ export type ListEntityContext =
   | 'NONE'
   | '%future added value';
 
-export type ListItemLayoutDefinition = LayoutDefinition & Node & Sluggable & {
+export type ListItemLayoutDefinition = CommonPermissions & HasDefaultTimestamps & LayoutDefinition & Node & Sluggable & {
   __typename?: 'ListItemLayoutDefinition';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   layoutKind: LayoutKind;
   slug: Scalars['Slug']['output'];
@@ -12095,10 +13773,13 @@ export type ListItemLayoutDefinition = LayoutDefinition & Node & Sluggable & {
    *
    */
   templates: Array<AnyListItemTemplateDefinition>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
-export type ListItemLayoutInstance = LayoutInstance & Node & Renderable & Sluggable & {
+export type ListItemLayoutInstance = CommonPermissions & HasDefaultTimestamps & LayoutInstance & Node & Renderable & Sluggable & {
   __typename?: 'ListItemLayoutInstance';
   /**
    * Whether all templates in this instance are hidden.
@@ -12110,7 +13791,20 @@ export type ListItemLayoutInstance = LayoutInstance & Node & Renderable & Slugga
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The associated entity for this layout instance.
    *
@@ -12139,7 +13833,10 @@ export type ListItemLayoutInstance = LayoutInstance & Node & Renderable & Slugga
    *
    */
   templates: Array<AnyListItemTemplateInstance>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -12153,9 +13850,22 @@ export type ListItemSelectionMode =
   | 'PROPERTY'
   | '%future added value';
 
-export type ListItemTemplateDefinition = Node & Sluggable & TemplateDefinition & {
+export type ListItemTemplateDefinition = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & TemplateDefinition & {
   __typename?: 'ListItemTemplateDefinition';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * When `selectionMode` is set to `DYNAMIC`, this uses the same basic structure
    * as schemas to define a dynamic ordering that is resolved at runtime and based
@@ -12250,7 +13960,10 @@ export type ListItemTemplateDefinition = Node & Sluggable & TemplateDefinition &
   slots: ListItemTemplateDefinitionSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /**
    * Controls whether or not to use `selectionFallbackMode` if the entity list returned
    * via `selectionMode` turns out to be empty at runtime.
@@ -12281,14 +13994,27 @@ export type ListItemTemplateDefinitionSlots = {
   subheader?: Maybe<TemplateSlotInlineDefinition>;
 };
 
-export type ListItemTemplateInstance = Node & Renderable & Sluggable & TemplateHasEntityList & TemplateHasSeeAllOrdering & TemplateInstance & {
+export type ListItemTemplateInstance = CommonPermissions & HasDefaultTimestamps & Node & Renderable & Sluggable & TemplateHasEntityList & TemplateHasSeeAllOrdering & TemplateInstance & {
   __typename?: 'ListItemTemplateInstance';
   /**
    * Whether all slots in this template are empty.
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Load the associated definition for this template.
    *
@@ -12344,7 +14070,10 @@ export type ListItemTemplateInstance = Node & Renderable & Sluggable & TemplateH
   slots: ListItemTemplateInstanceSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -12369,9 +14098,22 @@ export type ListItemTemplateInstanceSlots = {
   subheader?: Maybe<TemplateSlotInlineInstance>;
 };
 
-export type MainLayoutDefinition = LayoutDefinition & Node & Sluggable & {
+export type MainLayoutDefinition = CommonPermissions & HasDefaultTimestamps & LayoutDefinition & Node & Sluggable & {
   __typename?: 'MainLayoutDefinition';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   layoutKind: LayoutKind;
   slug: Scalars['Slug']['output'];
@@ -12380,10 +14122,13 @@ export type MainLayoutDefinition = LayoutDefinition & Node & Sluggable & {
    *
    */
   templates: Array<AnyMainTemplateDefinition>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
-export type MainLayoutInstance = LayoutInstance & Node & Renderable & Sluggable & {
+export type MainLayoutInstance = CommonPermissions & HasDefaultTimestamps & LayoutInstance & Node & Renderable & Sluggable & {
   __typename?: 'MainLayoutInstance';
   /**
    * Whether all templates in this instance are hidden.
@@ -12395,7 +14140,20 @@ export type MainLayoutInstance = LayoutInstance & Node & Renderable & Sluggable 
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The associated entity for this layout instance.
    *
@@ -12419,7 +14177,10 @@ export type MainLayoutInstance = LayoutInstance & Node & Renderable & Sluggable 
    *
    */
   templates: Array<AnyMainTemplateInstance>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 export type MarkdownProperty = ScalarProperty & SchemaProperty & SearchableProperty & {
@@ -12534,9 +14295,22 @@ export type MetadataBackground =
   | 'NONE'
   | '%future added value';
 
-export type MetadataLayoutDefinition = LayoutDefinition & Node & Sluggable & {
+export type MetadataLayoutDefinition = CommonPermissions & HasDefaultTimestamps & LayoutDefinition & Node & Sluggable & {
   __typename?: 'MetadataLayoutDefinition';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   layoutKind: LayoutKind;
   slug: Scalars['Slug']['output'];
@@ -12550,10 +14324,13 @@ export type MetadataLayoutDefinition = LayoutDefinition & Node & Sluggable & {
    *
    */
   templates: Array<AnyMetadataTemplateDefinition>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
-export type MetadataLayoutInstance = LayoutInstance & Node & Renderable & Sluggable & {
+export type MetadataLayoutInstance = CommonPermissions & HasDefaultTimestamps & LayoutInstance & Node & Renderable & Sluggable & {
   __typename?: 'MetadataLayoutInstance';
   /**
    * Whether all templates in this instance are hidden.
@@ -12565,7 +14342,20 @@ export type MetadataLayoutInstance = LayoutInstance & Node & Renderable & Slugga
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The associated entity for this layout instance.
    *
@@ -12594,17 +14384,33 @@ export type MetadataLayoutInstance = LayoutInstance & Node & Renderable & Slugga
    *
    */
   templates: Array<AnyMetadataTemplateInstance>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
-export type MetadataTemplateDefinition = Node & Sluggable & TemplateDefinition & {
+export type MetadataTemplateDefinition = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & TemplateDefinition & {
   __typename?: 'MetadataTemplateDefinition';
   /**
    * The background gradient to use for this template. Affects presentation.
    *
    */
   background?: Maybe<MetadataBackground>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   layoutKind: LayoutKind;
   /**
@@ -12614,7 +14420,10 @@ export type MetadataTemplateDefinition = Node & Sluggable & TemplateDefinition &
   slots: MetadataTemplateDefinitionSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -12630,14 +14439,27 @@ export type MetadataTemplateDefinitionSlots = {
   itemsD?: Maybe<TemplateSlotBlockDefinition>;
 };
 
-export type MetadataTemplateInstance = Node & Renderable & Sluggable & TemplateInstance & {
+export type MetadataTemplateInstance = CommonPermissions & HasDefaultTimestamps & Node & Renderable & Sluggable & TemplateInstance & {
   __typename?: 'MetadataTemplateInstance';
   /**
    * Whether all slots in this template are empty.
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Load the associated definition for this template.
    *
@@ -12683,7 +14505,10 @@ export type MetadataTemplateInstance = Node & Renderable & Sluggable & TemplateI
   slots: MetadataTemplateInstanceSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -12779,7 +14604,7 @@ export type MultiselectProperty = OptionableProperty & ScalarProperty & SchemaPr
 };
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type Mutation = {
@@ -12834,6 +14659,16 @@ export type Mutation = {
    *
    */
   createRole?: Maybe<CreateRolePayload>;
+  /**
+   * Update the state for a `DepositorRequest` record.
+   *
+   */
+  depositorRequestChangeState?: Maybe<DepositorRequestChangeStatePayload>;
+  /**
+   * Create a single `DepositorRequest` record.
+   *
+   */
+  depositorRequestCreate?: Maybe<DepositorRequestCreatePayload>;
   /**
    * Destroy a announcement by ID.
    *
@@ -13018,6 +14853,73 @@ export type Mutation = {
   /** Revoke access from a specific hierarchical entity */
   revokeAccess?: Maybe<RevokeAccessPayload>;
   /**
+   * A mutation to change the state of a `Submission`.
+   *
+   */
+  submissionChangeState?: Maybe<SubmissionChangeStatePayload>;
+  /**
+   * Create a single `SubmissionComment` record.
+   *
+   */
+  submissionCommentCreate?: Maybe<SubmissionCommentCreatePayload>;
+  /**
+   * Destroy a single `SubmissionComment` record.
+   *
+   */
+  submissionCommentDestroy?: Maybe<SubmissionCommentDestroyPayload>;
+  /**
+   * Update a single `SubmissionComment` record.
+   *
+   */
+  submissionCommentUpdate?: Maybe<SubmissionCommentUpdatePayload>;
+  /**
+   * Create a single `Submission` record.
+   *
+   */
+  submissionCreate?: Maybe<SubmissionCreatePayload>;
+  /**
+   * Leave a review on a submission.
+   *
+   * This effectively acts as an upsert and can be run by itself,
+   * or as a response to `submissionRequestReview`.
+   *
+   */
+  submissionLeaveReview?: Maybe<SubmissionLeaveReviewPayload>;
+  /**
+   * Request a review from a reviewer.
+   *
+   * This effectively acts as an upsert.
+   *
+   * The reviewer is expected to call `submissionLeaveReview`.
+   *
+   */
+  submissionRequestReview?: Maybe<SubmissionRequestReviewPayload>;
+  /**
+   * Close a `SubmissionTarget`, preventing any new submissions from being made.
+   *
+   */
+  submissionTargetClose?: Maybe<SubmissionTargetClosePayload>;
+  /**
+   * Update a single `SubmissionTarget` record.
+   *
+   */
+  submissionTargetConfigure?: Maybe<SubmissionTargetConfigurePayload>;
+  /**
+   * Open a `SubmissionTarget`, allowing new submissions to be made.
+   *
+   */
+  submissionTargetOpen?: Maybe<SubmissionTargetOpenPayload>;
+  /**
+   * Create a single `SubmissionTargetReviewer` record.
+   *
+   */
+  submissionTargetReviewerCreate?: Maybe<SubmissionTargetReviewerCreatePayload>;
+  /**
+   * Destroy a single `SubmissionTargetReviewer` record.
+   *
+   */
+  submissionTargetReviewerDestroy?: Maybe<SubmissionTargetReviewerDestroyPayload>;
+  /**
    * Update an announcement by its ID.
    *
    */
@@ -13097,7 +14999,7 @@ export type Mutation = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationAlterSchemaVersionArgs = {
@@ -13106,7 +15008,7 @@ export type MutationAlterSchemaVersionArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationApplySchemaPropertiesArgs = {
@@ -13115,7 +15017,7 @@ export type MutationApplySchemaPropertiesArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationControlledVocabularyDestroyArgs = {
@@ -13124,7 +15026,7 @@ export type MutationControlledVocabularyDestroyArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationControlledVocabularySourceUpdateArgs = {
@@ -13133,7 +15035,7 @@ export type MutationControlledVocabularySourceUpdateArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationControlledVocabularyUpsertArgs = {
@@ -13142,7 +15044,7 @@ export type MutationControlledVocabularyUpsertArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationCreateAnnouncementArgs = {
@@ -13151,7 +15053,7 @@ export type MutationCreateAnnouncementArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationCreateAssetArgs = {
@@ -13160,7 +15062,7 @@ export type MutationCreateAssetArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationCreateCollectionArgs = {
@@ -13169,7 +15071,7 @@ export type MutationCreateCollectionArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationCreateCommunityArgs = {
@@ -13178,7 +15080,7 @@ export type MutationCreateCommunityArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationCreateItemArgs = {
@@ -13187,7 +15089,7 @@ export type MutationCreateItemArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationCreateOrderingArgs = {
@@ -13196,7 +15098,7 @@ export type MutationCreateOrderingArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationCreateOrganizationContributorArgs = {
@@ -13205,7 +15107,7 @@ export type MutationCreateOrganizationContributorArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationCreatePageArgs = {
@@ -13214,7 +15116,7 @@ export type MutationCreatePageArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationCreatePersonContributorArgs = {
@@ -13223,7 +15125,7 @@ export type MutationCreatePersonContributorArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationCreateRoleArgs = {
@@ -13232,7 +15134,25 @@ export type MutationCreateRoleArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationDepositorRequestChangeStateArgs = {
+  input: DepositorRequestChangeStateInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationDepositorRequestCreateArgs = {
+  input: DepositorRequestCreateInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationDestroyAnnouncementArgs = {
@@ -13241,7 +15161,7 @@ export type MutationDestroyAnnouncementArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationDestroyAssetArgs = {
@@ -13250,7 +15170,7 @@ export type MutationDestroyAssetArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationDestroyCollectionArgs = {
@@ -13259,7 +15179,7 @@ export type MutationDestroyCollectionArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationDestroyCommunityArgs = {
@@ -13268,7 +15188,7 @@ export type MutationDestroyCommunityArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationDestroyContributionArgs = {
@@ -13277,7 +15197,7 @@ export type MutationDestroyContributionArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationDestroyContributorArgs = {
@@ -13286,7 +15206,7 @@ export type MutationDestroyContributorArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationDestroyEntityLinkArgs = {
@@ -13295,7 +15215,7 @@ export type MutationDestroyEntityLinkArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationDestroyItemArgs = {
@@ -13304,7 +15224,7 @@ export type MutationDestroyItemArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationDestroyOrderingArgs = {
@@ -13313,7 +15233,7 @@ export type MutationDestroyOrderingArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationDestroyPageArgs = {
@@ -13322,7 +15242,7 @@ export type MutationDestroyPageArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationEntityPurgeArgs = {
@@ -13331,7 +15251,7 @@ export type MutationEntityPurgeArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationFrontendCacheRevalidateEntityArgs = {
@@ -13340,7 +15260,7 @@ export type MutationFrontendCacheRevalidateEntityArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationFrontendCacheRevalidateInstanceArgs = {
@@ -13349,7 +15269,7 @@ export type MutationFrontendCacheRevalidateInstanceArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationGrantAccessArgs = {
@@ -13358,7 +15278,7 @@ export type MutationGrantAccessArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationHarvestAttemptFromMappingArgs = {
@@ -13367,7 +15287,7 @@ export type MutationHarvestAttemptFromMappingArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationHarvestAttemptFromSourceArgs = {
@@ -13376,7 +15296,7 @@ export type MutationHarvestAttemptFromSourceArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationHarvestAttemptPruneEntitiesArgs = {
@@ -13385,7 +15305,7 @@ export type MutationHarvestAttemptPruneEntitiesArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationHarvestMappingCreateArgs = {
@@ -13394,7 +15314,7 @@ export type MutationHarvestMappingCreateArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationHarvestMappingDestroyArgs = {
@@ -13403,7 +15323,7 @@ export type MutationHarvestMappingDestroyArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationHarvestMappingUpdateArgs = {
@@ -13412,7 +15332,7 @@ export type MutationHarvestMappingUpdateArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationHarvestMetadataMappingCreateArgs = {
@@ -13421,7 +15341,7 @@ export type MutationHarvestMetadataMappingCreateArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationHarvestMetadataMappingDestroyArgs = {
@@ -13430,7 +15350,7 @@ export type MutationHarvestMetadataMappingDestroyArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationHarvestSourceCreateArgs = {
@@ -13439,7 +15359,7 @@ export type MutationHarvestSourceCreateArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationHarvestSourceDestroyArgs = {
@@ -13448,7 +15368,7 @@ export type MutationHarvestSourceDestroyArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationHarvestSourcePruneEntitiesArgs = {
@@ -13457,7 +15377,7 @@ export type MutationHarvestSourcePruneEntitiesArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationHarvestSourceUpdateArgs = {
@@ -13466,7 +15386,7 @@ export type MutationHarvestSourceUpdateArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationLinkEntityArgs = {
@@ -13475,7 +15395,7 @@ export type MutationLinkEntityArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationPermalinkCreateArgs = {
@@ -13484,7 +15404,7 @@ export type MutationPermalinkCreateArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationPermalinkDestroyArgs = {
@@ -13493,7 +15413,7 @@ export type MutationPermalinkDestroyArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationPermalinkUpdateArgs = {
@@ -13502,7 +15422,7 @@ export type MutationPermalinkUpdateArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationPreviewSlotArgs = {
@@ -13511,7 +15431,7 @@ export type MutationPreviewSlotArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationRenderLayoutsArgs = {
@@ -13520,7 +15440,7 @@ export type MutationRenderLayoutsArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationReparentEntityArgs = {
@@ -13529,7 +15449,7 @@ export type MutationReparentEntityArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationResetOrderingArgs = {
@@ -13538,7 +15458,7 @@ export type MutationResetOrderingArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationRevokeAccessArgs = {
@@ -13547,7 +15467,115 @@ export type MutationRevokeAccessArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationSubmissionChangeStateArgs = {
+  input: SubmissionChangeStateInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationSubmissionCommentCreateArgs = {
+  input: SubmissionCommentCreateInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationSubmissionCommentDestroyArgs = {
+  input: SubmissionCommentDestroyInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationSubmissionCommentUpdateArgs = {
+  input: SubmissionCommentUpdateInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationSubmissionCreateArgs = {
+  input: SubmissionCreateInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationSubmissionLeaveReviewArgs = {
+  input: SubmissionLeaveReviewInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationSubmissionRequestReviewArgs = {
+  input: SubmissionRequestReviewInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationSubmissionTargetCloseArgs = {
+  input: SubmissionTargetCloseInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationSubmissionTargetConfigureArgs = {
+  input: SubmissionTargetConfigureInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationSubmissionTargetOpenArgs = {
+  input: SubmissionTargetOpenInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationSubmissionTargetReviewerCreateArgs = {
+  input: SubmissionTargetReviewerCreateInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationSubmissionTargetReviewerDestroyArgs = {
+  input: SubmissionTargetReviewerDestroyInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpdateAnnouncementArgs = {
@@ -13556,7 +15584,7 @@ export type MutationUpdateAnnouncementArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpdateAssetArgs = {
@@ -13565,7 +15593,7 @@ export type MutationUpdateAssetArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpdateAssetAttachmentArgs = {
@@ -13574,7 +15602,7 @@ export type MutationUpdateAssetAttachmentArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpdateCollectionArgs = {
@@ -13583,7 +15611,7 @@ export type MutationUpdateCollectionArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpdateCommunityArgs = {
@@ -13592,7 +15620,7 @@ export type MutationUpdateCommunityArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpdateContributionArgs = {
@@ -13601,7 +15629,7 @@ export type MutationUpdateContributionArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpdateGlobalConfigurationArgs = {
@@ -13610,7 +15638,7 @@ export type MutationUpdateGlobalConfigurationArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpdateItemArgs = {
@@ -13619,7 +15647,7 @@ export type MutationUpdateItemArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpdateOrderingArgs = {
@@ -13628,7 +15656,7 @@ export type MutationUpdateOrderingArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpdateOrganizationContributorArgs = {
@@ -13637,7 +15665,7 @@ export type MutationUpdateOrganizationContributorArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpdatePageArgs = {
@@ -13646,7 +15674,7 @@ export type MutationUpdatePageArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpdatePersonContributorArgs = {
@@ -13655,7 +15683,7 @@ export type MutationUpdatePersonContributorArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpdateRoleArgs = {
@@ -13664,7 +15692,7 @@ export type MutationUpdateRoleArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpdateUserArgs = {
@@ -13673,7 +15701,7 @@ export type MutationUpdateUserArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpdateViewerSettingsArgs = {
@@ -13682,7 +15710,7 @@ export type MutationUpdateViewerSettingsArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUpsertContributionArgs = {
@@ -13691,7 +15719,7 @@ export type MutationUpsertContributionArgs = {
 
 
 /**
- * The entry point for making changes to the data within the WDP API.
+ * The entry point for making changes to the data within the Meru API.
  *
  */
 export type MutationUserResetPasswordArgs = {
@@ -13769,9 +15797,22 @@ export type NavigationBackground =
   | 'NONE'
   | '%future added value';
 
-export type NavigationLayoutDefinition = LayoutDefinition & Node & Sluggable & {
+export type NavigationLayoutDefinition = CommonPermissions & HasDefaultTimestamps & LayoutDefinition & Node & Sluggable & {
   __typename?: 'NavigationLayoutDefinition';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   layoutKind: LayoutKind;
   slug: Scalars['Slug']['output'];
@@ -13785,10 +15826,13 @@ export type NavigationLayoutDefinition = LayoutDefinition & Node & Sluggable & {
    *
    */
   templates: Array<AnyNavigationTemplateDefinition>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
-export type NavigationLayoutInstance = LayoutInstance & Node & Renderable & Sluggable & {
+export type NavigationLayoutInstance = CommonPermissions & HasDefaultTimestamps & LayoutInstance & Node & Renderable & Sluggable & {
   __typename?: 'NavigationLayoutInstance';
   /**
    * Whether all templates in this instance are hidden.
@@ -13800,7 +15844,20 @@ export type NavigationLayoutInstance = LayoutInstance & Node & Renderable & Slug
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The associated entity for this layout instance.
    *
@@ -13829,17 +15886,33 @@ export type NavigationLayoutInstance = LayoutInstance & Node & Renderable & Slug
    *
    */
   templates: Array<AnyNavigationTemplateInstance>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
-export type NavigationTemplateDefinition = Node & Sluggable & TemplateDefinition & {
+export type NavigationTemplateDefinition = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & TemplateDefinition & {
   __typename?: 'NavigationTemplateDefinition';
   /**
    * The background gradient to use for this template. Affects presentation.
    *
    */
   background?: Maybe<NavigationBackground>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * If true, the metadata template/tab should be hidden for this schema.
    *
@@ -13854,7 +15927,10 @@ export type NavigationTemplateDefinition = Node & Sluggable & TemplateDefinition
   slots: NavigationTemplateDefinitionSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -13866,14 +15942,27 @@ export type NavigationTemplateDefinitionSlots = {
   entityLabel?: Maybe<TemplateSlotInlineDefinition>;
 };
 
-export type NavigationTemplateInstance = Node & Renderable & Sluggable & TemplateInstance & {
+export type NavigationTemplateInstance = CommonPermissions & HasDefaultTimestamps & Node & Renderable & Sluggable & TemplateInstance & {
   __typename?: 'NavigationTemplateInstance';
   /**
    * Whether all slots in this template are empty.
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Load the associated definition for this template.
    *
@@ -13919,7 +16008,10 @@ export type NavigationTemplateInstance = Node & Renderable & Sluggable & Templat
   slots: NavigationTemplateInstanceSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -14004,14 +16096,27 @@ export type OrderDefinitionInput = {
 };
 
 /** An ordering that belongs to an entity and arranges its children in a pre-configured way */
-export type Ordering = Node & Searchable & Sluggable & {
+export type Ordering = CommonPermissions & HasDefaultTimestamps & Node & Searchable & Sluggable & {
   __typename?: 'Ordering';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   children: OrderingEntryConnection;
   /** A constant ordering should be treated as not being able to invert itself. */
   constant: Scalars['Boolean']['output'];
   /** The number of entries currently visible within the ordering */
   count: Scalars['Int']['output'];
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /** Whether the ordering has been disabled—orderings inherited from schemas will be disabled if deleted. */
   disabled: Scalars['Boolean']['output'];
   /** The time the ordering was disabled, if applicable */
@@ -14063,7 +16168,10 @@ export type Ordering = Node & Searchable & Sluggable & {
    *
    */
   tree: Scalars['Boolean']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 
@@ -14186,7 +16294,7 @@ export type OrderingEdge = {
 };
 
 /** An entry within an ordering, it can refer to an entity or an entity link */
-export type OrderingEntry = Node & Sluggable & {
+export type OrderingEntry = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'OrderingEntry';
   /**
    * When the associated `Ordering` is a `TREE`, and the current entry is a leaf, this array can be used
@@ -14194,7 +16302,20 @@ export type OrderingEntry = Node & Sluggable & {
    *
    */
   ancestors: Array<OrderingEntry>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The actual element being ordered. At present, this will only be a `Community`, `Collection`, or `Item`,
    * but future implementations of orderings may include other content, such as presentation elements.
@@ -14245,7 +16366,10 @@ export type OrderingEntry = Node & Sluggable & {
    *
    */
   treeDepth?: Maybe<Scalars['Int']['output']>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /** The connection type for OrderingEntry. */
@@ -14503,14 +16627,27 @@ export type OrderingSelectLinkDefinitionInput = {
   references?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type OrderingTemplateDefinition = Node & Sluggable & TemplateDefinition & {
+export type OrderingTemplateDefinition = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & TemplateDefinition & {
   __typename?: 'OrderingTemplateDefinition';
   /**
    * The background gradient to use for this template. Affects presentation.
    *
    */
   background?: Maybe<OrderingBackground>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   layoutKind: LayoutKind;
   /**
@@ -14569,7 +16706,10 @@ export type OrderingTemplateDefinition = Node & Sluggable & TemplateDefinition &
   slots: OrderingTemplateDefinitionSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /**
    * This controls how wide the template should render.
    *
@@ -14590,14 +16730,27 @@ export type OrderingTemplateDefinitionSlots = {
   previousLabel?: Maybe<TemplateSlotInlineDefinition>;
 };
 
-export type OrderingTemplateInstance = Node & Renderable & Sluggable & TemplateHasOrderingPair & TemplateInstance & {
+export type OrderingTemplateInstance = CommonPermissions & HasDefaultTimestamps & Node & Renderable & Sluggable & TemplateHasOrderingPair & TemplateInstance & {
   __typename?: 'OrderingTemplateInstance';
   /**
    * Whether all slots in this template are empty.
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Load the associated definition for this template.
    *
@@ -14648,7 +16801,10 @@ export type OrderingTemplateInstance = Node & Renderable & Sluggable & TemplateH
   slots: OrderingTemplateInstanceSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -14674,7 +16830,7 @@ export type OrderingVisibilityFilter =
  * An organization that has made contributions.
  *
  */
-export type OrganizationContributor = Contributor & ContributorBase & HasHarvestModificationStatus & Node & Sluggable & {
+export type OrganizationContributor = CommonPermissions & Contributor & ContributorBase & HasDefaultTimestamps & HasHarvestModificationStatus & Node & Sluggable & {
   __typename?: 'OrganizationContributor';
   /**
    * Only applicable when `kind` = `PERSON`.
@@ -14683,6 +16839,16 @@ export type OrganizationContributor = Contributor & ContributorBase & HasHarvest
   affiliation?: Maybe<Scalars['String']['output']>;
   attributions: ContributorAttributionConnection;
   bio?: Maybe<Scalars['String']['output']>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /**
    * The total number of collection contributions from this contributor.
    *
@@ -14694,7 +16860,10 @@ export type OrganizationContributor = Contributor & ContributorBase & HasHarvest
    *
    */
   contributionCount: Scalars['Int']['output'];
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   email?: Maybe<Scalars['String']['output']>;
   /**
    * Only applicable when `kind` = `PERSON`.
@@ -14754,7 +16923,10 @@ export type OrganizationContributor = Contributor & ContributorBase & HasHarvest
    *
    */
   title?: Maybe<Scalars['String']['output']>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   url?: Maybe<Scalars['String']['output']>;
 };
 
@@ -14894,14 +17066,27 @@ export type PageListBackground =
   | 'NONE'
   | '%future added value';
 
-export type PageListTemplateDefinition = Node & Sluggable & TemplateDefinition & {
+export type PageListTemplateDefinition = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & TemplateDefinition & {
   __typename?: 'PageListTemplateDefinition';
   /**
    * The background gradient to use for this template. Affects presentation.
    *
    */
   background?: Maybe<PageListBackground>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   layoutKind: LayoutKind;
   /**
@@ -14911,7 +17096,10 @@ export type PageListTemplateDefinition = Node & Sluggable & TemplateDefinition &
   slots: PageListTemplateDefinitionSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /**
    * This controls how wide the template should render.
    *
@@ -14931,14 +17119,27 @@ export type PageListTemplateDefinitionSlots = {
   header?: Maybe<TemplateSlotInlineDefinition>;
 };
 
-export type PageListTemplateInstance = Node & Renderable & Sluggable & TemplateInstance & {
+export type PageListTemplateInstance = CommonPermissions & HasDefaultTimestamps & Node & Renderable & Sluggable & TemplateInstance & {
   __typename?: 'PageListTemplateInstance';
   /**
    * Whether all slots in this template are empty.
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Load the associated definition for this template.
    *
@@ -14984,7 +17185,10 @@ export type PageListTemplateInstance = Node & Renderable & Sluggable & TemplateI
   slots: PageListTemplateInstanceSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -15007,14 +17211,27 @@ export type Paginated = {
  * Each resource can have multiple permalinks, but only one can be marked as canonical.
  *
  */
-export type Permalink = Node & Sluggable & {
+export type Permalink = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'Permalink';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /**
    * Whether this permalink is the canonical one for the `permalinkable`.
    *
    */
   canonical: Scalars['Boolean']['output'];
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   /**
    * The type of resource this permalink points to.
@@ -15035,7 +17252,10 @@ export type Permalink = Node & Sluggable & {
    */
   permalinkableSlug: Scalars['String']['output'];
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /**
    * The URI of the permalink. Used for generating routes and also serves as a unique identifier.
    *
@@ -15273,7 +17493,7 @@ export type PermissionGrid = {
  * A person that has made contributions.
  *
  */
-export type PersonContributor = Contributor & ContributorBase & HasHarvestModificationStatus & Node & Sluggable & {
+export type PersonContributor = CommonPermissions & Contributor & ContributorBase & HasDefaultTimestamps & HasHarvestModificationStatus & Node & Sluggable & {
   __typename?: 'PersonContributor';
   /**
    * Only applicable when `kind` = `PERSON`.
@@ -15282,6 +17502,16 @@ export type PersonContributor = Contributor & ContributorBase & HasHarvestModifi
   affiliation?: Maybe<Scalars['String']['output']>;
   attributions: ContributorAttributionConnection;
   bio?: Maybe<Scalars['String']['output']>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /**
    * The total number of collection contributions from this contributor.
    *
@@ -15293,7 +17523,10 @@ export type PersonContributor = Contributor & ContributorBase & HasHarvestModifi
    *
    */
   contributionCount: Scalars['Int']['output'];
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   email?: Maybe<Scalars['String']['output']>;
   /**
    * Only applicable when `kind` = `PERSON`.
@@ -15353,7 +17586,10 @@ export type PersonContributor = Contributor & ContributorBase & HasHarvestModifi
    *
    */
   title?: Maybe<Scalars['String']['output']>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   url?: Maybe<Scalars['String']['output']>;
 };
 
@@ -15662,6 +17898,46 @@ export type QueriesControlledVocabularySourceControlledVocabularySourcesArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   orFilters?: InputMaybe<Array<ControlledVocabularySourceFilterInput>>;
   order?: InputMaybe<ControlledVocabularySourceOrder>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageDirection?: InputMaybe<PageDirection>;
+  perPage?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/**
+ * An interface for querying `DepositorRequest` records.
+ *
+ */
+export type QueriesDepositorRequest = {
+  /**
+   * Retrieve a single `DepositorRequest` by slug.
+   *
+   */
+  depositorRequest?: Maybe<DepositorRequest>;
+  depositorRequests: DepositorRequestConnection;
+};
+
+
+/**
+ * An interface for querying `DepositorRequest` records.
+ *
+ */
+export type QueriesDepositorRequestDepositorRequestArgs = {
+  slug: Scalars['Slug']['input'];
+};
+
+
+/**
+ * An interface for querying `DepositorRequest` records.
+ *
+ */
+export type QueriesDepositorRequestDepositorRequestsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filters?: InputMaybe<DepositorRequestFilterInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  orFilters?: InputMaybe<Array<DepositorRequestFilterInput>>;
+  order?: InputMaybe<DepositorRequestOrder>;
   page?: InputMaybe<Scalars['Int']['input']>;
   pageDirection?: InputMaybe<PageDirection>;
   perPage?: InputMaybe<Scalars['Int']['input']>;
@@ -16128,6 +18404,178 @@ export type QueriesSchemasSchemaVersionsArgs = {
 };
 
 /**
+ * An interface for querying `Submission` records.
+ *
+ */
+export type QueriesSubmission = {
+  /**
+   * Retrieve a single `Submission` by slug.
+   *
+   */
+  submission?: Maybe<Submission>;
+  /**
+   * Retrieve a list of `Submission` records, optionally filtered by various criteria.
+   *
+   */
+  submissions: SubmissionConnection;
+};
+
+
+/**
+ * An interface for querying `Submission` records.
+ *
+ */
+export type QueriesSubmissionSubmissionArgs = {
+  slug: Scalars['Slug']['input'];
+};
+
+
+/**
+ * An interface for querying `Submission` records.
+ *
+ */
+export type QueriesSubmissionSubmissionsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filters?: InputMaybe<SubmissionFilterInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  orFilters?: InputMaybe<Array<SubmissionFilterInput>>;
+  order?: InputMaybe<SubmissionOrder>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageDirection?: InputMaybe<PageDirection>;
+  perPage?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/**
+ * An interface for querying `SubmissionComment` records.
+ *
+ */
+export type QueriesSubmissionComment = {
+  /**
+   * Retrieve a single `SubmissionComment` by slug.
+   *
+   */
+  submissionComment?: Maybe<SubmissionComment>;
+  /**
+   * Retrieve a list of `SubmissionComment` records, optionally filtered by `submission`.
+   *
+   */
+  submissionComments: SubmissionCommentConnection;
+};
+
+
+/**
+ * An interface for querying `SubmissionComment` records.
+ *
+ */
+export type QueriesSubmissionCommentSubmissionCommentArgs = {
+  slug: Scalars['Slug']['input'];
+};
+
+
+/**
+ * An interface for querying `SubmissionComment` records.
+ *
+ */
+export type QueriesSubmissionCommentSubmissionCommentsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filters?: InputMaybe<SubmissionCommentFilterInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  orFilters?: InputMaybe<Array<SubmissionCommentFilterInput>>;
+  order?: InputMaybe<SubmissionCommentOrder>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageDirection?: InputMaybe<PageDirection>;
+  perPage?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/**
+ * An interface for querying `SubmissionReview` records.
+ *
+ */
+export type QueriesSubmissionReview = {
+  /**
+   * Retrieve a single `SubmissionReview` by slug.
+   *
+   */
+  submissionReview?: Maybe<SubmissionReview>;
+  submissionReviews: SubmissionReviewConnection;
+};
+
+
+/**
+ * An interface for querying `SubmissionReview` records.
+ *
+ */
+export type QueriesSubmissionReviewSubmissionReviewArgs = {
+  slug: Scalars['Slug']['input'];
+};
+
+
+/**
+ * An interface for querying `SubmissionReview` records.
+ *
+ */
+export type QueriesSubmissionReviewSubmissionReviewsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filters?: InputMaybe<SubmissionReviewFilterInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  orFilters?: InputMaybe<Array<SubmissionReviewFilterInput>>;
+  order?: InputMaybe<SubmissionReviewOrder>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageDirection?: InputMaybe<PageDirection>;
+  perPage?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/**
+ * An interface for querying `SubmissionTarget` records.
+ *
+ */
+export type QueriesSubmissionTarget = {
+  /**
+   * Retrieve a single `SubmissionTarget` by slug.
+   *
+   */
+  submissionTarget?: Maybe<SubmissionTarget>;
+  /**
+   * Retrieve a list of `SubmissionTarget` records, optionally filtered by various criteria.
+   *
+   */
+  submissionTargets: SubmissionTargetConnection;
+};
+
+
+/**
+ * An interface for querying `SubmissionTarget` records.
+ *
+ */
+export type QueriesSubmissionTargetSubmissionTargetArgs = {
+  slug: Scalars['Slug']['input'];
+};
+
+
+/**
+ * An interface for querying `SubmissionTarget` records.
+ *
+ */
+export type QueriesSubmissionTargetSubmissionTargetsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filters?: InputMaybe<SubmissionTargetFilterInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  orFilters?: InputMaybe<Array<SubmissionTargetFilterInput>>;
+  order?: InputMaybe<SubmissionTargetOrder>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageDirection?: InputMaybe<PageDirection>;
+  perPage?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/**
  * Fields for querying system-level information about the current installation.
  *
  */
@@ -16209,7 +18657,7 @@ export type QueriesUserUsersArgs = {
  * The entry point for retrieving data from within the Meru API.
  *
  */
-export type Query = QueriesAccessAndRoles & QueriesContrib & QueriesControlledVocabulary & QueriesControlledVocabularySource & QueriesEntities & QueriesHarvestAttempt & QueriesHarvestExample & QueriesHarvestMapping & QueriesHarvestMessage & QueriesHarvestRecord & QueriesHarvestSet & QueriesHarvestSource & QueriesPermalink & QueriesSchemas & QueriesSystem & QueriesUser & Searchable & {
+export type Query = QueriesAccessAndRoles & QueriesContrib & QueriesControlledVocabulary & QueriesControlledVocabularySource & QueriesDepositorRequest & QueriesEntities & QueriesHarvestAttempt & QueriesHarvestExample & QueriesHarvestMapping & QueriesHarvestMessage & QueriesHarvestRecord & QueriesHarvestSet & QueriesHarvestSource & QueriesPermalink & QueriesSchemas & QueriesSubmission & QueriesSubmissionComment & QueriesSubmissionReview & QueriesSubmissionTarget & QueriesSystem & QueriesUser & Searchable & {
   __typename?: 'Query';
   /**
    * Retrieve all access grants.
@@ -16253,6 +18701,12 @@ export type Query = QueriesAccessAndRoles & QueriesContrib & QueriesControlledVo
    */
   controlledVocabularySource?: Maybe<ControlledVocabularySource>;
   controlledVocabularySources: ControlledVocabularySourceConnection;
+  /**
+   * Retrieve a single `DepositorRequest` by slug.
+   *
+   */
+  depositorRequest?: Maybe<DepositorRequest>;
+  depositorRequests: DepositorRequestConnection;
   /** Fetch the global configuration for this installation */
   globalConfiguration: GlobalConfiguration;
   /**
@@ -16340,6 +18794,42 @@ export type Query = QueriesAccessAndRoles & QueriesContrib & QueriesControlledVo
   schemaVersions: SchemaVersionConnection;
   /** Search from this level of the API using it as the origin */
   search: SearchScope;
+  /**
+   * Retrieve a single `Submission` by slug.
+   *
+   */
+  submission?: Maybe<Submission>;
+  /**
+   * Retrieve a single `SubmissionComment` by slug.
+   *
+   */
+  submissionComment?: Maybe<SubmissionComment>;
+  /**
+   * Retrieve a list of `SubmissionComment` records, optionally filtered by `submission`.
+   *
+   */
+  submissionComments: SubmissionCommentConnection;
+  /**
+   * Retrieve a single `SubmissionReview` by slug.
+   *
+   */
+  submissionReview?: Maybe<SubmissionReview>;
+  submissionReviews: SubmissionReviewConnection;
+  /**
+   * Retrieve a single `SubmissionTarget` by slug.
+   *
+   */
+  submissionTarget?: Maybe<SubmissionTarget>;
+  /**
+   * Retrieve a list of `SubmissionTarget` records, optionally filtered by various criteria.
+   *
+   */
+  submissionTargets: SubmissionTargetConnection;
+  /**
+   * Retrieve a list of `Submission` records, optionally filtered by various criteria.
+   *
+   */
+  submissions: SubmissionConnection;
   /** A helper field that is used to look up various details about the WDP-API ecosystem. */
   systemInfo: SystemInfo;
   /** Look up a user by slug */
@@ -16529,6 +19019,33 @@ export type QueryControlledVocabularySourcesArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   orFilters?: InputMaybe<Array<ControlledVocabularySourceFilterInput>>;
   order?: InputMaybe<ControlledVocabularySourceOrder>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageDirection?: InputMaybe<PageDirection>;
+  perPage?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/**
+ * The entry point for retrieving data from within the Meru API.
+ *
+ */
+export type QueryDepositorRequestArgs = {
+  slug: Scalars['Slug']['input'];
+};
+
+
+/**
+ * The entry point for retrieving data from within the Meru API.
+ *
+ */
+export type QueryDepositorRequestsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filters?: InputMaybe<DepositorRequestFilterInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  orFilters?: InputMaybe<Array<DepositorRequestFilterInput>>;
+  order?: InputMaybe<DepositorRequestOrder>;
   page?: InputMaybe<Scalars['Int']['input']>;
   pageDirection?: InputMaybe<PageDirection>;
   perPage?: InputMaybe<Scalars['Int']['input']>;
@@ -16840,6 +19357,114 @@ export type QuerySearchArgs = {
  * The entry point for retrieving data from within the Meru API.
  *
  */
+export type QuerySubmissionArgs = {
+  slug: Scalars['Slug']['input'];
+};
+
+
+/**
+ * The entry point for retrieving data from within the Meru API.
+ *
+ */
+export type QuerySubmissionCommentArgs = {
+  slug: Scalars['Slug']['input'];
+};
+
+
+/**
+ * The entry point for retrieving data from within the Meru API.
+ *
+ */
+export type QuerySubmissionCommentsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filters?: InputMaybe<SubmissionCommentFilterInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  orFilters?: InputMaybe<Array<SubmissionCommentFilterInput>>;
+  order?: InputMaybe<SubmissionCommentOrder>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageDirection?: InputMaybe<PageDirection>;
+  perPage?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/**
+ * The entry point for retrieving data from within the Meru API.
+ *
+ */
+export type QuerySubmissionReviewArgs = {
+  slug: Scalars['Slug']['input'];
+};
+
+
+/**
+ * The entry point for retrieving data from within the Meru API.
+ *
+ */
+export type QuerySubmissionReviewsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filters?: InputMaybe<SubmissionReviewFilterInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  orFilters?: InputMaybe<Array<SubmissionReviewFilterInput>>;
+  order?: InputMaybe<SubmissionReviewOrder>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageDirection?: InputMaybe<PageDirection>;
+  perPage?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/**
+ * The entry point for retrieving data from within the Meru API.
+ *
+ */
+export type QuerySubmissionTargetArgs = {
+  slug: Scalars['Slug']['input'];
+};
+
+
+/**
+ * The entry point for retrieving data from within the Meru API.
+ *
+ */
+export type QuerySubmissionTargetsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filters?: InputMaybe<SubmissionTargetFilterInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  orFilters?: InputMaybe<Array<SubmissionTargetFilterInput>>;
+  order?: InputMaybe<SubmissionTargetOrder>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageDirection?: InputMaybe<PageDirection>;
+  perPage?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/**
+ * The entry point for retrieving data from within the Meru API.
+ *
+ */
+export type QuerySubmissionsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filters?: InputMaybe<SubmissionFilterInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  orFilters?: InputMaybe<Array<SubmissionFilterInput>>;
+  order?: InputMaybe<SubmissionOrder>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageDirection?: InputMaybe<PageDirection>;
+  perPage?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/**
+ * The entry point for retrieving data from within the Meru API.
+ *
+ */
 export type QueryUserArgs = {
   slug: Scalars['Slug']['input'];
 };
@@ -17055,21 +19680,29 @@ export type RevokeAccessPayload = StandardMutationPayload & {
   revoked?: Maybe<Scalars['Boolean']['output']>;
 };
 
-/** A named role in the WDP API */
-export type Role = ExposesEffectiveAccess & Node & Sluggable & {
+/** A named role in the Meru API */
+export type Role = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'Role';
   /** The access control list for this specific role */
   accessControlList: AccessControlList;
   /** A list of action names that have been granted to this role */
   allowedActions: Array<Scalars['String']['output']>;
-  createdAt: Scalars['ISO8601DateTime']['output'];
-  /** Only relevant for `custom` roles, this affects sorting. */
-  customPriority?: Maybe<Scalars['Int']['output']>;
   /**
-   * User-specific access permissions for this object.
+   * Whether the current user has permission to destroy this record.
    *
    */
-  effectiveAccess: EffectiveAccess;
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
+  /** Only relevant for `custom` roles, this affects sorting. */
+  customPriority?: Maybe<Scalars['Int']['output']>;
   /**
    * The global access control list that this assigned role implies, based on its sort order.
    *
@@ -17117,7 +19750,10 @@ export type Role = ExposesEffectiveAccess & Node & Sluggable & {
    */
   priority: Scalars['Int']['output'];
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /** The connection type for Role. */
@@ -17310,9 +19946,22 @@ export type ScalarProperty = {
  * definition will default to whatever the most recent version uses.
  *
  */
-export type SchemaDefinition = DescribesSchema & Node & Sluggable & {
+export type SchemaDefinition = CommonPermissions & DescribesSchema & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'SchemaDefinition';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The full declaration for this schema, including namespace, identifier, and version (if available).
    *
@@ -17340,7 +19989,10 @@ export type SchemaDefinition = DescribesSchema & Node & Sluggable & {
    */
   namespace: Scalars['String']['output'];
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /** The connection type for SchemaDefinition. */
@@ -17691,9 +20343,22 @@ export type SchemaValueError = {
  * A specific version of a `SchemaDefinition`.
  *
  */
-export type SchemaVersion = DescribesSchema & HasSchemaProperties & Node & Searchable & Sluggable & {
+export type SchemaVersion = CommonPermissions & DescribesSchema & HasDefaultTimestamps & HasSchemaProperties & Node & Searchable & Sluggable & {
   __typename?: 'SchemaVersion';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The full declaration for this schema, including namespace, identifier, and version (if available).
    *
@@ -17786,7 +20451,10 @@ export type SchemaVersion = DescribesSchema & HasSchemaProperties & Node & Searc
    */
   searchableProperties: Array<SearchableProperty>;
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 
@@ -18176,20 +20844,38 @@ export type SimpleOrder =
   | 'RECENT'
   | '%future added value';
 
-/** A value for updating the site's configuration */
+/**
+ * A value for updating the site's configuration.
+ *
+ */
 export type SiteFooter = {
   __typename?: 'SiteFooter';
-  /** A copyright statement that lives in the site's footer. */
+  /**
+   * A copyright statement that lives in the site's footer.
+   *
+   */
   copyrightStatement: Scalars['String']['output'];
-  /** A description that lives in the site's footer. */
+  /**
+   * A description that lives in the site's footer.
+   *
+   */
   description: Scalars['String']['output'];
 };
 
-/** A value for updating the site's configuration */
+/**
+ * A value for updating the site's configuration.
+ *
+ */
 export type SiteFooterInput = {
-  /** A copyright statement that lives in the site's footer. */
+  /**
+   * A copyright statement that lives in the site's footer.
+   *
+   */
   copyrightStatement?: InputMaybe<Scalars['String']['input']>;
-  /** A description that lives in the site's footer. */
+  /**
+   * A description that lives in the site's footer.
+   *
+   */
   description?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -18239,32 +20925,68 @@ export type SiteLogoMode =
   | 'WITH_TEXT'
   | '%future added value';
 
-/** Configuration settings for information about this installation. */
+/**
+ * Configuration settings for information about this installation.
+ *
+ */
 export type SiteSettings = {
   __typename?: 'SiteSettings';
-  /** Settings related to the site's footer */
+  /**
+   * Settings related to the site's footer.
+   *
+   */
   footer: SiteFooter;
-  /** The text that appears on the root page of the frontend. Supports basic markdown. */
+  /**
+   * The text that appears on the root page of the frontend. Supports basic markdown.
+   *
+   */
   installationHomePageCopy: Scalars['String']['output'];
-  /** The name of the installation. */
+  /**
+   * The name of the installation.
+   *
+   */
   installationName: Scalars['String']['output'];
-  /** How the logo should be rendered */
+  /**
+   * How the logo should be rendered.
+   *
+   */
   logoMode: SiteLogoMode;
-  /** The name of the provider supporting and maintaining this installation. */
+  /**
+   * The name of the provider supporting and maintaining this installation.
+   *
+   */
   providerName: Scalars['String']['output'];
 };
 
-/** A value for updating the site's configuration */
+/**
+ * A value for updating the site's configuration.
+ *
+ */
 export type SiteSettingsInput = {
-  /** Settings for the site's footer */
+  /**
+   * Settings for the site's footer.
+   *
+   */
   footer?: InputMaybe<SiteFooterInput>;
-  /** The text that appears on the root page of the frontend. Supports basic markdown. */
+  /**
+   * The text that appears on the root page of the frontend. Supports basic markdown.
+   *
+   */
   installationHomePageCopy?: InputMaybe<Scalars['String']['input']>;
-  /** The name of the installation. */
+  /**
+   * The name of the installation.
+   *
+   */
   installationName?: InputMaybe<Scalars['String']['input']>;
-  /** How the logo should be rendered */
+  /**
+   * How the logo should be rendered.
+   *
+   */
   logoMode?: InputMaybe<SiteLogoMode>;
-  /** The name of the provider supporting and maintaining this installation. */
+  /**
+   * The name of the provider supporting and maintaining this installation.
+   *
+   */
   providerName?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -18384,6 +21106,1625 @@ export type StringProperty = ScalarProperty & SchemaProperty & SearchablePropert
   type: SchemaPropertyType;
 };
 
+/**
+ * A submission against a `SubmissionTarget`, representing a single attempt
+ * to deposit an entity into the system.
+ *
+ */
+export type Submission = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
+  __typename?: 'Submission';
+  /**
+   * The state transitions that are available for this submission,
+   * based on its current state and the permissions of the current user.
+   *
+   */
+  availableTransitions: Array<SubmissionStatus>;
+  /**
+   * Whether or not the current user can alter the schema version of this submission.
+   *
+   */
+  canAlterSchemaVersion: AuthorizationResult;
+  /**
+   * Whether or not the current user can comment on this submission.
+   *
+   */
+  canComment: AuthorizationResult;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether or not the current user can migrate this submission.
+   *
+   */
+  canMigrate: AuthorizationResult;
+  /**
+   * Whether or not the current user can request a review of this submission.
+   *
+   */
+  canRequestReview: AuthorizationResult;
+  /**
+   * Whether or not the current user can review this submission.
+   *
+   */
+  canReview: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
+  /**
+   * The current status of the submission, similar to `state` but with metadata about mutability and locking.
+   *
+   */
+  currentStatus: SubmissionStatus;
+  /**
+   * The actual entity record that will be published as part of this submission.
+   *
+   * The actual edits and content for the entity happen on it.
+   *
+   */
+  entity?: Maybe<Entity>;
+  id: Scalars['ID']['output'];
+  slug: Scalars['Slug']['output'];
+  /**
+   * The current state of the submission.
+   *
+   */
+  state: SubmissionState;
+  /**
+   * The {SubmissionTarget} against which this submission is being made.
+   *
+   * It can be null if the submission gets moved away later after publication.
+   *
+   */
+  submissionTarget?: Maybe<SubmissionTarget>;
+  /**
+   * The state transitions that this submission has undergone.
+   *
+   */
+  transitions: SubmissionTransitionConnection;
+  /** The date this record was last updated within the API. */
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
+  /**
+   * The user that created this submission.
+   *
+   */
+  user: User;
+};
+
+
+/**
+ * A submission against a `SubmissionTarget`, representing a single attempt
+ * to deposit an entity into the system.
+ *
+ */
+export type SubmissionTransitionsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageDirection?: InputMaybe<PageDirection>;
+  perPage?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** Autogenerated input type of SubmissionChangeState */
+export type SubmissionChangeStateInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The ID of the {Submission} to update.
+   *
+   */
+  submissionId: Scalars['ID']['input'];
+  /**
+   * The state to which the submission should be transitioned.
+   *
+   */
+  toState: SubmissionState;
+};
+
+/** Autogenerated return type of SubmissionChangeState. */
+export type SubmissionChangeStatePayload = StandardMutationPayload & {
+  __typename?: 'SubmissionChangeStatePayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+  /**
+   * The modified submission, if successful.
+   *
+   */
+  submission?: Maybe<Submission>;
+};
+
+/**
+ * A comment on a `Submission`.
+ *
+ */
+export type SubmissionComment = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
+  __typename?: 'SubmissionComment';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /**
+   * The content of the comment.
+   *
+   */
+  content: Scalars['String']['output'];
+  /** The date this record was created within the API. */
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
+  id: Scalars['ID']['output'];
+  /**
+   * The role of the comment, quickly delineating if it was from the submitter or a reviewer.
+   *
+   */
+  role: SubmissionCommentRole;
+  slug: Scalars['Slug']['output'];
+  /**
+   * The submission that this comment is on.
+   *
+   */
+  submission: Submission;
+  /** The date this record was last updated within the API. */
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
+  /**
+   * The user that made this comment.
+   *
+   */
+  user: User;
+};
+
+/** The connection type for SubmissionComment. */
+export type SubmissionCommentConnection = Paginated & {
+  __typename?: 'SubmissionCommentConnection';
+  /** A list of edges. */
+  edges: Array<SubmissionCommentEdge>;
+  /** A list of nodes. */
+  nodes: Array<SubmissionComment>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** Autogenerated input type of SubmissionCommentCreate */
+export type SubmissionCommentCreateInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The content of the comment.
+   *
+   */
+  content: Scalars['String']['input'];
+  /**
+   * The ID of the `Submission` to which the comment will be attached.
+   *
+   */
+  submissionId: Scalars['ID']['input'];
+};
+
+/** Autogenerated return type of SubmissionCommentCreate. */
+export type SubmissionCommentCreatePayload = StandardMutationPayload & {
+  __typename?: 'SubmissionCommentCreatePayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+  /**
+   * The newly-modified submission comment, if successful.
+   *
+   */
+  submissionComment?: Maybe<SubmissionComment>;
+};
+
+/** Autogenerated input type of SubmissionCommentDestroy */
+export type SubmissionCommentDestroyInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The submission comment to destroy.
+   *
+   */
+  submissionCommentId: Scalars['ID']['input'];
+};
+
+/** Autogenerated return type of SubmissionCommentDestroy. */
+export type SubmissionCommentDestroyPayload = DestroyMutationPayload & StandardMutationPayload & {
+  __typename?: 'SubmissionCommentDestroyPayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Whether or not the model was successfully destroyed. If false, check globalErrors */
+  destroyed?: Maybe<Scalars['Boolean']['output']>;
+  /** The ID of the deleted model */
+  destroyedId?: Maybe<Scalars['ID']['output']>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+};
+
+/**
+ * An edge in a connection for `SubmissionComment`.
+ *
+ */
+export type SubmissionCommentEdge = {
+  __typename?: 'SubmissionCommentEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: SubmissionComment;
+};
+
+/**
+ * Filters for SubmissionComment.
+ *
+ */
+export type SubmissionCommentFilterInput = {
+  /**
+   * Filter the model's `created_at` with time constraints.
+   *
+   */
+  createdAt?: InputMaybe<TimeFilterMatch>;
+  /**
+   * Filter the model's `updated_at` with time constraints.
+   *
+   */
+  updatedAt?: InputMaybe<TimeFilterMatch>;
+};
+
+/**
+ * Sort a collection of `SubmissionComment` records by specific properties and directions.
+ *
+ */
+export type SubmissionCommentOrder =
+  /** Sort submission comments by their default order. */
+  | 'DEFAULT'
+  /** Sort submission comments by oldest created date. */
+  | 'OLDEST'
+  /** Sort submission comments by newest created date. */
+  | 'RECENT'
+  | '%future added value';
+
+/**
+ * The role of a commenter on a `SubmissionComment`.
+ *
+ */
+export type SubmissionCommentRole =
+  /**
+   * This comment is from a reviewer, manager, admin, or other user with privileges.
+   *
+   */
+  | 'REVIEWER'
+  /**
+   * This comment is from the submitter.
+   *
+   */
+  | 'SUBMITTER'
+  | '%future added value';
+
+/** Autogenerated input type of SubmissionCommentUpdate */
+export type SubmissionCommentUpdateInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The content of the comment.
+   *
+   */
+  content: Scalars['String']['input'];
+  /**
+   * The submission comment to update.
+   *
+   */
+  submissionCommentId: Scalars['ID']['input'];
+};
+
+/** Autogenerated return type of SubmissionCommentUpdate. */
+export type SubmissionCommentUpdatePayload = StandardMutationPayload & {
+  __typename?: 'SubmissionCommentUpdatePayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+  /**
+   * The newly-modified submission comment, if successful.
+   *
+   */
+  submissionComment?: Maybe<SubmissionComment>;
+};
+
+/** The connection type for Submission. */
+export type SubmissionConnection = Paginated & {
+  __typename?: 'SubmissionConnection';
+  /** A list of edges. */
+  edges: Array<SubmissionEdge>;
+  /** A list of nodes. */
+  nodes: Array<Submission>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** Autogenerated input type of SubmissionCreate */
+export type SubmissionCreateInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The ID of the parent entity for the submission.
+   *
+   * This is derived from one of the `depositTargets` of the specified `SubmissionTarget`.
+   *
+   */
+  parentEntityId: Scalars['ID']['input'];
+  /**
+   * The ID of the {SchemaVersion} to be used for the submission.
+   *
+   */
+  schemaVersionId: Scalars['ID']['input'];
+  /**
+   * The ID of the {SubmissionTarget} against which the submission is being made.
+   *
+   */
+  submissionTargetId: Scalars['ID']['input'];
+  /**
+   * The title of the submission.
+   *
+   * This gets passed to the entity when it is built.
+   *
+   */
+  title: Scalars['String']['input'];
+};
+
+/** Autogenerated return type of SubmissionCreate. */
+export type SubmissionCreatePayload = StandardMutationPayload & {
+  __typename?: 'SubmissionCreatePayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+  /**
+   * The newly-modified submission, if successful.
+   *
+   */
+  submission?: Maybe<Submission>;
+};
+
+/**
+ * The mode of deposit for a submission target. This defines where deposits are made
+ * relative to the entity specified by the submission target.
+ *
+ */
+export type SubmissionDepositMode =
+  /**
+   * Deposits to the submission target are made to a descendant of the specified entity.
+   *
+   * For instance, if the submission target is defined on a `nglp:journal`,
+   * deposits of an `nglp:journal_article` might be made to `nglp:journal_issue`
+   * entities that are descendants of the journal.
+   *
+   */
+  | 'DESCENDANT'
+  /**
+   * Deposits on the submission target are made directly to the entity specified.
+   *
+   */
+  | 'DIRECT'
+  | '%future added value';
+
+/**
+ * A submission deposit target defines an actual target
+ * entity for submissions. For instance, a `SubmissionTarget`
+ * might be defined on an `nglp:journal`, but it defines a
+ * `SubmissionDepositTarget` that points to an `nglp:journal_issue`.
+ *
+ */
+export type SubmissionDepositTarget = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
+  __typename?: 'SubmissionDepositTarget';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
+  /**
+   * The deposit mode of this submission deposit target. This indicates the relationship
+   * of the associated `entity` to this record's parent `SubmissionTarget`.
+   *
+   */
+  depositMode: SubmissionDepositMode;
+  /**
+   * The entity that this submission deposit target points to.
+   *
+   */
+  entity: Entity;
+  id: Scalars['ID']['output'];
+  slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
+};
+
+/**
+ * An edge in a connection for `Submission`.
+ *
+ */
+export type SubmissionEdge = {
+  __typename?: 'SubmissionEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Submission;
+};
+
+/**
+ * Filters for Submission.
+ *
+ */
+export type SubmissionFilterInput = {
+  /**
+   * Filter the model's `created_at` with time constraints.
+   *
+   */
+  createdAt?: InputMaybe<TimeFilterMatch>;
+  inState?: InputMaybe<Array<SubmissionState>>;
+  /**
+   * Filter submissions to only those with the given parent entity(ies).
+   *
+   */
+  parentEntity?: InputMaybe<Array<Scalars['ID']['input']>>;
+  /**
+   * Filter submissions to only those with the given schema version(s).
+   *
+   */
+  schemaVersionIds?: InputMaybe<Array<Scalars['ID']['input']>>;
+  /**
+   * Filter submissions to only those with the given submission target(s).
+   *
+   */
+  submissionTargetIds?: InputMaybe<Array<Scalars['ID']['input']>>;
+  /**
+   * Filter the model's `updated_at` with time constraints.
+   *
+   */
+  updatedAt?: InputMaybe<TimeFilterMatch>;
+  /**
+   * Filter submissions to only those created by the given user(s).
+   *
+   */
+  userIds?: InputMaybe<Array<Scalars['ID']['input']>>;
+};
+
+/** Autogenerated input type of SubmissionLeaveReview */
+export type SubmissionLeaveReviewInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * An additional comment to store with the review proper.
+   *
+   */
+  comment?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The submission to review.
+   *
+   */
+  submissionId: Scalars['ID']['input'];
+  /**
+   * The submission state to be placed in.
+   *
+   */
+  toState: SubmissionReviewState;
+};
+
+/** Autogenerated return type of SubmissionLeaveReview. */
+export type SubmissionLeaveReviewPayload = StandardMutationPayload & {
+  __typename?: 'SubmissionLeaveReviewPayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+  /**
+   * The associated submission.
+   *
+   */
+  submission?: Maybe<Submission>;
+  /**
+   * The associated review.
+   *
+   */
+  submissionReview?: Maybe<SubmissionReview>;
+};
+
+/**
+ * Sort a collection of `Submission` records by specific properties and directions.
+ *
+ */
+export type SubmissionOrder =
+  /** Sort submissions by their default order. */
+  | 'DEFAULT'
+  /** Sort submissions by oldest created date. */
+  | 'OLDEST'
+  /** Sort submissions by newest created date. */
+  | 'RECENT'
+  | '%future added value';
+
+/** Autogenerated input type of SubmissionRequestReview */
+export type SubmissionRequestReviewInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * An optional comment to store alongside the review.
+   *
+   */
+  comment?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The submission to review.
+   *
+   */
+  submissionId: Scalars['ID']['input'];
+  /**
+   * The id of the user to request the review from.
+   *
+   */
+  userId: Scalars['ID']['input'];
+};
+
+/** Autogenerated return type of SubmissionRequestReview. */
+export type SubmissionRequestReviewPayload = StandardMutationPayload & {
+  __typename?: 'SubmissionRequestReviewPayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+  /**
+   * The associated submission.
+   *
+   */
+  submission?: Maybe<Submission>;
+  /**
+   * The associated review.
+   *
+   */
+  submissionReview?: Maybe<SubmissionReview>;
+};
+
+/**
+ * A review of a `Submission` by a specific reviewer.
+ *
+ */
+export type SubmissionReview = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
+  __typename?: 'SubmissionReview';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /**
+   * An optional note from the reviewer about this submission review.
+   *
+   */
+  comment?: Maybe<Scalars['String']['output']>;
+  /** The date this record was created within the API. */
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
+  id: Scalars['ID']['output'];
+  /**
+   * The time that this submission review was last requested.
+   *
+   */
+  requestedAt?: Maybe<Scalars['ISO8601DateTime']['output']>;
+  slug: Scalars['Slug']['output'];
+  /**
+   * The current state of this submission review.
+   *
+   */
+  state: SubmissionReviewState;
+  /**
+   * The submission that this is a review of.
+   *
+   */
+  submission: Submission;
+  /**
+   * The state transitions that this submission review has undergone.
+   *
+   */
+  transitions: SubmissionReviewTransitionConnection;
+  /** The date this record was last updated within the API. */
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
+  /**
+   * The user that created this submission review, if any.
+   *
+   */
+  user?: Maybe<User>;
+};
+
+
+/**
+ * A review of a `Submission` by a specific reviewer.
+ *
+ */
+export type SubmissionReviewTransitionsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageDirection?: InputMaybe<PageDirection>;
+  perPage?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** The connection type for SubmissionReview. */
+export type SubmissionReviewConnection = Paginated & {
+  __typename?: 'SubmissionReviewConnection';
+  /** A list of edges. */
+  edges: Array<SubmissionReviewEdge>;
+  /** A list of nodes. */
+  nodes: Array<SubmissionReview>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/**
+ * An edge in a connection for `SubmissionReview`.
+ *
+ */
+export type SubmissionReviewEdge = {
+  __typename?: 'SubmissionReviewEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: SubmissionReview;
+};
+
+/**
+ * Filters for SubmissionReview.
+ *
+ */
+export type SubmissionReviewFilterInput = {
+  /**
+   * Filter the model's `created_at` with time constraints.
+   *
+   */
+  createdAt?: InputMaybe<TimeFilterMatch>;
+  inState?: InputMaybe<Array<SubmissionReviewState>>;
+  /**
+   * Filter by an array of Submission records, matching one or more.
+   *
+   */
+  submissionIds?: InputMaybe<Array<Scalars['ID']['input']>>;
+  /**
+   * Filter the model's `updated_at` with time constraints.
+   *
+   */
+  updatedAt?: InputMaybe<TimeFilterMatch>;
+  /**
+   * Filter by an array of User records, matching one or more.
+   *
+   */
+  userIds?: InputMaybe<Array<Scalars['ID']['input']>>;
+};
+
+/**
+ * Sort a collection of `SubmissionReview` records by specific properties and directions.
+ *
+ */
+export type SubmissionReviewOrder =
+  /** Sort submission reviews by their default order. */
+  | 'DEFAULT'
+  /** Sort submission reviews by oldest created date. */
+  | 'OLDEST'
+  /** Sort submission reviews by newest created date. */
+  | 'RECENT'
+  | '%future added value';
+
+/**
+ * The status of a specific reviewer's review on a submission.
+ *
+ */
+export type SubmissionReviewState =
+  /**
+   * The reviewer has approved the submission.
+   *
+   */
+  | 'APPROVED'
+  /**
+   * The review is pending / requested and has not yet been acted upon.
+   *
+   */
+  | 'PENDING'
+  /**
+   * The reviewer has rejected the submission.
+   *
+   */
+  | 'REJECTED'
+  | '%future added value';
+
+/**
+ * A transition for a `SubmissionReview`.
+ *
+ */
+export type SubmissionReviewTransition = CommonPermissions & CommonTransition & HasDefaultTimestamps & Node & Sluggable & {
+  __typename?: 'SubmissionReviewTransition';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
+  /**
+   * The state that the submission target is transitioning from. This will be null if the submission target is being created.
+   *
+   */
+  fromState?: Maybe<SubmissionReviewState>;
+  id: Scalars['ID']['output'];
+  /**
+   * Whether this is the most recent transition.
+   *
+   */
+  mostRecent: Scalars['Boolean']['output'];
+  slug: Scalars['Slug']['output'];
+  /**
+   * The state that the submission target is transitioning to.
+   *
+   */
+  toState: SubmissionReviewState;
+  /** The date this record was last updated within the API. */
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
+  /**
+   * The user who performed the transition, if available.
+   *
+   * Some transitions may happen through automated processes, so the user will not always be set.
+   *
+   */
+  user?: Maybe<User>;
+};
+
+/** The connection type for SubmissionReviewTransition. */
+export type SubmissionReviewTransitionConnection = Paginated & {
+  __typename?: 'SubmissionReviewTransitionConnection';
+  /** A list of edges. */
+  edges: Array<SubmissionReviewTransitionEdge>;
+  /** A list of nodes. */
+  nodes: Array<SubmissionReviewTransition>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/**
+ * An edge in a connection for `SubmissionReviewTransition`.
+ *
+ */
+export type SubmissionReviewTransitionEdge = {
+  __typename?: 'SubmissionReviewTransitionEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: SubmissionReviewTransition;
+};
+
+/**
+ * The status of a `Submission`.
+ *
+ */
+export type SubmissionState =
+  /**
+   * The submission has been approved by the review staff and is awaiting publication.
+   *
+   */
+  | 'APPROVED'
+  /**
+   * The initial draft state of a submission.
+   *
+   */
+  | 'DRAFT'
+  /**
+   * The submission has been published and is publicly visible.
+   *
+   */
+  | 'PUBLISHED'
+  /**
+   * The submission has been rejected by the review staff and will not be published,
+   * and is not subject to any further reviews or revisions.
+   *
+   */
+  | 'REJECTED'
+  /**
+   * The review staff has requested revisions to the submission
+   * and the depositor is expected to make changes and resubmit.
+   *
+   */
+  | 'REVISION_REQUESTED'
+  /**
+   * The depositor has submitted the submission for review.
+   *
+   */
+  | 'SUBMITTED'
+  /**
+   * The submission is currently under review.
+   *
+   */
+  | 'UNDER_REVIEW'
+  | '%future added value';
+
+/**
+ * Information about submission status and a particular state.
+ *
+ * This object does double duty for both current status and available transitions.
+ *
+ */
+export type SubmissionStatus = {
+  __typename?: 'SubmissionStatus';
+  /**
+   * Whether the current user is allowed to transition the submission to this state.
+   *
+   */
+  canTransition: AuthorizationResult;
+  /**
+   * The current state of the submission.
+   *
+   */
+  fromState: SubmissionState;
+  /**
+   * Whether the submission will be in a locked state (i.e. not mutable by the depositor).
+   *
+   */
+  lockedState: Scalars['Boolean']['output'];
+  /**
+   * Whether the submission will be in a mutable state (i.e. mutable by the depositor).
+   *
+   */
+  mutableState: Scalars['Boolean']['output'];
+  /**
+   * The state to which the submission can be transitioned.
+   *
+   */
+  toState: SubmissionState;
+};
+
+/**
+ * A submission target is a subject of an `Entity`, specifying information about whether
+ * or not it can have new entities deposited to it.
+ *
+ */
+export type SubmissionTarget = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
+  __typename?: 'SubmissionTarget';
+  /**
+   * The content of the agreement that must be agreed to before depositing to this submission target, if `agreementRequired` is `true`.
+   *
+   */
+  agreementContent?: Maybe<Scalars['String']['output']>;
+  /**
+   * Whether or not this submission target requires agreement to an agreement before depositing.
+   *
+   */
+  agreementRequired: Scalars['Boolean']['output'];
+  /**
+   * The kinds of child entities that can be deposited to this submission target.
+   *
+   */
+  allowedChildKinds: Array<ChildEntityKind>;
+  /**
+   * Whether or not the current user can deposit to this submission target.
+   *
+   */
+  canDeposit: AuthorizationResult;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether or not the current user can manage reviewers for this submission target.
+   *
+   */
+  canManageReviewers: AuthorizationResult;
+  /**
+   * Whether or not the current user can request access to deposit to this submission target.
+   *
+   */
+  canRequestDepositAccess: AuthorizationResult;
+  /**
+   * Whether or not the current user can review this submission target.
+   *
+   */
+  canReview: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
+  /**
+   * The deposit mode of this submission target, which determines how deposits to it are handled.
+   *
+   */
+  depositMode: SubmissionDepositMode;
+  /**
+   * The deposit targets of this submission target, which are the entities that deposits to this submission target are deposited to.
+   *
+   */
+  depositTargets: Array<SubmissionDepositTarget>;
+  /**
+   * A description of this submission target, which may include a human-readable title and/or a machine-readable schema.org description.
+   *
+   */
+  description: SubmissionTargetDescription;
+  /**
+   * The entity that this submission target belongs to.
+   *
+   */
+  entity: Entity;
+  id: Scalars['ID']['output'];
+  /**
+   * The schema versions that deposits to this submission target must conform to.
+   *
+   */
+  schemaVersions: Array<SchemaVersion>;
+  slug: Scalars['Slug']['output'];
+  /**
+   * The current state of this submission target, which determines whether or not it can accept deposits.
+   *
+   */
+  state: SubmissionTargetState;
+  /**
+   * The state transitions that this submission target has undergone.
+   *
+   */
+  transitions: SubmissionTargetTransitionConnection;
+  /** The date this record was last updated within the API. */
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
+};
+
+
+/**
+ * A submission target is a subject of an `Entity`, specifying information about whether
+ * or not it can have new entities deposited to it.
+ *
+ */
+export type SubmissionTargetTransitionsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageDirection?: InputMaybe<PageDirection>;
+  perPage?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** Autogenerated input type of SubmissionTargetClose */
+export type SubmissionTargetCloseInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The ID of the {SubmissionTarget} to close.
+   *
+   */
+  submissionTargetId: Scalars['ID']['input'];
+};
+
+/** Autogenerated return type of SubmissionTargetClose. */
+export type SubmissionTargetClosePayload = StandardMutationPayload & {
+  __typename?: 'SubmissionTargetClosePayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+  /**
+   * The modified submission target, if successful.
+   *
+   */
+  submissionTarget?: Maybe<SubmissionTarget>;
+};
+
+/** Autogenerated input type of SubmissionTargetConfigure */
+export type SubmissionTargetConfigureInput = {
+  /**
+   * The content of the agreement that submitters must accept when making a submission to this submission target.
+   *
+   */
+  agreementContent?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Whether submitters must accept an agreement when making a submission to this submission target.
+   *
+   * If true, `agreementContent` must be non-empty.
+   *
+   */
+  agreementRequired?: InputMaybe<Scalars['Boolean']['input']>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The ID of the entity or submission target to configure.
+   *
+   * This may be the ID of a `SubmissionTarget` or of an entity that can
+   * be configured with a `SubmissionTarget` (i.e. a `Community`, `Collection`, or `Item`).
+   *
+   */
+  configurableId: Scalars['ID']['input'];
+  /**
+   * The deposit mode for this submission target, which determines how submissions to this target are deposited.
+   *
+   */
+  depositMode?: InputMaybe<SubmissionDepositMode>;
+  /**
+   * A list of deposit targets for this submission target.
+   *
+   * It should be left empty when `depositMode` is `DIRECT`,
+   * and must have at least one descendant when `depositMode` is `DESCENDANTS`.
+   *
+   */
+  depositTargetIds?: InputMaybe<Array<Scalars['ID']['input']>>;
+  /**
+   * A description of this submission target, which may be displayed to submitters when making a submission to this target.
+   *
+   */
+  description: SubmissionTargetDescriptionInput;
+  /**
+   * A list of schema versions that submissions to this submission target must conform to.
+   *
+   * Must be at least one.
+   *
+   */
+  schemaVersionIds?: InputMaybe<Array<Scalars['ID']['input']>>;
+};
+
+/** Autogenerated return type of SubmissionTargetConfigure. */
+export type SubmissionTargetConfigurePayload = StandardMutationPayload & {
+  __typename?: 'SubmissionTargetConfigurePayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+  /**
+   * The newly-modified submission target, if successful.
+   *
+   */
+  submissionTarget?: Maybe<SubmissionTarget>;
+};
+
+/** The connection type for SubmissionTarget. */
+export type SubmissionTargetConnection = Paginated & {
+  __typename?: 'SubmissionTargetConnection';
+  /** A list of edges. */
+  edges: Array<SubmissionTargetEdge>;
+  /** A list of nodes. */
+  nodes: Array<SubmissionTarget>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/**
+ * An object representing the description of a submission target.
+ *
+ */
+export type SubmissionTargetDescription = {
+  __typename?: 'SubmissionTargetDescription';
+  /**
+   * This is a preface to the sections that provides a high-level overview of the action and is intended to be displayed to end users.
+   *
+   */
+  instructions: Scalars['String']['output'];
+  /**
+   * The internal description of the action.
+   * This is a detailed description that may include technical information and is intended for internal use only. It should not be displayed to end users.
+   *
+   */
+  internal: Scalars['String']['output'];
+  /**
+   * The ordered sections of the action's description.
+   *
+   */
+  sections: Array<SubmissionTargetSection>;
+};
+
+/**
+ * An input object representing the description of a submission target.
+ *
+ */
+export type SubmissionTargetDescriptionInput = {
+  /**
+   * This is a preface to the sections that provides a high-level overview of the action and is intended to be displayed to end users.
+   *
+   */
+  instructions?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The internal description of the action.
+   * This is a detailed description that may include technical information and is intended for internal use only. It should not be displayed to end users.
+   *
+   */
+  internal?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The ordered sections of the action's description.
+   *
+   * The order provided here will be used as the order of the sections in the action's description.
+   *
+   */
+  sections: Array<SubmissionTargetSectionInput>;
+};
+
+/**
+ * An edge in a connection for `SubmissionTarget`.
+ *
+ */
+export type SubmissionTargetEdge = {
+  __typename?: 'SubmissionTargetEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: SubmissionTarget;
+};
+
+/**
+ * Filters for SubmissionTarget.
+ *
+ */
+export type SubmissionTargetFilterInput = {
+  /**
+   * Filter the model's `created_at` with time constraints.
+   *
+   */
+  createdAt?: InputMaybe<TimeFilterMatch>;
+  inState?: InputMaybe<Array<SubmissionTargetState>>;
+  /**
+   * Filter the model's `updated_at` with time constraints.
+   *
+   */
+  updatedAt?: InputMaybe<TimeFilterMatch>;
+};
+
+/** Autogenerated input type of SubmissionTargetOpen */
+export type SubmissionTargetOpenInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The ID of the {SubmissionTarget} to open.
+   *
+   */
+  submissionTargetId: Scalars['ID']['input'];
+};
+
+/** Autogenerated return type of SubmissionTargetOpen. */
+export type SubmissionTargetOpenPayload = StandardMutationPayload & {
+  __typename?: 'SubmissionTargetOpenPayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+  /**
+   * The modified submission target, if successful.
+   *
+   */
+  submissionTarget?: Maybe<SubmissionTarget>;
+};
+
+/**
+ * Sort a collection of `SubmissionTarget` records by specific properties and directions.
+ *
+ */
+export type SubmissionTargetOrder =
+  /** Sort submission targets by their default order. */
+  | 'DEFAULT'
+  /** Sort submission targets by oldest created date. */
+  | 'OLDEST'
+  /** Sort submission targets by newest created date. */
+  | 'RECENT'
+  | '%future added value';
+
+/**
+ * A reviewer assigned to a `SubmissionTarget`.
+ *
+ */
+export type SubmissionTargetReviewer = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
+  __typename?: 'SubmissionTargetReviewer';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
+  id: Scalars['ID']['output'];
+  slug: Scalars['Slug']['output'];
+  /** The submission target this reviewer is assigned to. */
+  submissionTarget: SubmissionTarget;
+  /** The date this record was last updated within the API. */
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
+  /** The user assigned as a reviewer. */
+  user: User;
+};
+
+/** Autogenerated input type of SubmissionTargetReviewerCreate */
+export type SubmissionTargetReviewerCreateInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The ID of the `SubmissionTarget` to assign a reviewer to.
+   *
+   */
+  submissionTargetId: Scalars['ID']['input'];
+  /**
+   * The ID of the `User` to assign the reviewer role to.
+   *
+   */
+  userId: Scalars['ID']['input'];
+};
+
+/** Autogenerated return type of SubmissionTargetReviewerCreate. */
+export type SubmissionTargetReviewerCreatePayload = StandardMutationPayload & {
+  __typename?: 'SubmissionTargetReviewerCreatePayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+  /**
+   * The newly-modified submission target reviewer, if successful.
+   *
+   */
+  submissionTargetReviewer?: Maybe<SubmissionTargetReviewer>;
+};
+
+/** Autogenerated input type of SubmissionTargetReviewerDestroy */
+export type SubmissionTargetReviewerDestroyInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The submission target reviewer to destroy.
+   *
+   */
+  submissionTargetReviewerId: Scalars['ID']['input'];
+};
+
+/** Autogenerated return type of SubmissionTargetReviewerDestroy. */
+export type SubmissionTargetReviewerDestroyPayload = DestroyMutationPayload & StandardMutationPayload & {
+  __typename?: 'SubmissionTargetReviewerDestroyPayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Whether or not the model was successfully destroyed. If false, check globalErrors */
+  destroyed?: Maybe<Scalars['Boolean']['output']>;
+  /** The ID of the deleted model */
+  destroyedId?: Maybe<Scalars['ID']['output']>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+};
+
+/**
+ * An object representing a section of a submission target's description.
+ *
+ */
+export type SubmissionTargetSection = {
+  __typename?: 'SubmissionTargetSection';
+  /**
+   * The content of the section. This is the actual text that will be displayed for this section of the action's description.
+   *
+   */
+  content: Scalars['String']['output'];
+  /**
+   * A unique identifier for the section. This is generated by the system and should not be provided by the client.
+   *
+   */
+  identifier: Scalars['String']['output'];
+  /**
+   * The name of the section. This is used to identify the section and should be unique within an action.
+   *
+   */
+  name: Scalars['String']['output'];
+  /**
+   * The position of the section within the action's description.
+   *
+   * This value is automatically generated by the API.
+   *
+   */
+  position: Scalars['Int']['output'];
+};
+
+/**
+ * An input object representing a section of a submission target's description.
+ *
+ */
+export type SubmissionTargetSectionInput = {
+  /**
+   * The content of the section. This is the actual text that will be displayed for this section of the submission target's description.
+   *
+   */
+  content: Scalars['String']['input'];
+  /**
+   * The name of the section. This is used to identify the section and should be unique within a submission target.
+   *
+   */
+  name: Scalars['String']['input'];
+};
+
+/**
+ * The state of a submission target, describing whether it is accepting submissions or not.
+ *
+ */
+export type SubmissionTargetState =
+  /**
+   * The submission target is not accepting submissions.
+   *
+   */
+  | 'CLOSED'
+  /**
+   * The submission target is accepting submissions.
+   *
+   */
+  | 'OPEN'
+  | '%future added value';
+
+/**
+ * A transition for a `SubmissionTarget`.
+ *
+ */
+export type SubmissionTargetTransition = CommonPermissions & CommonTransition & HasDefaultTimestamps & Node & Sluggable & {
+  __typename?: 'SubmissionTargetTransition';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
+  /**
+   * The state that the submission target is transitioning from. This will be null if the submission target is being created.
+   *
+   */
+  fromState?: Maybe<SubmissionTargetState>;
+  id: Scalars['ID']['output'];
+  /**
+   * Whether this is the most recent transition.
+   *
+   */
+  mostRecent: Scalars['Boolean']['output'];
+  slug: Scalars['Slug']['output'];
+  /**
+   * The state that the submission target is transitioning to.
+   *
+   */
+  toState: SubmissionTargetState;
+  /** The date this record was last updated within the API. */
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
+  /**
+   * The user who performed the transition, if available.
+   *
+   * Some transitions may happen through automated processes, so the user will not always be set.
+   *
+   */
+  user?: Maybe<User>;
+};
+
+/** The connection type for SubmissionTargetTransition. */
+export type SubmissionTargetTransitionConnection = Paginated & {
+  __typename?: 'SubmissionTargetTransitionConnection';
+  /** A list of edges. */
+  edges: Array<SubmissionTargetTransitionEdge>;
+  /** A list of nodes. */
+  nodes: Array<SubmissionTargetTransition>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/**
+ * An edge in a connection for `SubmissionTargetTransition`.
+ *
+ */
+export type SubmissionTargetTransitionEdge = {
+  __typename?: 'SubmissionTargetTransitionEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: SubmissionTargetTransition;
+};
+
+/**
+ * A transition for a `Submission`.
+ *
+ */
+export type SubmissionTransition = CommonPermissions & CommonTransition & HasDefaultTimestamps & Node & Sluggable & {
+  __typename?: 'SubmissionTransition';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
+  /**
+   * The state that the submission target is transitioning from. This will be null if the submission target is being created.
+   *
+   */
+  fromState?: Maybe<SubmissionState>;
+  id: Scalars['ID']['output'];
+  /**
+   * Whether this is the most recent transition.
+   *
+   */
+  mostRecent: Scalars['Boolean']['output'];
+  slug: Scalars['Slug']['output'];
+  /**
+   * The state that the submission target is transitioning to.
+   *
+   */
+  toState: SubmissionState;
+  /** The date this record was last updated within the API. */
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
+  /**
+   * The user who performed the transition, if available.
+   *
+   * Some transitions may happen through automated processes, so the user will not always be set.
+   *
+   */
+  user?: Maybe<User>;
+};
+
+/** The connection type for SubmissionTransition. */
+export type SubmissionTransitionConnection = Paginated & {
+  __typename?: 'SubmissionTransitionConnection';
+  /** A list of edges. */
+  edges: Array<SubmissionTransitionEdge>;
+  /** A list of nodes. */
+  nodes: Array<SubmissionTransition>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/**
+ * An edge in a connection for `SubmissionTransition`.
+ *
+ */
+export type SubmissionTransitionEdge = {
+  __typename?: 'SubmissionTransitionEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: SubmissionTransition;
+};
+
+/**
+ * Entities can optionally be submitted to.
+ *
+ */
+export type Submittable = {
+  /**
+   * Whether the current user has permission to deposit a new entity into this one.
+   *
+   */
+  canDeposit: AuthorizationResult;
+  /**
+   * Whether the current user has permission to review deposits to this entity.
+   *
+   */
+  canReview: AuthorizationResult;
+  /**
+   * THe current submission status of this entity. Is it a draft, published, or unrelated?
+   *
+   */
+  submissionStatus: EntitySubmissionStatus;
+  /**
+   * The submission target that this entity can be submitted to, if any.
+   *
+   */
+  submissionTarget?: Maybe<SubmissionTarget>;
+};
+
 /** When retrieving subtypes of a specific entity, you can distinguish between grabbing its children (default) or all of its descendants. */
 export type SubtreeNodeFilter =
   /** Fetch only the first level of the same type of entity (Item, Collection) */
@@ -18414,9 +22755,22 @@ export type SupplementaryBackground =
   | 'NONE'
   | '%future added value';
 
-export type SupplementaryLayoutDefinition = LayoutDefinition & Node & Sluggable & {
+export type SupplementaryLayoutDefinition = CommonPermissions & HasDefaultTimestamps & LayoutDefinition & Node & Sluggable & {
   __typename?: 'SupplementaryLayoutDefinition';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   layoutKind: LayoutKind;
   slug: Scalars['Slug']['output'];
@@ -18430,10 +22784,13 @@ export type SupplementaryLayoutDefinition = LayoutDefinition & Node & Sluggable 
    *
    */
   templates: Array<AnySupplementaryTemplateDefinition>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
-export type SupplementaryLayoutInstance = LayoutInstance & Node & Renderable & Sluggable & {
+export type SupplementaryLayoutInstance = CommonPermissions & HasDefaultTimestamps & LayoutInstance & Node & Renderable & Sluggable & {
   __typename?: 'SupplementaryLayoutInstance';
   /**
    * Whether all templates in this instance are hidden.
@@ -18445,7 +22802,20 @@ export type SupplementaryLayoutInstance = LayoutInstance & Node & Renderable & S
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * The associated entity for this layout instance.
    *
@@ -18474,17 +22844,33 @@ export type SupplementaryLayoutInstance = LayoutInstance & Node & Renderable & S
    *
    */
   templates: Array<AnySupplementaryTemplateInstance>;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
-export type SupplementaryTemplateDefinition = Node & Sluggable & TemplateDefinition & {
+export type SupplementaryTemplateDefinition = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & TemplateDefinition & {
   __typename?: 'SupplementaryTemplateDefinition';
   /**
    * The background gradient to use for this template. Affects presentation.
    *
    */
   background?: Maybe<SupplementaryBackground>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   id: Scalars['ID']['output'];
   layoutKind: LayoutKind;
   /**
@@ -18494,7 +22880,10 @@ export type SupplementaryTemplateDefinition = Node & Sluggable & TemplateDefinit
   slots: SupplementaryTemplateDefinitionSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -18507,14 +22896,27 @@ export type SupplementaryTemplateDefinitionSlots = {
   metricsLabel?: Maybe<TemplateSlotInlineDefinition>;
 };
 
-export type SupplementaryTemplateInstance = Node & Renderable & Sluggable & TemplateInstance & {
+export type SupplementaryTemplateInstance = CommonPermissions & HasDefaultTimestamps & Node & Renderable & Sluggable & TemplateInstance & {
   __typename?: 'SupplementaryTemplateInstance';
   /**
    * Whether all slots in this template are empty.
    *
    */
   allSlotsEmpty: Scalars['Boolean']['output'];
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Load the associated definition for this template.
    *
@@ -18560,7 +22962,10 @@ export type SupplementaryTemplateInstance = Node & Renderable & Sluggable & Temp
   slots: SupplementaryTemplateInstanceSlots;
   slug: Scalars['Slug']['output'];
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
 };
 
 /**
@@ -18941,9 +23346,22 @@ export type TemplateInstance = {
  * 3 of 5, then these will be returned at position 4 and 5 in that order.
  *
  */
-export type TemplateInstanceSibling = Node & Sluggable & {
+export type TemplateInstanceSibling = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'TemplateInstanceSibling';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /**
    * Whether the sibling has a `DARK` background.
    *
@@ -18978,7 +23396,10 @@ export type TemplateInstanceSibling = Node & Sluggable & {
    *
    */
   templateKind: TemplateKind;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /**
    * The width of the sibling (if available).
    *
@@ -19407,17 +23828,56 @@ export type TemplateWidth =
   | 'HALF'
   | '%future added value';
 
-/** Configuration settings for the theme of the WDP frontend. */
+/**
+ * Configuration settings for the theme of the Meru frontend.
+ *
+ */
 export type ThemeSettings = {
   __typename?: 'ThemeSettings';
+  /**
+   * The color of the theme, being one of `["cream", "blue", "gray"]`.
+   *
+   */
   color: Scalars['String']['output'];
+  /**
+   * The font of the theme, being one of `["style1", "style2", "style3"]`.
+   *
+   */
   font: Scalars['String']['output'];
 };
 
-/** A value for updating the theme */
+/**
+ * Configuration settings for the theme of the Meru frontend.
+ *
+ */
 export type ThemeSettingsInput = {
+  /**
+   * The color of the theme, being one of `["cream", "blue", "gray"]`.
+   *
+   */
   color: Scalars['String']['input'];
+  /**
+   * The font of the theme, being one of `["style1", "style2", "style3"]`.
+   *
+   */
   font: Scalars['String']['input'];
+};
+
+/**
+ * Filter a value with various constraints. If no values are provided to any
+ * operator, this filter will be ignored.
+ *
+ * **Note**: The server will _not_ try to check for logical impossibilities,
+ * e.g. `{ lt: 5, gteq: 10 }`: such input will simply not find anything.
+ *
+ */
+export type TimeFilterMatch = {
+  eq?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
+  gt?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
+  gteq?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
+  lt?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
+  lteq?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
+  notEq?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
 };
 
 export type TimestampProperty = ScalarProperty & SchemaProperty & SearchableProperty & {
@@ -20039,6 +24499,8 @@ export type UpdateGlobalConfigurationInput = {
    *
    */
   contributionRoles?: InputMaybe<ContributionRoleConfigurationInput>;
+  /** Possible new settings for depositing behavior */
+  depositing?: InputMaybe<DepositingSettingsInput>;
   /** Possible new settings for entity behavior */
   entities?: InputMaybe<EntitiesSettingsInput>;
   /** Possible new settings for the institution */
@@ -20535,7 +24997,7 @@ export type UpsertContributionPayload = StandardMutationPayload & {
 };
 
 /** A known or anonymous user in the system. Registration and management is primarily handled through the WDP Keycloak instance. */
-export type User = AccessGrantSubject & ExposesPermissions & Node & Sluggable & {
+export type User = AccessGrantSubject & CommonPermissions & ExposesPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'User';
   /** All access grants for this user */
   accessGrants: AnyUserAccessGrantConnection;
@@ -20560,6 +25022,16 @@ export type User = AccessGrantSubject & ExposesPermissions & Node & Sluggable & 
   avatar: ImageAttachment;
   /** Configurable metadata for the avatar attachment */
   avatarMetadata?: Maybe<ImageMetadata>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /** All access grants for this user on a collection */
   collectionAccessGrants: UserCollectionAccessGrantConnection;
   /** Query the collections this user has access to */
@@ -20568,7 +25040,10 @@ export type User = AccessGrantSubject & ExposesPermissions & Node & Sluggable & 
   communities: CommunityConnection;
   /** All access grants for this user on a community */
   communityAccessGrants: UserCommunityAccessGrantConnection;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /** A user's email. Depending on the upstream provider, this may not be set. */
   email?: Maybe<Scalars['String']['output']>;
   /** Has this user's email been verified to work through Keycloak? */
@@ -20591,7 +25066,10 @@ export type User = AccessGrantSubject & ExposesPermissions & Node & Sluggable & 
   /** The primary role associated with this subject. */
   primaryRole?: Maybe<Role>;
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /** Can this user upload anything at all? */
   uploadAccess: Scalars['Boolean']['output'];
   /** If a user has any upload access, this token will allow them to do so. */
@@ -20731,11 +25209,24 @@ export type UserAccessGrant = {
  * An access grant for a user to a collection.
  *
  */
-export type UserCollectionAccessGrant = AccessGrant & Node & Sluggable & UserAccessGrant & {
+export type UserCollectionAccessGrant = AccessGrant & CommonPermissions & HasDefaultTimestamps & Node & Sluggable & UserAccessGrant & {
   __typename?: 'UserCollectionAccessGrant';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /** The collection to which a user has been granted access */
   collection: Collection;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /** The polymorphic entity to which access has been granted */
   entity: Entity;
   id: Scalars['ID']['output'];
@@ -20744,7 +25235,10 @@ export type UserCollectionAccessGrant = AccessGrant & Node & Sluggable & UserAcc
   slug: Scalars['Slug']['output'];
   /** The polymorphic subject that has been granted access */
   subject: AccessGrantSubject;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /** The user which has been granted access */
   user: User;
 };
@@ -20773,11 +25267,24 @@ export type UserCollectionAccessGrantEdge = {
  * An access grant for a user to a community.
  *
  */
-export type UserCommunityAccessGrant = AccessGrant & Node & Sluggable & UserAccessGrant & {
+export type UserCommunityAccessGrant = AccessGrant & CommonPermissions & HasDefaultTimestamps & Node & Sluggable & UserAccessGrant & {
   __typename?: 'UserCommunityAccessGrant';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /** The community to which a user has been granted access */
   community: Community;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /** The polymorphic entity to which access has been granted */
   entity: Entity;
   id: Scalars['ID']['output'];
@@ -20786,7 +25293,10 @@ export type UserCommunityAccessGrant = AccessGrant & Node & Sluggable & UserAcce
   slug: Scalars['Slug']['output'];
   /** The polymorphic subject that has been granted access */
   subject: AccessGrantSubject;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /** The user which has been granted access */
   user: User;
 };
@@ -20849,7 +25359,7 @@ export type UserError = {
  * Not presently exposed through the API.
  *
  */
-export type UserGroup = AccessGrantSubject & Node & Sluggable & {
+export type UserGroup = AccessGrantSubject & CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'UserGroup';
   /** All access grants for this group */
   accessGrants: AnyUserGroupAccessGrantConnection;
@@ -20864,11 +25374,24 @@ export type UserGroup = AccessGrantSubject & Node & Sluggable & {
    *
    */
   assignableRoles: Array<Role>;
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /** All access grants for this group on a collection */
   collectionAccessGrants: UserGroupCollectionAccessGrantConnection;
   /** All access grants for this group on a community */
   communityAccessGrants: UserGroupCommunityAccessGrantConnection;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   description: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   /** All access grants for this group on an item */
@@ -20877,7 +25400,10 @@ export type UserGroup = AccessGrantSubject & Node & Sluggable & {
   /** The primary role associated with this subject. */
   primaryRole?: Maybe<Role>;
   slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   users: UserConnection;
 };
 
@@ -20995,11 +25521,24 @@ export type UserGroupAccessGrant = {
  * An access grant for a group to a collection.
  *
  */
-export type UserGroupCollectionAccessGrant = AccessGrant & Node & Sluggable & UserGroupAccessGrant & {
+export type UserGroupCollectionAccessGrant = AccessGrant & CommonPermissions & HasDefaultTimestamps & Node & Sluggable & UserGroupAccessGrant & {
   __typename?: 'UserGroupCollectionAccessGrant';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /** The collection to which a group has been granted access */
   collection: Collection;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /** The polymorphic entity to which access has been granted */
   entity: Entity;
   id: Scalars['ID']['output'];
@@ -21008,7 +25547,10 @@ export type UserGroupCollectionAccessGrant = AccessGrant & Node & Sluggable & Us
   slug: Scalars['Slug']['output'];
   /** The polymorphic subject that has been granted access */
   subject: AccessGrantSubject;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /** The group which has been granted access */
   userGroup: UserGroup;
 };
@@ -21037,11 +25579,24 @@ export type UserGroupCollectionAccessGrantEdge = {
  * An access grant for a group to a community.
  *
  */
-export type UserGroupCommunityAccessGrant = AccessGrant & Node & Sluggable & UserGroupAccessGrant & {
+export type UserGroupCommunityAccessGrant = AccessGrant & CommonPermissions & HasDefaultTimestamps & Node & Sluggable & UserGroupAccessGrant & {
   __typename?: 'UserGroupCommunityAccessGrant';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
   /** The community to which a group has been granted access */
   community: Community;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /** The polymorphic entity to which access has been granted */
   entity: Entity;
   id: Scalars['ID']['output'];
@@ -21050,7 +25605,10 @@ export type UserGroupCommunityAccessGrant = AccessGrant & Node & Sluggable & Use
   slug: Scalars['Slug']['output'];
   /** The polymorphic subject that has been granted access */
   subject: AccessGrantSubject;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /** The group which has been granted access */
   userGroup: UserGroup;
 };
@@ -21079,9 +25637,22 @@ export type UserGroupCommunityAccessGrantEdge = {
  * An access grant for a group to a item.
  *
  */
-export type UserGroupItemAccessGrant = AccessGrant & Node & Sluggable & UserGroupAccessGrant & {
+export type UserGroupItemAccessGrant = AccessGrant & CommonPermissions & HasDefaultTimestamps & Node & Sluggable & UserGroupAccessGrant & {
   __typename?: 'UserGroupItemAccessGrant';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /** The polymorphic entity to which access has been granted */
   entity: Entity;
   id: Scalars['ID']['output'];
@@ -21092,7 +25663,10 @@ export type UserGroupItemAccessGrant = AccessGrant & Node & Sluggable & UserGrou
   slug: Scalars['Slug']['output'];
   /** The polymorphic subject that has been granted access */
   subject: AccessGrantSubject;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /** The group which has been granted access */
   userGroup: UserGroup;
 };
@@ -21121,9 +25695,22 @@ export type UserGroupItemAccessGrantEdge = {
  * An access grant for a user to a collection.
  *
  */
-export type UserItemAccessGrant = AccessGrant & Node & Sluggable & UserAccessGrant & {
+export type UserItemAccessGrant = AccessGrant & CommonPermissions & HasDefaultTimestamps & Node & Sluggable & UserAccessGrant & {
   __typename?: 'UserItemAccessGrant';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
   /** The polymorphic entity to which access has been granted */
   entity: Entity;
   id: Scalars['ID']['output'];
@@ -21134,7 +25721,10 @@ export type UserItemAccessGrant = AccessGrant & Node & Sluggable & UserAccessGra
   slug: Scalars['Slug']['output'];
   /** The polymorphic subject that has been granted access */
   subject: AccessGrantSubject;
+  /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
   /** The user which has been granted access */
   user: User;
 };
@@ -21427,6 +26017,7 @@ export type ResolversUnionTypes<RefType extends Record<string, unknown>> = {
   AnyChildEntity: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
   AnyCollectionAccessGrant: ( UserCollectionAccessGrant ) | ( UserGroupCollectionAccessGrant );
   AnyCommunityAccessGrant: ( UserCommunityAccessGrant ) | ( UserGroupCommunityAccessGrant );
+  AnyConfigurableSubmissionTarget: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( SubmissionTarget );
   AnyContributable: ( CollectionContribution ) | ( ItemContribution );
   AnyContribution: ( CollectionContribution ) | ( ItemContribution );
   AnyContributor: ( OrganizationContributor ) | ( PersonContributor );
@@ -21464,6 +26055,8 @@ export type ResolversInterfaceTypes<RefType extends Record<string, unknown>> = {
   Attribution: ( CollectionAttribution ) | ( ItemAttribution );
   CRUDPermissionGrid: ( AssetPermissionGrid ) | ( EntityPermissionGrid );
   ChildEntity: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
+  CommonPermissions: ( Announcement ) | ( AssetAudio ) | ( AssetDocument ) | ( AssetImage ) | ( AssetPdf ) | ( AssetUnknown ) | ( AssetVideo ) | ( BlurbTemplateDefinition ) | ( BlurbTemplateInstance ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( CollectionAttribution ) | ( CollectionContribution ) | ( Community ) | ( ContextualPermission ) | ( ContributionRoleConfiguration ) | ( ContributorCollectionAttribution ) | ( ContributorItemAttribution ) | ( ContributorListTemplateDefinition ) | ( ContributorListTemplateInstance ) | ( ControlledVocabulary ) | ( ControlledVocabularyItem ) | ( ControlledVocabularySource ) | ( DepositorRequest ) | ( DescendantListTemplateDefinition ) | ( DescendantListTemplateInstance ) | ( DetailTemplateDefinition ) | ( DetailTemplateInstance ) | ( EntityLink ) | ( HarvestAttempt ) | ( HarvestAttemptEntityStatus ) | ( HarvestAttemptRecordStatus ) | ( HarvestEntity ) | ( HarvestError ) | ( HarvestMapping ) | ( HarvestMessage ) | ( HarvestMetadataMapping ) | ( HarvestRecord ) | ( HarvestSet ) | ( HarvestSource ) | ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( HeroTemplateDefinition ) | ( HeroTemplateInstance ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( ItemAttribution ) | ( ItemContribution ) | ( LinkListTemplateDefinition ) | ( LinkListTemplateInstance ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( ListItemTemplateDefinition ) | ( ListItemTemplateInstance ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( MetadataTemplateDefinition ) | ( MetadataTemplateInstance ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( NavigationTemplateDefinition ) | ( NavigationTemplateInstance ) | ( Ordering ) | ( OrderingEntry ) | ( OrderingTemplateDefinition ) | ( OrderingTemplateInstance ) | ( OrganizationContributor ) | ( PageListTemplateDefinition ) | ( PageListTemplateInstance ) | ( Permalink ) | ( PersonContributor ) | ( Role ) | ( SchemaDefinition ) | ( SchemaVersion ) | ( Submission ) | ( SubmissionComment ) | ( SubmissionDepositTarget ) | ( SubmissionReview ) | ( SubmissionReviewTransition ) | ( SubmissionTarget ) | ( SubmissionTargetReviewer ) | ( SubmissionTargetTransition ) | ( SubmissionTransition ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } ) | ( SupplementaryTemplateDefinition ) | ( SupplementaryTemplateInstance ) | ( TemplateInstanceSibling ) | ( User ) | ( UserCollectionAccessGrant ) | ( UserCommunityAccessGrant ) | ( UserGroup ) | ( UserGroupCollectionAccessGrant ) | ( UserGroupCommunityAccessGrant ) | ( UserGroupItemAccessGrant ) | ( UserItemAccessGrant );
+  CommonTransition: ( SubmissionReviewTransition ) | ( SubmissionTargetTransition ) | ( SubmissionTransition );
   Contributable: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
   Contribution: ( CollectionContribution ) | ( ItemContribution );
   ContributionBase: ( CollectionContribution ) | ( ItemContribution ) | ( TemplateContribution );
@@ -21471,18 +26064,19 @@ export type ResolversInterfaceTypes<RefType extends Record<string, unknown>> = {
   ContributorAttribution: ( ContributorCollectionAttribution ) | ( ContributorItemAttribution );
   ContributorBase: ( OrganizationContributor ) | ( PersonContributor );
   DescribesSchema: ( HierarchicalSchemaRank ) | ( HierarchicalSchemaVersionRank ) | ( SchemaDefinition ) | ( SchemaVersion );
-  DestroyMutationPayload: ( ControlledVocabularyDestroyPayload ) | ( DestroyAnnouncementPayload ) | ( DestroyAssetPayload ) | ( DestroyCollectionPayload ) | ( DestroyCommunityPayload ) | ( DestroyContributionPayload ) | ( DestroyContributorPayload ) | ( DestroyEntityLinkPayload ) | ( DestroyItemPayload ) | ( DestroyOrderingPayload ) | ( DestroyPagePayload ) | ( EntityPurgePayload ) | ( HarvestMappingDestroyPayload ) | ( HarvestMetadataMappingDestroyPayload ) | ( HarvestSourceDestroyPayload ) | ( PermalinkDestroyPayload );
+  DestroyMutationPayload: ( ControlledVocabularyDestroyPayload ) | ( DestroyAnnouncementPayload ) | ( DestroyAssetPayload ) | ( DestroyCollectionPayload ) | ( DestroyCommunityPayload ) | ( DestroyContributionPayload ) | ( DestroyContributorPayload ) | ( DestroyEntityLinkPayload ) | ( DestroyItemPayload ) | ( DestroyOrderingPayload ) | ( DestroyPagePayload ) | ( EntityPurgePayload ) | ( HarvestMappingDestroyPayload ) | ( HarvestMetadataMappingDestroyPayload ) | ( HarvestSourceDestroyPayload ) | ( PermalinkDestroyPayload ) | ( SubmissionCommentDestroyPayload ) | ( SubmissionTargetReviewerDestroyPayload );
   Entity: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
   EntityBase: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
-  ExposesEffectiveAccess: ( Role );
-  ExposesPermissions: ( AccessControlList ) | ( AssetPermissionGrid ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( ContextualPermission ) | ( EffectiveAccess ) | ( EntityPermissionGrid ) | ( GlobalAccessControlList ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( User );
+  EntityContextualPermissions: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
+  EntityPermissions: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
+  ExposesPermissions: ( AccessControlList ) | ( AssetPermissionGrid ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( ContextualPermission ) | ( EntityPermissionGrid ) | ( GlobalAccessControlList ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( User );
   HarvestAttemptable: ( HarvestMapping ) | ( HarvestSource );
   HarvestTarget: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community );
   HasAttachmentStorage: ( ImageAttachment ) | ( ImageOriginal ) | ( SiteLogoAttachment );
   HasAvailableEntities: ( EntitiesProperty ) | ( EntityProperty );
   HasControlledVocabulary: ( ControlledVocabulariesProperty ) | ( ControlledVocabularyProperty );
   HasDOI: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
-  HasDefaultTimestamps: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
+  HasDefaultTimestamps: ( Announcement ) | ( AssetAudio ) | ( AssetDocument ) | ( AssetImage ) | ( AssetPdf ) | ( AssetUnknown ) | ( AssetVideo ) | ( BlurbTemplateDefinition ) | ( BlurbTemplateInstance ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( CollectionAttribution ) | ( CollectionContribution ) | ( Community ) | ( ContextualPermission ) | ( ContributionRoleConfiguration ) | ( ContributorCollectionAttribution ) | ( ContributorItemAttribution ) | ( ContributorListTemplateDefinition ) | ( ContributorListTemplateInstance ) | ( ControlledVocabulary ) | ( ControlledVocabularyItem ) | ( ControlledVocabularySource ) | ( DepositorRequest ) | ( DescendantListTemplateDefinition ) | ( DescendantListTemplateInstance ) | ( DetailTemplateDefinition ) | ( DetailTemplateInstance ) | ( EntityLink ) | ( HarvestAttempt ) | ( HarvestAttemptEntityStatus ) | ( HarvestAttemptRecordStatus ) | ( HarvestEntity ) | ( HarvestError ) | ( HarvestMapping ) | ( HarvestMessage ) | ( HarvestMetadataMapping ) | ( HarvestRecord ) | ( HarvestSet ) | ( HarvestSource ) | ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( HeroTemplateDefinition ) | ( HeroTemplateInstance ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( ItemAttribution ) | ( ItemContribution ) | ( LinkListTemplateDefinition ) | ( LinkListTemplateInstance ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( ListItemTemplateDefinition ) | ( ListItemTemplateInstance ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( MetadataTemplateDefinition ) | ( MetadataTemplateInstance ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( NavigationTemplateDefinition ) | ( NavigationTemplateInstance ) | ( Ordering ) | ( OrderingEntry ) | ( OrderingTemplateDefinition ) | ( OrderingTemplateInstance ) | ( OrganizationContributor ) | ( PageListTemplateDefinition ) | ( PageListTemplateInstance ) | ( Permalink ) | ( PersonContributor ) | ( Role ) | ( SchemaDefinition ) | ( SchemaVersion ) | ( Submission ) | ( SubmissionComment ) | ( SubmissionDepositTarget ) | ( SubmissionReview ) | ( SubmissionReviewTransition ) | ( SubmissionTarget ) | ( SubmissionTargetReviewer ) | ( SubmissionTargetTransition ) | ( SubmissionTransition ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } ) | ( SupplementaryTemplateDefinition ) | ( SupplementaryTemplateInstance ) | ( TemplateInstanceSibling ) | ( User ) | ( UserCollectionAccessGrant ) | ( UserCommunityAccessGrant ) | ( UserGroup ) | ( UserGroupCollectionAccessGrant ) | ( UserGroupCommunityAccessGrant ) | ( UserGroupItemAccessGrant ) | ( UserItemAccessGrant );
   HasEntityAnalytics: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
   HasEntityBreadcrumbs: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( EntitySelectOption ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
   HasHarvestErrors: ( HarvestAttempt ) | ( HarvestRecord );
@@ -21495,17 +26089,18 @@ export type ResolversInterfaceTypes<RefType extends Record<string, unknown>> = {
   ImageIdentification: ( ImageAttachment ) | ( ImageDerivative ) | ( ImageOriginal ) | ( ImageSize ) | ( SiteLogoAttachment );
   LayoutDefinition: ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } );
   LayoutInstance: ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } );
-  Node: ( Announcement ) | ( AssetAudio ) | ( AssetDocument ) | ( AssetImage ) | ( AssetPdf ) | ( AssetUnknown ) | ( AssetVideo ) | ( BlurbTemplateDefinition ) | ( BlurbTemplateInstance ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( CollectionAttribution ) | ( CollectionContribution ) | ( Community ) | ( ContextualPermission ) | ( ContributionRoleConfiguration ) | ( ContributorCollectionAttribution ) | ( ContributorItemAttribution ) | ( ContributorListTemplateDefinition ) | ( ContributorListTemplateInstance ) | ( ControlledVocabulary ) | ( ControlledVocabularyItem ) | ( ControlledVocabularySource ) | ( DescendantListTemplateDefinition ) | ( DescendantListTemplateInstance ) | ( DetailTemplateDefinition ) | ( DetailTemplateInstance ) | ( EntityBreadcrumb ) | ( EntityLink ) | ( GlobalConfiguration ) | ( HarvestAttempt ) | ( HarvestAttemptEntityStatus ) | ( HarvestAttemptRecordStatus ) | ( HarvestEntity ) | ( HarvestError ) | ( HarvestMapping ) | ( HarvestMessage ) | ( HarvestMetadataMapping ) | ( HarvestRecord ) | ( HarvestSet ) | ( HarvestSource ) | ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( HeroTemplateDefinition ) | ( HeroTemplateInstance ) | ( HierarchicalSchemaRank ) | ( HierarchicalSchemaVersionRank ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( ItemAttribution ) | ( ItemContribution ) | ( LinkListTemplateDefinition ) | ( LinkListTemplateInstance ) | ( LinkTargetCandidate ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( ListItemTemplateDefinition ) | ( ListItemTemplateInstance ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( MetadataTemplateDefinition ) | ( MetadataTemplateInstance ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( NavigationTemplateDefinition ) | ( NavigationTemplateInstance ) | ( Ordering ) | ( OrderingEntry ) | ( OrderingTemplateDefinition ) | ( OrderingTemplateInstance ) | ( OrganizationContributor ) | ( Page ) | ( PageListTemplateDefinition ) | ( PageListTemplateInstance ) | ( Permalink ) | ( PersonContributor ) | ( Role ) | ( SchemaDefinition ) | ( SchemaVersion ) | ( SearchResult ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } ) | ( SupplementaryTemplateDefinition ) | ( SupplementaryTemplateInstance ) | ( TemplateInstanceSibling ) | ( User ) | ( UserCollectionAccessGrant ) | ( UserCommunityAccessGrant ) | ( UserGroup ) | ( UserGroupCollectionAccessGrant ) | ( UserGroupCommunityAccessGrant ) | ( UserGroupItemAccessGrant ) | ( UserItemAccessGrant );
+  Node: ( Announcement ) | ( AssetAudio ) | ( AssetDocument ) | ( AssetImage ) | ( AssetPdf ) | ( AssetUnknown ) | ( AssetVideo ) | ( BlurbTemplateDefinition ) | ( BlurbTemplateInstance ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( CollectionAttribution ) | ( CollectionContribution ) | ( Community ) | ( ContextualPermission ) | ( ContributionRoleConfiguration ) | ( ContributorCollectionAttribution ) | ( ContributorItemAttribution ) | ( ContributorListTemplateDefinition ) | ( ContributorListTemplateInstance ) | ( ControlledVocabulary ) | ( ControlledVocabularyItem ) | ( ControlledVocabularySource ) | ( DepositorRequest ) | ( DescendantListTemplateDefinition ) | ( DescendantListTemplateInstance ) | ( DetailTemplateDefinition ) | ( DetailTemplateInstance ) | ( EntityBreadcrumb ) | ( EntityLink ) | ( GlobalConfiguration ) | ( HarvestAttempt ) | ( HarvestAttemptEntityStatus ) | ( HarvestAttemptRecordStatus ) | ( HarvestEntity ) | ( HarvestError ) | ( HarvestMapping ) | ( HarvestMessage ) | ( HarvestMetadataMapping ) | ( HarvestRecord ) | ( HarvestSet ) | ( HarvestSource ) | ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( HeroTemplateDefinition ) | ( HeroTemplateInstance ) | ( HierarchicalSchemaRank ) | ( HierarchicalSchemaVersionRank ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( ItemAttribution ) | ( ItemContribution ) | ( LinkListTemplateDefinition ) | ( LinkListTemplateInstance ) | ( LinkTargetCandidate ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( ListItemTemplateDefinition ) | ( ListItemTemplateInstance ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( MetadataTemplateDefinition ) | ( MetadataTemplateInstance ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( NavigationTemplateDefinition ) | ( NavigationTemplateInstance ) | ( Ordering ) | ( OrderingEntry ) | ( OrderingTemplateDefinition ) | ( OrderingTemplateInstance ) | ( OrganizationContributor ) | ( Page ) | ( PageListTemplateDefinition ) | ( PageListTemplateInstance ) | ( Permalink ) | ( PersonContributor ) | ( Role ) | ( SchemaDefinition ) | ( SchemaVersion ) | ( SearchResult ) | ( Submission ) | ( SubmissionComment ) | ( SubmissionDepositTarget ) | ( SubmissionReview ) | ( SubmissionReviewTransition ) | ( SubmissionTarget ) | ( SubmissionTargetReviewer ) | ( SubmissionTargetTransition ) | ( SubmissionTransition ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } ) | ( SupplementaryTemplateDefinition ) | ( SupplementaryTemplateInstance ) | ( TemplateInstanceSibling ) | ( User ) | ( UserCollectionAccessGrant ) | ( UserCommunityAccessGrant ) | ( UserGroup ) | ( UserGroupCollectionAccessGrant ) | ( UserGroupCommunityAccessGrant ) | ( UserGroupItemAccessGrant ) | ( UserItemAccessGrant );
   OptionableProperty: ( MultiselectProperty ) | ( SelectProperty );
   OrderingEntryable: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( EntityLink ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
   OrderingPath: ( AncestorSchemaOrderingPath ) | ( AncestorStaticOrderingPath ) | ( SchemaOrderingPath ) | ( StaticOrderingPath );
-  Paginated: ( AnnouncementConnection ) | ( Omit<AnyAccessGrantConnection, 'nodes'> & { nodes: Array<RefType['AnyAccessGrant']> } ) | ( Omit<AnyCollectionAccessGrantConnection, 'nodes'> & { nodes: Array<RefType['AnyCollectionAccessGrant']> } ) | ( Omit<AnyCommunityAccessGrantConnection, 'nodes'> & { nodes: Array<RefType['AnyCommunityAccessGrant']> } ) | ( Omit<AnyContributorConnection, 'nodes'> & { nodes: Array<RefType['AnyContributor']> } ) | ( Omit<AnyUserAccessGrantConnection, 'nodes'> & { nodes: Array<RefType['AnyUserAccessGrant']> } ) | ( Omit<AnyUserGroupAccessGrantConnection, 'nodes'> & { nodes: Array<RefType['AnyUserGroupAccessGrant']> } ) | ( AssetConnection ) | ( CollectionConnection ) | ( CollectionContributionConnection ) | ( CommunityConnection ) | ( ContextualPermissionConnection ) | ( ContributorAttributionConnection ) | ( ControlledVocabularyConnection ) | ( ControlledVocabularySourceConnection ) | ( EntityDescendantConnection ) | ( EntityLinkConnection ) | ( HarvestAttemptConnection ) | ( HarvestMappingConnection ) | ( HarvestMessageConnection ) | ( HarvestMetadataMappingConnection ) | ( HarvestRecordConnection ) | ( HarvestSetConnection ) | ( HarvestSourceConnection ) | ( ItemConnection ) | ( ItemContributionConnection ) | ( LinkTargetCandidateConnection ) | ( OrderingConnection ) | ( OrderingEntryConnection ) | ( PageConnection ) | ( PermalinkConnection ) | ( RoleConnection ) | ( SchemaDefinitionConnection ) | ( SchemaVersionConnection ) | ( SearchResultConnection ) | ( UserCollectionAccessGrantConnection ) | ( UserCommunityAccessGrantConnection ) | ( UserConnection ) | ( UserGroupCollectionAccessGrantConnection ) | ( UserGroupCommunityAccessGrantConnection ) | ( UserGroupItemAccessGrantConnection ) | ( UserItemAccessGrantConnection );
+  Paginated: ( AnnouncementConnection ) | ( Omit<AnyAccessGrantConnection, 'nodes'> & { nodes: Array<RefType['AnyAccessGrant']> } ) | ( Omit<AnyCollectionAccessGrantConnection, 'nodes'> & { nodes: Array<RefType['AnyCollectionAccessGrant']> } ) | ( Omit<AnyCommunityAccessGrantConnection, 'nodes'> & { nodes: Array<RefType['AnyCommunityAccessGrant']> } ) | ( Omit<AnyContributorConnection, 'nodes'> & { nodes: Array<RefType['AnyContributor']> } ) | ( Omit<AnyUserAccessGrantConnection, 'nodes'> & { nodes: Array<RefType['AnyUserAccessGrant']> } ) | ( Omit<AnyUserGroupAccessGrantConnection, 'nodes'> & { nodes: Array<RefType['AnyUserGroupAccessGrant']> } ) | ( AssetConnection ) | ( CollectionConnection ) | ( CollectionContributionConnection ) | ( CommunityConnection ) | ( ContextualPermissionConnection ) | ( ContributorAttributionConnection ) | ( ControlledVocabularyConnection ) | ( ControlledVocabularySourceConnection ) | ( DepositorRequestConnection ) | ( EntityDescendantConnection ) | ( EntityLinkConnection ) | ( HarvestAttemptConnection ) | ( HarvestMappingConnection ) | ( HarvestMessageConnection ) | ( HarvestMetadataMappingConnection ) | ( HarvestRecordConnection ) | ( HarvestSetConnection ) | ( HarvestSourceConnection ) | ( ItemConnection ) | ( ItemContributionConnection ) | ( LinkTargetCandidateConnection ) | ( OrderingConnection ) | ( OrderingEntryConnection ) | ( PageConnection ) | ( PermalinkConnection ) | ( RoleConnection ) | ( SchemaDefinitionConnection ) | ( SchemaVersionConnection ) | ( SearchResultConnection ) | ( SubmissionCommentConnection ) | ( SubmissionConnection ) | ( SubmissionReviewConnection ) | ( SubmissionReviewTransitionConnection ) | ( SubmissionTargetConnection ) | ( SubmissionTargetTransitionConnection ) | ( SubmissionTransitionConnection ) | ( UserCollectionAccessGrantConnection ) | ( UserCommunityAccessGrantConnection ) | ( UserConnection ) | ( UserGroupCollectionAccessGrantConnection ) | ( UserGroupCommunityAccessGrantConnection ) | ( UserGroupItemAccessGrantConnection ) | ( UserItemAccessGrantConnection );
   Permalinkable: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
   PermissionGrid: ( AssetPermissionGrid ) | ( EntityPermissionGrid );
   QueriesAccessAndRoles: ( Query );
   QueriesContrib: ( Query );
   QueriesControlledVocabulary: ( Query );
   QueriesControlledVocabularySource: ( Query );
+  QueriesDepositorRequest: ( Query );
   QueriesEntities: ( Query );
   QueriesHarvestAttempt: ( Query );
   QueriesHarvestExample: ( Query );
@@ -21516,6 +26111,10 @@ export type ResolversInterfaceTypes<RefType extends Record<string, unknown>> = {
   QueriesHarvestSource: ( Query );
   QueriesPermalink: ( Query );
   QueriesSchemas: ( Query );
+  QueriesSubmission: ( Query );
+  QueriesSubmissionComment: ( Query );
+  QueriesSubmissionReview: ( Query );
+  QueriesSubmissionTarget: ( Query );
   QueriesSystem: ( Query );
   QueriesUser: ( Query );
   ReferencesEntityVisibility: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
@@ -21526,8 +26125,9 @@ export type ResolversInterfaceTypes<RefType extends Record<string, unknown>> = {
   SchemaProperty: ( AssetProperty ) | ( AssetsProperty ) | ( BooleanProperty ) | ( ContributorProperty ) | ( ContributorsProperty ) | ( ControlledVocabulariesProperty ) | ( ControlledVocabularyProperty ) | ( DateProperty ) | ( EmailProperty ) | ( EntitiesProperty ) | ( EntityProperty ) | ( FloatProperty ) | ( FullTextProperty ) | ( GroupProperty ) | ( IntegerProperty ) | ( MarkdownProperty ) | ( MultiselectProperty ) | ( SelectProperty ) | ( StringProperty ) | ( TagsProperty ) | ( TimestampProperty ) | ( UrlProperty ) | ( UnknownProperty ) | ( VariableDateProperty );
   Searchable: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( Ordering ) | ( Query ) | ( SchemaVersion );
   SearchableProperty: ( BooleanProperty ) | ( DateProperty ) | ( FloatProperty ) | ( FullTextProperty ) | ( IntegerProperty ) | ( MarkdownProperty ) | ( MultiselectProperty ) | ( SearchableCoreProperty ) | ( SelectProperty ) | ( StringProperty ) | ( TimestampProperty ) | ( VariableDateProperty );
-  Sluggable: ( Announcement ) | ( AssetAudio ) | ( AssetDocument ) | ( AssetImage ) | ( AssetPdf ) | ( AssetUnknown ) | ( AssetVideo ) | ( BlurbTemplateDefinition ) | ( BlurbTemplateInstance ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( CollectionAttribution ) | ( CollectionContribution ) | ( Community ) | ( ContextualPermission ) | ( ContributionRoleConfiguration ) | ( ContributorCollectionAttribution ) | ( ContributorItemAttribution ) | ( ContributorListTemplateDefinition ) | ( ContributorListTemplateInstance ) | ( ControlledVocabulary ) | ( ControlledVocabularyItem ) | ( ControlledVocabularySource ) | ( DescendantListTemplateDefinition ) | ( DescendantListTemplateInstance ) | ( DetailTemplateDefinition ) | ( DetailTemplateInstance ) | ( EntityLink ) | ( HarvestAttempt ) | ( HarvestAttemptEntityStatus ) | ( HarvestAttemptRecordStatus ) | ( HarvestEntity ) | ( HarvestError ) | ( HarvestMapping ) | ( HarvestMessage ) | ( HarvestMetadataMapping ) | ( HarvestRecord ) | ( HarvestSet ) | ( HarvestSource ) | ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( HeroTemplateDefinition ) | ( HeroTemplateInstance ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( ItemAttribution ) | ( ItemContribution ) | ( LinkListTemplateDefinition ) | ( LinkListTemplateInstance ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( ListItemTemplateDefinition ) | ( ListItemTemplateInstance ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( MetadataTemplateDefinition ) | ( MetadataTemplateInstance ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( NavigationTemplateDefinition ) | ( NavigationTemplateInstance ) | ( Ordering ) | ( OrderingEntry ) | ( OrderingTemplateDefinition ) | ( OrderingTemplateInstance ) | ( OrganizationContributor ) | ( PageListTemplateDefinition ) | ( PageListTemplateInstance ) | ( Permalink ) | ( PersonContributor ) | ( Role ) | ( SchemaDefinition ) | ( SchemaVersion ) | ( SearchResult ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } ) | ( SupplementaryTemplateDefinition ) | ( SupplementaryTemplateInstance ) | ( TemplateInstanceSibling ) | ( User ) | ( UserCollectionAccessGrant ) | ( UserCommunityAccessGrant ) | ( UserGroup ) | ( UserGroupCollectionAccessGrant ) | ( UserGroupCommunityAccessGrant ) | ( UserGroupItemAccessGrant ) | ( UserItemAccessGrant );
-  StandardMutationPayload: ( Omit<AlterSchemaVersionPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( Omit<ApplySchemaPropertiesPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( ControlledVocabularyDestroyPayload ) | ( ControlledVocabularySourceUpdatePayload ) | ( ControlledVocabularyUpsertPayload ) | ( CreateAnnouncementPayload ) | ( Omit<CreateAssetPayload, 'asset'> & { asset?: Maybe<RefType['AnyAsset']> } ) | ( CreateCollectionPayload ) | ( CreateCommunityPayload ) | ( CreateItemPayload ) | ( CreateOrderingPayload ) | ( CreateOrganizationContributorPayload ) | ( CreatePagePayload ) | ( CreatePersonContributorPayload ) | ( CreateRolePayload ) | ( DestroyAnnouncementPayload ) | ( DestroyAssetPayload ) | ( DestroyCollectionPayload ) | ( DestroyCommunityPayload ) | ( DestroyContributionPayload ) | ( DestroyContributorPayload ) | ( DestroyEntityLinkPayload ) | ( DestroyItemPayload ) | ( DestroyOrderingPayload ) | ( DestroyPagePayload ) | ( EntityPurgePayload ) | ( FrontendCacheRevalidateEntityPayload ) | ( FrontendCacheRevalidateInstancePayload ) | ( Omit<GrantAccessPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( HarvestAttemptFromMappingPayload ) | ( HarvestAttemptFromSourcePayload ) | ( HarvestAttemptPruneEntitiesPayload ) | ( HarvestMappingCreatePayload ) | ( HarvestMappingDestroyPayload ) | ( HarvestMappingUpdatePayload ) | ( HarvestMetadataMappingCreatePayload ) | ( HarvestMetadataMappingDestroyPayload ) | ( HarvestSourceCreatePayload ) | ( HarvestSourceDestroyPayload ) | ( HarvestSourcePruneEntitiesPayload ) | ( HarvestSourceUpdatePayload ) | ( LinkEntityPayload ) | ( PermalinkCreatePayload ) | ( PermalinkDestroyPayload ) | ( PermalinkUpdatePayload ) | ( PreviewSlotPayload ) | ( Omit<RenderLayoutsPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( Omit<ReparentEntityPayload, 'child'> & { child?: Maybe<RefType['AnyChildEntity']> } ) | ( ResetOrderingPayload ) | ( Omit<RevokeAccessPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( UpdateAnnouncementPayload ) | ( Omit<UpdateAssetAttachmentPayload, 'asset'> & { asset?: Maybe<RefType['AnyAsset']> } ) | ( Omit<UpdateAssetPayload, 'asset'> & { asset?: Maybe<RefType['AnyAsset']> } ) | ( UpdateCollectionPayload ) | ( UpdateCommunityPayload ) | ( Omit<UpdateContributionPayload, 'contribution'> & { contribution?: Maybe<RefType['AnyContribution']> } ) | ( UpdateGlobalConfigurationPayload ) | ( UpdateItemPayload ) | ( UpdateOrderingPayload ) | ( UpdateOrganizationContributorPayload ) | ( UpdatePagePayload ) | ( UpdatePersonContributorPayload ) | ( UpdateRolePayload ) | ( UpdateUserPayload ) | ( UpdateViewerSettingsPayload ) | ( Omit<UpsertContributionPayload, 'contribution'> & { contribution?: Maybe<RefType['AnyContribution']> } ) | ( UserResetPasswordPayload );
+  Sluggable: ( Announcement ) | ( AssetAudio ) | ( AssetDocument ) | ( AssetImage ) | ( AssetPdf ) | ( AssetUnknown ) | ( AssetVideo ) | ( BlurbTemplateDefinition ) | ( BlurbTemplateInstance ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( CollectionAttribution ) | ( CollectionContribution ) | ( Community ) | ( ContextualPermission ) | ( ContributionRoleConfiguration ) | ( ContributorCollectionAttribution ) | ( ContributorItemAttribution ) | ( ContributorListTemplateDefinition ) | ( ContributorListTemplateInstance ) | ( ControlledVocabulary ) | ( ControlledVocabularyItem ) | ( ControlledVocabularySource ) | ( DepositorRequest ) | ( DescendantListTemplateDefinition ) | ( DescendantListTemplateInstance ) | ( DetailTemplateDefinition ) | ( DetailTemplateInstance ) | ( EntityLink ) | ( HarvestAttempt ) | ( HarvestAttemptEntityStatus ) | ( HarvestAttemptRecordStatus ) | ( HarvestEntity ) | ( HarvestError ) | ( HarvestMapping ) | ( HarvestMessage ) | ( HarvestMetadataMapping ) | ( HarvestRecord ) | ( HarvestSet ) | ( HarvestSource ) | ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( HeroTemplateDefinition ) | ( HeroTemplateInstance ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( ItemAttribution ) | ( ItemContribution ) | ( LinkListTemplateDefinition ) | ( LinkListTemplateInstance ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( ListItemTemplateDefinition ) | ( ListItemTemplateInstance ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( MetadataTemplateDefinition ) | ( MetadataTemplateInstance ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( NavigationTemplateDefinition ) | ( NavigationTemplateInstance ) | ( Ordering ) | ( OrderingEntry ) | ( OrderingTemplateDefinition ) | ( OrderingTemplateInstance ) | ( OrganizationContributor ) | ( PageListTemplateDefinition ) | ( PageListTemplateInstance ) | ( Permalink ) | ( PersonContributor ) | ( Role ) | ( SchemaDefinition ) | ( SchemaVersion ) | ( SearchResult ) | ( Submission ) | ( SubmissionComment ) | ( SubmissionDepositTarget ) | ( SubmissionReview ) | ( SubmissionReviewTransition ) | ( SubmissionTarget ) | ( SubmissionTargetReviewer ) | ( SubmissionTargetTransition ) | ( SubmissionTransition ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } ) | ( SupplementaryTemplateDefinition ) | ( SupplementaryTemplateInstance ) | ( TemplateInstanceSibling ) | ( User ) | ( UserCollectionAccessGrant ) | ( UserCommunityAccessGrant ) | ( UserGroup ) | ( UserGroupCollectionAccessGrant ) | ( UserGroupCommunityAccessGrant ) | ( UserGroupItemAccessGrant ) | ( UserItemAccessGrant );
+  StandardMutationPayload: ( Omit<AlterSchemaVersionPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( Omit<ApplySchemaPropertiesPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( ControlledVocabularyDestroyPayload ) | ( ControlledVocabularySourceUpdatePayload ) | ( ControlledVocabularyUpsertPayload ) | ( CreateAnnouncementPayload ) | ( Omit<CreateAssetPayload, 'asset'> & { asset?: Maybe<RefType['AnyAsset']> } ) | ( CreateCollectionPayload ) | ( CreateCommunityPayload ) | ( CreateItemPayload ) | ( CreateOrderingPayload ) | ( CreateOrganizationContributorPayload ) | ( CreatePagePayload ) | ( CreatePersonContributorPayload ) | ( CreateRolePayload ) | ( DepositorRequestChangeStatePayload ) | ( DepositorRequestCreatePayload ) | ( DestroyAnnouncementPayload ) | ( DestroyAssetPayload ) | ( DestroyCollectionPayload ) | ( DestroyCommunityPayload ) | ( DestroyContributionPayload ) | ( DestroyContributorPayload ) | ( DestroyEntityLinkPayload ) | ( DestroyItemPayload ) | ( DestroyOrderingPayload ) | ( DestroyPagePayload ) | ( EntityPurgePayload ) | ( FrontendCacheRevalidateEntityPayload ) | ( FrontendCacheRevalidateInstancePayload ) | ( Omit<GrantAccessPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( HarvestAttemptFromMappingPayload ) | ( HarvestAttemptFromSourcePayload ) | ( HarvestAttemptPruneEntitiesPayload ) | ( HarvestMappingCreatePayload ) | ( HarvestMappingDestroyPayload ) | ( HarvestMappingUpdatePayload ) | ( HarvestMetadataMappingCreatePayload ) | ( HarvestMetadataMappingDestroyPayload ) | ( HarvestSourceCreatePayload ) | ( HarvestSourceDestroyPayload ) | ( HarvestSourcePruneEntitiesPayload ) | ( HarvestSourceUpdatePayload ) | ( LinkEntityPayload ) | ( PermalinkCreatePayload ) | ( PermalinkDestroyPayload ) | ( PermalinkUpdatePayload ) | ( PreviewSlotPayload ) | ( Omit<RenderLayoutsPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( Omit<ReparentEntityPayload, 'child'> & { child?: Maybe<RefType['AnyChildEntity']> } ) | ( ResetOrderingPayload ) | ( Omit<RevokeAccessPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( SubmissionChangeStatePayload ) | ( SubmissionCommentCreatePayload ) | ( SubmissionCommentDestroyPayload ) | ( SubmissionCommentUpdatePayload ) | ( SubmissionCreatePayload ) | ( SubmissionLeaveReviewPayload ) | ( SubmissionRequestReviewPayload ) | ( SubmissionTargetClosePayload ) | ( SubmissionTargetConfigurePayload ) | ( SubmissionTargetOpenPayload ) | ( SubmissionTargetReviewerCreatePayload ) | ( SubmissionTargetReviewerDestroyPayload ) | ( UpdateAnnouncementPayload ) | ( Omit<UpdateAssetAttachmentPayload, 'asset'> & { asset?: Maybe<RefType['AnyAsset']> } ) | ( Omit<UpdateAssetPayload, 'asset'> & { asset?: Maybe<RefType['AnyAsset']> } ) | ( UpdateCollectionPayload ) | ( UpdateCommunityPayload ) | ( Omit<UpdateContributionPayload, 'contribution'> & { contribution?: Maybe<RefType['AnyContribution']> } ) | ( UpdateGlobalConfigurationPayload ) | ( UpdateItemPayload ) | ( UpdateOrderingPayload ) | ( UpdateOrganizationContributorPayload ) | ( UpdatePagePayload ) | ( UpdatePersonContributorPayload ) | ( UpdateRolePayload ) | ( UpdateUserPayload ) | ( UpdateViewerSettingsPayload ) | ( Omit<UpsertContributionPayload, 'contribution'> & { contribution?: Maybe<RefType['AnyContribution']> } ) | ( UserResetPasswordPayload );
+  Submittable: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
   TemplateDefinition: ( BlurbTemplateDefinition ) | ( ContributorListTemplateDefinition ) | ( DescendantListTemplateDefinition ) | ( DetailTemplateDefinition ) | ( HeroTemplateDefinition ) | ( LinkListTemplateDefinition ) | ( ListItemTemplateDefinition ) | ( MetadataTemplateDefinition ) | ( NavigationTemplateDefinition ) | ( OrderingTemplateDefinition ) | ( PageListTemplateDefinition ) | ( SupplementaryTemplateDefinition );
   TemplateHasContributionList: ( ContributorListTemplateInstance );
   TemplateHasEntityList: ( DescendantListTemplateInstance ) | ( LinkListTemplateInstance ) | ( ListItemTemplateInstance );
@@ -21575,6 +26175,7 @@ export type ResolversTypes = {
   AnyCommunityAccessGrant: ResolverTypeWrapper<ResolversUnionTypes<ResolversTypes>['AnyCommunityAccessGrant']>;
   AnyCommunityAccessGrantConnection: ResolverTypeWrapper<Omit<AnyCommunityAccessGrantConnection, 'nodes'> & { nodes: Array<ResolversTypes['AnyCommunityAccessGrant']> }>;
   AnyCommunityAccessGrantEdge: ResolverTypeWrapper<Omit<AnyCommunityAccessGrantEdge, 'node'> & { node: ResolversTypes['AnyCommunityAccessGrant'] }>;
+  AnyConfigurableSubmissionTarget: ResolverTypeWrapper<ResolversUnionTypes<ResolversTypes>['AnyConfigurableSubmissionTarget']>;
   AnyContributable: ResolverTypeWrapper<ResolversUnionTypes<ResolversTypes>['AnyContributable']>;
   AnyContribution: ResolverTypeWrapper<ResolversUnionTypes<ResolversTypes>['AnyContribution']>;
   AnyContributor: ResolverTypeWrapper<ResolversUnionTypes<ResolversTypes>['AnyContributor']>;
@@ -21624,6 +26225,7 @@ export type ResolversTypes = {
   AttachmentStorage: AttachmentStorage;
   Attributable: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['Attributable']>;
   Attribution: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['Attribution']>;
+  AuthorizationResult: ResolverTypeWrapper<AuthorizationResult>;
   BlurbBackground: BlurbBackground;
   BlurbTemplateDefinition: ResolverTypeWrapper<BlurbTemplateDefinition>;
   BlurbTemplateDefinitionSlots: ResolverTypeWrapper<BlurbTemplateDefinitionSlots>;
@@ -21643,6 +26245,8 @@ export type ResolversTypes = {
   CollectionContributionEdge: ResolverTypeWrapper<CollectionContributionEdge>;
   CollectionEdge: ResolverTypeWrapper<CollectionEdge>;
   CollectionParent: ResolverTypeWrapper<ResolversUnionTypes<ResolversTypes>['CollectionParent']>;
+  CommonPermissions: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['CommonPermissions']>;
+  CommonTransition: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['CommonTransition']>;
   Community: ResolverTypeWrapper<Community>;
   CommunityConnection: ResolverTypeWrapper<CommunityConnection>;
   CommunityEdge: ResolverTypeWrapper<CommunityEdge>;
@@ -21728,6 +26332,18 @@ export type ResolversTypes = {
   DateLTEOperatorInput: DateLteOperatorInput;
   DatePrecision: DatePrecision;
   DateProperty: ResolverTypeWrapper<DateProperty>;
+  DepositingSettings: ResolverTypeWrapper<DepositingSettings>;
+  DepositingSettingsInput: DepositingSettingsInput;
+  DepositorRequest: ResolverTypeWrapper<DepositorRequest>;
+  DepositorRequestChangeStateInput: DepositorRequestChangeStateInput;
+  DepositorRequestChangeStatePayload: ResolverTypeWrapper<DepositorRequestChangeStatePayload>;
+  DepositorRequestConnection: ResolverTypeWrapper<DepositorRequestConnection>;
+  DepositorRequestCreateInput: DepositorRequestCreateInput;
+  DepositorRequestCreatePayload: ResolverTypeWrapper<DepositorRequestCreatePayload>;
+  DepositorRequestEdge: ResolverTypeWrapper<DepositorRequestEdge>;
+  DepositorRequestFilterInput: DepositorRequestFilterInput;
+  DepositorRequestOrder: DepositorRequestOrder;
+  DepositorRequestState: DepositorRequestState;
   DescendantListBackground: DescendantListBackground;
   DescendantListSelectionMode: DescendantListSelectionMode;
   DescendantListTemplateDefinition: ResolverTypeWrapper<DescendantListTemplateDefinition>;
@@ -21764,7 +26380,6 @@ export type ResolversTypes = {
   DetailTemplateInstanceSlots: ResolverTypeWrapper<DetailTemplateInstanceSlots>;
   DetailVariant: DetailVariant;
   Direction: Direction;
-  EffectiveAccess: ResolverTypeWrapper<EffectiveAccess>;
   EmailProperty: ResolverTypeWrapper<EmailProperty>;
   EntitiesProperty: ResolverTypeWrapper<EntitiesProperty>;
   EntitiesSettings: ResolverTypeWrapper<EntitiesSettings>;
@@ -21772,6 +26387,7 @@ export type ResolversTypes = {
   Entity: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['Entity']>;
   EntityBase: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['EntityBase']>;
   EntityBreadcrumb: ResolverTypeWrapper<EntityBreadcrumb>;
+  EntityContextualPermissions: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['EntityContextualPermissions']>;
   EntityDescendant: ResolverTypeWrapper<EntityDescendant>;
   EntityDescendantConnection: ResolverTypeWrapper<EntityDescendantConnection>;
   EntityDescendantEdge: ResolverTypeWrapper<EntityDescendantEdge>;
@@ -21787,16 +26403,18 @@ export type ResolversTypes = {
   EntityOrder: EntityOrder;
   EntityPermissionFilter: EntityPermissionFilter;
   EntityPermissionGrid: ResolverTypeWrapper<EntityPermissionGrid>;
+  EntityPermissions: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['EntityPermissions']>;
   EntityProperty: ResolverTypeWrapper<EntityProperty>;
   EntityPurgeInput: EntityPurgeInput;
   EntityPurgePayload: ResolverTypeWrapper<EntityPurgePayload>;
   EntityScope: EntityScope;
   EntitySelectOption: ResolverTypeWrapper<EntitySelectOption>;
+  EntitySubmissionStatus: EntitySubmissionStatus;
   EntityVisibility: EntityVisibility;
   EntityVisibilityFilter: EntityVisibilityFilter;
   EqualsOperatorInput: EqualsOperatorInput;
-  ExposesEffectiveAccess: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['ExposesEffectiveAccess']>;
   ExposesPermissions: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['ExposesPermissions']>;
+  FailureReasons: ResolverTypeWrapper<FailureReasons>;
   Float: ResolverTypeWrapper<Scalars['Float']['output']>;
   FloatProperty: ResolverTypeWrapper<FloatProperty>;
   FrontendCacheRevalidateEntityInput: FrontendCacheRevalidateEntityInput;
@@ -22061,6 +26679,7 @@ export type ResolversTypes = {
   QueriesContrib: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesContrib']>;
   QueriesControlledVocabulary: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesControlledVocabulary']>;
   QueriesControlledVocabularySource: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesControlledVocabularySource']>;
+  QueriesDepositorRequest: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesDepositorRequest']>;
   QueriesEntities: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesEntities']>;
   QueriesHarvestAttempt: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesHarvestAttempt']>;
   QueriesHarvestExample: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesHarvestExample']>;
@@ -22071,6 +26690,10 @@ export type ResolversTypes = {
   QueriesHarvestSource: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesHarvestSource']>;
   QueriesPermalink: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesPermalink']>;
   QueriesSchemas: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesSchemas']>;
+  QueriesSubmission: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesSubmission']>;
+  QueriesSubmissionComment: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesSubmissionComment']>;
+  QueriesSubmissionReview: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesSubmissionReview']>;
+  QueriesSubmissionTarget: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesSubmissionTarget']>;
   QueriesSystem: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesSystem']>;
   QueriesUser: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['QueriesUser']>;
   Query: ResolverTypeWrapper<{}>;
@@ -22142,6 +26765,72 @@ export type ResolversTypes = {
   StaticOrderingPath: ResolverTypeWrapper<StaticOrderingPath>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   StringProperty: ResolverTypeWrapper<StringProperty>;
+  Submission: ResolverTypeWrapper<Submission>;
+  SubmissionChangeStateInput: SubmissionChangeStateInput;
+  SubmissionChangeStatePayload: ResolverTypeWrapper<SubmissionChangeStatePayload>;
+  SubmissionComment: ResolverTypeWrapper<SubmissionComment>;
+  SubmissionCommentConnection: ResolverTypeWrapper<SubmissionCommentConnection>;
+  SubmissionCommentCreateInput: SubmissionCommentCreateInput;
+  SubmissionCommentCreatePayload: ResolverTypeWrapper<SubmissionCommentCreatePayload>;
+  SubmissionCommentDestroyInput: SubmissionCommentDestroyInput;
+  SubmissionCommentDestroyPayload: ResolverTypeWrapper<SubmissionCommentDestroyPayload>;
+  SubmissionCommentEdge: ResolverTypeWrapper<SubmissionCommentEdge>;
+  SubmissionCommentFilterInput: SubmissionCommentFilterInput;
+  SubmissionCommentOrder: SubmissionCommentOrder;
+  SubmissionCommentRole: SubmissionCommentRole;
+  SubmissionCommentUpdateInput: SubmissionCommentUpdateInput;
+  SubmissionCommentUpdatePayload: ResolverTypeWrapper<SubmissionCommentUpdatePayload>;
+  SubmissionConnection: ResolverTypeWrapper<SubmissionConnection>;
+  SubmissionCreateInput: SubmissionCreateInput;
+  SubmissionCreatePayload: ResolverTypeWrapper<SubmissionCreatePayload>;
+  SubmissionDepositMode: SubmissionDepositMode;
+  SubmissionDepositTarget: ResolverTypeWrapper<SubmissionDepositTarget>;
+  SubmissionEdge: ResolverTypeWrapper<SubmissionEdge>;
+  SubmissionFilterInput: SubmissionFilterInput;
+  SubmissionLeaveReviewInput: SubmissionLeaveReviewInput;
+  SubmissionLeaveReviewPayload: ResolverTypeWrapper<SubmissionLeaveReviewPayload>;
+  SubmissionOrder: SubmissionOrder;
+  SubmissionRequestReviewInput: SubmissionRequestReviewInput;
+  SubmissionRequestReviewPayload: ResolverTypeWrapper<SubmissionRequestReviewPayload>;
+  SubmissionReview: ResolverTypeWrapper<SubmissionReview>;
+  SubmissionReviewConnection: ResolverTypeWrapper<SubmissionReviewConnection>;
+  SubmissionReviewEdge: ResolverTypeWrapper<SubmissionReviewEdge>;
+  SubmissionReviewFilterInput: SubmissionReviewFilterInput;
+  SubmissionReviewOrder: SubmissionReviewOrder;
+  SubmissionReviewState: SubmissionReviewState;
+  SubmissionReviewTransition: ResolverTypeWrapper<SubmissionReviewTransition>;
+  SubmissionReviewTransitionConnection: ResolverTypeWrapper<SubmissionReviewTransitionConnection>;
+  SubmissionReviewTransitionEdge: ResolverTypeWrapper<SubmissionReviewTransitionEdge>;
+  SubmissionState: SubmissionState;
+  SubmissionStatus: ResolverTypeWrapper<SubmissionStatus>;
+  SubmissionTarget: ResolverTypeWrapper<SubmissionTarget>;
+  SubmissionTargetCloseInput: SubmissionTargetCloseInput;
+  SubmissionTargetClosePayload: ResolverTypeWrapper<SubmissionTargetClosePayload>;
+  SubmissionTargetConfigureInput: SubmissionTargetConfigureInput;
+  SubmissionTargetConfigurePayload: ResolverTypeWrapper<SubmissionTargetConfigurePayload>;
+  SubmissionTargetConnection: ResolverTypeWrapper<SubmissionTargetConnection>;
+  SubmissionTargetDescription: ResolverTypeWrapper<SubmissionTargetDescription>;
+  SubmissionTargetDescriptionInput: SubmissionTargetDescriptionInput;
+  SubmissionTargetEdge: ResolverTypeWrapper<SubmissionTargetEdge>;
+  SubmissionTargetFilterInput: SubmissionTargetFilterInput;
+  SubmissionTargetOpenInput: SubmissionTargetOpenInput;
+  SubmissionTargetOpenPayload: ResolverTypeWrapper<SubmissionTargetOpenPayload>;
+  SubmissionTargetOrder: SubmissionTargetOrder;
+  SubmissionTargetReviewer: ResolverTypeWrapper<SubmissionTargetReviewer>;
+  SubmissionTargetReviewerCreateInput: SubmissionTargetReviewerCreateInput;
+  SubmissionTargetReviewerCreatePayload: ResolverTypeWrapper<SubmissionTargetReviewerCreatePayload>;
+  SubmissionTargetReviewerDestroyInput: SubmissionTargetReviewerDestroyInput;
+  SubmissionTargetReviewerDestroyPayload: ResolverTypeWrapper<SubmissionTargetReviewerDestroyPayload>;
+  SubmissionTargetSection: ResolverTypeWrapper<SubmissionTargetSection>;
+  SubmissionTargetSectionInput: SubmissionTargetSectionInput;
+  SubmissionTargetState: SubmissionTargetState;
+  SubmissionTargetTransition: ResolverTypeWrapper<SubmissionTargetTransition>;
+  SubmissionTargetTransitionConnection: ResolverTypeWrapper<SubmissionTargetTransitionConnection>;
+  SubmissionTargetTransitionEdge: ResolverTypeWrapper<SubmissionTargetTransitionEdge>;
+  SubmissionTransition: ResolverTypeWrapper<SubmissionTransition>;
+  SubmissionTransitionConnection: ResolverTypeWrapper<SubmissionTransitionConnection>;
+  SubmissionTransitionEdge: ResolverTypeWrapper<SubmissionTransitionEdge>;
+  Submittable: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['Submittable']>;
   SubtreeNodeFilter: SubtreeNodeFilter;
   SupplementaryBackground: SupplementaryBackground;
   SupplementaryLayoutDefinition: ResolverTypeWrapper<Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<ResolversTypes['AnySupplementaryTemplateDefinition']> }>;
@@ -22176,6 +26865,7 @@ export type ResolversTypes = {
   TemplateWidth: TemplateWidth;
   ThemeSettings: ResolverTypeWrapper<ThemeSettings>;
   ThemeSettingsInput: ThemeSettingsInput;
+  TimeFilterMatch: TimeFilterMatch;
   TimestampProperty: ResolverTypeWrapper<TimestampProperty>;
   TreeNodeFilter: TreeNodeFilter;
   URLProperty: ResolverTypeWrapper<UrlProperty>;
@@ -22283,6 +26973,7 @@ export type ResolversParentTypes = {
   AnyCommunityAccessGrant: ResolversUnionTypes<ResolversParentTypes>['AnyCommunityAccessGrant'];
   AnyCommunityAccessGrantConnection: Omit<AnyCommunityAccessGrantConnection, 'nodes'> & { nodes: Array<ResolversParentTypes['AnyCommunityAccessGrant']> };
   AnyCommunityAccessGrantEdge: Omit<AnyCommunityAccessGrantEdge, 'node'> & { node: ResolversParentTypes['AnyCommunityAccessGrant'] };
+  AnyConfigurableSubmissionTarget: ResolversUnionTypes<ResolversParentTypes>['AnyConfigurableSubmissionTarget'];
   AnyContributable: ResolversUnionTypes<ResolversParentTypes>['AnyContributable'];
   AnyContribution: ResolversUnionTypes<ResolversParentTypes>['AnyContribution'];
   AnyContributor: ResolversUnionTypes<ResolversParentTypes>['AnyContributor'];
@@ -22329,6 +27020,7 @@ export type ResolversParentTypes = {
   Attachable: ResolversInterfaceTypes<ResolversParentTypes>['Attachable'];
   Attributable: ResolversInterfaceTypes<ResolversParentTypes>['Attributable'];
   Attribution: ResolversInterfaceTypes<ResolversParentTypes>['Attribution'];
+  AuthorizationResult: AuthorizationResult;
   BlurbTemplateDefinition: BlurbTemplateDefinition;
   BlurbTemplateDefinitionSlots: BlurbTemplateDefinitionSlots;
   BlurbTemplateInstance: BlurbTemplateInstance;
@@ -22345,6 +27037,8 @@ export type ResolversParentTypes = {
   CollectionContributionEdge: CollectionContributionEdge;
   CollectionEdge: CollectionEdge;
   CollectionParent: ResolversUnionTypes<ResolversParentTypes>['CollectionParent'];
+  CommonPermissions: ResolversInterfaceTypes<ResolversParentTypes>['CommonPermissions'];
+  CommonTransition: ResolversInterfaceTypes<ResolversParentTypes>['CommonTransition'];
   Community: Community;
   CommunityConnection: CommunityConnection;
   CommunityEdge: CommunityEdge;
@@ -22418,6 +27112,16 @@ export type ResolversParentTypes = {
   DateGTEOperatorInput: DateGteOperatorInput;
   DateLTEOperatorInput: DateLteOperatorInput;
   DateProperty: DateProperty;
+  DepositingSettings: DepositingSettings;
+  DepositingSettingsInput: DepositingSettingsInput;
+  DepositorRequest: DepositorRequest;
+  DepositorRequestChangeStateInput: DepositorRequestChangeStateInput;
+  DepositorRequestChangeStatePayload: DepositorRequestChangeStatePayload;
+  DepositorRequestConnection: DepositorRequestConnection;
+  DepositorRequestCreateInput: DepositorRequestCreateInput;
+  DepositorRequestCreatePayload: DepositorRequestCreatePayload;
+  DepositorRequestEdge: DepositorRequestEdge;
+  DepositorRequestFilterInput: DepositorRequestFilterInput;
   DescendantListTemplateDefinition: DescendantListTemplateDefinition;
   DescendantListTemplateDefinitionSlots: DescendantListTemplateDefinitionSlots;
   DescendantListTemplateInstance: DescendantListTemplateInstance;
@@ -22448,7 +27152,6 @@ export type ResolversParentTypes = {
   DetailTemplateDefinitionSlots: DetailTemplateDefinitionSlots;
   DetailTemplateInstance: DetailTemplateInstance;
   DetailTemplateInstanceSlots: DetailTemplateInstanceSlots;
-  EffectiveAccess: EffectiveAccess;
   EmailProperty: EmailProperty;
   EntitiesProperty: EntitiesProperty;
   EntitiesSettings: EntitiesSettings;
@@ -22456,6 +27159,7 @@ export type ResolversParentTypes = {
   Entity: ResolversInterfaceTypes<ResolversParentTypes>['Entity'];
   EntityBase: ResolversInterfaceTypes<ResolversParentTypes>['EntityBase'];
   EntityBreadcrumb: EntityBreadcrumb;
+  EntityContextualPermissions: ResolversInterfaceTypes<ResolversParentTypes>['EntityContextualPermissions'];
   EntityDescendant: EntityDescendant;
   EntityDescendantConnection: EntityDescendantConnection;
   EntityDescendantEdge: EntityDescendantEdge;
@@ -22464,13 +27168,14 @@ export type ResolversParentTypes = {
   EntityLinkConnection: EntityLinkConnection;
   EntityLinkEdge: EntityLinkEdge;
   EntityPermissionGrid: EntityPermissionGrid;
+  EntityPermissions: ResolversInterfaceTypes<ResolversParentTypes>['EntityPermissions'];
   EntityProperty: EntityProperty;
   EntityPurgeInput: EntityPurgeInput;
   EntityPurgePayload: EntityPurgePayload;
   EntitySelectOption: EntitySelectOption;
   EqualsOperatorInput: EqualsOperatorInput;
-  ExposesEffectiveAccess: ResolversInterfaceTypes<ResolversParentTypes>['ExposesEffectiveAccess'];
   ExposesPermissions: ResolversInterfaceTypes<ResolversParentTypes>['ExposesPermissions'];
+  FailureReasons: FailureReasons;
   Float: Scalars['Float']['output'];
   FloatProperty: FloatProperty;
   FrontendCacheRevalidateEntityInput: FrontendCacheRevalidateEntityInput;
@@ -22687,6 +27392,7 @@ export type ResolversParentTypes = {
   QueriesContrib: ResolversInterfaceTypes<ResolversParentTypes>['QueriesContrib'];
   QueriesControlledVocabulary: ResolversInterfaceTypes<ResolversParentTypes>['QueriesControlledVocabulary'];
   QueriesControlledVocabularySource: ResolversInterfaceTypes<ResolversParentTypes>['QueriesControlledVocabularySource'];
+  QueriesDepositorRequest: ResolversInterfaceTypes<ResolversParentTypes>['QueriesDepositorRequest'];
   QueriesEntities: ResolversInterfaceTypes<ResolversParentTypes>['QueriesEntities'];
   QueriesHarvestAttempt: ResolversInterfaceTypes<ResolversParentTypes>['QueriesHarvestAttempt'];
   QueriesHarvestExample: ResolversInterfaceTypes<ResolversParentTypes>['QueriesHarvestExample'];
@@ -22697,6 +27403,10 @@ export type ResolversParentTypes = {
   QueriesHarvestSource: ResolversInterfaceTypes<ResolversParentTypes>['QueriesHarvestSource'];
   QueriesPermalink: ResolversInterfaceTypes<ResolversParentTypes>['QueriesPermalink'];
   QueriesSchemas: ResolversInterfaceTypes<ResolversParentTypes>['QueriesSchemas'];
+  QueriesSubmission: ResolversInterfaceTypes<ResolversParentTypes>['QueriesSubmission'];
+  QueriesSubmissionComment: ResolversInterfaceTypes<ResolversParentTypes>['QueriesSubmissionComment'];
+  QueriesSubmissionReview: ResolversInterfaceTypes<ResolversParentTypes>['QueriesSubmissionReview'];
+  QueriesSubmissionTarget: ResolversInterfaceTypes<ResolversParentTypes>['QueriesSubmissionTarget'];
   QueriesSystem: ResolversInterfaceTypes<ResolversParentTypes>['QueriesSystem'];
   QueriesUser: ResolversInterfaceTypes<ResolversParentTypes>['QueriesUser'];
   Query: {};
@@ -22752,6 +27462,63 @@ export type ResolversParentTypes = {
   StaticOrderingPath: StaticOrderingPath;
   String: Scalars['String']['output'];
   StringProperty: StringProperty;
+  Submission: Submission;
+  SubmissionChangeStateInput: SubmissionChangeStateInput;
+  SubmissionChangeStatePayload: SubmissionChangeStatePayload;
+  SubmissionComment: SubmissionComment;
+  SubmissionCommentConnection: SubmissionCommentConnection;
+  SubmissionCommentCreateInput: SubmissionCommentCreateInput;
+  SubmissionCommentCreatePayload: SubmissionCommentCreatePayload;
+  SubmissionCommentDestroyInput: SubmissionCommentDestroyInput;
+  SubmissionCommentDestroyPayload: SubmissionCommentDestroyPayload;
+  SubmissionCommentEdge: SubmissionCommentEdge;
+  SubmissionCommentFilterInput: SubmissionCommentFilterInput;
+  SubmissionCommentUpdateInput: SubmissionCommentUpdateInput;
+  SubmissionCommentUpdatePayload: SubmissionCommentUpdatePayload;
+  SubmissionConnection: SubmissionConnection;
+  SubmissionCreateInput: SubmissionCreateInput;
+  SubmissionCreatePayload: SubmissionCreatePayload;
+  SubmissionDepositTarget: SubmissionDepositTarget;
+  SubmissionEdge: SubmissionEdge;
+  SubmissionFilterInput: SubmissionFilterInput;
+  SubmissionLeaveReviewInput: SubmissionLeaveReviewInput;
+  SubmissionLeaveReviewPayload: SubmissionLeaveReviewPayload;
+  SubmissionRequestReviewInput: SubmissionRequestReviewInput;
+  SubmissionRequestReviewPayload: SubmissionRequestReviewPayload;
+  SubmissionReview: SubmissionReview;
+  SubmissionReviewConnection: SubmissionReviewConnection;
+  SubmissionReviewEdge: SubmissionReviewEdge;
+  SubmissionReviewFilterInput: SubmissionReviewFilterInput;
+  SubmissionReviewTransition: SubmissionReviewTransition;
+  SubmissionReviewTransitionConnection: SubmissionReviewTransitionConnection;
+  SubmissionReviewTransitionEdge: SubmissionReviewTransitionEdge;
+  SubmissionStatus: SubmissionStatus;
+  SubmissionTarget: SubmissionTarget;
+  SubmissionTargetCloseInput: SubmissionTargetCloseInput;
+  SubmissionTargetClosePayload: SubmissionTargetClosePayload;
+  SubmissionTargetConfigureInput: SubmissionTargetConfigureInput;
+  SubmissionTargetConfigurePayload: SubmissionTargetConfigurePayload;
+  SubmissionTargetConnection: SubmissionTargetConnection;
+  SubmissionTargetDescription: SubmissionTargetDescription;
+  SubmissionTargetDescriptionInput: SubmissionTargetDescriptionInput;
+  SubmissionTargetEdge: SubmissionTargetEdge;
+  SubmissionTargetFilterInput: SubmissionTargetFilterInput;
+  SubmissionTargetOpenInput: SubmissionTargetOpenInput;
+  SubmissionTargetOpenPayload: SubmissionTargetOpenPayload;
+  SubmissionTargetReviewer: SubmissionTargetReviewer;
+  SubmissionTargetReviewerCreateInput: SubmissionTargetReviewerCreateInput;
+  SubmissionTargetReviewerCreatePayload: SubmissionTargetReviewerCreatePayload;
+  SubmissionTargetReviewerDestroyInput: SubmissionTargetReviewerDestroyInput;
+  SubmissionTargetReviewerDestroyPayload: SubmissionTargetReviewerDestroyPayload;
+  SubmissionTargetSection: SubmissionTargetSection;
+  SubmissionTargetSectionInput: SubmissionTargetSectionInput;
+  SubmissionTargetTransition: SubmissionTargetTransition;
+  SubmissionTargetTransitionConnection: SubmissionTargetTransitionConnection;
+  SubmissionTargetTransitionEdge: SubmissionTargetTransitionEdge;
+  SubmissionTransition: SubmissionTransition;
+  SubmissionTransitionConnection: SubmissionTransitionConnection;
+  SubmissionTransitionEdge: SubmissionTransitionEdge;
+  Submittable: ResolversInterfaceTypes<ResolversParentTypes>['Submittable'];
   SupplementaryLayoutDefinition: Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<ResolversParentTypes['AnySupplementaryTemplateDefinition']> };
   SupplementaryLayoutInstance: Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<ResolversParentTypes['AnySupplementaryTemplateInstance']> };
   SupplementaryTemplateDefinition: SupplementaryTemplateDefinition;
@@ -22781,6 +27548,7 @@ export type ResolversParentTypes = {
   TemplateSlotInstance: ResolversInterfaceTypes<ResolversParentTypes>['TemplateSlotInstance'];
   ThemeSettings: ThemeSettings;
   ThemeSettingsInput: ThemeSettingsInput;
+  TimeFilterMatch: TimeFilterMatch;
   TimestampProperty: TimestampProperty;
   URLProperty: UrlProperty;
   URLReference: UrlReference;
@@ -22962,7 +27730,10 @@ export type AncestorStaticOrderingPathResolvers<ContextType = any, ParentType ex
 
 export type AnnouncementResolvers<ContextType = any, ParentType extends ResolversParentTypes['Announcement'] = ResolversParentTypes['Announcement']> = {
   body?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   header?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
@@ -22970,6 +27741,7 @@ export type AnnouncementResolvers<ContextType = any, ParentType extends Resolver
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   teaser?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -23043,6 +27815,10 @@ export type AnyCommunityAccessGrantEdgeResolvers<ContextType = any, ParentType e
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['AnyCommunityAccessGrant'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type AnyConfigurableSubmissionTargetResolvers<ContextType = any, ParentType extends ResolversParentTypes['AnyConfigurableSubmissionTarget'] = ResolversParentTypes['AnyConfigurableSubmissionTarget']> = {
+  __resolveType: TypeResolveFn<'Collection' | 'Community' | 'Item' | 'SubmissionTarget', ParentType, ContextType>;
 };
 
 export type AnyContributableResolvers<ContextType = any, ParentType extends ResolversParentTypes['AnyContributable'] = ResolversParentTypes['AnyContributable']> = {
@@ -23210,9 +27986,12 @@ export type AssetAudioResolvers<ContextType = any, ParentType extends ResolversP
   assetDownloads?: Resolver<ResolversTypes['AnalyticsEventCountSummary'], ParentType, ContextType, RequireFields<AssetAudioAssetDownloadsArgs, 'dateFilter' | 'precision'>>;
   assetDownloadsByRegion?: Resolver<ResolversTypes['AnalyticsRegionCountSummary'], ParentType, ContextType, RequireFields<AssetAudioAssetDownloadsByRegionArgs, 'dateFilter' | 'usOnly'>>;
   attachable?: Resolver<ResolversTypes['Attachable'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   caption?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   contentType?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   downloadURL?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   downloadUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fileSize?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -23223,6 +28002,7 @@ export type AssetAudioResolvers<ContextType = any, ParentType extends ResolversP
   previewMetadata?: Resolver<Maybe<ResolversTypes['ImageMetadata']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -23238,9 +28018,12 @@ export type AssetDocumentResolvers<ContextType = any, ParentType extends Resolve
   assetDownloads?: Resolver<ResolversTypes['AnalyticsEventCountSummary'], ParentType, ContextType, RequireFields<AssetDocumentAssetDownloadsArgs, 'dateFilter' | 'precision'>>;
   assetDownloadsByRegion?: Resolver<ResolversTypes['AnalyticsRegionCountSummary'], ParentType, ContextType, RequireFields<AssetDocumentAssetDownloadsByRegionArgs, 'dateFilter' | 'usOnly'>>;
   attachable?: Resolver<ResolversTypes['Attachable'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   caption?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   contentType?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   downloadURL?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   downloadUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fileSize?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -23251,6 +28034,7 @@ export type AssetDocumentResolvers<ContextType = any, ParentType extends Resolve
   previewMetadata?: Resolver<Maybe<ResolversTypes['ImageMetadata']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -23265,9 +28049,12 @@ export type AssetImageResolvers<ContextType = any, ParentType extends ResolversP
   assetDownloads?: Resolver<ResolversTypes['AnalyticsEventCountSummary'], ParentType, ContextType, RequireFields<AssetImageAssetDownloadsArgs, 'dateFilter' | 'precision'>>;
   assetDownloadsByRegion?: Resolver<ResolversTypes['AnalyticsRegionCountSummary'], ParentType, ContextType, RequireFields<AssetImageAssetDownloadsByRegionArgs, 'dateFilter' | 'usOnly'>>;
   attachable?: Resolver<ResolversTypes['Attachable'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   caption?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   contentType?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   downloadURL?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   downloadUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fileSize?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -23278,6 +28065,7 @@ export type AssetImageResolvers<ContextType = any, ParentType extends ResolversP
   previewMetadata?: Resolver<Maybe<ResolversTypes['ImageMetadata']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -23286,9 +28074,12 @@ export type AssetPdfResolvers<ContextType = any, ParentType extends ResolversPar
   assetDownloads?: Resolver<ResolversTypes['AnalyticsEventCountSummary'], ParentType, ContextType, RequireFields<AssetPdfAssetDownloadsArgs, 'dateFilter' | 'precision'>>;
   assetDownloadsByRegion?: Resolver<ResolversTypes['AnalyticsRegionCountSummary'], ParentType, ContextType, RequireFields<AssetPdfAssetDownloadsByRegionArgs, 'dateFilter' | 'usOnly'>>;
   attachable?: Resolver<ResolversTypes['Attachable'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   caption?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   contentType?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   downloadURL?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   downloadUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fileSize?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -23299,6 +28090,7 @@ export type AssetPdfResolvers<ContextType = any, ParentType extends ResolversPar
   previewMetadata?: Resolver<Maybe<ResolversTypes['ImageMetadata']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -23340,9 +28132,12 @@ export type AssetUnknownResolvers<ContextType = any, ParentType extends Resolver
   assetDownloads?: Resolver<ResolversTypes['AnalyticsEventCountSummary'], ParentType, ContextType, RequireFields<AssetUnknownAssetDownloadsArgs, 'dateFilter' | 'precision'>>;
   assetDownloadsByRegion?: Resolver<ResolversTypes['AnalyticsRegionCountSummary'], ParentType, ContextType, RequireFields<AssetUnknownAssetDownloadsByRegionArgs, 'dateFilter' | 'usOnly'>>;
   attachable?: Resolver<ResolversTypes['Attachable'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   caption?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   contentType?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   downloadURL?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   downloadUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fileSize?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -23353,6 +28148,7 @@ export type AssetUnknownResolvers<ContextType = any, ParentType extends Resolver
   previewMetadata?: Resolver<Maybe<ResolversTypes['ImageMetadata']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -23361,9 +28157,12 @@ export type AssetVideoResolvers<ContextType = any, ParentType extends ResolversP
   assetDownloads?: Resolver<ResolversTypes['AnalyticsEventCountSummary'], ParentType, ContextType, RequireFields<AssetVideoAssetDownloadsArgs, 'dateFilter' | 'precision'>>;
   assetDownloadsByRegion?: Resolver<ResolversTypes['AnalyticsRegionCountSummary'], ParentType, ContextType, RequireFields<AssetVideoAssetDownloadsByRegionArgs, 'dateFilter' | 'usOnly'>>;
   attachable?: Resolver<ResolversTypes['Attachable'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   caption?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   contentType?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   downloadURL?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   downloadUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fileSize?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -23374,6 +28173,7 @@ export type AssetVideoResolvers<ContextType = any, ParentType extends ResolversP
   previewMetadata?: Resolver<Maybe<ResolversTypes['ImageMetadata']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -23409,15 +28209,26 @@ export type AttributionResolvers<ContextType = any, ParentType extends Resolvers
   roles?: Resolver<Array<ResolversTypes['ControlledVocabularyItem']>, ParentType, ContextType>;
 };
 
+export type AuthorizationResultResolvers<ContextType = any, ParentType extends ResolversParentTypes['AuthorizationResult'] = ResolversParentTypes['AuthorizationResult']> = {
+  message?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  reasons?: Resolver<Maybe<ResolversTypes['FailureReasons']>, ParentType, ContextType>;
+  value?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type BlurbTemplateDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['BlurbTemplateDefinition'] = ResolversParentTypes['BlurbTemplateDefinition']> = {
   background?: Resolver<Maybe<ResolversTypes['BlurbBackground']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layoutKind?: Resolver<ResolversTypes['LayoutKind'], ParentType, ContextType>;
   slots?: Resolver<ResolversTypes['BlurbTemplateDefinitionSlots'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   width?: Resolver<Maybe<ResolversTypes['TemplateWidth']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -23431,7 +28242,10 @@ export type BlurbTemplateDefinitionSlotsResolvers<ContextType = any, ParentType 
 
 export type BlurbTemplateInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['BlurbTemplateInstance'] = ResolversParentTypes['BlurbTemplateInstance']> = {
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   definition?: Resolver<ResolversTypes['BlurbTemplateDefinition'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   hidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
@@ -23444,6 +28258,7 @@ export type BlurbTemplateInstanceResolvers<ContextType = any, ParentType extends
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -23485,7 +28300,6 @@ export type CrudPermissionGridResolvers<ContextType = any, ParentType extends Re
 
 export type ChildEntityResolvers<ContextType = any, ParentType extends ResolversParentTypes['ChildEntity'] = ResolversParentTypes['ChildEntity']> = {
   __resolveType: TypeResolveFn<'Collection' | 'Item', ParentType, ContextType>;
-  accessControlList?: Resolver<Maybe<ResolversTypes['AccessControlList']>, ParentType, ContextType>;
   allAccessGrants?: Resolver<ResolversTypes['AnyAccessGrantConnection'], ParentType, ContextType, RequireFields<ChildEntityAllAccessGrantsArgs, 'order' | 'pageDirection' | 'subject'>>;
   allowedActions?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   ancestorByName?: Resolver<Maybe<ResolversTypes['Entity']>, ParentType, ContextType, RequireFields<ChildEntityAncestorByNameArgs, 'name'>>;
@@ -23496,8 +28310,21 @@ export type ChildEntityResolvers<ContextType = any, ParentType extends Resolvers
   assignableRoles?: Resolver<Array<ResolversTypes['Role']>, ParentType, ContextType>;
   assignedUsers?: Resolver<ResolversTypes['ContextualPermissionConnection'], ParentType, ContextType, RequireFields<ChildEntityAssignedUsersArgs, 'order' | 'pageDirection'>>;
   breadcrumbs?: Resolver<Array<ResolversTypes['EntityBreadcrumb']>, ParentType, ContextType>;
+  canAlterSchemaVersion?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateAssets?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateCollections?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateItems?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canDeposit?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canManageAccess?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canPurge?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canReparent?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canRevalidate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canReview?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   community?: Resolver<ResolversTypes['Community'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   currentlyHidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   currentlyVisible?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   descendants?: Resolver<ResolversTypes['EntityDescendantConnection'], ParentType, ContextType, RequireFields<ChildEntityDescendantsArgs, 'order' | 'pageDirection' | 'scope'>>;
@@ -23512,6 +28339,7 @@ export type ChildEntityResolvers<ContextType = any, ParentType extends Resolvers
   hiddenAsOf?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, Partial<ChildEntityHiddenAsOfArgs>>;
   hiddenAt?: Resolver<Maybe<ResolversTypes['ISO8601DateTime']>, ParentType, ContextType>;
   hierarchicalDepth?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   identifier?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   layouts?: Resolver<ResolversTypes['EntityLayouts'], ParentType, ContextType>;
   leaf?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
@@ -23534,12 +28362,15 @@ export type ChildEntityResolvers<ContextType = any, ParentType extends Resolvers
   schemaVersion?: Resolver<ResolversTypes['SchemaVersion'], ParentType, ContextType>;
   search?: Resolver<ResolversTypes['SearchScope'], ParentType, ContextType, RequireFields<ChildEntitySearchArgs, 'visibility'>>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  submissionStatus?: Resolver<ResolversTypes['EntitySubmissionStatus'], ParentType, ContextType>;
+  submissionTarget?: Resolver<Maybe<ResolversTypes['SubmissionTarget']>, ParentType, ContextType>;
   subtitle?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   summary?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   thumbnail?: Resolver<ResolversTypes['ImageAttachment'], ParentType, ContextType>;
   thumbnailMetadata?: Resolver<Maybe<ResolversTypes['ImageMetadata']>, ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   visibility?: Resolver<ResolversTypes['EntityVisibility'], ParentType, ContextType>;
   visible?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   visibleAfterAt?: Resolver<Maybe<ResolversTypes['ISO8601DateTime']>, ParentType, ContextType>;
@@ -23548,7 +28379,6 @@ export type ChildEntityResolvers<ContextType = any, ParentType extends Resolvers
 };
 
 export type CollectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['Collection'] = ResolversParentTypes['Collection']> = {
-  accessControlList?: Resolver<Maybe<ResolversTypes['AccessControlList']>, ParentType, ContextType>;
   accessGrants?: Resolver<ResolversTypes['AnyCollectionAccessGrantConnection'], ParentType, ContextType, RequireFields<CollectionAccessGrantsArgs, 'order' | 'pageDirection' | 'subject'>>;
   allAccessGrants?: Resolver<ResolversTypes['AnyAccessGrantConnection'], ParentType, ContextType, RequireFields<CollectionAllAccessGrantsArgs, 'order' | 'pageDirection' | 'subject'>>;
   allowedActions?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
@@ -23565,6 +28395,18 @@ export type CollectionResolvers<ContextType = any, ParentType extends ResolversP
   attributions?: Resolver<Array<ResolversTypes['CollectionAttribution']>, ParentType, ContextType>;
   availableEntitiesFor?: Resolver<Array<ResolversTypes['EntitySelectOption']>, ParentType, ContextType, RequireFields<CollectionAvailableEntitiesForArgs, 'fullPath'>>;
   breadcrumbs?: Resolver<Array<ResolversTypes['EntityBreadcrumb']>, ParentType, ContextType>;
+  canAlterSchemaVersion?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateAssets?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateCollections?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateItems?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canDeposit?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canManageAccess?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canPurge?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canReparent?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canRevalidate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canReview?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   canonicalPermalink?: Resolver<Maybe<ResolversTypes['Permalink']>, ParentType, ContextType>;
   children?: Resolver<ResolversTypes['CollectionConnection'], ParentType, ContextType, Partial<CollectionChildrenArgs>>;
   collections?: Resolver<ResolversTypes['CollectionConnection'], ParentType, ContextType, RequireFields<CollectionCollectionsArgs, 'access' | 'nodeFilter' | 'order' | 'pageDirection'>>;
@@ -23573,6 +28415,7 @@ export type CollectionResolvers<ContextType = any, ParentType extends ResolversP
   contributions?: Resolver<ResolversTypes['CollectionContributionConnection'], ParentType, ContextType, RequireFields<CollectionContributionsArgs, 'order' | 'pageDirection'>>;
   contributors?: Resolver<ResolversTypes['AnyContributorConnection'], ParentType, ContextType, RequireFields<CollectionContributorsArgs, 'kind' | 'order' | 'pageDirection'>>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   currentlyHidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   currentlyVisible?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   descendants?: Resolver<ResolversTypes['EntityDescendantConnection'], ParentType, ContextType, RequireFields<CollectionDescendantsArgs, 'order' | 'pageDirection' | 'scope'>>;
@@ -23623,12 +28466,15 @@ export type CollectionResolvers<ContextType = any, ParentType extends ResolversP
   schemaVersion?: Resolver<ResolversTypes['SchemaVersion'], ParentType, ContextType>;
   search?: Resolver<ResolversTypes['SearchScope'], ParentType, ContextType, RequireFields<CollectionSearchArgs, 'visibility'>>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  submissionStatus?: Resolver<ResolversTypes['EntitySubmissionStatus'], ParentType, ContextType>;
+  submissionTarget?: Resolver<Maybe<ResolversTypes['SubmissionTarget']>, ParentType, ContextType>;
   subtitle?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   summary?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   thumbnail?: Resolver<ResolversTypes['ImageAttachment'], ParentType, ContextType>;
   thumbnailMetadata?: Resolver<Maybe<ResolversTypes['ImageMetadata']>, ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   userAccessGrants?: Resolver<ResolversTypes['UserCollectionAccessGrantConnection'], ParentType, ContextType, RequireFields<CollectionUserAccessGrantsArgs, 'order' | 'pageDirection'>>;
   userGroupAccessGrants?: Resolver<ResolversTypes['UserGroupCollectionAccessGrantConnection'], ParentType, ContextType, RequireFields<CollectionUserGroupAccessGrantsArgs, 'order' | 'pageDirection'>>;
   visibility?: Resolver<ResolversTypes['EntityVisibility'], ParentType, ContextType>;
@@ -23640,12 +28486,16 @@ export type CollectionResolvers<ContextType = any, ParentType extends ResolversP
 };
 
 export type CollectionAttributionResolvers<ContextType = any, ParentType extends ResolversParentTypes['CollectionAttribution'] = ResolversParentTypes['CollectionAttribution']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   contributor?: Resolver<ResolversTypes['ContributorBase'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   roles?: Resolver<Array<ResolversTypes['ControlledVocabularyItem']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -23658,11 +28508,14 @@ export type CollectionConnectionResolvers<ContextType = any, ParentType extends 
 
 export type CollectionContributionResolvers<ContextType = any, ParentType extends ResolversParentTypes['CollectionContribution'] = ResolversParentTypes['CollectionContribution']> = {
   affiliation?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   collection?: Resolver<ResolversTypes['Collection'], ParentType, ContextType>;
   contributionRole?: Resolver<ResolversTypes['ControlledVocabularyItem'], ParentType, ContextType>;
   contributor?: Resolver<ResolversTypes['Contributor'], ParentType, ContextType>;
   contributorKind?: Resolver<ResolversTypes['ContributorKind'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   displayName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   innerPosition?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
@@ -23674,6 +28527,7 @@ export type CollectionContributionResolvers<ContextType = any, ParentType extend
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -23700,8 +28554,19 @@ export type CollectionParentResolvers<ContextType = any, ParentType extends Reso
   __resolveType: TypeResolveFn<'Collection' | 'Community', ParentType, ContextType>;
 };
 
+export type CommonPermissionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['CommonPermissions'] = ResolversParentTypes['CommonPermissions']> = {
+  __resolveType: TypeResolveFn<'Announcement' | 'AssetAudio' | 'AssetDocument' | 'AssetImage' | 'AssetPDF' | 'AssetUnknown' | 'AssetVideo' | 'BlurbTemplateDefinition' | 'BlurbTemplateInstance' | 'Collection' | 'CollectionAttribution' | 'CollectionContribution' | 'Community' | 'ContextualPermission' | 'ContributionRoleConfiguration' | 'ContributorCollectionAttribution' | 'ContributorItemAttribution' | 'ContributorListTemplateDefinition' | 'ContributorListTemplateInstance' | 'ControlledVocabulary' | 'ControlledVocabularyItem' | 'ControlledVocabularySource' | 'DepositorRequest' | 'DescendantListTemplateDefinition' | 'DescendantListTemplateInstance' | 'DetailTemplateDefinition' | 'DetailTemplateInstance' | 'EntityLink' | 'HarvestAttempt' | 'HarvestAttemptEntityStatus' | 'HarvestAttemptRecordStatus' | 'HarvestEntity' | 'HarvestError' | 'HarvestMapping' | 'HarvestMessage' | 'HarvestMetadataMapping' | 'HarvestRecord' | 'HarvestSet' | 'HarvestSource' | 'HeroLayoutDefinition' | 'HeroLayoutInstance' | 'HeroTemplateDefinition' | 'HeroTemplateInstance' | 'Item' | 'ItemAttribution' | 'ItemContribution' | 'LinkListTemplateDefinition' | 'LinkListTemplateInstance' | 'ListItemLayoutDefinition' | 'ListItemLayoutInstance' | 'ListItemTemplateDefinition' | 'ListItemTemplateInstance' | 'MainLayoutDefinition' | 'MainLayoutInstance' | 'MetadataLayoutDefinition' | 'MetadataLayoutInstance' | 'MetadataTemplateDefinition' | 'MetadataTemplateInstance' | 'NavigationLayoutDefinition' | 'NavigationLayoutInstance' | 'NavigationTemplateDefinition' | 'NavigationTemplateInstance' | 'Ordering' | 'OrderingEntry' | 'OrderingTemplateDefinition' | 'OrderingTemplateInstance' | 'OrganizationContributor' | 'PageListTemplateDefinition' | 'PageListTemplateInstance' | 'Permalink' | 'PersonContributor' | 'Role' | 'SchemaDefinition' | 'SchemaVersion' | 'Submission' | 'SubmissionComment' | 'SubmissionDepositTarget' | 'SubmissionReview' | 'SubmissionReviewTransition' | 'SubmissionTarget' | 'SubmissionTargetReviewer' | 'SubmissionTargetTransition' | 'SubmissionTransition' | 'SupplementaryLayoutDefinition' | 'SupplementaryLayoutInstance' | 'SupplementaryTemplateDefinition' | 'SupplementaryTemplateInstance' | 'TemplateInstanceSibling' | 'User' | 'UserCollectionAccessGrant' | 'UserCommunityAccessGrant' | 'UserGroup' | 'UserGroupCollectionAccessGrant' | 'UserGroupCommunityAccessGrant' | 'UserGroupItemAccessGrant' | 'UserItemAccessGrant', ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+};
+
+export type CommonTransitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['CommonTransition'] = ResolversParentTypes['CommonTransition']> = {
+  __resolveType: TypeResolveFn<'SubmissionReviewTransition' | 'SubmissionTargetTransition' | 'SubmissionTransition', ParentType, ContextType>;
+  mostRecent?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+};
+
 export type CommunityResolvers<ContextType = any, ParentType extends ResolversParentTypes['Community'] = ResolversParentTypes['Community']> = {
-  accessControlList?: Resolver<Maybe<ResolversTypes['AccessControlList']>, ParentType, ContextType>;
   accessGrants?: Resolver<ResolversTypes['AnyCommunityAccessGrantConnection'], ParentType, ContextType, RequireFields<CommunityAccessGrantsArgs, 'order' | 'pageDirection' | 'subject'>>;
   allAccessGrants?: Resolver<ResolversTypes['AnyAccessGrantConnection'], ParentType, ContextType, RequireFields<CommunityAllAccessGrantsArgs, 'order' | 'pageDirection' | 'subject'>>;
   allowedActions?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
@@ -23715,9 +28580,22 @@ export type CommunityResolvers<ContextType = any, ParentType extends ResolversPa
   assignedUsers?: Resolver<ResolversTypes['ContextualPermissionConnection'], ParentType, ContextType, RequireFields<CommunityAssignedUsersArgs, 'order' | 'pageDirection'>>;
   availableEntitiesFor?: Resolver<Array<ResolversTypes['EntitySelectOption']>, ParentType, ContextType, RequireFields<CommunityAvailableEntitiesForArgs, 'fullPath'>>;
   breadcrumbs?: Resolver<Array<ResolversTypes['EntityBreadcrumb']>, ParentType, ContextType>;
+  canAlterSchemaVersion?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateAssets?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateCollections?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateItems?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canDeposit?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canManageAccess?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canPurge?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canReparent?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canRevalidate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canReview?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   canonicalPermalink?: Resolver<Maybe<ResolversTypes['Permalink']>, ParentType, ContextType>;
   collections?: Resolver<ResolversTypes['CollectionConnection'], ParentType, ContextType, RequireFields<CommunityCollectionsArgs, 'access' | 'nodeFilter' | 'order' | 'pageDirection'>>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   descendants?: Resolver<ResolversTypes['EntityDescendantConnection'], ParentType, ContextType, RequireFields<CommunityDescendantsArgs, 'order' | 'pageDirection' | 'scope'>>;
   entityViews?: Resolver<ResolversTypes['AnalyticsEventCountSummary'], ParentType, ContextType, RequireFields<CommunityEntityViewsArgs, 'dateFilter' | 'precision'>>;
   entityViewsByRegion?: Resolver<ResolversTypes['AnalyticsRegionCountSummary'], ParentType, ContextType, RequireFields<CommunityEntityViewsByRegionArgs, 'dateFilter' | 'usOnly'>>;
@@ -23753,6 +28631,8 @@ export type CommunityResolvers<ContextType = any, ParentType extends ResolversPa
   schemaVersion?: Resolver<ResolversTypes['SchemaVersion'], ParentType, ContextType>;
   search?: Resolver<ResolversTypes['SearchScope'], ParentType, ContextType, RequireFields<CommunitySearchArgs, 'visibility'>>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  submissionStatus?: Resolver<ResolversTypes['EntitySubmissionStatus'], ParentType, ContextType>;
+  submissionTarget?: Resolver<Maybe<ResolversTypes['SubmissionTarget']>, ParentType, ContextType>;
   subtitle?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   summary?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   tagline?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -23760,6 +28640,7 @@ export type CommunityResolvers<ContextType = any, ParentType extends ResolversPa
   thumbnailMetadata?: Resolver<Maybe<ResolversTypes['ImageMetadata']>, ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   userAccessGrants?: Resolver<ResolversTypes['UserCommunityAccessGrantConnection'], ParentType, ContextType, RequireFields<CommunityUserAccessGrantsArgs, 'order' | 'pageDirection'>>;
   userGroupAccessGrants?: Resolver<ResolversTypes['UserGroupCommunityAccessGrantConnection'], ParentType, ContextType, RequireFields<CommunityUserGroupAccessGrantsArgs, 'order' | 'pageDirection'>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -23782,12 +28663,16 @@ export type ContextualPermissionResolvers<ContextType = any, ParentType extends 
   accessControlList?: Resolver<Maybe<ResolversTypes['AccessControlList']>, ParentType, ContextType>;
   accessGrants?: Resolver<Array<ResolversTypes['UserAccessGrant']>, ParentType, ContextType>;
   allowedActions?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   permissions?: Resolver<Array<ResolversTypes['PermissionGrant']>, ParentType, ContextType>;
   roles?: Resolver<Array<ResolversTypes['Role']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -23851,13 +28736,17 @@ export type ContributionMetadataResolvers<ContextType = any, ParentType extends 
 };
 
 export type ContributionRoleConfigurationResolvers<ContextType = any, ParentType extends ResolversParentTypes['ContributionRoleConfiguration'] = ResolversParentTypes['ContributionRoleConfiguration']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   controlledVocabulary?: Resolver<ResolversTypes['ControlledVocabulary'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   defaultItem?: Resolver<ResolversTypes['ControlledVocabularyItem'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   otherItem?: Resolver<Maybe<ResolversTypes['ControlledVocabularyItem']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -23942,8 +28831,11 @@ export type ContributorBaseResolvers<ContextType = any, ParentType extends Resol
 };
 
 export type ContributorCollectionAttributionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ContributorCollectionAttribution'] = ResolversParentTypes['ContributorCollectionAttribution']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   collection?: Resolver<ResolversTypes['Collection'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entitySlug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['ChildEntityKind'], ParentType, ContextType>;
@@ -23953,11 +28845,15 @@ export type ContributorCollectionAttributionResolvers<ContextType = any, ParentT
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type ContributorItemAttributionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ContributorItemAttribution'] = ResolversParentTypes['ContributorItemAttribution']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entitySlug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   item?: Resolver<ResolversTypes['Item'], ParentType, ContextType>;
@@ -23968,6 +28864,7 @@ export type ContributorItemAttributionResolvers<ContextType = any, ParentType ex
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -23979,7 +28876,10 @@ export type ContributorLinkResolvers<ContextType = any, ParentType extends Resol
 
 export type ContributorListTemplateDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ContributorListTemplateDefinition'] = ResolversParentTypes['ContributorListTemplateDefinition']> = {
   background?: Resolver<Maybe<ResolversTypes['ContributorListBackground']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   filter?: Resolver<Maybe<ResolversTypes['ContributorListFilter']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layoutKind?: Resolver<ResolversTypes['LayoutKind'], ParentType, ContextType>;
@@ -23988,6 +28888,7 @@ export type ContributorListTemplateDefinitionResolvers<ContextType = any, Parent
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   width?: Resolver<Maybe<ResolversTypes['TemplateWidth']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -23999,8 +28900,11 @@ export type ContributorListTemplateDefinitionSlotsResolvers<ContextType = any, P
 
 export type ContributorListTemplateInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['ContributorListTemplateInstance'] = ResolversParentTypes['ContributorListTemplateInstance']> = {
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   contributionList?: Resolver<ResolversTypes['TemplateContributionList'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   definition?: Resolver<ResolversTypes['ContributorListTemplateDefinition'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   hidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
@@ -24013,6 +28917,7 @@ export type ContributorListTemplateInstanceResolvers<ContextType = any, ParentTy
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -24079,7 +28984,10 @@ export type ControlledVocabulariesPropertyResolvers<ContextType = any, ParentTyp
 };
 
 export type ControlledVocabularyResolvers<ContextType = any, ParentType extends ResolversParentTypes['ControlledVocabulary'] = ResolversParentTypes['ControlledVocabulary']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   identifier?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -24090,6 +28998,7 @@ export type ControlledVocabularyResolvers<ContextType = any, ParentType extends 
   provides?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   version?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -24119,8 +29028,11 @@ export type ControlledVocabularyEdgeResolvers<ContextType = any, ParentType exte
 };
 
 export type ControlledVocabularyItemResolvers<ContextType = any, ParentType extends ResolversParentTypes['ControlledVocabularyItem'] = ResolversParentTypes['ControlledVocabularyItem']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   children?: Resolver<Array<ResolversTypes['ControlledVocabularyItem']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   identifier?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -24130,6 +29042,7 @@ export type ControlledVocabularyItemResolvers<ContextType = any, ParentType exte
   tags?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   unselectable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -24157,12 +29070,16 @@ export type ControlledVocabularyPropertyResolvers<ContextType = any, ParentType 
 };
 
 export type ControlledVocabularySourceResolvers<ContextType = any, ParentType extends ResolversParentTypes['ControlledVocabularySource'] = ResolversParentTypes['ControlledVocabularySource']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   controlledVocabulary?: Resolver<Maybe<ResolversTypes['ControlledVocabulary']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   provides?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -24326,10 +29243,69 @@ export type DatePropertyResolvers<ContextType = any, ParentType extends Resolver
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type DepositingSettingsResolvers<ContextType = any, ParentType extends ResolversParentTypes['DepositingSettings'] = ResolversParentTypes['DepositingSettings']> = {
+  agreement?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  enabled?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type DepositorRequestResolvers<ContextType = any, ParentType extends ResolversParentTypes['DepositorRequest'] = ResolversParentTypes['DepositorRequest']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canTransition?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  message?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  state?: Resolver<ResolversTypes['DepositorRequestState'], ParentType, ContextType>;
+  submissionTarget?: Resolver<ResolversTypes['SubmissionTarget'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type DepositorRequestChangeStatePayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['DepositorRequestChangeStatePayload'] = ResolversParentTypes['DepositorRequestChangeStatePayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  depositorRequest?: Resolver<Maybe<ResolversTypes['DepositorRequest']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type DepositorRequestConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['DepositorRequestConnection'] = ResolversParentTypes['DepositorRequestConnection']> = {
+  edges?: Resolver<Array<ResolversTypes['DepositorRequestEdge']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<ResolversTypes['DepositorRequest']>, ParentType, ContextType>;
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type DepositorRequestCreatePayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['DepositorRequestCreatePayload'] = ResolversParentTypes['DepositorRequestCreatePayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  depositorRequest?: Resolver<Maybe<ResolversTypes['DepositorRequest']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type DepositorRequestEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['DepositorRequestEdge'] = ResolversParentTypes['DepositorRequestEdge']> = {
+  cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  node?: Resolver<ResolversTypes['DepositorRequest'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type DescendantListTemplateDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['DescendantListTemplateDefinition'] = ResolversParentTypes['DescendantListTemplateDefinition']> = {
   background?: Resolver<Maybe<ResolversTypes['DescendantListBackground']>, ParentType, ContextType>;
   browseStyle?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   dynamicOrderingDefinition?: Resolver<Maybe<ResolversTypes['OrderingDefinition']>, ParentType, ContextType>;
   entityContext?: Resolver<Maybe<ResolversTypes['ListEntityContext']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
@@ -24356,6 +29332,7 @@ export type DescendantListTemplateDefinitionResolvers<ContextType = any, ParentT
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   useSelectionFallback?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   variant?: Resolver<Maybe<ResolversTypes['DescendantListVariant']>, ParentType, ContextType>;
   width?: Resolver<Maybe<ResolversTypes['TemplateWidth']>, ParentType, ContextType>;
@@ -24376,7 +29353,10 @@ export type DescendantListTemplateDefinitionSlotsResolvers<ContextType = any, Pa
 
 export type DescendantListTemplateInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['DescendantListTemplateInstance'] = ResolversParentTypes['DescendantListTemplateInstance']> = {
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   definition?: Resolver<ResolversTypes['DescendantListTemplateDefinition'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   entityList?: Resolver<ResolversTypes['TemplateEntityList'], ParentType, ContextType>;
@@ -24391,6 +29371,7 @@ export type DescendantListTemplateInstanceResolvers<ContextType = any, ParentTyp
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -24504,7 +29485,7 @@ export type DestroyItemPayloadResolvers<ContextType = any, ParentType extends Re
 };
 
 export type DestroyMutationPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['DestroyMutationPayload'] = ResolversParentTypes['DestroyMutationPayload']> = {
-  __resolveType: TypeResolveFn<'ControlledVocabularyDestroyPayload' | 'DestroyAnnouncementPayload' | 'DestroyAssetPayload' | 'DestroyCollectionPayload' | 'DestroyCommunityPayload' | 'DestroyContributionPayload' | 'DestroyContributorPayload' | 'DestroyEntityLinkPayload' | 'DestroyItemPayload' | 'DestroyOrderingPayload' | 'DestroyPagePayload' | 'EntityPurgePayload' | 'HarvestMappingDestroyPayload' | 'HarvestMetadataMappingDestroyPayload' | 'HarvestSourceDestroyPayload' | 'PermalinkDestroyPayload', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'ControlledVocabularyDestroyPayload' | 'DestroyAnnouncementPayload' | 'DestroyAssetPayload' | 'DestroyCollectionPayload' | 'DestroyCommunityPayload' | 'DestroyContributionPayload' | 'DestroyContributorPayload' | 'DestroyEntityLinkPayload' | 'DestroyItemPayload' | 'DestroyOrderingPayload' | 'DestroyPagePayload' | 'EntityPurgePayload' | 'HarvestMappingDestroyPayload' | 'HarvestMetadataMappingDestroyPayload' | 'HarvestSourceDestroyPayload' | 'PermalinkDestroyPayload' | 'SubmissionCommentDestroyPayload' | 'SubmissionTargetReviewerDestroyPayload', ParentType, ContextType>;
   attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
   destroyed?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   destroyedId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
@@ -24538,7 +29519,10 @@ export type DestroyPagePayloadResolvers<ContextType = any, ParentType extends Re
 
 export type DetailTemplateDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['DetailTemplateDefinition'] = ResolversParentTypes['DetailTemplateDefinition']> = {
   background?: Resolver<Maybe<ResolversTypes['DetailBackground']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layoutKind?: Resolver<ResolversTypes['LayoutKind'], ParentType, ContextType>;
   showAnnouncements?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
@@ -24548,6 +29532,7 @@ export type DetailTemplateDefinitionResolvers<ContextType = any, ParentType exte
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   variant?: Resolver<Maybe<ResolversTypes['DetailVariant']>, ParentType, ContextType>;
   width?: Resolver<Maybe<ResolversTypes['TemplateWidth']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -24567,7 +29552,10 @@ export type DetailTemplateDefinitionSlotsResolvers<ContextType = any, ParentType
 
 export type DetailTemplateInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['DetailTemplateInstance'] = ResolversParentTypes['DetailTemplateInstance']> = {
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   definition?: Resolver<ResolversTypes['DetailTemplateDefinition'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   hidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
@@ -24580,6 +29568,7 @@ export type DetailTemplateInstanceResolvers<ContextType = any, ParentType extend
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -24592,13 +29581,6 @@ export type DetailTemplateInstanceSlotsResolvers<ContextType = any, ParentType e
   itemsD?: Resolver<Maybe<ResolversTypes['TemplateSlotBlockInstance']>, ParentType, ContextType>;
   subheader?: Resolver<Maybe<ResolversTypes['TemplateSlotInlineInstance']>, ParentType, ContextType>;
   summary?: Resolver<Maybe<ResolversTypes['TemplateSlotBlockInstance']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type EffectiveAccessResolvers<ContextType = any, ParentType extends ResolversParentTypes['EffectiveAccess'] = ResolversParentTypes['EffectiveAccess']> = {
-  allowedActions?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
-  availableActions?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
-  permissions?: Resolver<Array<ResolversTypes['PermissionGrant']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -24643,7 +29625,6 @@ export type EntitiesSettingsResolvers<ContextType = any, ParentType extends Reso
 
 export type EntityResolvers<ContextType = any, ParentType extends ResolversParentTypes['Entity'] = ResolversParentTypes['Entity']> = {
   __resolveType: TypeResolveFn<'Collection' | 'Community' | 'Item', ParentType, ContextType>;
-  accessControlList?: Resolver<Maybe<ResolversTypes['AccessControlList']>, ParentType, ContextType>;
   allAccessGrants?: Resolver<ResolversTypes['AnyAccessGrantConnection'], ParentType, ContextType, RequireFields<EntityAllAccessGrantsArgs, 'order' | 'pageDirection' | 'subject'>>;
   allowedActions?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   announcement?: Resolver<Maybe<ResolversTypes['Announcement']>, ParentType, ContextType, RequireFields<EntityAnnouncementArgs, 'slug'>>;
@@ -24652,10 +29633,23 @@ export type EntityResolvers<ContextType = any, ParentType extends ResolversParen
   assignableRoles?: Resolver<Array<ResolversTypes['Role']>, ParentType, ContextType>;
   assignedUsers?: Resolver<ResolversTypes['ContextualPermissionConnection'], ParentType, ContextType, RequireFields<EntityAssignedUsersArgs, 'order' | 'pageDirection'>>;
   breadcrumbs?: Resolver<Array<ResolversTypes['EntityBreadcrumb']>, ParentType, ContextType>;
+  canAlterSchemaVersion?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateAssets?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateCollections?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateItems?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canDeposit?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canManageAccess?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canPurge?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canReparent?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canRevalidate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canReview?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   descendants?: Resolver<ResolversTypes['EntityDescendantConnection'], ParentType, ContextType, RequireFields<EntityDescendantsArgs, 'order' | 'pageDirection' | 'scope'>>;
   heroImage?: Resolver<ResolversTypes['ImageAttachment'], ParentType, ContextType>;
   heroImageMetadata?: Resolver<Maybe<ResolversTypes['ImageMetadata']>, ParentType, ContextType>;
   hierarchicalDepth?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layouts?: Resolver<ResolversTypes['EntityLayouts'], ParentType, ContextType>;
   linkTargetCandidates?: Resolver<ResolversTypes['LinkTargetCandidateConnection'], ParentType, ContextType, RequireFields<EntityLinkTargetCandidatesArgs, 'kind' | 'pageDirection' | 'title'>>;
   links?: Resolver<ResolversTypes['EntityLinkConnection'], ParentType, ContextType, RequireFields<EntityLinksArgs, 'order' | 'pageDirection'>>;
@@ -24672,6 +29666,8 @@ export type EntityResolvers<ContextType = any, ParentType extends ResolversParen
   schemaVersion?: Resolver<ResolversTypes['SchemaVersion'], ParentType, ContextType>;
   search?: Resolver<ResolversTypes['SearchScope'], ParentType, ContextType, RequireFields<EntitySearchArgs, 'visibility'>>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  submissionStatus?: Resolver<ResolversTypes['EntitySubmissionStatus'], ParentType, ContextType>;
+  submissionTarget?: Resolver<Maybe<ResolversTypes['SubmissionTarget']>, ParentType, ContextType>;
   subtitle?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   summary?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   thumbnail?: Resolver<ResolversTypes['ImageAttachment'], ParentType, ContextType>;
@@ -24695,6 +29691,14 @@ export type EntityBreadcrumbResolvers<ContextType = any, ParentType extends Reso
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type EntityContextualPermissionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['EntityContextualPermissions'] = ResolversParentTypes['EntityContextualPermissions']> = {
+  __resolveType: TypeResolveFn<'Collection' | 'Community' | 'Item', ParentType, ContextType>;
+  allowedActions?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  applicableRoles?: Resolver<Array<ResolversTypes['Role']>, ParentType, ContextType>;
+  assignableRoles?: Resolver<Array<ResolversTypes['Role']>, ParentType, ContextType>;
+  permissions?: Resolver<Array<ResolversTypes['PermissionGrant']>, ParentType, ContextType>;
 };
 
 export type EntityDescendantResolvers<ContextType = any, ParentType extends ResolversParentTypes['EntityDescendant'] = ResolversParentTypes['EntityDescendant']> = {
@@ -24729,7 +29733,10 @@ export type EntityLayoutsResolvers<ContextType = any, ParentType extends Resolve
 };
 
 export type EntityLinkResolvers<ContextType = any, ParentType extends ResolversParentTypes['EntityLink'] = ResolversParentTypes['EntityLink']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   operator?: Resolver<ResolversTypes['EntityLinkOperator'], ParentType, ContextType>;
   scope?: Resolver<ResolversTypes['EntityLinkScope'], ParentType, ContextType>;
@@ -24743,6 +29750,7 @@ export type EntityLinkResolvers<ContextType = any, ParentType extends ResolversP
   targetCommunity?: Resolver<Maybe<ResolversTypes['Community']>, ParentType, ContextType>;
   targetItem?: Resolver<Maybe<ResolversTypes['Item']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -24769,6 +29777,22 @@ export type EntityPermissionGridResolvers<ContextType = any, ParentType extends 
   read?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   update?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type EntityPermissionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['EntityPermissions'] = ResolversParentTypes['EntityPermissions']> = {
+  __resolveType: TypeResolveFn<'Collection' | 'Community' | 'Item', ParentType, ContextType>;
+  canAlterSchemaVersion?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateAssets?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateCollections?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateItems?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canDeposit?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canManageAccess?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canPurge?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canReparent?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canRevalidate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canReview?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  submissionStatus?: Resolver<ResolversTypes['EntitySubmissionStatus'], ParentType, ContextType>;
+  submissionTarget?: Resolver<Maybe<ResolversTypes['SubmissionTarget']>, ParentType, ContextType>;
 };
 
 export type EntityPropertyResolvers<ContextType = any, ParentType extends ResolversParentTypes['EntityProperty'] = ResolversParentTypes['EntityProperty']> = {
@@ -24812,15 +29836,16 @@ export type EntitySelectOptionResolvers<ContextType = any, ParentType extends Re
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type ExposesEffectiveAccessResolvers<ContextType = any, ParentType extends ResolversParentTypes['ExposesEffectiveAccess'] = ResolversParentTypes['ExposesEffectiveAccess']> = {
-  __resolveType: TypeResolveFn<'Role', ParentType, ContextType>;
-  effectiveAccess?: Resolver<ResolversTypes['EffectiveAccess'], ParentType, ContextType>;
-};
-
 export type ExposesPermissionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['ExposesPermissions'] = ResolversParentTypes['ExposesPermissions']> = {
-  __resolveType: TypeResolveFn<'AccessControlList' | 'AssetPermissionGrid' | 'Collection' | 'Community' | 'ContextualPermission' | 'EffectiveAccess' | 'EntityPermissionGrid' | 'GlobalAccessControlList' | 'Item' | 'User', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'AccessControlList' | 'AssetPermissionGrid' | 'Collection' | 'Community' | 'ContextualPermission' | 'EntityPermissionGrid' | 'GlobalAccessControlList' | 'Item' | 'User', ParentType, ContextType>;
   allowedActions?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   permissions?: Resolver<Array<ResolversTypes['PermissionGrant']>, ParentType, ContextType>;
+};
+
+export type FailureReasonsResolvers<ContextType = any, ParentType extends ResolversParentTypes['FailureReasons'] = ResolversParentTypes['FailureReasons']> = {
+  details?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  fullMessages?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type FloatPropertyResolvers<ContextType = any, ParentType extends ResolversParentTypes['FloatProperty'] = ResolversParentTypes['FloatProperty']> = {
@@ -24895,6 +29920,7 @@ export type GlobalAccessControlListResolvers<ContextType = any, ParentType exten
 
 export type GlobalConfigurationResolvers<ContextType = any, ParentType extends ResolversParentTypes['GlobalConfiguration'] = ResolversParentTypes['GlobalConfiguration']> = {
   contributionRoles?: Resolver<ResolversTypes['ContributionRoleConfiguration'], ParentType, ContextType>;
+  depositing?: Resolver<ResolversTypes['DepositingSettings'], ParentType, ContextType>;
   entities?: Resolver<ResolversTypes['EntitiesSettings'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   institution?: Resolver<ResolversTypes['InstitutionSettings'], ParentType, ContextType>;
@@ -24932,7 +29958,10 @@ export type GroupPropertyResolvers<ContextType = any, ParentType extends Resolve
 
 export type HarvestAttemptResolvers<ContextType = any, ParentType extends ResolversParentTypes['HarvestAttempt'] = ResolversParentTypes['HarvestAttempt']> = {
   beganAt?: Resolver<Maybe<ResolversTypes['ISO8601DateTime']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   currentState?: Resolver<ResolversTypes['HarvestAttemptState'], ParentType, ContextType>;
   endedAt?: Resolver<Maybe<ResolversTypes['ISO8601DateTime']>, ParentType, ContextType>;
   entityStatus?: Resolver<Maybe<ResolversTypes['HarvestAttemptEntityStatus']>, ParentType, ContextType>;
@@ -24953,6 +29982,7 @@ export type HarvestAttemptResolvers<ContextType = any, ParentType extends Resolv
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   targetEntity?: Resolver<ResolversTypes['HarvestTarget'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -24972,8 +30002,11 @@ export type HarvestAttemptEdgeResolvers<ContextType = any, ParentType extends Re
 export type HarvestAttemptEntityStatusResolvers<ContextType = any, ParentType extends ResolversParentTypes['HarvestAttemptEntityStatus'] = ResolversParentTypes['HarvestAttemptEntityStatus']> = {
   assetsDurationAverage?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   assetsEta?: Resolver<Maybe<ResolversTypes['ISO8601DateTime']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   completion?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   totalEntities?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
@@ -24982,6 +30015,7 @@ export type HarvestAttemptEntityStatusResolvers<ContextType = any, ParentType ex
   totalEntitiesWaitingForUpsert?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   totalEntitiesWithAssets?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   upsertDurationAverage?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   upsertEta?: Resolver<Maybe<ResolversTypes['ISO8601DateTime']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -25019,8 +30053,11 @@ export type HarvestAttemptPruneEntitiesPayloadResolvers<ContextType = any, Paren
 };
 
 export type HarvestAttemptRecordStatusResolvers<ContextType = any, ParentType extends ResolversParentTypes['HarvestAttemptRecordStatus'] = ResolversParentTypes['HarvestAttemptRecordStatus']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   completion?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   extractionDurationAverage?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
@@ -25029,6 +30066,7 @@ export type HarvestAttemptRecordStatusResolvers<ContextType = any, ParentType ex
   totalRecordsWaitingForExtraction?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   totalRecordsWaitingForUpsert?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -25038,7 +30076,10 @@ export type HarvestAttemptableResolvers<ContextType = any, ParentType extends Re
 };
 
 export type HarvestEntityResolvers<ContextType = any, ParentType extends ResolversParentTypes['HarvestEntity'] = ResolversParentTypes['HarvestEntity']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entity?: Resolver<Maybe<ResolversTypes['Entity']>, ParentType, ContextType>;
   harvestMessages?: Resolver<ResolversTypes['HarvestMessageConnection'], ParentType, ContextType, RequireFields<HarvestEntityHarvestMessagesArgs, 'filters' | 'orFilters' | 'pageDirection'>>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
@@ -25050,17 +30091,22 @@ export type HarvestEntityResolvers<ContextType = any, ParentType extends Resolve
   schemaVersion?: Resolver<Maybe<ResolversTypes['SchemaVersion']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type HarvestErrorResolvers<ContextType = any, ParentType extends ResolversParentTypes['HarvestError'] = ResolversParentTypes['HarvestError']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   code?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   message?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   metadata?: Resolver<ResolversTypes['JSON'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -25079,7 +30125,10 @@ export type HarvestExampleResolvers<ContextType = any, ParentType extends Resolv
 };
 
 export type HarvestMappingResolvers<ContextType = any, ParentType extends ResolversParentTypes['HarvestMapping'] = ResolversParentTypes['HarvestMapping']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   extractionMappingTemplate?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   frequencyExpression?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   harvestAttempts?: Resolver<ResolversTypes['HarvestAttemptConnection'], ParentType, ContextType, RequireFields<HarvestMappingHarvestAttemptsArgs, 'order' | 'pageDirection'>>;
@@ -25098,6 +30147,7 @@ export type HarvestMappingResolvers<ContextType = any, ParentType extends Resolv
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   targetEntity?: Resolver<ResolversTypes['HarvestTarget'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -25147,7 +30197,10 @@ export type HarvestMappingUpdatePayloadResolvers<ContextType = any, ParentType e
 
 export type HarvestMessageResolvers<ContextType = any, ParentType extends ResolversParentTypes['HarvestMessage'] = ResolversParentTypes['HarvestMessage']> = {
   at?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   harvestAttempt?: Resolver<Maybe<ResolversTypes['HarvestAttempt']>, ParentType, ContextType>;
   harvestEntity?: Resolver<Maybe<ResolversTypes['HarvestEntity']>, ParentType, ContextType>;
   harvestMapping?: Resolver<Maybe<ResolversTypes['HarvestMapping']>, ParentType, ContextType>;
@@ -25159,6 +30212,7 @@ export type HarvestMessageResolvers<ContextType = any, ParentType extends Resolv
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   tags?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -25176,13 +30230,17 @@ export type HarvestMessageEdgeResolvers<ContextType = any, ParentType extends Re
 };
 
 export type HarvestMetadataMappingResolvers<ContextType = any, ParentType extends ResolversParentTypes['HarvestMetadataMapping'] = ResolversParentTypes['HarvestMetadataMapping']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   field?: Resolver<ResolversTypes['HarvestMetadataMappingField'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   pattern?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   targetEntity?: Resolver<ResolversTypes['HarvestTarget'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -25233,7 +30291,10 @@ export type HarvestOptionsReadResolvers<ContextType = any, ParentType extends Re
 };
 
 export type HarvestRecordResolvers<ContextType = any, ParentType extends ResolversParentTypes['HarvestRecord'] = ResolversParentTypes['HarvestRecord']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entityCount?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   harvestEntities?: Resolver<Array<ResolversTypes['HarvestEntity']>, ParentType, ContextType>;
   harvestErrors?: Resolver<Array<ResolversTypes['HarvestError']>, ParentType, ContextType>;
@@ -25249,6 +30310,7 @@ export type HarvestRecordResolvers<ContextType = any, ParentType extends Resolve
   status?: Resolver<ResolversTypes['HarvestRecordStatus'], ParentType, ContextType>;
   underlyingDataFormat?: Resolver<ResolversTypes['UnderlyingDataFormat'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -25274,7 +30336,10 @@ export type HarvestScheduleDataResolvers<ContextType = any, ParentType extends R
 };
 
 export type HarvestSetResolvers<ContextType = any, ParentType extends ResolversParentTypes['HarvestSet'] = ResolversParentTypes['HarvestSet']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   harvestSource?: Resolver<ResolversTypes['HarvestSource'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
@@ -25282,6 +30347,7 @@ export type HarvestSetResolvers<ContextType = any, ParentType extends ResolversP
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -25300,7 +30366,10 @@ export type HarvestSetEdgeResolvers<ContextType = any, ParentType extends Resolv
 
 export type HarvestSourceResolvers<ContextType = any, ParentType extends ResolversParentTypes['HarvestSource'] = ResolversParentTypes['HarvestSource']> = {
   baseURL?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   extractionMappingTemplate?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   harvestAttempts?: Resolver<ResolversTypes['HarvestAttemptConnection'], ParentType, ContextType, RequireFields<HarvestSourceHarvestAttemptsArgs, 'order' | 'pageDirection'>>;
@@ -25319,6 +30388,7 @@ export type HarvestSourceResolvers<ContextType = any, ParentType extends Resolve
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   status?: Resolver<ResolversTypes['HarvestSourceStatus'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -25410,9 +30480,11 @@ export type HasDoiResolvers<ContextType = any, ParentType extends ResolversParen
 };
 
 export type HasDefaultTimestampsResolvers<ContextType = any, ParentType extends ResolversParentTypes['HasDefaultTimestamps'] = ResolversParentTypes['HasDefaultTimestamps']> = {
-  __resolveType: TypeResolveFn<'Collection' | 'Item', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'Announcement' | 'AssetAudio' | 'AssetDocument' | 'AssetImage' | 'AssetPDF' | 'AssetUnknown' | 'AssetVideo' | 'BlurbTemplateDefinition' | 'BlurbTemplateInstance' | 'Collection' | 'CollectionAttribution' | 'CollectionContribution' | 'Community' | 'ContextualPermission' | 'ContributionRoleConfiguration' | 'ContributorCollectionAttribution' | 'ContributorItemAttribution' | 'ContributorListTemplateDefinition' | 'ContributorListTemplateInstance' | 'ControlledVocabulary' | 'ControlledVocabularyItem' | 'ControlledVocabularySource' | 'DepositorRequest' | 'DescendantListTemplateDefinition' | 'DescendantListTemplateInstance' | 'DetailTemplateDefinition' | 'DetailTemplateInstance' | 'EntityLink' | 'HarvestAttempt' | 'HarvestAttemptEntityStatus' | 'HarvestAttemptRecordStatus' | 'HarvestEntity' | 'HarvestError' | 'HarvestMapping' | 'HarvestMessage' | 'HarvestMetadataMapping' | 'HarvestRecord' | 'HarvestSet' | 'HarvestSource' | 'HeroLayoutDefinition' | 'HeroLayoutInstance' | 'HeroTemplateDefinition' | 'HeroTemplateInstance' | 'Item' | 'ItemAttribution' | 'ItemContribution' | 'LinkListTemplateDefinition' | 'LinkListTemplateInstance' | 'ListItemLayoutDefinition' | 'ListItemLayoutInstance' | 'ListItemTemplateDefinition' | 'ListItemTemplateInstance' | 'MainLayoutDefinition' | 'MainLayoutInstance' | 'MetadataLayoutDefinition' | 'MetadataLayoutInstance' | 'MetadataTemplateDefinition' | 'MetadataTemplateInstance' | 'NavigationLayoutDefinition' | 'NavigationLayoutInstance' | 'NavigationTemplateDefinition' | 'NavigationTemplateInstance' | 'Ordering' | 'OrderingEntry' | 'OrderingTemplateDefinition' | 'OrderingTemplateInstance' | 'OrganizationContributor' | 'PageListTemplateDefinition' | 'PageListTemplateInstance' | 'Permalink' | 'PersonContributor' | 'Role' | 'SchemaDefinition' | 'SchemaVersion' | 'Submission' | 'SubmissionComment' | 'SubmissionDepositTarget' | 'SubmissionReview' | 'SubmissionReviewTransition' | 'SubmissionTarget' | 'SubmissionTargetReviewer' | 'SubmissionTargetTransition' | 'SubmissionTransition' | 'SupplementaryLayoutDefinition' | 'SupplementaryLayoutInstance' | 'SupplementaryTemplateDefinition' | 'SupplementaryTemplateInstance' | 'TemplateInstanceSibling' | 'User' | 'UserCollectionAccessGrant' | 'UserCommunityAccessGrant' | 'UserGroup' | 'UserGroupCollectionAccessGrant' | 'UserGroupCommunityAccessGrant' | 'UserGroupItemAccessGrant' | 'UserItemAccessGrant', ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
 };
 
 export type HasEntityAnalyticsResolvers<ContextType = any, ParentType extends ResolversParentTypes['HasEntityAnalytics'] = ResolversParentTypes['HasEntityAnalytics']> = {
@@ -25460,20 +30532,27 @@ export type HasSchemaPropertiesResolvers<ContextType = any, ParentType extends R
 };
 
 export type HeroLayoutDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['HeroLayoutDefinition'] = ResolversParentTypes['HeroLayoutDefinition']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layoutKind?: Resolver<ResolversTypes['LayoutKind'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   template?: Resolver<Maybe<ResolversTypes['HeroTemplateDefinition']>, ParentType, ContextType>;
   templates?: Resolver<Array<ResolversTypes['AnyHeroTemplateDefinition']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type HeroLayoutInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['HeroLayoutInstance'] = ResolversParentTypes['HeroLayoutInstance']> = {
   allHidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   lastRenderedAt?: Resolver<Maybe<ResolversTypes['ISO8601DateTime']>, ParentType, ContextType>;
@@ -25483,12 +30562,16 @@ export type HeroLayoutInstanceResolvers<ContextType = any, ParentType extends Re
   template?: Resolver<Maybe<ResolversTypes['HeroTemplateInstance']>, ParentType, ContextType>;
   templates?: Resolver<Array<ResolversTypes['AnyHeroTemplateInstance']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type HeroTemplateDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['HeroTemplateDefinition'] = ResolversParentTypes['HeroTemplateDefinition']> = {
   background?: Resolver<Maybe<ResolversTypes['HeroBackground']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   descendantSearchPrompt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   enableDescendantBrowsing?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   enableDescendantSearch?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
@@ -25507,6 +30590,7 @@ export type HeroTemplateDefinitionResolvers<ContextType = any, ParentType extend
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -25532,7 +30616,10 @@ export type HeroTemplateDefinitionSlotsResolvers<ContextType = any, ParentType e
 
 export type HeroTemplateInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['HeroTemplateInstance'] = ResolversParentTypes['HeroTemplateInstance']> = {
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   definition?: Resolver<ResolversTypes['HeroTemplateDefinition'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   hidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
@@ -25545,6 +30632,7 @@ export type HeroTemplateInstanceResolvers<ContextType = any, ParentType extends 
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -25718,7 +30806,6 @@ export type IntegerPropertyResolvers<ContextType = any, ParentType extends Resol
 };
 
 export type ItemResolvers<ContextType = any, ParentType extends ResolversParentTypes['Item'] = ResolversParentTypes['Item']> = {
-  accessControlList?: Resolver<Maybe<ResolversTypes['AccessControlList']>, ParentType, ContextType>;
   accessGrants?: Resolver<ResolversTypes['AnyCollectionAccessGrantConnection'], ParentType, ContextType, RequireFields<ItemAccessGrantsArgs, 'order' | 'pageDirection' | 'subject'>>;
   allAccessGrants?: Resolver<ResolversTypes['AnyAccessGrantConnection'], ParentType, ContextType, RequireFields<ItemAllAccessGrantsArgs, 'order' | 'pageDirection' | 'subject'>>;
   allowedActions?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
@@ -25735,6 +30822,18 @@ export type ItemResolvers<ContextType = any, ParentType extends ResolversParentT
   attributions?: Resolver<Array<ResolversTypes['ItemAttribution']>, ParentType, ContextType>;
   availableEntitiesFor?: Resolver<Array<ResolversTypes['EntitySelectOption']>, ParentType, ContextType, RequireFields<ItemAvailableEntitiesForArgs, 'fullPath'>>;
   breadcrumbs?: Resolver<Array<ResolversTypes['EntityBreadcrumb']>, ParentType, ContextType>;
+  canAlterSchemaVersion?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateAssets?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateCollections?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canCreateItems?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canDeposit?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canManageAccess?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canPurge?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canReparent?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canRevalidate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canReview?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   canonicalPermalink?: Resolver<Maybe<ResolversTypes['Permalink']>, ParentType, ContextType>;
   children?: Resolver<ResolversTypes['ItemConnection'], ParentType, ContextType, Partial<ItemChildrenArgs>>;
   collection?: Resolver<ResolversTypes['Collection'], ParentType, ContextType>;
@@ -25743,6 +30842,7 @@ export type ItemResolvers<ContextType = any, ParentType extends ResolversParentT
   contributions?: Resolver<ResolversTypes['ItemContributionConnection'], ParentType, ContextType, RequireFields<ItemContributionsArgs, 'order' | 'pageDirection'>>;
   contributors?: Resolver<ResolversTypes['AnyContributorConnection'], ParentType, ContextType, RequireFields<ItemContributorsArgs, 'kind' | 'order' | 'pageDirection'>>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   currentlyHidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   currentlyVisible?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   descendants?: Resolver<ResolversTypes['EntityDescendantConnection'], ParentType, ContextType, RequireFields<ItemDescendantsArgs, 'order' | 'pageDirection' | 'scope'>>;
@@ -25790,12 +30890,15 @@ export type ItemResolvers<ContextType = any, ParentType extends ResolversParentT
   schemaVersion?: Resolver<ResolversTypes['SchemaVersion'], ParentType, ContextType>;
   search?: Resolver<ResolversTypes['SearchScope'], ParentType, ContextType, RequireFields<ItemSearchArgs, 'visibility'>>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  submissionStatus?: Resolver<ResolversTypes['EntitySubmissionStatus'], ParentType, ContextType>;
+  submissionTarget?: Resolver<Maybe<ResolversTypes['SubmissionTarget']>, ParentType, ContextType>;
   subtitle?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   summary?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   thumbnail?: Resolver<ResolversTypes['ImageAttachment'], ParentType, ContextType>;
   thumbnailMetadata?: Resolver<Maybe<ResolversTypes['ImageMetadata']>, ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   userAccessGrants?: Resolver<ResolversTypes['UserCollectionAccessGrantConnection'], ParentType, ContextType, RequireFields<ItemUserAccessGrantsArgs, 'order' | 'pageDirection'>>;
   userGroupAccessGrants?: Resolver<ResolversTypes['UserGroupCollectionAccessGrantConnection'], ParentType, ContextType, RequireFields<ItemUserGroupAccessGrantsArgs, 'order' | 'pageDirection'>>;
   visibility?: Resolver<ResolversTypes['EntityVisibility'], ParentType, ContextType>;
@@ -25807,12 +30910,16 @@ export type ItemResolvers<ContextType = any, ParentType extends ResolversParentT
 };
 
 export type ItemAttributionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ItemAttribution'] = ResolversParentTypes['ItemAttribution']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   contributor?: Resolver<ResolversTypes['ContributorBase'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   roles?: Resolver<Array<ResolversTypes['ControlledVocabularyItem']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -25825,10 +30932,13 @@ export type ItemConnectionResolvers<ContextType = any, ParentType extends Resolv
 
 export type ItemContributionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ItemContribution'] = ResolversParentTypes['ItemContribution']> = {
   affiliation?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   contributionRole?: Resolver<ResolversTypes['ControlledVocabularyItem'], ParentType, ContextType>;
   contributor?: Resolver<ResolversTypes['Contributor'], ParentType, ContextType>;
   contributorKind?: Resolver<ResolversTypes['ContributorKind'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   displayName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   innerPosition?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
@@ -25841,6 +30951,7 @@ export type ItemContributionResolvers<ContextType = any, ParentType extends Reso
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -25898,7 +31009,10 @@ export type LinkEntityPayloadResolvers<ContextType = any, ParentType extends Res
 export type LinkListTemplateDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['LinkListTemplateDefinition'] = ResolversParentTypes['LinkListTemplateDefinition']> = {
   background?: Resolver<Maybe<ResolversTypes['LinkListBackground']>, ParentType, ContextType>;
   browseStyle?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   dynamicOrderingDefinition?: Resolver<Maybe<ResolversTypes['OrderingDefinition']>, ParentType, ContextType>;
   entityContext?: Resolver<Maybe<ResolversTypes['ListEntityContext']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
@@ -25923,6 +31037,7 @@ export type LinkListTemplateDefinitionResolvers<ContextType = any, ParentType ex
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   useSelectionFallback?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   variant?: Resolver<Maybe<ResolversTypes['LinkListVariant']>, ParentType, ContextType>;
   width?: Resolver<Maybe<ResolversTypes['TemplateWidth']>, ParentType, ContextType>;
@@ -25943,7 +31058,10 @@ export type LinkListTemplateDefinitionSlotsResolvers<ContextType = any, ParentTy
 
 export type LinkListTemplateInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['LinkListTemplateInstance'] = ResolversParentTypes['LinkListTemplateInstance']> = {
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   definition?: Resolver<ResolversTypes['LinkListTemplateDefinition'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   entityList?: Resolver<ResolversTypes['TemplateEntityList'], ParentType, ContextType>;
@@ -25958,6 +31076,7 @@ export type LinkListTemplateInstanceResolvers<ContextType = any, ParentType exte
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -25999,20 +31118,27 @@ export type LinkTargetCandidateEdgeResolvers<ContextType = any, ParentType exten
 };
 
 export type ListItemLayoutDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ListItemLayoutDefinition'] = ResolversParentTypes['ListItemLayoutDefinition']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layoutKind?: Resolver<ResolversTypes['LayoutKind'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   template?: Resolver<Maybe<ResolversTypes['ListItemTemplateDefinition']>, ParentType, ContextType>;
   templates?: Resolver<Array<ResolversTypes['AnyListItemTemplateDefinition']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type ListItemLayoutInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['ListItemLayoutInstance'] = ResolversParentTypes['ListItemLayoutInstance']> = {
   allHidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   lastRenderedAt?: Resolver<Maybe<ResolversTypes['ISO8601DateTime']>, ParentType, ContextType>;
@@ -26022,11 +31148,15 @@ export type ListItemLayoutInstanceResolvers<ContextType = any, ParentType extend
   template?: Resolver<Maybe<ResolversTypes['ListItemTemplateInstance']>, ParentType, ContextType>;
   templates?: Resolver<Array<ResolversTypes['AnyListItemTemplateInstance']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type ListItemTemplateDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ListItemTemplateDefinition'] = ResolversParentTypes['ListItemTemplateDefinition']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   dynamicOrderingDefinition?: Resolver<Maybe<ResolversTypes['OrderingDefinition']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layoutKind?: Resolver<ResolversTypes['LayoutKind'], ParentType, ContextType>;
@@ -26045,6 +31175,7 @@ export type ListItemTemplateDefinitionResolvers<ContextType = any, ParentType ex
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   useSelectionFallback?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -26069,7 +31200,10 @@ export type ListItemTemplateDefinitionSlotsResolvers<ContextType = any, ParentTy
 
 export type ListItemTemplateInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['ListItemTemplateInstance'] = ResolversParentTypes['ListItemTemplateInstance']> = {
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   definition?: Resolver<ResolversTypes['ListItemTemplateDefinition'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   entityList?: Resolver<ResolversTypes['TemplateEntityList'], ParentType, ContextType>;
@@ -26084,6 +31218,7 @@ export type ListItemTemplateInstanceResolvers<ContextType = any, ParentType exte
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -26106,19 +31241,26 @@ export type ListItemTemplateInstanceSlotsResolvers<ContextType = any, ParentType
 };
 
 export type MainLayoutDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['MainLayoutDefinition'] = ResolversParentTypes['MainLayoutDefinition']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layoutKind?: Resolver<ResolversTypes['LayoutKind'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templates?: Resolver<Array<ResolversTypes['AnyMainTemplateDefinition']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type MainLayoutInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['MainLayoutInstance'] = ResolversParentTypes['MainLayoutInstance']> = {
   allHidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   lastRenderedAt?: Resolver<Maybe<ResolversTypes['ISO8601DateTime']>, ParentType, ContextType>;
@@ -26127,6 +31269,7 @@ export type MainLayoutInstanceResolvers<ContextType = any, ParentType extends Re
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templates?: Resolver<Array<ResolversTypes['AnyMainTemplateInstance']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -26150,20 +31293,27 @@ export type MarkdownPropertyResolvers<ContextType = any, ParentType extends Reso
 };
 
 export type MetadataLayoutDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['MetadataLayoutDefinition'] = ResolversParentTypes['MetadataLayoutDefinition']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layoutKind?: Resolver<ResolversTypes['LayoutKind'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   template?: Resolver<Maybe<ResolversTypes['MetadataTemplateDefinition']>, ParentType, ContextType>;
   templates?: Resolver<Array<ResolversTypes['AnyMetadataTemplateDefinition']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type MetadataLayoutInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['MetadataLayoutInstance'] = ResolversParentTypes['MetadataLayoutInstance']> = {
   allHidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   lastRenderedAt?: Resolver<Maybe<ResolversTypes['ISO8601DateTime']>, ParentType, ContextType>;
@@ -26173,18 +31323,23 @@ export type MetadataLayoutInstanceResolvers<ContextType = any, ParentType extend
   template?: Resolver<Maybe<ResolversTypes['MetadataTemplateInstance']>, ParentType, ContextType>;
   templates?: Resolver<Array<ResolversTypes['AnyMetadataTemplateInstance']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type MetadataTemplateDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['MetadataTemplateDefinition'] = ResolversParentTypes['MetadataTemplateDefinition']> = {
   background?: Resolver<Maybe<ResolversTypes['MetadataBackground']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layoutKind?: Resolver<ResolversTypes['LayoutKind'], ParentType, ContextType>;
   slots?: Resolver<ResolversTypes['MetadataTemplateDefinitionSlots'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -26199,7 +31354,10 @@ export type MetadataTemplateDefinitionSlotsResolvers<ContextType = any, ParentTy
 
 export type MetadataTemplateInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['MetadataTemplateInstance'] = ResolversParentTypes['MetadataTemplateInstance']> = {
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   definition?: Resolver<ResolversTypes['MetadataTemplateDefinition'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   hidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
@@ -26212,6 +31370,7 @@ export type MetadataTemplateInstanceResolvers<ContextType = any, ParentType exte
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -26260,6 +31419,8 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   createPage?: Resolver<Maybe<ResolversTypes['CreatePagePayload']>, ParentType, ContextType, RequireFields<MutationCreatePageArgs, 'input'>>;
   createPersonContributor?: Resolver<Maybe<ResolversTypes['CreatePersonContributorPayload']>, ParentType, ContextType, RequireFields<MutationCreatePersonContributorArgs, 'input'>>;
   createRole?: Resolver<Maybe<ResolversTypes['CreateRolePayload']>, ParentType, ContextType, RequireFields<MutationCreateRoleArgs, 'input'>>;
+  depositorRequestChangeState?: Resolver<Maybe<ResolversTypes['DepositorRequestChangeStatePayload']>, ParentType, ContextType, RequireFields<MutationDepositorRequestChangeStateArgs, 'input'>>;
+  depositorRequestCreate?: Resolver<Maybe<ResolversTypes['DepositorRequestCreatePayload']>, ParentType, ContextType, RequireFields<MutationDepositorRequestCreateArgs, 'input'>>;
   destroyAnnouncement?: Resolver<Maybe<ResolversTypes['DestroyAnnouncementPayload']>, ParentType, ContextType, RequireFields<MutationDestroyAnnouncementArgs, 'input'>>;
   destroyAsset?: Resolver<Maybe<ResolversTypes['DestroyAssetPayload']>, ParentType, ContextType, RequireFields<MutationDestroyAssetArgs, 'input'>>;
   destroyCollection?: Resolver<Maybe<ResolversTypes['DestroyCollectionPayload']>, ParentType, ContextType, RequireFields<MutationDestroyCollectionArgs, 'input'>>;
@@ -26295,6 +31456,18 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   reparentEntity?: Resolver<Maybe<ResolversTypes['ReparentEntityPayload']>, ParentType, ContextType, RequireFields<MutationReparentEntityArgs, 'input'>>;
   resetOrdering?: Resolver<Maybe<ResolversTypes['ResetOrderingPayload']>, ParentType, ContextType, RequireFields<MutationResetOrderingArgs, 'input'>>;
   revokeAccess?: Resolver<Maybe<ResolversTypes['RevokeAccessPayload']>, ParentType, ContextType, RequireFields<MutationRevokeAccessArgs, 'input'>>;
+  submissionChangeState?: Resolver<Maybe<ResolversTypes['SubmissionChangeStatePayload']>, ParentType, ContextType, RequireFields<MutationSubmissionChangeStateArgs, 'input'>>;
+  submissionCommentCreate?: Resolver<Maybe<ResolversTypes['SubmissionCommentCreatePayload']>, ParentType, ContextType, RequireFields<MutationSubmissionCommentCreateArgs, 'input'>>;
+  submissionCommentDestroy?: Resolver<Maybe<ResolversTypes['SubmissionCommentDestroyPayload']>, ParentType, ContextType, RequireFields<MutationSubmissionCommentDestroyArgs, 'input'>>;
+  submissionCommentUpdate?: Resolver<Maybe<ResolversTypes['SubmissionCommentUpdatePayload']>, ParentType, ContextType, RequireFields<MutationSubmissionCommentUpdateArgs, 'input'>>;
+  submissionCreate?: Resolver<Maybe<ResolversTypes['SubmissionCreatePayload']>, ParentType, ContextType, RequireFields<MutationSubmissionCreateArgs, 'input'>>;
+  submissionLeaveReview?: Resolver<Maybe<ResolversTypes['SubmissionLeaveReviewPayload']>, ParentType, ContextType, RequireFields<MutationSubmissionLeaveReviewArgs, 'input'>>;
+  submissionRequestReview?: Resolver<Maybe<ResolversTypes['SubmissionRequestReviewPayload']>, ParentType, ContextType, RequireFields<MutationSubmissionRequestReviewArgs, 'input'>>;
+  submissionTargetClose?: Resolver<Maybe<ResolversTypes['SubmissionTargetClosePayload']>, ParentType, ContextType, RequireFields<MutationSubmissionTargetCloseArgs, 'input'>>;
+  submissionTargetConfigure?: Resolver<Maybe<ResolversTypes['SubmissionTargetConfigurePayload']>, ParentType, ContextType, RequireFields<MutationSubmissionTargetConfigureArgs, 'input'>>;
+  submissionTargetOpen?: Resolver<Maybe<ResolversTypes['SubmissionTargetOpenPayload']>, ParentType, ContextType, RequireFields<MutationSubmissionTargetOpenArgs, 'input'>>;
+  submissionTargetReviewerCreate?: Resolver<Maybe<ResolversTypes['SubmissionTargetReviewerCreatePayload']>, ParentType, ContextType, RequireFields<MutationSubmissionTargetReviewerCreateArgs, 'input'>>;
+  submissionTargetReviewerDestroy?: Resolver<Maybe<ResolversTypes['SubmissionTargetReviewerDestroyPayload']>, ParentType, ContextType, RequireFields<MutationSubmissionTargetReviewerDestroyArgs, 'input'>>;
   updateAnnouncement?: Resolver<Maybe<ResolversTypes['UpdateAnnouncementPayload']>, ParentType, ContextType, RequireFields<MutationUpdateAnnouncementArgs, 'input'>>;
   updateAsset?: Resolver<Maybe<ResolversTypes['UpdateAssetPayload']>, ParentType, ContextType, RequireFields<MutationUpdateAssetArgs, 'input'>>;
   updateAssetAttachment?: Resolver<Maybe<ResolversTypes['UpdateAssetAttachmentPayload']>, ParentType, ContextType, RequireFields<MutationUpdateAssetAttachmentArgs, 'input'>>;
@@ -26337,20 +31510,27 @@ export type NamedAncestorResolvers<ContextType = any, ParentType extends Resolve
 };
 
 export type NavigationLayoutDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['NavigationLayoutDefinition'] = ResolversParentTypes['NavigationLayoutDefinition']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layoutKind?: Resolver<ResolversTypes['LayoutKind'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   template?: Resolver<Maybe<ResolversTypes['NavigationTemplateDefinition']>, ParentType, ContextType>;
   templates?: Resolver<Array<ResolversTypes['AnyNavigationTemplateDefinition']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type NavigationLayoutInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['NavigationLayoutInstance'] = ResolversParentTypes['NavigationLayoutInstance']> = {
   allHidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   lastRenderedAt?: Resolver<Maybe<ResolversTypes['ISO8601DateTime']>, ParentType, ContextType>;
@@ -26360,12 +31540,16 @@ export type NavigationLayoutInstanceResolvers<ContextType = any, ParentType exte
   template?: Resolver<Maybe<ResolversTypes['NavigationTemplateInstance']>, ParentType, ContextType>;
   templates?: Resolver<Array<ResolversTypes['AnyNavigationTemplateInstance']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type NavigationTemplateDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['NavigationTemplateDefinition'] = ResolversParentTypes['NavigationTemplateDefinition']> = {
   background?: Resolver<Maybe<ResolversTypes['NavigationBackground']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   hideMetadata?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layoutKind?: Resolver<ResolversTypes['LayoutKind'], ParentType, ContextType>;
@@ -26373,6 +31557,7 @@ export type NavigationTemplateDefinitionResolvers<ContextType = any, ParentType 
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -26383,7 +31568,10 @@ export type NavigationTemplateDefinitionSlotsResolvers<ContextType = any, Parent
 
 export type NavigationTemplateInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['NavigationTemplateInstance'] = ResolversParentTypes['NavigationTemplateInstance']> = {
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   definition?: Resolver<ResolversTypes['NavigationTemplateDefinition'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   hidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
@@ -26396,6 +31584,7 @@ export type NavigationTemplateInstanceResolvers<ContextType = any, ParentType ex
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -26405,7 +31594,7 @@ export type NavigationTemplateInstanceSlotsResolvers<ContextType = any, ParentTy
 };
 
 export type NodeResolvers<ContextType = any, ParentType extends ResolversParentTypes['Node'] = ResolversParentTypes['Node']> = {
-  __resolveType: TypeResolveFn<'Announcement' | 'AssetAudio' | 'AssetDocument' | 'AssetImage' | 'AssetPDF' | 'AssetUnknown' | 'AssetVideo' | 'BlurbTemplateDefinition' | 'BlurbTemplateInstance' | 'Collection' | 'CollectionAttribution' | 'CollectionContribution' | 'Community' | 'ContextualPermission' | 'ContributionRoleConfiguration' | 'ContributorCollectionAttribution' | 'ContributorItemAttribution' | 'ContributorListTemplateDefinition' | 'ContributorListTemplateInstance' | 'ControlledVocabulary' | 'ControlledVocabularyItem' | 'ControlledVocabularySource' | 'DescendantListTemplateDefinition' | 'DescendantListTemplateInstance' | 'DetailTemplateDefinition' | 'DetailTemplateInstance' | 'EntityBreadcrumb' | 'EntityLink' | 'GlobalConfiguration' | 'HarvestAttempt' | 'HarvestAttemptEntityStatus' | 'HarvestAttemptRecordStatus' | 'HarvestEntity' | 'HarvestError' | 'HarvestMapping' | 'HarvestMessage' | 'HarvestMetadataMapping' | 'HarvestRecord' | 'HarvestSet' | 'HarvestSource' | 'HeroLayoutDefinition' | 'HeroLayoutInstance' | 'HeroTemplateDefinition' | 'HeroTemplateInstance' | 'HierarchicalSchemaRank' | 'HierarchicalSchemaVersionRank' | 'Item' | 'ItemAttribution' | 'ItemContribution' | 'LinkListTemplateDefinition' | 'LinkListTemplateInstance' | 'LinkTargetCandidate' | 'ListItemLayoutDefinition' | 'ListItemLayoutInstance' | 'ListItemTemplateDefinition' | 'ListItemTemplateInstance' | 'MainLayoutDefinition' | 'MainLayoutInstance' | 'MetadataLayoutDefinition' | 'MetadataLayoutInstance' | 'MetadataTemplateDefinition' | 'MetadataTemplateInstance' | 'NavigationLayoutDefinition' | 'NavigationLayoutInstance' | 'NavigationTemplateDefinition' | 'NavigationTemplateInstance' | 'Ordering' | 'OrderingEntry' | 'OrderingTemplateDefinition' | 'OrderingTemplateInstance' | 'OrganizationContributor' | 'Page' | 'PageListTemplateDefinition' | 'PageListTemplateInstance' | 'Permalink' | 'PersonContributor' | 'Role' | 'SchemaDefinition' | 'SchemaVersion' | 'SearchResult' | 'SupplementaryLayoutDefinition' | 'SupplementaryLayoutInstance' | 'SupplementaryTemplateDefinition' | 'SupplementaryTemplateInstance' | 'TemplateInstanceSibling' | 'User' | 'UserCollectionAccessGrant' | 'UserCommunityAccessGrant' | 'UserGroup' | 'UserGroupCollectionAccessGrant' | 'UserGroupCommunityAccessGrant' | 'UserGroupItemAccessGrant' | 'UserItemAccessGrant', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'Announcement' | 'AssetAudio' | 'AssetDocument' | 'AssetImage' | 'AssetPDF' | 'AssetUnknown' | 'AssetVideo' | 'BlurbTemplateDefinition' | 'BlurbTemplateInstance' | 'Collection' | 'CollectionAttribution' | 'CollectionContribution' | 'Community' | 'ContextualPermission' | 'ContributionRoleConfiguration' | 'ContributorCollectionAttribution' | 'ContributorItemAttribution' | 'ContributorListTemplateDefinition' | 'ContributorListTemplateInstance' | 'ControlledVocabulary' | 'ControlledVocabularyItem' | 'ControlledVocabularySource' | 'DepositorRequest' | 'DescendantListTemplateDefinition' | 'DescendantListTemplateInstance' | 'DetailTemplateDefinition' | 'DetailTemplateInstance' | 'EntityBreadcrumb' | 'EntityLink' | 'GlobalConfiguration' | 'HarvestAttempt' | 'HarvestAttemptEntityStatus' | 'HarvestAttemptRecordStatus' | 'HarvestEntity' | 'HarvestError' | 'HarvestMapping' | 'HarvestMessage' | 'HarvestMetadataMapping' | 'HarvestRecord' | 'HarvestSet' | 'HarvestSource' | 'HeroLayoutDefinition' | 'HeroLayoutInstance' | 'HeroTemplateDefinition' | 'HeroTemplateInstance' | 'HierarchicalSchemaRank' | 'HierarchicalSchemaVersionRank' | 'Item' | 'ItemAttribution' | 'ItemContribution' | 'LinkListTemplateDefinition' | 'LinkListTemplateInstance' | 'LinkTargetCandidate' | 'ListItemLayoutDefinition' | 'ListItemLayoutInstance' | 'ListItemTemplateDefinition' | 'ListItemTemplateInstance' | 'MainLayoutDefinition' | 'MainLayoutInstance' | 'MetadataLayoutDefinition' | 'MetadataLayoutInstance' | 'MetadataTemplateDefinition' | 'MetadataTemplateInstance' | 'NavigationLayoutDefinition' | 'NavigationLayoutInstance' | 'NavigationTemplateDefinition' | 'NavigationTemplateInstance' | 'Ordering' | 'OrderingEntry' | 'OrderingTemplateDefinition' | 'OrderingTemplateInstance' | 'OrganizationContributor' | 'Page' | 'PageListTemplateDefinition' | 'PageListTemplateInstance' | 'Permalink' | 'PersonContributor' | 'Role' | 'SchemaDefinition' | 'SchemaVersion' | 'SearchResult' | 'Submission' | 'SubmissionComment' | 'SubmissionDepositTarget' | 'SubmissionReview' | 'SubmissionReviewTransition' | 'SubmissionTarget' | 'SubmissionTargetReviewer' | 'SubmissionTargetTransition' | 'SubmissionTransition' | 'SupplementaryLayoutDefinition' | 'SupplementaryLayoutInstance' | 'SupplementaryTemplateDefinition' | 'SupplementaryTemplateInstance' | 'TemplateInstanceSibling' | 'User' | 'UserCollectionAccessGrant' | 'UserCommunityAccessGrant' | 'UserGroup' | 'UserGroupCollectionAccessGrant' | 'UserGroupCommunityAccessGrant' | 'UserGroupItemAccessGrant' | 'UserItemAccessGrant', ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
 };
 
@@ -26422,10 +31611,13 @@ export type OrderDefinitionResolvers<ContextType = any, ParentType extends Resol
 };
 
 export type OrderingResolvers<ContextType = any, ParentType extends ResolversParentTypes['Ordering'] = ResolversParentTypes['Ordering']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   children?: Resolver<ResolversTypes['OrderingEntryConnection'], ParentType, ContextType, RequireFields<OrderingChildrenArgs, 'order' | 'pageDirection'>>;
   constant?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   disabled?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   disabledAt?: Resolver<Maybe<ResolversTypes['ISO8601Date']>, ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
@@ -26445,6 +31637,7 @@ export type OrderingResolvers<ContextType = any, ParentType extends ResolversPar
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   tree?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -26476,7 +31669,10 @@ export type OrderingEdgeResolvers<ContextType = any, ParentType extends Resolver
 
 export type OrderingEntryResolvers<ContextType = any, ParentType extends ResolversParentTypes['OrderingEntry'] = ResolversParentTypes['OrderingEntry']> = {
   ancestors?: Resolver<Array<ResolversTypes['OrderingEntry']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entry?: Resolver<ResolversTypes['OrderingEntryable'], ParentType, ContextType>;
   entrySlug?: Resolver<Maybe<ResolversTypes['Slug']>, ParentType, ContextType>;
   entryTitle?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -26489,6 +31685,7 @@ export type OrderingEntryResolvers<ContextType = any, ParentType extends Resolve
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   treeDepth?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -26551,7 +31748,10 @@ export type OrderingSelectLinkDefinitionResolvers<ContextType = any, ParentType 
 
 export type OrderingTemplateDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['OrderingTemplateDefinition'] = ResolversParentTypes['OrderingTemplateDefinition']> = {
   background?: Resolver<Maybe<ResolversTypes['OrderingBackground']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layoutKind?: Resolver<ResolversTypes['LayoutKind'], ParentType, ContextType>;
   orderingIdentifier?: Resolver<Maybe<ResolversTypes['SchemaComponent']>, ParentType, ContextType>;
@@ -26565,6 +31765,7 @@ export type OrderingTemplateDefinitionResolvers<ContextType = any, ParentType ex
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   width?: Resolver<Maybe<ResolversTypes['TemplateWidth']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -26577,7 +31778,10 @@ export type OrderingTemplateDefinitionSlotsResolvers<ContextType = any, ParentTy
 
 export type OrderingTemplateInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['OrderingTemplateInstance'] = ResolversParentTypes['OrderingTemplateInstance']> = {
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   definition?: Resolver<ResolversTypes['OrderingTemplateDefinition'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   hidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
@@ -26591,6 +31795,7 @@ export type OrderingTemplateInstanceResolvers<ContextType = any, ParentType exte
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -26604,10 +31809,13 @@ export type OrganizationContributorResolvers<ContextType = any, ParentType exten
   affiliation?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   attributions?: Resolver<ResolversTypes['ContributorAttributionConnection'], ParentType, ContextType, RequireFields<OrganizationContributorAttributionsArgs, 'order' | 'pageDirection'>>;
   bio?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   collectionContributionCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   collectionContributions?: Resolver<ResolversTypes['CollectionContributionConnection'], ParentType, ContextType, RequireFields<OrganizationContributorCollectionContributionsArgs, 'order' | 'pageDirection'>>;
   contributionCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   familyName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   givenName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -26629,6 +31837,7 @@ export type OrganizationContributorResolvers<ContextType = any, ParentType exten
   suffix?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -26675,13 +31884,17 @@ export type PageInfoResolvers<ContextType = any, ParentType extends ResolversPar
 
 export type PageListTemplateDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PageListTemplateDefinition'] = ResolversParentTypes['PageListTemplateDefinition']> = {
   background?: Resolver<Maybe<ResolversTypes['PageListBackground']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layoutKind?: Resolver<ResolversTypes['LayoutKind'], ParentType, ContextType>;
   slots?: Resolver<ResolversTypes['PageListTemplateDefinitionSlots'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   width?: Resolver<Maybe<ResolversTypes['TemplateWidth']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -26693,7 +31906,10 @@ export type PageListTemplateDefinitionSlotsResolvers<ContextType = any, ParentTy
 
 export type PageListTemplateInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['PageListTemplateInstance'] = ResolversParentTypes['PageListTemplateInstance']> = {
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   definition?: Resolver<ResolversTypes['PageListTemplateDefinition'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   hidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
@@ -26706,6 +31922,7 @@ export type PageListTemplateInstanceResolvers<ContextType = any, ParentType exte
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -26715,19 +31932,23 @@ export type PageListTemplateInstanceSlotsResolvers<ContextType = any, ParentType
 };
 
 export type PaginatedResolvers<ContextType = any, ParentType extends ResolversParentTypes['Paginated'] = ResolversParentTypes['Paginated']> = {
-  __resolveType: TypeResolveFn<'AnnouncementConnection' | 'AnyAccessGrantConnection' | 'AnyCollectionAccessGrantConnection' | 'AnyCommunityAccessGrantConnection' | 'AnyContributorConnection' | 'AnyUserAccessGrantConnection' | 'AnyUserGroupAccessGrantConnection' | 'AssetConnection' | 'CollectionConnection' | 'CollectionContributionConnection' | 'CommunityConnection' | 'ContextualPermissionConnection' | 'ContributorAttributionConnection' | 'ControlledVocabularyConnection' | 'ControlledVocabularySourceConnection' | 'EntityDescendantConnection' | 'EntityLinkConnection' | 'HarvestAttemptConnection' | 'HarvestMappingConnection' | 'HarvestMessageConnection' | 'HarvestMetadataMappingConnection' | 'HarvestRecordConnection' | 'HarvestSetConnection' | 'HarvestSourceConnection' | 'ItemConnection' | 'ItemContributionConnection' | 'LinkTargetCandidateConnection' | 'OrderingConnection' | 'OrderingEntryConnection' | 'PageConnection' | 'PermalinkConnection' | 'RoleConnection' | 'SchemaDefinitionConnection' | 'SchemaVersionConnection' | 'SearchResultConnection' | 'UserCollectionAccessGrantConnection' | 'UserCommunityAccessGrantConnection' | 'UserConnection' | 'UserGroupCollectionAccessGrantConnection' | 'UserGroupCommunityAccessGrantConnection' | 'UserGroupItemAccessGrantConnection' | 'UserItemAccessGrantConnection', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'AnnouncementConnection' | 'AnyAccessGrantConnection' | 'AnyCollectionAccessGrantConnection' | 'AnyCommunityAccessGrantConnection' | 'AnyContributorConnection' | 'AnyUserAccessGrantConnection' | 'AnyUserGroupAccessGrantConnection' | 'AssetConnection' | 'CollectionConnection' | 'CollectionContributionConnection' | 'CommunityConnection' | 'ContextualPermissionConnection' | 'ContributorAttributionConnection' | 'ControlledVocabularyConnection' | 'ControlledVocabularySourceConnection' | 'DepositorRequestConnection' | 'EntityDescendantConnection' | 'EntityLinkConnection' | 'HarvestAttemptConnection' | 'HarvestMappingConnection' | 'HarvestMessageConnection' | 'HarvestMetadataMappingConnection' | 'HarvestRecordConnection' | 'HarvestSetConnection' | 'HarvestSourceConnection' | 'ItemConnection' | 'ItemContributionConnection' | 'LinkTargetCandidateConnection' | 'OrderingConnection' | 'OrderingEntryConnection' | 'PageConnection' | 'PermalinkConnection' | 'RoleConnection' | 'SchemaDefinitionConnection' | 'SchemaVersionConnection' | 'SearchResultConnection' | 'SubmissionCommentConnection' | 'SubmissionConnection' | 'SubmissionReviewConnection' | 'SubmissionReviewTransitionConnection' | 'SubmissionTargetConnection' | 'SubmissionTargetTransitionConnection' | 'SubmissionTransitionConnection' | 'UserCollectionAccessGrantConnection' | 'UserCommunityAccessGrantConnection' | 'UserConnection' | 'UserGroupCollectionAccessGrantConnection' | 'UserGroupCommunityAccessGrantConnection' | 'UserGroupItemAccessGrantConnection' | 'UserItemAccessGrantConnection', ParentType, ContextType>;
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
 };
 
 export type PermalinkResolvers<ContextType = any, ParentType extends ResolversParentTypes['Permalink'] = ResolversParentTypes['Permalink']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   canonical?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['PermalinkableKind'], ParentType, ContextType>;
   permalinkable?: Resolver<ResolversTypes['Permalinkable'], ParentType, ContextType>;
   permalinkableSlug?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   uri?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -26800,10 +32021,13 @@ export type PersonContributorResolvers<ContextType = any, ParentType extends Res
   affiliation?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   attributions?: Resolver<ResolversTypes['ContributorAttributionConnection'], ParentType, ContextType, RequireFields<PersonContributorAttributionsArgs, 'order' | 'pageDirection'>>;
   bio?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   collectionContributionCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   collectionContributions?: Resolver<ResolversTypes['CollectionContributionConnection'], ParentType, ContextType, RequireFields<PersonContributorCollectionContributionsArgs, 'order' | 'pageDirection'>>;
   contributionCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   familyName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   givenName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -26825,6 +32049,7 @@ export type PersonContributorResolvers<ContextType = any, ParentType extends Res
   suffix?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -26865,6 +32090,12 @@ export type QueriesControlledVocabularySourceResolvers<ContextType = any, Parent
   __resolveType: TypeResolveFn<'Query', ParentType, ContextType>;
   controlledVocabularySource?: Resolver<Maybe<ResolversTypes['ControlledVocabularySource']>, ParentType, ContextType, RequireFields<QueriesControlledVocabularySourceControlledVocabularySourceArgs, 'slug'>>;
   controlledVocabularySources?: Resolver<ResolversTypes['ControlledVocabularySourceConnection'], ParentType, ContextType, RequireFields<QueriesControlledVocabularySourceControlledVocabularySourcesArgs, 'filters' | 'orFilters' | 'order' | 'pageDirection'>>;
+};
+
+export type QueriesDepositorRequestResolvers<ContextType = any, ParentType extends ResolversParentTypes['QueriesDepositorRequest'] = ResolversParentTypes['QueriesDepositorRequest']> = {
+  __resolveType: TypeResolveFn<'Query', ParentType, ContextType>;
+  depositorRequest?: Resolver<Maybe<ResolversTypes['DepositorRequest']>, ParentType, ContextType, RequireFields<QueriesDepositorRequestDepositorRequestArgs, 'slug'>>;
+  depositorRequests?: Resolver<ResolversTypes['DepositorRequestConnection'], ParentType, ContextType, RequireFields<QueriesDepositorRequestDepositorRequestsArgs, 'filters' | 'orFilters' | 'order' | 'pageDirection'>>;
 };
 
 export type QueriesEntitiesResolvers<ContextType = any, ParentType extends ResolversParentTypes['QueriesEntities'] = ResolversParentTypes['QueriesEntities']> = {
@@ -26933,6 +32164,30 @@ export type QueriesSchemasResolvers<ContextType = any, ParentType extends Resolv
   schemaVersions?: Resolver<ResolversTypes['SchemaVersionConnection'], ParentType, ContextType, RequireFields<QueriesSchemasSchemaVersionsArgs, 'order' | 'pageDirection'>>;
 };
 
+export type QueriesSubmissionResolvers<ContextType = any, ParentType extends ResolversParentTypes['QueriesSubmission'] = ResolversParentTypes['QueriesSubmission']> = {
+  __resolveType: TypeResolveFn<'Query', ParentType, ContextType>;
+  submission?: Resolver<Maybe<ResolversTypes['Submission']>, ParentType, ContextType, RequireFields<QueriesSubmissionSubmissionArgs, 'slug'>>;
+  submissions?: Resolver<ResolversTypes['SubmissionConnection'], ParentType, ContextType, RequireFields<QueriesSubmissionSubmissionsArgs, 'filters' | 'orFilters' | 'order' | 'pageDirection'>>;
+};
+
+export type QueriesSubmissionCommentResolvers<ContextType = any, ParentType extends ResolversParentTypes['QueriesSubmissionComment'] = ResolversParentTypes['QueriesSubmissionComment']> = {
+  __resolveType: TypeResolveFn<'Query', ParentType, ContextType>;
+  submissionComment?: Resolver<Maybe<ResolversTypes['SubmissionComment']>, ParentType, ContextType, RequireFields<QueriesSubmissionCommentSubmissionCommentArgs, 'slug'>>;
+  submissionComments?: Resolver<ResolversTypes['SubmissionCommentConnection'], ParentType, ContextType, RequireFields<QueriesSubmissionCommentSubmissionCommentsArgs, 'filters' | 'orFilters' | 'order' | 'pageDirection'>>;
+};
+
+export type QueriesSubmissionReviewResolvers<ContextType = any, ParentType extends ResolversParentTypes['QueriesSubmissionReview'] = ResolversParentTypes['QueriesSubmissionReview']> = {
+  __resolveType: TypeResolveFn<'Query', ParentType, ContextType>;
+  submissionReview?: Resolver<Maybe<ResolversTypes['SubmissionReview']>, ParentType, ContextType, RequireFields<QueriesSubmissionReviewSubmissionReviewArgs, 'slug'>>;
+  submissionReviews?: Resolver<ResolversTypes['SubmissionReviewConnection'], ParentType, ContextType, RequireFields<QueriesSubmissionReviewSubmissionReviewsArgs, 'filters' | 'orFilters' | 'order' | 'pageDirection'>>;
+};
+
+export type QueriesSubmissionTargetResolvers<ContextType = any, ParentType extends ResolversParentTypes['QueriesSubmissionTarget'] = ResolversParentTypes['QueriesSubmissionTarget']> = {
+  __resolveType: TypeResolveFn<'Query', ParentType, ContextType>;
+  submissionTarget?: Resolver<Maybe<ResolversTypes['SubmissionTarget']>, ParentType, ContextType, RequireFields<QueriesSubmissionTargetSubmissionTargetArgs, 'slug'>>;
+  submissionTargets?: Resolver<ResolversTypes['SubmissionTargetConnection'], ParentType, ContextType, RequireFields<QueriesSubmissionTargetSubmissionTargetsArgs, 'filters' | 'orFilters' | 'order' | 'pageDirection'>>;
+};
+
 export type QueriesSystemResolvers<ContextType = any, ParentType extends ResolversParentTypes['QueriesSystem'] = ResolversParentTypes['QueriesSystem']> = {
   __resolveType: TypeResolveFn<'Query', ParentType, ContextType>;
   analytics?: Resolver<ResolversTypes['Analytics'], ParentType, ContextType>;
@@ -26967,6 +32222,8 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   controlledVocabulary?: Resolver<Maybe<ResolversTypes['ControlledVocabulary']>, ParentType, ContextType, RequireFields<QueryControlledVocabularyArgs, 'slug'>>;
   controlledVocabularySource?: Resolver<Maybe<ResolversTypes['ControlledVocabularySource']>, ParentType, ContextType, RequireFields<QueryControlledVocabularySourceArgs, 'slug'>>;
   controlledVocabularySources?: Resolver<ResolversTypes['ControlledVocabularySourceConnection'], ParentType, ContextType, RequireFields<QueryControlledVocabularySourcesArgs, 'filters' | 'orFilters' | 'order' | 'pageDirection'>>;
+  depositorRequest?: Resolver<Maybe<ResolversTypes['DepositorRequest']>, ParentType, ContextType, RequireFields<QueryDepositorRequestArgs, 'slug'>>;
+  depositorRequests?: Resolver<ResolversTypes['DepositorRequestConnection'], ParentType, ContextType, RequireFields<QueryDepositorRequestsArgs, 'filters' | 'orFilters' | 'order' | 'pageDirection'>>;
   globalConfiguration?: Resolver<ResolversTypes['GlobalConfiguration'], ParentType, ContextType>;
   harvestAttempt?: Resolver<Maybe<ResolversTypes['HarvestAttempt']>, ParentType, ContextType, RequireFields<QueryHarvestAttemptArgs, 'slug'>>;
   harvestAttempts?: Resolver<ResolversTypes['HarvestAttemptConnection'], ParentType, ContextType, RequireFields<QueryHarvestAttemptsArgs, 'order' | 'pageDirection'>>;
@@ -26994,6 +32251,14 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   schemaVersionOptions?: Resolver<Array<ResolversTypes['SchemaVersionOption']>, ParentType, ContextType, RequireFields<QuerySchemaVersionOptionsArgs, 'kind'>>;
   schemaVersions?: Resolver<ResolversTypes['SchemaVersionConnection'], ParentType, ContextType, RequireFields<QuerySchemaVersionsArgs, 'order' | 'pageDirection'>>;
   search?: Resolver<ResolversTypes['SearchScope'], ParentType, ContextType, RequireFields<QuerySearchArgs, 'visibility'>>;
+  submission?: Resolver<Maybe<ResolversTypes['Submission']>, ParentType, ContextType, RequireFields<QuerySubmissionArgs, 'slug'>>;
+  submissionComment?: Resolver<Maybe<ResolversTypes['SubmissionComment']>, ParentType, ContextType, RequireFields<QuerySubmissionCommentArgs, 'slug'>>;
+  submissionComments?: Resolver<ResolversTypes['SubmissionCommentConnection'], ParentType, ContextType, RequireFields<QuerySubmissionCommentsArgs, 'filters' | 'orFilters' | 'order' | 'pageDirection'>>;
+  submissionReview?: Resolver<Maybe<ResolversTypes['SubmissionReview']>, ParentType, ContextType, RequireFields<QuerySubmissionReviewArgs, 'slug'>>;
+  submissionReviews?: Resolver<ResolversTypes['SubmissionReviewConnection'], ParentType, ContextType, RequireFields<QuerySubmissionReviewsArgs, 'filters' | 'orFilters' | 'order' | 'pageDirection'>>;
+  submissionTarget?: Resolver<Maybe<ResolversTypes['SubmissionTarget']>, ParentType, ContextType, RequireFields<QuerySubmissionTargetArgs, 'slug'>>;
+  submissionTargets?: Resolver<ResolversTypes['SubmissionTargetConnection'], ParentType, ContextType, RequireFields<QuerySubmissionTargetsArgs, 'filters' | 'orFilters' | 'order' | 'pageDirection'>>;
+  submissions?: Resolver<ResolversTypes['SubmissionConnection'], ParentType, ContextType, RequireFields<QuerySubmissionsArgs, 'filters' | 'orFilters' | 'order' | 'pageDirection'>>;
   systemInfo?: Resolver<ResolversTypes['SystemInfo'], ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'slug'>>;
   users?: Resolver<ResolversTypes['UserConnection'], ParentType, ContextType, RequireFields<QueryUsersArgs, 'order' | 'pageDirection'>>;
@@ -27068,9 +32333,11 @@ export type RevokeAccessPayloadResolvers<ContextType = any, ParentType extends R
 export type RoleResolvers<ContextType = any, ParentType extends ResolversParentTypes['Role'] = ResolversParentTypes['Role']> = {
   accessControlList?: Resolver<ResolversTypes['AccessControlList'], ParentType, ContextType>;
   allowedActions?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   customPriority?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  effectiveAccess?: Resolver<ResolversTypes['EffectiveAccess'], ParentType, ContextType>;
   globalAccessControlList?: Resolver<ResolversTypes['GlobalAccessControlList'], ParentType, ContextType>;
   globalAllowedActions?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
@@ -27082,6 +32349,7 @@ export type RoleResolvers<ContextType = any, ParentType extends ResolversParentT
   priority?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -27118,7 +32386,10 @@ export interface SchemaComponentScalarConfig extends GraphQLScalarTypeConfig<Res
 }
 
 export type SchemaDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SchemaDefinition'] = ResolversParentTypes['SchemaDefinition']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   declaration?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   identifier?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -27127,6 +32398,7 @@ export type SchemaDefinitionResolvers<ContextType = any, ParentType extends Reso
   namespace?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -27210,7 +32482,10 @@ export type SchemaValueErrorResolvers<ContextType = any, ParentType extends Reso
 };
 
 export type SchemaVersionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SchemaVersion'] = ResolversParentTypes['SchemaVersion']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   declaration?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   enforcedChildDeclarations?: Resolver<Array<ResolversTypes['Slug']>, ParentType, ContextType>;
   enforcedChildKinds?: Resolver<Array<ResolversTypes['ChildEntityKind']>, ParentType, ContextType>;
@@ -27233,6 +32508,7 @@ export type SchemaVersionResolvers<ContextType = any, ParentType extends Resolve
   searchableProperties?: Resolver<Array<ResolversTypes['SearchableProperty']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -27372,12 +32648,12 @@ export interface SlugScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 }
 
 export type SluggableResolvers<ContextType = any, ParentType extends ResolversParentTypes['Sluggable'] = ResolversParentTypes['Sluggable']> = {
-  __resolveType: TypeResolveFn<'Announcement' | 'AssetAudio' | 'AssetDocument' | 'AssetImage' | 'AssetPDF' | 'AssetUnknown' | 'AssetVideo' | 'BlurbTemplateDefinition' | 'BlurbTemplateInstance' | 'Collection' | 'CollectionAttribution' | 'CollectionContribution' | 'Community' | 'ContextualPermission' | 'ContributionRoleConfiguration' | 'ContributorCollectionAttribution' | 'ContributorItemAttribution' | 'ContributorListTemplateDefinition' | 'ContributorListTemplateInstance' | 'ControlledVocabulary' | 'ControlledVocabularyItem' | 'ControlledVocabularySource' | 'DescendantListTemplateDefinition' | 'DescendantListTemplateInstance' | 'DetailTemplateDefinition' | 'DetailTemplateInstance' | 'EntityLink' | 'HarvestAttempt' | 'HarvestAttemptEntityStatus' | 'HarvestAttemptRecordStatus' | 'HarvestEntity' | 'HarvestError' | 'HarvestMapping' | 'HarvestMessage' | 'HarvestMetadataMapping' | 'HarvestRecord' | 'HarvestSet' | 'HarvestSource' | 'HeroLayoutDefinition' | 'HeroLayoutInstance' | 'HeroTemplateDefinition' | 'HeroTemplateInstance' | 'Item' | 'ItemAttribution' | 'ItemContribution' | 'LinkListTemplateDefinition' | 'LinkListTemplateInstance' | 'ListItemLayoutDefinition' | 'ListItemLayoutInstance' | 'ListItemTemplateDefinition' | 'ListItemTemplateInstance' | 'MainLayoutDefinition' | 'MainLayoutInstance' | 'MetadataLayoutDefinition' | 'MetadataLayoutInstance' | 'MetadataTemplateDefinition' | 'MetadataTemplateInstance' | 'NavigationLayoutDefinition' | 'NavigationLayoutInstance' | 'NavigationTemplateDefinition' | 'NavigationTemplateInstance' | 'Ordering' | 'OrderingEntry' | 'OrderingTemplateDefinition' | 'OrderingTemplateInstance' | 'OrganizationContributor' | 'PageListTemplateDefinition' | 'PageListTemplateInstance' | 'Permalink' | 'PersonContributor' | 'Role' | 'SchemaDefinition' | 'SchemaVersion' | 'SearchResult' | 'SupplementaryLayoutDefinition' | 'SupplementaryLayoutInstance' | 'SupplementaryTemplateDefinition' | 'SupplementaryTemplateInstance' | 'TemplateInstanceSibling' | 'User' | 'UserCollectionAccessGrant' | 'UserCommunityAccessGrant' | 'UserGroup' | 'UserGroupCollectionAccessGrant' | 'UserGroupCommunityAccessGrant' | 'UserGroupItemAccessGrant' | 'UserItemAccessGrant', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'Announcement' | 'AssetAudio' | 'AssetDocument' | 'AssetImage' | 'AssetPDF' | 'AssetUnknown' | 'AssetVideo' | 'BlurbTemplateDefinition' | 'BlurbTemplateInstance' | 'Collection' | 'CollectionAttribution' | 'CollectionContribution' | 'Community' | 'ContextualPermission' | 'ContributionRoleConfiguration' | 'ContributorCollectionAttribution' | 'ContributorItemAttribution' | 'ContributorListTemplateDefinition' | 'ContributorListTemplateInstance' | 'ControlledVocabulary' | 'ControlledVocabularyItem' | 'ControlledVocabularySource' | 'DepositorRequest' | 'DescendantListTemplateDefinition' | 'DescendantListTemplateInstance' | 'DetailTemplateDefinition' | 'DetailTemplateInstance' | 'EntityLink' | 'HarvestAttempt' | 'HarvestAttemptEntityStatus' | 'HarvestAttemptRecordStatus' | 'HarvestEntity' | 'HarvestError' | 'HarvestMapping' | 'HarvestMessage' | 'HarvestMetadataMapping' | 'HarvestRecord' | 'HarvestSet' | 'HarvestSource' | 'HeroLayoutDefinition' | 'HeroLayoutInstance' | 'HeroTemplateDefinition' | 'HeroTemplateInstance' | 'Item' | 'ItemAttribution' | 'ItemContribution' | 'LinkListTemplateDefinition' | 'LinkListTemplateInstance' | 'ListItemLayoutDefinition' | 'ListItemLayoutInstance' | 'ListItemTemplateDefinition' | 'ListItemTemplateInstance' | 'MainLayoutDefinition' | 'MainLayoutInstance' | 'MetadataLayoutDefinition' | 'MetadataLayoutInstance' | 'MetadataTemplateDefinition' | 'MetadataTemplateInstance' | 'NavigationLayoutDefinition' | 'NavigationLayoutInstance' | 'NavigationTemplateDefinition' | 'NavigationTemplateInstance' | 'Ordering' | 'OrderingEntry' | 'OrderingTemplateDefinition' | 'OrderingTemplateInstance' | 'OrganizationContributor' | 'PageListTemplateDefinition' | 'PageListTemplateInstance' | 'Permalink' | 'PersonContributor' | 'Role' | 'SchemaDefinition' | 'SchemaVersion' | 'SearchResult' | 'Submission' | 'SubmissionComment' | 'SubmissionDepositTarget' | 'SubmissionReview' | 'SubmissionReviewTransition' | 'SubmissionTarget' | 'SubmissionTargetReviewer' | 'SubmissionTargetTransition' | 'SubmissionTransition' | 'SupplementaryLayoutDefinition' | 'SupplementaryLayoutInstance' | 'SupplementaryTemplateDefinition' | 'SupplementaryTemplateInstance' | 'TemplateInstanceSibling' | 'User' | 'UserCollectionAccessGrant' | 'UserCommunityAccessGrant' | 'UserGroup' | 'UserGroupCollectionAccessGrant' | 'UserGroupCommunityAccessGrant' | 'UserGroupItemAccessGrant' | 'UserItemAccessGrant', ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
 };
 
 export type StandardMutationPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['StandardMutationPayload'] = ResolversParentTypes['StandardMutationPayload']> = {
-  __resolveType: TypeResolveFn<'AlterSchemaVersionPayload' | 'ApplySchemaPropertiesPayload' | 'ControlledVocabularyDestroyPayload' | 'ControlledVocabularySourceUpdatePayload' | 'ControlledVocabularyUpsertPayload' | 'CreateAnnouncementPayload' | 'CreateAssetPayload' | 'CreateCollectionPayload' | 'CreateCommunityPayload' | 'CreateItemPayload' | 'CreateOrderingPayload' | 'CreateOrganizationContributorPayload' | 'CreatePagePayload' | 'CreatePersonContributorPayload' | 'CreateRolePayload' | 'DestroyAnnouncementPayload' | 'DestroyAssetPayload' | 'DestroyCollectionPayload' | 'DestroyCommunityPayload' | 'DestroyContributionPayload' | 'DestroyContributorPayload' | 'DestroyEntityLinkPayload' | 'DestroyItemPayload' | 'DestroyOrderingPayload' | 'DestroyPagePayload' | 'EntityPurgePayload' | 'FrontendCacheRevalidateEntityPayload' | 'FrontendCacheRevalidateInstancePayload' | 'GrantAccessPayload' | 'HarvestAttemptFromMappingPayload' | 'HarvestAttemptFromSourcePayload' | 'HarvestAttemptPruneEntitiesPayload' | 'HarvestMappingCreatePayload' | 'HarvestMappingDestroyPayload' | 'HarvestMappingUpdatePayload' | 'HarvestMetadataMappingCreatePayload' | 'HarvestMetadataMappingDestroyPayload' | 'HarvestSourceCreatePayload' | 'HarvestSourceDestroyPayload' | 'HarvestSourcePruneEntitiesPayload' | 'HarvestSourceUpdatePayload' | 'LinkEntityPayload' | 'PermalinkCreatePayload' | 'PermalinkDestroyPayload' | 'PermalinkUpdatePayload' | 'PreviewSlotPayload' | 'RenderLayoutsPayload' | 'ReparentEntityPayload' | 'ResetOrderingPayload' | 'RevokeAccessPayload' | 'UpdateAnnouncementPayload' | 'UpdateAssetAttachmentPayload' | 'UpdateAssetPayload' | 'UpdateCollectionPayload' | 'UpdateCommunityPayload' | 'UpdateContributionPayload' | 'UpdateGlobalConfigurationPayload' | 'UpdateItemPayload' | 'UpdateOrderingPayload' | 'UpdateOrganizationContributorPayload' | 'UpdatePagePayload' | 'UpdatePersonContributorPayload' | 'UpdateRolePayload' | 'UpdateUserPayload' | 'UpdateViewerSettingsPayload' | 'UpsertContributionPayload' | 'UserResetPasswordPayload', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'AlterSchemaVersionPayload' | 'ApplySchemaPropertiesPayload' | 'ControlledVocabularyDestroyPayload' | 'ControlledVocabularySourceUpdatePayload' | 'ControlledVocabularyUpsertPayload' | 'CreateAnnouncementPayload' | 'CreateAssetPayload' | 'CreateCollectionPayload' | 'CreateCommunityPayload' | 'CreateItemPayload' | 'CreateOrderingPayload' | 'CreateOrganizationContributorPayload' | 'CreatePagePayload' | 'CreatePersonContributorPayload' | 'CreateRolePayload' | 'DepositorRequestChangeStatePayload' | 'DepositorRequestCreatePayload' | 'DestroyAnnouncementPayload' | 'DestroyAssetPayload' | 'DestroyCollectionPayload' | 'DestroyCommunityPayload' | 'DestroyContributionPayload' | 'DestroyContributorPayload' | 'DestroyEntityLinkPayload' | 'DestroyItemPayload' | 'DestroyOrderingPayload' | 'DestroyPagePayload' | 'EntityPurgePayload' | 'FrontendCacheRevalidateEntityPayload' | 'FrontendCacheRevalidateInstancePayload' | 'GrantAccessPayload' | 'HarvestAttemptFromMappingPayload' | 'HarvestAttemptFromSourcePayload' | 'HarvestAttemptPruneEntitiesPayload' | 'HarvestMappingCreatePayload' | 'HarvestMappingDestroyPayload' | 'HarvestMappingUpdatePayload' | 'HarvestMetadataMappingCreatePayload' | 'HarvestMetadataMappingDestroyPayload' | 'HarvestSourceCreatePayload' | 'HarvestSourceDestroyPayload' | 'HarvestSourcePruneEntitiesPayload' | 'HarvestSourceUpdatePayload' | 'LinkEntityPayload' | 'PermalinkCreatePayload' | 'PermalinkDestroyPayload' | 'PermalinkUpdatePayload' | 'PreviewSlotPayload' | 'RenderLayoutsPayload' | 'ReparentEntityPayload' | 'ResetOrderingPayload' | 'RevokeAccessPayload' | 'SubmissionChangeStatePayload' | 'SubmissionCommentCreatePayload' | 'SubmissionCommentDestroyPayload' | 'SubmissionCommentUpdatePayload' | 'SubmissionCreatePayload' | 'SubmissionLeaveReviewPayload' | 'SubmissionRequestReviewPayload' | 'SubmissionTargetClosePayload' | 'SubmissionTargetConfigurePayload' | 'SubmissionTargetOpenPayload' | 'SubmissionTargetReviewerCreatePayload' | 'SubmissionTargetReviewerDestroyPayload' | 'UpdateAnnouncementPayload' | 'UpdateAssetAttachmentPayload' | 'UpdateAssetPayload' | 'UpdateCollectionPayload' | 'UpdateCommunityPayload' | 'UpdateContributionPayload' | 'UpdateGlobalConfigurationPayload' | 'UpdateItemPayload' | 'UpdateOrderingPayload' | 'UpdateOrganizationContributorPayload' | 'UpdatePagePayload' | 'UpdatePersonContributorPayload' | 'UpdateRolePayload' | 'UpdateUserPayload' | 'UpdateViewerSettingsPayload' | 'UpsertContributionPayload' | 'UserResetPasswordPayload', ParentType, ContextType>;
   attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
   errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
   globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
@@ -27413,21 +32689,435 @@ export type StringPropertyResolvers<ContextType = any, ParentType extends Resolv
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type SupplementaryLayoutDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SupplementaryLayoutDefinition'] = ResolversParentTypes['SupplementaryLayoutDefinition']> = {
+export type SubmissionResolvers<ContextType = any, ParentType extends ResolversParentTypes['Submission'] = ResolversParentTypes['Submission']> = {
+  availableTransitions?: Resolver<Array<ResolversTypes['SubmissionStatus']>, ParentType, ContextType>;
+  canAlterSchemaVersion?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canComment?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canMigrate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canRequestReview?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canReview?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  currentStatus?: Resolver<ResolversTypes['SubmissionStatus'], ParentType, ContextType>;
+  entity?: Resolver<Maybe<ResolversTypes['Entity']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  state?: Resolver<ResolversTypes['SubmissionState'], ParentType, ContextType>;
+  submissionTarget?: Resolver<Maybe<ResolversTypes['SubmissionTarget']>, ParentType, ContextType>;
+  transitions?: Resolver<ResolversTypes['SubmissionTransitionConnection'], ParentType, ContextType, RequireFields<SubmissionTransitionsArgs, 'pageDirection'>>;
+  updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionChangeStatePayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionChangeStatePayload'] = ResolversParentTypes['SubmissionChangeStatePayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  submission?: Resolver<Maybe<ResolversTypes['Submission']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionCommentResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionComment'] = ResolversParentTypes['SubmissionComment']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  role?: Resolver<ResolversTypes['SubmissionCommentRole'], ParentType, ContextType>;
+  slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  submission?: Resolver<ResolversTypes['Submission'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionCommentConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionCommentConnection'] = ResolversParentTypes['SubmissionCommentConnection']> = {
+  edges?: Resolver<Array<ResolversTypes['SubmissionCommentEdge']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<ResolversTypes['SubmissionComment']>, ParentType, ContextType>;
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionCommentCreatePayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionCommentCreatePayload'] = ResolversParentTypes['SubmissionCommentCreatePayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  submissionComment?: Resolver<Maybe<ResolversTypes['SubmissionComment']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionCommentDestroyPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionCommentDestroyPayload'] = ResolversParentTypes['SubmissionCommentDestroyPayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  destroyed?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  destroyedId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionCommentEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionCommentEdge'] = ResolversParentTypes['SubmissionCommentEdge']> = {
+  cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  node?: Resolver<ResolversTypes['SubmissionComment'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionCommentUpdatePayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionCommentUpdatePayload'] = ResolversParentTypes['SubmissionCommentUpdatePayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  submissionComment?: Resolver<Maybe<ResolversTypes['SubmissionComment']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionConnection'] = ResolversParentTypes['SubmissionConnection']> = {
+  edges?: Resolver<Array<ResolversTypes['SubmissionEdge']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<ResolversTypes['Submission']>, ParentType, ContextType>;
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionCreatePayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionCreatePayload'] = ResolversParentTypes['SubmissionCreatePayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  submission?: Resolver<Maybe<ResolversTypes['Submission']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionDepositTargetResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionDepositTarget'] = ResolversParentTypes['SubmissionDepositTarget']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  depositMode?: Resolver<ResolversTypes['SubmissionDepositMode'], ParentType, ContextType>;
+  entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionEdge'] = ResolversParentTypes['SubmissionEdge']> = {
+  cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  node?: Resolver<ResolversTypes['Submission'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionLeaveReviewPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionLeaveReviewPayload'] = ResolversParentTypes['SubmissionLeaveReviewPayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  submission?: Resolver<Maybe<ResolversTypes['Submission']>, ParentType, ContextType>;
+  submissionReview?: Resolver<Maybe<ResolversTypes['SubmissionReview']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionRequestReviewPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionRequestReviewPayload'] = ResolversParentTypes['SubmissionRequestReviewPayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  submission?: Resolver<Maybe<ResolversTypes['Submission']>, ParentType, ContextType>;
+  submissionReview?: Resolver<Maybe<ResolversTypes['SubmissionReview']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionReviewResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionReview'] = ResolversParentTypes['SubmissionReview']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  comment?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  requestedAt?: Resolver<Maybe<ResolversTypes['ISO8601DateTime']>, ParentType, ContextType>;
+  slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  state?: Resolver<ResolversTypes['SubmissionReviewState'], ParentType, ContextType>;
+  submission?: Resolver<ResolversTypes['Submission'], ParentType, ContextType>;
+  transitions?: Resolver<ResolversTypes['SubmissionReviewTransitionConnection'], ParentType, ContextType, RequireFields<SubmissionReviewTransitionsArgs, 'pageDirection'>>;
+  updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionReviewConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionReviewConnection'] = ResolversParentTypes['SubmissionReviewConnection']> = {
+  edges?: Resolver<Array<ResolversTypes['SubmissionReviewEdge']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<ResolversTypes['SubmissionReview']>, ParentType, ContextType>;
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionReviewEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionReviewEdge'] = ResolversParentTypes['SubmissionReviewEdge']> = {
+  cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  node?: Resolver<ResolversTypes['SubmissionReview'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionReviewTransitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionReviewTransition'] = ResolversParentTypes['SubmissionReviewTransition']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  fromState?: Resolver<Maybe<ResolversTypes['SubmissionReviewState']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  mostRecent?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  toState?: Resolver<ResolversTypes['SubmissionReviewState'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionReviewTransitionConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionReviewTransitionConnection'] = ResolversParentTypes['SubmissionReviewTransitionConnection']> = {
+  edges?: Resolver<Array<ResolversTypes['SubmissionReviewTransitionEdge']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<ResolversTypes['SubmissionReviewTransition']>, ParentType, ContextType>;
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionReviewTransitionEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionReviewTransitionEdge'] = ResolversParentTypes['SubmissionReviewTransitionEdge']> = {
+  cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  node?: Resolver<ResolversTypes['SubmissionReviewTransition'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionStatusResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionStatus'] = ResolversParentTypes['SubmissionStatus']> = {
+  canTransition?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  fromState?: Resolver<ResolversTypes['SubmissionState'], ParentType, ContextType>;
+  lockedState?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  mutableState?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  toState?: Resolver<ResolversTypes['SubmissionState'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTargetResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTarget'] = ResolversParentTypes['SubmissionTarget']> = {
+  agreementContent?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  agreementRequired?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  allowedChildKinds?: Resolver<Array<ResolversTypes['ChildEntityKind']>, ParentType, ContextType>;
+  canDeposit?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canManageReviewers?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canRequestDepositAccess?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canReview?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  depositMode?: Resolver<ResolversTypes['SubmissionDepositMode'], ParentType, ContextType>;
+  depositTargets?: Resolver<Array<ResolversTypes['SubmissionDepositTarget']>, ParentType, ContextType>;
+  description?: Resolver<ResolversTypes['SubmissionTargetDescription'], ParentType, ContextType>;
+  entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  schemaVersions?: Resolver<Array<ResolversTypes['SchemaVersion']>, ParentType, ContextType>;
+  slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  state?: Resolver<ResolversTypes['SubmissionTargetState'], ParentType, ContextType>;
+  transitions?: Resolver<ResolversTypes['SubmissionTargetTransitionConnection'], ParentType, ContextType, RequireFields<SubmissionTargetTransitionsArgs, 'pageDirection'>>;
+  updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTargetClosePayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTargetClosePayload'] = ResolversParentTypes['SubmissionTargetClosePayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  submissionTarget?: Resolver<Maybe<ResolversTypes['SubmissionTarget']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTargetConfigurePayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTargetConfigurePayload'] = ResolversParentTypes['SubmissionTargetConfigurePayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  submissionTarget?: Resolver<Maybe<ResolversTypes['SubmissionTarget']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTargetConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTargetConnection'] = ResolversParentTypes['SubmissionTargetConnection']> = {
+  edges?: Resolver<Array<ResolversTypes['SubmissionTargetEdge']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<ResolversTypes['SubmissionTarget']>, ParentType, ContextType>;
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTargetDescriptionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTargetDescription'] = ResolversParentTypes['SubmissionTargetDescription']> = {
+  instructions?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  internal?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  sections?: Resolver<Array<ResolversTypes['SubmissionTargetSection']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTargetEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTargetEdge'] = ResolversParentTypes['SubmissionTargetEdge']> = {
+  cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  node?: Resolver<ResolversTypes['SubmissionTarget'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTargetOpenPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTargetOpenPayload'] = ResolversParentTypes['SubmissionTargetOpenPayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  submissionTarget?: Resolver<Maybe<ResolversTypes['SubmissionTarget']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTargetReviewerResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTargetReviewer'] = ResolversParentTypes['SubmissionTargetReviewer']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  submissionTarget?: Resolver<ResolversTypes['SubmissionTarget'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTargetReviewerCreatePayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTargetReviewerCreatePayload'] = ResolversParentTypes['SubmissionTargetReviewerCreatePayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  submissionTargetReviewer?: Resolver<Maybe<ResolversTypes['SubmissionTargetReviewer']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTargetReviewerDestroyPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTargetReviewerDestroyPayload'] = ResolversParentTypes['SubmissionTargetReviewerDestroyPayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  destroyed?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  destroyedId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTargetSectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTargetSection'] = ResolversParentTypes['SubmissionTargetSection']> = {
+  content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  identifier?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  position?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTargetTransitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTargetTransition'] = ResolversParentTypes['SubmissionTargetTransition']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  fromState?: Resolver<Maybe<ResolversTypes['SubmissionTargetState']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  mostRecent?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  toState?: Resolver<ResolversTypes['SubmissionTargetState'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTargetTransitionConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTargetTransitionConnection'] = ResolversParentTypes['SubmissionTargetTransitionConnection']> = {
+  edges?: Resolver<Array<ResolversTypes['SubmissionTargetTransitionEdge']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<ResolversTypes['SubmissionTargetTransition']>, ParentType, ContextType>;
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTargetTransitionEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTargetTransitionEdge'] = ResolversParentTypes['SubmissionTargetTransitionEdge']> = {
+  cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  node?: Resolver<ResolversTypes['SubmissionTargetTransition'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTransitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTransition'] = ResolversParentTypes['SubmissionTransition']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  fromState?: Resolver<Maybe<ResolversTypes['SubmissionState']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  mostRecent?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  toState?: Resolver<ResolversTypes['SubmissionState'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTransitionConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTransitionConnection'] = ResolversParentTypes['SubmissionTransitionConnection']> = {
+  edges?: Resolver<Array<ResolversTypes['SubmissionTransitionEdge']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<ResolversTypes['SubmissionTransition']>, ParentType, ContextType>;
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmissionTransitionEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubmissionTransitionEdge'] = ResolversParentTypes['SubmissionTransitionEdge']> = {
+  cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  node?: Resolver<ResolversTypes['SubmissionTransition'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SubmittableResolvers<ContextType = any, ParentType extends ResolversParentTypes['Submittable'] = ResolversParentTypes['Submittable']> = {
+  __resolveType: TypeResolveFn<'Collection' | 'Community' | 'Item', ParentType, ContextType>;
+  canDeposit?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canReview?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  submissionStatus?: Resolver<ResolversTypes['EntitySubmissionStatus'], ParentType, ContextType>;
+  submissionTarget?: Resolver<Maybe<ResolversTypes['SubmissionTarget']>, ParentType, ContextType>;
+};
+
+export type SupplementaryLayoutDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SupplementaryLayoutDefinition'] = ResolversParentTypes['SupplementaryLayoutDefinition']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layoutKind?: Resolver<ResolversTypes['LayoutKind'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   template?: Resolver<Maybe<ResolversTypes['SupplementaryTemplateDefinition']>, ParentType, ContextType>;
   templates?: Resolver<Array<ResolversTypes['AnySupplementaryTemplateDefinition']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type SupplementaryLayoutInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['SupplementaryLayoutInstance'] = ResolversParentTypes['SupplementaryLayoutInstance']> = {
   allHidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   lastRenderedAt?: Resolver<Maybe<ResolversTypes['ISO8601DateTime']>, ParentType, ContextType>;
@@ -27437,18 +33127,23 @@ export type SupplementaryLayoutInstanceResolvers<ContextType = any, ParentType e
   template?: Resolver<Maybe<ResolversTypes['SupplementaryTemplateInstance']>, ParentType, ContextType>;
   templates?: Resolver<Array<ResolversTypes['AnySupplementaryTemplateInstance']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type SupplementaryTemplateDefinitionResolvers<ContextType = any, ParentType extends ResolversParentTypes['SupplementaryTemplateDefinition'] = ResolversParentTypes['SupplementaryTemplateDefinition']> = {
   background?: Resolver<Maybe<ResolversTypes['SupplementaryBackground']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   layoutKind?: Resolver<ResolversTypes['LayoutKind'], ParentType, ContextType>;
   slots?: Resolver<ResolversTypes['SupplementaryTemplateDefinitionSlots'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -27460,7 +33155,10 @@ export type SupplementaryTemplateDefinitionSlotsResolvers<ContextType = any, Par
 
 export type SupplementaryTemplateInstanceResolvers<ContextType = any, ParentType extends ResolversParentTypes['SupplementaryTemplateInstance'] = ResolversParentTypes['SupplementaryTemplateInstance']> = {
   allSlotsEmpty?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   definition?: Resolver<ResolversTypes['SupplementaryTemplateDefinition'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   hidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
@@ -27473,6 +33171,7 @@ export type SupplementaryTemplateInstanceResolvers<ContextType = any, ParentType
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -27577,7 +33276,10 @@ export type TemplateInstanceResolvers<ContextType = any, ParentType extends Reso
 };
 
 export type TemplateInstanceSiblingResolvers<ContextType = any, ParentType extends ResolversParentTypes['TemplateInstanceSibling'] = ResolversParentTypes['TemplateInstanceSibling']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   dark?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   hidden?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
@@ -27587,6 +33289,7 @@ export type TemplateInstanceSiblingResolvers<ContextType = any, ParentType exten
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   templateKind?: Resolver<ResolversTypes['TemplateKind'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   width?: Resolver<Maybe<ResolversTypes['TemplateWidth']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -27907,11 +33610,14 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   assignableRoles?: Resolver<Array<ResolversTypes['Role']>, ParentType, ContextType>;
   avatar?: Resolver<ResolversTypes['ImageAttachment'], ParentType, ContextType>;
   avatarMetadata?: Resolver<Maybe<ResolversTypes['ImageMetadata']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   collectionAccessGrants?: Resolver<ResolversTypes['UserCollectionAccessGrantConnection'], ParentType, ContextType, RequireFields<UserCollectionAccessGrantsArgs, 'order' | 'pageDirection'>>;
   collections?: Resolver<ResolversTypes['CollectionConnection'], ParentType, ContextType, RequireFields<UserCollectionsArgs, 'access' | 'nodeFilter' | 'order' | 'pageDirection'>>;
   communities?: Resolver<ResolversTypes['CommunityConnection'], ParentType, ContextType, RequireFields<UserCommunitiesArgs, 'access' | 'nodeFilter' | 'order' | 'pageDirection'>>;
   communityAccessGrants?: Resolver<ResolversTypes['UserCommunityAccessGrantConnection'], ParentType, ContextType, RequireFields<UserCommunityAccessGrantsArgs, 'order' | 'pageDirection'>>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   emailVerified?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   familyName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -27925,6 +33631,7 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   primaryRole?: Resolver<Maybe<ResolversTypes['Role']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   uploadAccess?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   uploadToken?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   username?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -27940,14 +33647,18 @@ export type UserAccessGrantResolvers<ContextType = any, ParentType extends Resol
 };
 
 export type UserCollectionAccessGrantResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserCollectionAccessGrant'] = ResolversParentTypes['UserCollectionAccessGrant']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   collection?: Resolver<ResolversTypes['Collection'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   role?: Resolver<ResolversTypes['Role'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   subject?: Resolver<ResolversTypes['AccessGrantSubject'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -27966,14 +33677,18 @@ export type UserCollectionAccessGrantEdgeResolvers<ContextType = any, ParentType
 };
 
 export type UserCommunityAccessGrantResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserCommunityAccessGrant'] = ResolversParentTypes['UserCommunityAccessGrant']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   community?: Resolver<ResolversTypes['Community'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   role?: Resolver<ResolversTypes['Role'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   subject?: Resolver<ResolversTypes['AccessGrantSubject'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -28017,9 +33732,12 @@ export type UserGroupResolvers<ContextType = any, ParentType extends ResolversPa
   accessGrants?: Resolver<ResolversTypes['AnyUserGroupAccessGrantConnection'], ParentType, ContextType, RequireFields<UserGroupAccessGrantsArgs, 'entity' | 'order' | 'pageDirection'>>;
   allAccessGrants?: Resolver<ResolversTypes['AnyAccessGrantConnection'], ParentType, ContextType, RequireFields<UserGroupAllAccessGrantsArgs, 'entity' | 'order' | 'pageDirection'>>;
   assignableRoles?: Resolver<Array<ResolversTypes['Role']>, ParentType, ContextType>;
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   collectionAccessGrants?: Resolver<ResolversTypes['UserGroupCollectionAccessGrantConnection'], ParentType, ContextType, RequireFields<UserGroupCollectionAccessGrantsArgs, 'order' | 'pageDirection'>>;
   communityAccessGrants?: Resolver<ResolversTypes['UserGroupCommunityAccessGrantConnection'], ParentType, ContextType, RequireFields<UserGroupCommunityAccessGrantsArgs, 'order' | 'pageDirection'>>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   itemAccessGrants?: Resolver<ResolversTypes['UserGroupItemAccessGrantConnection'], ParentType, ContextType, RequireFields<UserGroupItemAccessGrantsArgs, 'order' | 'pageDirection'>>;
@@ -28027,6 +33745,7 @@ export type UserGroupResolvers<ContextType = any, ParentType extends ResolversPa
   primaryRole?: Resolver<Maybe<ResolversTypes['Role']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   users?: Resolver<ResolversTypes['UserConnection'], ParentType, ContextType, RequireFields<UserGroupUsersArgs, 'order' | 'pageDirection'>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -28040,14 +33759,18 @@ export type UserGroupAccessGrantResolvers<ContextType = any, ParentType extends 
 };
 
 export type UserGroupCollectionAccessGrantResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserGroupCollectionAccessGrant'] = ResolversParentTypes['UserGroupCollectionAccessGrant']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   collection?: Resolver<ResolversTypes['Collection'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   role?: Resolver<ResolversTypes['Role'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   subject?: Resolver<ResolversTypes['AccessGrantSubject'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   userGroup?: Resolver<ResolversTypes['UserGroup'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -28066,14 +33789,18 @@ export type UserGroupCollectionAccessGrantEdgeResolvers<ContextType = any, Paren
 };
 
 export type UserGroupCommunityAccessGrantResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserGroupCommunityAccessGrant'] = ResolversParentTypes['UserGroupCommunityAccessGrant']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   community?: Resolver<ResolversTypes['Community'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   role?: Resolver<ResolversTypes['Role'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   subject?: Resolver<ResolversTypes['AccessGrantSubject'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   userGroup?: Resolver<ResolversTypes['UserGroup'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -28092,7 +33819,10 @@ export type UserGroupCommunityAccessGrantEdgeResolvers<ContextType = any, Parent
 };
 
 export type UserGroupItemAccessGrantResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserGroupItemAccessGrant'] = ResolversParentTypes['UserGroupItemAccessGrant']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   item?: Resolver<ResolversTypes['Item'], ParentType, ContextType>;
@@ -28100,6 +33830,7 @@ export type UserGroupItemAccessGrantResolvers<ContextType = any, ParentType exte
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   subject?: Resolver<ResolversTypes['AccessGrantSubject'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   userGroup?: Resolver<ResolversTypes['UserGroup'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -28118,7 +33849,10 @@ export type UserGroupItemAccessGrantEdgeResolvers<ContextType = any, ParentType 
 };
 
 export type UserItemAccessGrantResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserItemAccessGrant'] = ResolversParentTypes['UserItemAccessGrant']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   entity?: Resolver<ResolversTypes['Entity'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   item?: Resolver<ResolversTypes['Item'], ParentType, ContextType>;
@@ -28126,6 +33860,7 @@ export type UserItemAccessGrantResolvers<ContextType = any, ParentType extends R
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   subject?: Resolver<ResolversTypes['AccessGrantSubject'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -28209,6 +33944,7 @@ export type Resolvers<ContextType = any> = {
   AnyCommunityAccessGrant?: AnyCommunityAccessGrantResolvers<ContextType>;
   AnyCommunityAccessGrantConnection?: AnyCommunityAccessGrantConnectionResolvers<ContextType>;
   AnyCommunityAccessGrantEdge?: AnyCommunityAccessGrantEdgeResolvers<ContextType>;
+  AnyConfigurableSubmissionTarget?: AnyConfigurableSubmissionTargetResolvers<ContextType>;
   AnyContributable?: AnyContributableResolvers<ContextType>;
   AnyContribution?: AnyContributionResolvers<ContextType>;
   AnyContributor?: AnyContributorResolvers<ContextType>;
@@ -28254,6 +33990,7 @@ export type Resolvers<ContextType = any> = {
   Attachable?: AttachableResolvers<ContextType>;
   Attributable?: AttributableResolvers<ContextType>;
   Attribution?: AttributionResolvers<ContextType>;
+  AuthorizationResult?: AuthorizationResultResolvers<ContextType>;
   BlurbTemplateDefinition?: BlurbTemplateDefinitionResolvers<ContextType>;
   BlurbTemplateDefinitionSlots?: BlurbTemplateDefinitionSlotsResolvers<ContextType>;
   BlurbTemplateInstance?: BlurbTemplateInstanceResolvers<ContextType>;
@@ -28269,6 +34006,8 @@ export type Resolvers<ContextType = any> = {
   CollectionContributionEdge?: CollectionContributionEdgeResolvers<ContextType>;
   CollectionEdge?: CollectionEdgeResolvers<ContextType>;
   CollectionParent?: CollectionParentResolvers<ContextType>;
+  CommonPermissions?: CommonPermissionsResolvers<ContextType>;
+  CommonTransition?: CommonTransitionResolvers<ContextType>;
   Community?: CommunityResolvers<ContextType>;
   CommunityConnection?: CommunityConnectionResolvers<ContextType>;
   CommunityEdge?: CommunityEdgeResolvers<ContextType>;
@@ -28320,6 +34059,12 @@ export type Resolvers<ContextType = any> = {
   CreateRolePayload?: CreateRolePayloadResolvers<ContextType>;
   DOIData?: DoiDataResolvers<ContextType>;
   DateProperty?: DatePropertyResolvers<ContextType>;
+  DepositingSettings?: DepositingSettingsResolvers<ContextType>;
+  DepositorRequest?: DepositorRequestResolvers<ContextType>;
+  DepositorRequestChangeStatePayload?: DepositorRequestChangeStatePayloadResolvers<ContextType>;
+  DepositorRequestConnection?: DepositorRequestConnectionResolvers<ContextType>;
+  DepositorRequestCreatePayload?: DepositorRequestCreatePayloadResolvers<ContextType>;
+  DepositorRequestEdge?: DepositorRequestEdgeResolvers<ContextType>;
   DescendantListTemplateDefinition?: DescendantListTemplateDefinitionResolvers<ContextType>;
   DescendantListTemplateDefinitionSlots?: DescendantListTemplateDefinitionSlotsResolvers<ContextType>;
   DescendantListTemplateInstance?: DescendantListTemplateInstanceResolvers<ContextType>;
@@ -28340,13 +34085,13 @@ export type Resolvers<ContextType = any> = {
   DetailTemplateDefinitionSlots?: DetailTemplateDefinitionSlotsResolvers<ContextType>;
   DetailTemplateInstance?: DetailTemplateInstanceResolvers<ContextType>;
   DetailTemplateInstanceSlots?: DetailTemplateInstanceSlotsResolvers<ContextType>;
-  EffectiveAccess?: EffectiveAccessResolvers<ContextType>;
   EmailProperty?: EmailPropertyResolvers<ContextType>;
   EntitiesProperty?: EntitiesPropertyResolvers<ContextType>;
   EntitiesSettings?: EntitiesSettingsResolvers<ContextType>;
   Entity?: EntityResolvers<ContextType>;
   EntityBase?: EntityBaseResolvers<ContextType>;
   EntityBreadcrumb?: EntityBreadcrumbResolvers<ContextType>;
+  EntityContextualPermissions?: EntityContextualPermissionsResolvers<ContextType>;
   EntityDescendant?: EntityDescendantResolvers<ContextType>;
   EntityDescendantConnection?: EntityDescendantConnectionResolvers<ContextType>;
   EntityDescendantEdge?: EntityDescendantEdgeResolvers<ContextType>;
@@ -28355,11 +34100,12 @@ export type Resolvers<ContextType = any> = {
   EntityLinkConnection?: EntityLinkConnectionResolvers<ContextType>;
   EntityLinkEdge?: EntityLinkEdgeResolvers<ContextType>;
   EntityPermissionGrid?: EntityPermissionGridResolvers<ContextType>;
+  EntityPermissions?: EntityPermissionsResolvers<ContextType>;
   EntityProperty?: EntityPropertyResolvers<ContextType>;
   EntityPurgePayload?: EntityPurgePayloadResolvers<ContextType>;
   EntitySelectOption?: EntitySelectOptionResolvers<ContextType>;
-  ExposesEffectiveAccess?: ExposesEffectiveAccessResolvers<ContextType>;
   ExposesPermissions?: ExposesPermissionsResolvers<ContextType>;
+  FailureReasons?: FailureReasonsResolvers<ContextType>;
   FloatProperty?: FloatPropertyResolvers<ContextType>;
   FrontendCacheRevalidateEntityPayload?: FrontendCacheRevalidateEntityPayloadResolvers<ContextType>;
   FrontendCacheRevalidateInstancePayload?: FrontendCacheRevalidateInstancePayloadResolvers<ContextType>;
@@ -28536,6 +34282,7 @@ export type Resolvers<ContextType = any> = {
   QueriesContrib?: QueriesContribResolvers<ContextType>;
   QueriesControlledVocabulary?: QueriesControlledVocabularyResolvers<ContextType>;
   QueriesControlledVocabularySource?: QueriesControlledVocabularySourceResolvers<ContextType>;
+  QueriesDepositorRequest?: QueriesDepositorRequestResolvers<ContextType>;
   QueriesEntities?: QueriesEntitiesResolvers<ContextType>;
   QueriesHarvestAttempt?: QueriesHarvestAttemptResolvers<ContextType>;
   QueriesHarvestExample?: QueriesHarvestExampleResolvers<ContextType>;
@@ -28546,6 +34293,10 @@ export type Resolvers<ContextType = any> = {
   QueriesHarvestSource?: QueriesHarvestSourceResolvers<ContextType>;
   QueriesPermalink?: QueriesPermalinkResolvers<ContextType>;
   QueriesSchemas?: QueriesSchemasResolvers<ContextType>;
+  QueriesSubmission?: QueriesSubmissionResolvers<ContextType>;
+  QueriesSubmissionComment?: QueriesSubmissionCommentResolvers<ContextType>;
+  QueriesSubmissionReview?: QueriesSubmissionReviewResolvers<ContextType>;
+  QueriesSubmissionTarget?: QueriesSubmissionTargetResolvers<ContextType>;
   QueriesSystem?: QueriesSystemResolvers<ContextType>;
   QueriesUser?: QueriesUserResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
@@ -28593,6 +34344,45 @@ export type Resolvers<ContextType = any> = {
   StandardMutationPayload?: StandardMutationPayloadResolvers<ContextType>;
   StaticOrderingPath?: StaticOrderingPathResolvers<ContextType>;
   StringProperty?: StringPropertyResolvers<ContextType>;
+  Submission?: SubmissionResolvers<ContextType>;
+  SubmissionChangeStatePayload?: SubmissionChangeStatePayloadResolvers<ContextType>;
+  SubmissionComment?: SubmissionCommentResolvers<ContextType>;
+  SubmissionCommentConnection?: SubmissionCommentConnectionResolvers<ContextType>;
+  SubmissionCommentCreatePayload?: SubmissionCommentCreatePayloadResolvers<ContextType>;
+  SubmissionCommentDestroyPayload?: SubmissionCommentDestroyPayloadResolvers<ContextType>;
+  SubmissionCommentEdge?: SubmissionCommentEdgeResolvers<ContextType>;
+  SubmissionCommentUpdatePayload?: SubmissionCommentUpdatePayloadResolvers<ContextType>;
+  SubmissionConnection?: SubmissionConnectionResolvers<ContextType>;
+  SubmissionCreatePayload?: SubmissionCreatePayloadResolvers<ContextType>;
+  SubmissionDepositTarget?: SubmissionDepositTargetResolvers<ContextType>;
+  SubmissionEdge?: SubmissionEdgeResolvers<ContextType>;
+  SubmissionLeaveReviewPayload?: SubmissionLeaveReviewPayloadResolvers<ContextType>;
+  SubmissionRequestReviewPayload?: SubmissionRequestReviewPayloadResolvers<ContextType>;
+  SubmissionReview?: SubmissionReviewResolvers<ContextType>;
+  SubmissionReviewConnection?: SubmissionReviewConnectionResolvers<ContextType>;
+  SubmissionReviewEdge?: SubmissionReviewEdgeResolvers<ContextType>;
+  SubmissionReviewTransition?: SubmissionReviewTransitionResolvers<ContextType>;
+  SubmissionReviewTransitionConnection?: SubmissionReviewTransitionConnectionResolvers<ContextType>;
+  SubmissionReviewTransitionEdge?: SubmissionReviewTransitionEdgeResolvers<ContextType>;
+  SubmissionStatus?: SubmissionStatusResolvers<ContextType>;
+  SubmissionTarget?: SubmissionTargetResolvers<ContextType>;
+  SubmissionTargetClosePayload?: SubmissionTargetClosePayloadResolvers<ContextType>;
+  SubmissionTargetConfigurePayload?: SubmissionTargetConfigurePayloadResolvers<ContextType>;
+  SubmissionTargetConnection?: SubmissionTargetConnectionResolvers<ContextType>;
+  SubmissionTargetDescription?: SubmissionTargetDescriptionResolvers<ContextType>;
+  SubmissionTargetEdge?: SubmissionTargetEdgeResolvers<ContextType>;
+  SubmissionTargetOpenPayload?: SubmissionTargetOpenPayloadResolvers<ContextType>;
+  SubmissionTargetReviewer?: SubmissionTargetReviewerResolvers<ContextType>;
+  SubmissionTargetReviewerCreatePayload?: SubmissionTargetReviewerCreatePayloadResolvers<ContextType>;
+  SubmissionTargetReviewerDestroyPayload?: SubmissionTargetReviewerDestroyPayloadResolvers<ContextType>;
+  SubmissionTargetSection?: SubmissionTargetSectionResolvers<ContextType>;
+  SubmissionTargetTransition?: SubmissionTargetTransitionResolvers<ContextType>;
+  SubmissionTargetTransitionConnection?: SubmissionTargetTransitionConnectionResolvers<ContextType>;
+  SubmissionTargetTransitionEdge?: SubmissionTargetTransitionEdgeResolvers<ContextType>;
+  SubmissionTransition?: SubmissionTransitionResolvers<ContextType>;
+  SubmissionTransitionConnection?: SubmissionTransitionConnectionResolvers<ContextType>;
+  SubmissionTransitionEdge?: SubmissionTransitionEdgeResolvers<ContextType>;
+  Submittable?: SubmittableResolvers<ContextType>;
   SupplementaryLayoutDefinition?: SupplementaryLayoutDefinitionResolvers<ContextType>;
   SupplementaryLayoutInstance?: SupplementaryLayoutInstanceResolvers<ContextType>;
   SupplementaryTemplateDefinition?: SupplementaryTemplateDefinitionResolvers<ContextType>;
