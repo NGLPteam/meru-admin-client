@@ -37,13 +37,13 @@ export default function SubmissionFilterForm({
       stateOptions.map((s) => [
         s,
         existingFilters.inState?.includes(s) ?? false,
-      ])
+      ]),
     ),
     "updatedAt.gteq": existingFilters.updatedAt?.gteq ?? "",
     "updatedAt.lteq": existingFilters.updatedAt?.lteq ?? "",
     submissionTargetId: existingFilters.submissionTargetIds?.[0] ?? "",
-    schemaVersionIds: ((existingFilters.schemaVersionIds ??
-      []) as unknown) as string,
+    schemaVersionIds: (existingFilters.schemaVersionIds ??
+      []) as unknown as string,
   };
 
   const onSubmit = (data: Record<string, string>) => {
@@ -55,7 +55,7 @@ export default function SubmissionFilterForm({
 
     const filters: SubmissionFilters = {};
 
-    if (!!selectedStates.length) {
+    if (selectedStates.length) {
       filters.inState = selectedStates;
     }
 
@@ -68,8 +68,8 @@ export default function SubmissionFilterForm({
       filters.submissionTargetIds = [data.submissionTargetId];
     }
 
-    const selectedSchemas = (data.schemaVersionIds as unknown) as string[];
-    if (!!selectedSchemas?.length) {
+    const selectedSchemas = data.schemaVersionIds as unknown as string[];
+    if (selectedSchemas?.length) {
       filters.schemaVersionIds = selectedSchemas;
     }
 
@@ -85,7 +85,7 @@ export default function SubmissionFilterForm({
         },
       },
       undefined,
-      { shallow: true }
+      { shallow: true },
     );
   };
 
@@ -100,7 +100,7 @@ export default function SubmissionFilterForm({
         },
       },
       undefined,
-      { shallow: true }
+      { shallow: true },
     );
     if (onCancel) onCancel();
   };

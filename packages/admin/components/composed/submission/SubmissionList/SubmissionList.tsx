@@ -1,11 +1,16 @@
 import { graphql } from "react-relay";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
+import { useDialogState, DialogDisclosure } from "reakit/Dialog";
 import { useMaybeFragment } from "@wdp/lib/api/hooks";
 import ModelListPage from "components/composed/model/ModelListPage";
 import ModelColumns from "components/composed/model/ModelColumns";
-import { ButtonControlGroup, ButtonControlRoute } from "components/atomic";
-import SubmissionSearchWithFilters from "components/composed/submission/SubmissionSearchWithFilters";
+import {
+  ButtonControl,
+  ButtonControlGroup,
+  ButtonControlRoute,
+} from "components/atomic";
+import SubmissionFilterDrawer from "components/composed/submission/SubmissionFilterDrawer";
 import CurrentSubmissionFilters from "components/composed/submission/CurrentSubmissionFilters";
 import type {
   SubmissionListFragment$data,
@@ -96,6 +101,8 @@ function SubmissionList({ data, mode = "review" }: Props) {
 
   const stateOptions = isMySubmissions ? ALL_STATES : REVIEWER_STATES;
 
+  const dialog = useDialogState({ animated: true });
+
   return (
     <ModelListPage<SubmissionListFragment$data, SubmissionNode>
       modelName="submission"
@@ -108,8 +115,16 @@ function SubmissionList({ data, mode = "review" }: Props) {
       buttons={buttons}
       tabRoutes={tabRoutes}
       tabLinksOnly
-      searchOverride={
-        <SubmissionSearchWithFilters stateOptions={stateOptions} />
+      countActions={
+        <>
+          <DialogDisclosure
+            as={ButtonControl}
+            icon="settings"
+            aria-label="Filter options"
+            {...dialog}
+          />
+          <SubmissionFilterDrawer dialog={dialog} stateOptions={stateOptions} />
+        </>
       }
       currentFiltersOverride={<CurrentSubmissionFilters />}
     />
