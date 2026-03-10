@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<672481df01ffe7e5ab06177d2ea45b6b>>
+ * @generated SignedSource<<561e12f9be6ac47bea0966416cc0c055>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,6 +12,24 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 export type SubmissionState = "APPROVED" | "DRAFT" | "PUBLISHED" | "REJECTED" | "REVISION_REQUESTED" | "SUBMITTED" | "UNDER_REVIEW" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type SubmissionLayoutFragment$data = {
+  readonly availableTransitions: ReadonlyArray<{
+    readonly canTransition: {
+      readonly value: boolean;
+    };
+    readonly fromState: SubmissionState;
+    readonly lockedState: boolean;
+    readonly mutableState: boolean;
+    readonly toState: SubmissionState;
+  }>;
+  readonly currentStatus: {
+    readonly canTransition: {
+      readonly value: boolean;
+    };
+    readonly fromState: SubmissionState;
+    readonly lockedState: boolean;
+    readonly mutableState: boolean;
+    readonly toState: SubmissionState;
+  };
   readonly entity: {
     readonly title: string;
   } | null | undefined;
@@ -24,7 +42,56 @@ export type SubmissionLayoutFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"SubmissionLayoutFragment">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = [
+  {
+    "alias": null,
+    "args": null,
+    "concreteType": "AuthorizationResult",
+    "kind": "LinkedField",
+    "name": "canTransition",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "value",
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "lockedState",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "mutableState",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "fromState",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "toState",
+    "storageKey": null
+  }
+];
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -42,6 +109,26 @@ const node: ReaderFragment = {
       "args": null,
       "kind": "ScalarField",
       "name": "state",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "SubmissionStatus",
+      "kind": "LinkedField",
+      "name": "currentStatus",
+      "plural": false,
+      "selections": (v0/*: any*/),
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "SubmissionStatus",
+      "kind": "LinkedField",
+      "name": "availableTransitions",
+      "plural": true,
+      "selections": (v0/*: any*/),
       "storageKey": null
     },
     {
@@ -66,7 +153,8 @@ const node: ReaderFragment = {
   "type": "Submission",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "64571280cac7a488099c5f567e6d215b";
+(node as any).hash = "4586ff3bdc97acc57a633e211c5be00b";
 
 export default node;

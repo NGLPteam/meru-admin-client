@@ -232,6 +232,7 @@
       },
       "error_message": "Error: {{error}}",
       "content_error": "There was an issue loading this content. Please try again.",
+      "review_submitted": "Thank you for submitting your review!",
       "add": {
         "success": "$t({{ name }}) added successfully.",
         "link_success": "Link added successfully.",

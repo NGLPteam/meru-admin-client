@@ -1,0 +1,179 @@
+/**
+ * @generated SignedSource<<9fb6efd48cfa37b19ffd77acd6a13b84>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
+/* tslint:disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type SubmissionReviewState = "APPROVED" | "PENDING" | "REJECTED" | "%future added value";
+export type SubmissionState = "APPROVED" | "DRAFT" | "PUBLISHED" | "REJECTED" | "REVISION_REQUESTED" | "SUBMITTED" | "UNDER_REVIEW" | "%future added value";
+export type SubmissionLeaveReviewInput = {
+  clientMutationId?: string | null | undefined;
+  comment?: string | null | undefined;
+  submissionId: string;
+  toState: SubmissionReviewState;
+};
+export type SubmissionReviewFormMutation$variables = {
+  input: SubmissionLeaveReviewInput;
+};
+export type SubmissionReviewFormMutation$data = {
+  readonly submissionLeaveReview: {
+    readonly attributeErrors: ReadonlyArray<{
+      readonly messages: ReadonlyArray<string>;
+      readonly path: string;
+      readonly type: string;
+    }>;
+    readonly globalErrors: ReadonlyArray<{
+      readonly message: string;
+      readonly type: string;
+    }>;
+    readonly submission: {
+      readonly id: string;
+      readonly state: SubmissionState;
+    } | null | undefined;
+  } | null | undefined;
+};
+export type SubmissionReviewFormMutation = {
+  response: SubmissionReviewFormMutation$data;
+  variables: SubmissionReviewFormMutation$variables;
+};
+
+const node: ConcreteRequest = (function(){
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "input"
+  }
+],
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "type",
+  "storageKey": null
+},
+v2 = [
+  {
+    "alias": null,
+    "args": [
+      {
+        "kind": "Variable",
+        "name": "input",
+        "variableName": "input"
+      }
+    ],
+    "concreteType": "SubmissionLeaveReviewPayload",
+    "kind": "LinkedField",
+    "name": "submissionLeaveReview",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "Submission",
+        "kind": "LinkedField",
+        "name": "submission",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "id",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "state",
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "MutationAttributeError",
+        "kind": "LinkedField",
+        "name": "attributeErrors",
+        "plural": true,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "messages",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "path",
+            "storageKey": null
+          },
+          (v1/*: any*/)
+        ],
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "MutationGlobalError",
+        "kind": "LinkedField",
+        "name": "globalErrors",
+        "plural": true,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "message",
+            "storageKey": null
+          },
+          (v1/*: any*/)
+        ],
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
+  }
+];
+return {
+  "fragment": {
+    "argumentDefinitions": (v0/*: any*/),
+    "kind": "Fragment",
+    "metadata": null,
+    "name": "SubmissionReviewFormMutation",
+    "selections": (v2/*: any*/),
+    "type": "Mutation",
+    "abstractKey": null
+  },
+  "kind": "Request",
+  "operation": {
+    "argumentDefinitions": (v0/*: any*/),
+    "kind": "Operation",
+    "name": "SubmissionReviewFormMutation",
+    "selections": (v2/*: any*/)
+  },
+  "params": {
+    "cacheID": "0f220774c09551ed5ee63e6cab8c5341",
+    "id": null,
+    "metadata": {},
+    "name": "SubmissionReviewFormMutation",
+    "operationKind": "mutation",
+    "text": "mutation SubmissionReviewFormMutation(\n  $input: SubmissionLeaveReviewInput!\n) {\n  submissionLeaveReview(input: $input) {\n    submission {\n      id\n      state\n    }\n    attributeErrors {\n      messages\n      path\n      type\n    }\n    globalErrors {\n      message\n      type\n    }\n  }\n}\n"
+  }
+};
+})();
+
+(node as any).hash = "45a2b333635c42d059950cb58efa713d";
+
+export default node;

@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
+import { graphql } from "react-relay";
+import { LazyLoadQueryWrapper } from "@wdp/lib/api/components";
 import Drawer from "components/layout/Drawer";
 import SubmissionReviewForm from "components/composed/submission/SubmissionReviewForm";
-import { MOCK_SUBMISSIONS } from "components/composed/submission/SubmissionList/mockData";
+import type { SubmissionReviewDrawerQuery as Query } from "@/relay/SubmissionReviewDrawerQuery.graphql";
 import type { DialogProps } from "reakit/Dialog";
 
 export default function SubmissionReviewDrawer({
@@ -13,19 +15,41 @@ export default function SubmissionReviewDrawer({
 }) {
   const { t } = useTranslation();
 
-  // TODO: replace mock lookup with API data
-  const title = MOCK_SUBMISSIONS.find(
-    (s) => s.slug === params.drawerSlug,
-  )?.title;
-
   return (
-    <Drawer
-      label={t("actions.review_submission")}
-      header={title}
-      dialog={dialog}
-      hideOnClickOutside={false}
+    <LazyLoadQueryWrapper<Query>
+      query={query}
+      variables={{ slug: params.drawerSlug }}
     >
-      <SubmissionReviewForm onSuccess={dialog.hide} onCancel={dialog.hide} />
-    </Drawer>
+      {({ data }) => (
+        <Drawer
+          label={t("actions.submissions.review")}
+          header={data?.submission?.entity?.title}
+          dialog={dialog}
+          hideOnClickOutside={false}
+        >
+          {data?.submission && (
+            <SubmissionReviewForm
+              submissionId={data.submission.id}
+              onSuccess={dialog.hide}
+              onCancel={dialog.hide}
+            />
+          )}
+        </Drawer>
+      )}
+    </LazyLoadQueryWrapper>
   );
 }
+
+const query = graphql`
+  query SubmissionReviewDrawerQuery($slug: Slug!) {
+    submission(slug: $slug) {
+      id
+      entity {
+        ... on Entity {
+          id
+          title
+        }
+      }
+    }
+  }
+`;
