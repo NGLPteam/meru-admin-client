@@ -4,7 +4,6 @@ import { graphql } from "react-relay";
 import { useChildRouteLinks, useMaybeFragment, useRouteSlug } from "hooks";
 import {
   ButtonControlGroup,
-  ButtonControlConfirm,
   ButtonControlDrawer,
   ButtonControlRoute,
 } from "components/atomic";
@@ -12,6 +11,7 @@ import { StatusBadge } from "components/composed/submission/SubmissionList/Statu
 import { PageHeader, BackToAll } from "components/layout";
 import HtmlHead from "components/global/HtmlHead";
 import type { SubmissionLayoutFragment$key } from "@/relay/SubmissionLayoutFragment.graphql";
+import SubmitForReviewButton from "./SubmitForReviewButton";
 import ReviewNav from "./ReviewNav";
 
 export default function SubmissionLayout({
@@ -40,11 +40,10 @@ export default function SubmissionLayout({
   const title = submission?.entity?.title;
   const state = submission?.state;
   const isPublished = state === "PUBLISHED";
-
-  const handleSubmitForReview = (hideDialog: () => void) => {
-    // TODO: Wire up to real mutation when API is ready
-    hideDialog();
-  };
+  const canEdit =
+    parentRoute === "my-submissions"
+      ? state === "DRAFT" || state === "REVISION_REQUESTED"
+      : !isPublished;
 
   const buttons = isEditing ? (
     <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
@@ -58,41 +57,22 @@ export default function SubmissionLayout({
     </ButtonControlGroup>
   ) : !isPublished ? (
     <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
-      <ButtonControlRoute route={editRoute} query={{ slug }} icon="edit">
-        {t("common.edit")}
-      </ButtonControlRoute>
+      {canEdit && (
+        <ButtonControlRoute route={editRoute} query={{ slug }} icon="edit">
+          {t("common.edit")}
+        </ButtonControlRoute>
+      )}
       {parentRoute === "submissions" ? (
         <ButtonControlDrawer
           drawer="reviewSubmission"
           drawerQuery={{ drawerSlug: slug || "" }}
           icon="edit"
         >
-          {t("actions.review_submission")}
+          {t("actions.submissions.review")}
         </ButtonControlDrawer>
-      ) : state === "DRAFT" || state === "REVISION_REQUESTED" ? (
-        <ButtonControlConfirm
-          modalLabel={
-            state === "DRAFT"
-              ? t("common.submit")
-              : t("actions.submissions.resubmit")
-          }
-          modalBody={
-            state === "DRAFT"
-              ? t("common.submit")
-              : t("actions.resubmit_for_review_confirm")
-          }
-          aria-label={
-            state === "DRAFT"
-              ? t("common.submit")
-              : t("actions.resubmit_for_review")
-          }
-          onClick={handleSubmitForReview}
-          icon="arrow"
-        >
-          {state === "DRAFT"
-            ? t("common.submit")
-            : t("actions.submissions.resubmit")}
-        </ButtonControlConfirm>
+      ) : (state === "DRAFT" || state === "REVISION_REQUESTED") &&
+        submission?.id ? (
+        <SubmitForReviewButton submissionId={submission.id} state={state} />
       ) : null}
     </ButtonControlGroup>
   ) : undefined;
@@ -120,6 +100,7 @@ export default function SubmissionLayout({
 
 const fragment = graphql`
   fragment SubmissionLayoutFragment on Submission {
+    id
     state
     entity {
       ... on Entity {
