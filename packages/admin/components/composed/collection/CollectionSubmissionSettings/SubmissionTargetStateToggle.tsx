@@ -49,7 +49,7 @@ export default function SubmissionTargetStateToggle({ data }: Props) {
       commitClose({
         variables: { input: { submissionTargetId } },
         onCompleted: () => {
-          notify.success(t("actions.submissions_closed"));
+          notify.success(t("actions.submissions.submissions_closed"));
           dialog.hide();
         },
         onError: (err) => notify.error(err.message),
@@ -58,7 +58,7 @@ export default function SubmissionTargetStateToggle({ data }: Props) {
       commitOpen({
         variables: { input: { submissionTargetId } },
         onCompleted: () => {
-          notify.success(t("actions.submissions_opened"));
+          notify.success(t("actions.submissions.submissions_opened"));
           dialog.hide();
         },
         onError: (err) => notify.error(err.message),
@@ -83,8 +83,8 @@ export default function SubmissionTargetStateToggle({ data }: Props) {
       <Modal
         label={
           isOpen
-            ? t("actions.close_submissions")
-            : t("actions.open_submissions")
+            ? t("actions.submissions.disable_submissions")
+            : t("actions.submissions.enable_submissions")
         }
         dialog={dialog}
         hideOnClickOutside={false}
