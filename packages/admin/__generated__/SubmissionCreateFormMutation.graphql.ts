@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<db7528c9ea44bec0ebac60f8f9d05dc7>>
+ * @generated SignedSource<<80c890b72523b7dd097216ffcf5aa547>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,51 +10,20 @@
 
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type DatePrecision = "DAY" | "MONTH" | "NONE" | "YEAR" | "%future added value";
-export type EntityVisibility = "HIDDEN" | "LIMITED" | "VISIBLE" | "%future added value";
-export type UploadStorage = "CACHE" | "%future added value";
-export type CreateItemInput = {
+export type SubmissionCreateInput = {
   clientMutationId?: string | null | undefined;
-  doi?: string | null | undefined;
-  heroImage?: UploadedFileInput | null | undefined;
-  heroImageMetadata?: ImageMetadataInput | null | undefined;
-  parentId: string;
-  published?: VariablePrecisionDateInput | null | undefined;
-  schemaVersionSlug?: string | null | undefined;
-  subtitle?: string | null | undefined;
-  summary?: string | null | undefined;
-  thumbnail?: UploadedFileInput | null | undefined;
-  thumbnailMetadata?: ImageMetadataInput | null | undefined;
+  parentEntityId: string;
+  schemaVersionId: string;
+  submissionTargetId: string;
   title: string;
-  visibility: EntityVisibility;
-  visibleAfterAt?: string | null | undefined;
-  visibleUntilAt?: string | null | undefined;
-};
-export type UploadedFileInput = {
-  id: any;
-  metadata?: UploadedFileMetadataInput | null | undefined;
-  storage?: UploadStorage | null | undefined;
-};
-export type UploadedFileMetadataInput = {
-  alt?: string | null | undefined;
-  filename?: string | null | undefined;
-  mimeType?: string | null | undefined;
-};
-export type ImageMetadataInput = {
-  alt?: string | null | undefined;
-};
-export type VariablePrecisionDateInput = {
-  precision: DatePrecision;
-  value?: string | null | undefined;
 };
 export type SubmissionCreateFormMutation$variables = {
-  input: CreateItemInput;
+  input: SubmissionCreateInput;
 };
 export type SubmissionCreateFormMutation$data = {
-  readonly createItem: {
-    readonly item: {
+  readonly submissionCreate: {
+    readonly submission: {
       readonly slug: string;
-      readonly title: string;
     } | null | undefined;
     readonly " $fragmentSpreads": FragmentRefs<"MutationForm_mutationErrors">;
   } | null | undefined;
@@ -83,17 +52,10 @@ v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "title",
-  "storageKey": null
-},
-v3 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
   "name": "slug",
   "storageKey": null
 },
-v4 = {
+v3 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -160,21 +122,20 @@ return {
       {
         "alias": null,
         "args": (v1/*: any*/),
-        "concreteType": "CreateItemPayload",
+        "concreteType": "SubmissionCreatePayload",
         "kind": "LinkedField",
-        "name": "createItem",
+        "name": "submissionCreate",
         "plural": false,
         "selections": [
           {
             "alias": null,
             "args": null,
-            "concreteType": "Item",
+            "concreteType": "Submission",
             "kind": "LinkedField",
-            "name": "item",
+            "name": "submission",
             "plural": false,
             "selections": [
-              (v2/*: any*/),
-              (v3/*: any*/)
+              (v2/*: any*/)
             ],
             "storageKey": null
           },
@@ -182,7 +143,7 @@ return {
             "kind": "InlineDataFragmentSpread",
             "name": "MutationForm_mutationErrors",
             "selections": [
-              (v4/*: any*/)
+              (v3/*: any*/)
             ],
             "args": null,
             "argumentDefinitions": []
@@ -203,21 +164,20 @@ return {
       {
         "alias": null,
         "args": (v1/*: any*/),
-        "concreteType": "CreateItemPayload",
+        "concreteType": "SubmissionCreatePayload",
         "kind": "LinkedField",
-        "name": "createItem",
+        "name": "submissionCreate",
         "plural": false,
         "selections": [
           {
             "alias": null,
             "args": null,
-            "concreteType": "Item",
+            "concreteType": "Submission",
             "kind": "LinkedField",
-            "name": "item",
+            "name": "submission",
             "plural": false,
             "selections": [
               (v2/*: any*/),
-              (v3/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -228,23 +188,23 @@ return {
             ],
             "storageKey": null
           },
-          (v4/*: any*/)
+          (v3/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "8f9e0ee4dde4eb6721aabccbc72a938f",
+    "cacheID": "bd18288ff55a563479b48a1c9b747077",
     "id": null,
     "metadata": {},
     "name": "SubmissionCreateFormMutation",
     "operationKind": "mutation",
-    "text": "mutation SubmissionCreateFormMutation(\n  $input: CreateItemInput!\n) {\n  createItem(input: $input) {\n    item {\n      title\n      slug\n      id\n    }\n    ...MutationForm_mutationErrors\n  }\n}\n\nfragment MutationForm_mutationErrors on StandardMutationPayload {\n  __isStandardMutationPayload: __typename\n  attributeErrors {\n    path\n    type\n    messages\n  }\n  globalErrors {\n    message\n  }\n}\n"
+    "text": "mutation SubmissionCreateFormMutation(\n  $input: SubmissionCreateInput!\n) {\n  submissionCreate(input: $input) {\n    submission {\n      slug\n      id\n    }\n    ...MutationForm_mutationErrors\n  }\n}\n\nfragment MutationForm_mutationErrors on StandardMutationPayload {\n  __isStandardMutationPayload: __typename\n  attributeErrors {\n    path\n    type\n    messages\n  }\n  globalErrors {\n    message\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "e17e47b342b08636f83d69c9c80e54ab";
+(node as any).hash = "4374f0b928621d70eca50db2a540647c";
 
 export default node;
