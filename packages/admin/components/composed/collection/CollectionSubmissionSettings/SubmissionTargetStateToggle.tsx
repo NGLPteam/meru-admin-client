@@ -10,8 +10,14 @@ import {
 import Modal from "components/layout/Modal";
 import ConfirmModal from "components/layout/ConfirmModal";
 import type { SubmissionTargetStateToggleFragment$key } from "@/relay/SubmissionTargetStateToggleFragment.graphql";
-import type { SubmissionTargetStateToggleOpenMutation } from "@/relay/SubmissionTargetStateToggleOpenMutation.graphql";
-import type { SubmissionTargetStateToggleCloseMutation } from "@/relay/SubmissionTargetStateToggleCloseMutation.graphql";
+import type {
+  SubmissionTargetStateToggleOpenMutation,
+  SubmissionTargetStateToggleOpenMutation$data,
+} from "@/relay/SubmissionTargetStateToggleOpenMutation.graphql";
+import type {
+  SubmissionTargetStateToggleCloseMutation,
+  SubmissionTargetStateToggleCloseMutation$data,
+} from "@/relay/SubmissionTargetStateToggleCloseMutation.graphql";
 
 export default function SubmissionTargetStateToggle({ data }: Props) {
   const { t } = useTranslation();
@@ -43,28 +49,60 @@ export default function SubmissionTargetStateToggle({ data }: Props) {
     [dialog, isConfigured],
   );
 
+  const handleOpenResponse = useCallback(
+    (response: SubmissionTargetStateToggleOpenMutation$data) => {
+      const { submissionTarget, globalErrors } =
+        response.submissionTargetOpen ?? {};
+
+      if (submissionTarget) {
+        notify.success(t("actions.submissions.submissions_opened"));
+        dialog.hide();
+      } else if (globalErrors?.length) {
+        notify.mutationGlobalError(globalErrors);
+      }
+    },
+    [notify, t, dialog],
+  );
+
+  const handleCloseResponse = useCallback(
+    (response: SubmissionTargetStateToggleCloseMutation$data) => {
+      const { submissionTarget, globalErrors } =
+        response.submissionTargetClose ?? {};
+
+      if (submissionTarget) {
+        notify.success(t("actions.submissions.submissions_closed"));
+        dialog.hide();
+      } else if (globalErrors?.length) {
+        notify.mutationGlobalError(globalErrors);
+      }
+    },
+    [notify, t, dialog],
+  );
+
   const handleConfirm = useCallback(() => {
     if (!submissionTargetId) return;
     if (isOpen) {
       commitClose({
         variables: { input: { submissionTargetId } },
-        onCompleted: () => {
-          notify.success(t("actions.submissions.submissions_closed"));
-          dialog.hide();
-        },
+        onCompleted: handleCloseResponse,
         onError: (err) => notify.error(err.message),
       });
     } else {
       commitOpen({
         variables: { input: { submissionTargetId } },
-        onCompleted: () => {
-          notify.success(t("actions.submissions.submissions_opened"));
-          dialog.hide();
-        },
+        onCompleted: handleOpenResponse,
         onError: (err) => notify.error(err.message),
       });
     }
-  }, [isOpen, submissionTargetId, commitOpen, commitClose, notify, dialog, t]);
+  }, [
+    isOpen,
+    submissionTargetId,
+    commitOpen,
+    commitClose,
+    handleOpenResponse,
+    handleCloseResponse,
+    notify,
+  ]);
 
   return (
     <>
@@ -126,7 +164,10 @@ const openMutation = graphql`
         id
         state
       }
-      ...MutationForm_mutationErrors
+      globalErrors {
+        message
+        type
+      }
     }
   }
 `;
@@ -140,7 +181,10 @@ const closeMutation = graphql`
         id
         state
       }
-      ...MutationForm_mutationErrors
+      globalErrors {
+        message
+        type
+      }
     }
   }
 `;
