@@ -14,5 +14,4 @@ export * from "./links";
 export * from "./loading";
 export * from "./MessageBlock";
 export * from "./MessageBanner";
-export * from "./StatusBadge";
 export * from "./images";

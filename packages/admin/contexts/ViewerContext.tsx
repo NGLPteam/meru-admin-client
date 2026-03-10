@@ -37,6 +37,7 @@ function ViewerContextProvider({ children, data }: Props) {
 }
 
 interface ViewerContextProps {
+  id?: string | null;
   name?: string | null;
   allowedActions: readonly string[];
   uploadAccess?: boolean;
@@ -58,6 +59,7 @@ export { ViewerContextProvider };
 const fragment = graphql`
   fragment ViewerContextFragment on Query {
     viewer {
+      id
       name
       allowedActions
       uploadAccess

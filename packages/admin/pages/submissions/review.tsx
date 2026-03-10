@@ -1,20 +1,24 @@
 import { usePreloadedQuery, graphql, PreloadedQuery } from "react-relay";
 import { QueryTransitionWrapper } from "@wdp/lib/api/components";
-import { useBaseListQueryVars } from "hooks";
+import { useSubmissionFilterQueryVars } from "hooks";
 import { LoadingPage } from "components/atomic/loading";
 import SubmissionList from "components/composed/submission/SubmissionList";
 import HtmlHead from "components/global/HtmlHead";
 import { reviewQuery as Query } from "@/relay/reviewQuery.graphql";
 
 export default function SubmissionsReview() {
-  const { page } = useBaseListQueryVars();
+  const { page, order, filters } = useSubmissionFilterQueryVars({
+    baseFilters: {
+      inState: ["SUBMITTED", "UNDER_REVIEW", "REVISION_REQUESTED"],
+    },
+  });
 
   return (
     <>
       <HtmlHead />
       <QueryTransitionWrapper<Query>
         query={query}
-        variables={{ page }}
+        variables={{ page, order, filters }}
         loadingFallback={<LoadingPage />}
       >
         {({ queryRef }) =>
@@ -30,19 +34,19 @@ export default function SubmissionsReview() {
 }
 
 const ListQuery = ({ queryRef }: { queryRef: PreloadedQuery<Query> }) => {
-  const {
-    viewer: { items },
-  } = usePreloadedQuery<Query>(query, queryRef);
+  const { submissions } = usePreloadedQuery<Query>(query, queryRef);
 
-  return <SubmissionList data={items} mode="review" />;
+  return <SubmissionList data={submissions} mode="review" />;
 };
 
 const query = graphql`
-  query reviewQuery($page: Int!) {
-    viewer {
-      items(page: $page, perPage: 20) {
-        ...SubmissionListFragment
-      }
+  query reviewQuery(
+    $page: Int!
+    $order: SubmissionOrder!
+    $filters: SubmissionFilterInput
+  ) {
+    submissions(page: $page, perPage: 20, order: $order, filters: $filters) {
+      ...SubmissionListFragment
     }
   }
 `;
