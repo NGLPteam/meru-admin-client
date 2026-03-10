@@ -1,40 +1,76 @@
+import { useCallback } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { graphql, useMutation } from "react-relay";
 import { Grid, Select, Textarea } from "components/forms";
 import { Button } from "components/atomic";
 import * as Styled from "components/api/MutationForm/MutationForm.styles";
+import { useNotify } from "hooks";
+import type {
+  SubmissionReviewFormMutation as Mutation,
+  SubmissionReviewFormMutation$data as Mutation$data,
+  SubmissionReviewState,
+} from "@/relay/SubmissionReviewFormMutation.graphql";
+import type { MutationAttributeError } from "types/graphql-schema";
 
 type Fields = {
-  decision: string;
-  commentsForDepositor: string;
-  internalNotes: string;
+  decision: SubmissionReviewState;
+  comment: string;
 };
 
 export default function SubmissionReviewForm({
+  submissionId,
   onSuccess,
   onCancel,
 }: {
+  submissionId: string;
   onSuccess?: () => void;
   onCancel?: () => void;
 }) {
   const { t } = useTranslation();
+  const notify = useNotify();
   const form = useForm<Fields>();
   const { register, handleSubmit } = form;
 
+  const [commit, inFlight] = useMutation<Mutation>(mutation);
+
+  const handleResponse = useCallback(
+    (data: Mutation$data["submissionLeaveReview"] | null | undefined) => {
+      if (!data) return;
+
+      const { globalErrors, attributeErrors, submission } = data;
+
+      if (submission) {
+        notify.success(t("messages.review_submitted"));
+        onSuccess?.();
+      } else if (globalErrors?.length) {
+        notify.mutationGlobalError(globalErrors);
+      } else if (attributeErrors?.length) {
+        notify.mutationAttributeError(
+          attributeErrors as MutationAttributeError[],
+        );
+      }
+    },
+    [notify, t, onSuccess],
+  );
+
   const onSubmit = (data: Fields) => {
-    // TODO: wire up mutation
-    // eslint-disable-next-line no-console
-    console.log("Review submission:", data);
-    onSuccess?.();
+    commit({
+      variables: {
+        input: {
+          submissionId,
+          toState: data.decision,
+          comment: data.comment || undefined,
+        },
+      },
+      onCompleted: (response) => handleResponse(response.submissionLeaveReview),
+      onError: (err) => notify.error(err.message),
+    });
   };
 
   const decisionOptions = [
-    { label: t("forms.fields.decision_approve"), value: "APPROVE" },
-    {
-      label: t("forms.fields.decision_request_revisions"),
-      value: "REQUEST_REVISIONS",
-    },
-    { label: t("forms.fields.decision_reject"), value: "REJECT" },
+    { label: t("forms.fields.decision_approve"), value: "APPROVED" },
+    { label: t("forms.fields.decision_reject"), value: "REJECTED" },
   ];
 
   return (
@@ -51,16 +87,13 @@ export default function SubmissionReviewForm({
           <Textarea
             label="forms.fields.comments_for_depositor"
             isWide
-            {...register("commentsForDepositor")}
-          />
-          <Textarea
-            label="forms.fields.internal_notes"
-            isWide
-            {...register("internalNotes")}
+            {...register("comment")}
           />
         </Grid>
         <Styled.Footer className="l-flex l-flex--gap">
-          <Button type="submit">{t("common.submit")}</Button>
+          <Button type="submit" disabled={inFlight}>
+            {t("common.submit")}
+          </Button>
           {onCancel && (
             <Button type="button" onClick={onCancel} $secondary>
               {t("common.cancel")}
@@ -71,3 +104,23 @@ export default function SubmissionReviewForm({
     </FormProvider>
   );
 }
+
+const mutation = graphql`
+  mutation SubmissionReviewFormMutation($input: SubmissionLeaveReviewInput!) {
+    submissionLeaveReview(input: $input) {
+      submission {
+        id
+        state
+      }
+      attributeErrors {
+        messages
+        path
+        type
+      }
+      globalErrors {
+        message
+        type
+      }
+    }
+  }
+`;

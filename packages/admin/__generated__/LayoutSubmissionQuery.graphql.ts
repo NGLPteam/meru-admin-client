@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fc29f7e02b0185862d234ff7ef4cbe19>>
+ * @generated SignedSource<<45d1a2ef6b05fa02563088306e1f310c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -44,7 +44,55 @@ v2 = {
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
-};
+},
+v3 = [
+  {
+    "alias": null,
+    "args": null,
+    "concreteType": "AuthorizationResult",
+    "kind": "LinkedField",
+    "name": "canTransition",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "value",
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "lockedState",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "mutableState",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "fromState",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "toState",
+    "storageKey": null
+  }
+];
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -97,6 +145,26 @@ return {
           {
             "alias": null,
             "args": null,
+            "concreteType": "SubmissionStatus",
+            "kind": "LinkedField",
+            "name": "currentStatus",
+            "plural": false,
+            "selections": (v3/*: any*/),
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "SubmissionStatus",
+            "kind": "LinkedField",
+            "name": "availableTransitions",
+            "plural": true,
+            "selections": (v3/*: any*/),
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
             "concreteType": null,
             "kind": "LinkedField",
             "name": "entity",
@@ -130,12 +198,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "9bc3ca5271eb71ef3f4261250ac4d322",
+    "cacheID": "14edff0b6094f217f0e917eea5cc7a34",
     "id": null,
     "metadata": {},
     "name": "LayoutSubmissionQuery",
     "operationKind": "query",
-    "text": "query LayoutSubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    ...SubmissionLayoutFragment\n    id\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  entity {\n    __typename\n    __isEntity: __typename\n    title\n    id\n  }\n}\n"
+    "text": "query LayoutSubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    ...SubmissionLayoutFragment\n    id\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  currentStatus {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  availableTransitions {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  entity {\n    __typename\n    __isEntity: __typename\n    title\n    id\n  }\n}\n"
   }
 };
 })();

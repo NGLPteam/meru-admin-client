@@ -102,6 +102,24 @@ const fragment = graphql`
   fragment SubmissionLayoutFragment on Submission {
     id
     state
+    currentStatus {
+      canTransition {
+        value
+      }
+      lockedState
+      mutableState
+      fromState
+      toState
+    }
+    availableTransitions {
+      canTransition {
+        value
+      }
+      lockedState
+      mutableState
+      fromState
+      toState
+    }
     entity {
       ... on Entity {
         title
