@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<66d80aab3608e02dfef6096aba2ac3ea>>
+ * @generated SignedSource<<fc29f7e02b0185862d234ff7ef4cbe19>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -86,6 +86,7 @@ return {
         "name": "submission",
         "plural": false,
         "selections": [
+          (v2/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -122,20 +123,19 @@ return {
               (v2/*: any*/)
             ],
             "storageKey": null
-          },
-          (v2/*: any*/)
+          }
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "dd96940ccfdf6031fb20df77ef3427b8",
+    "cacheID": "9bc3ca5271eb71ef3f4261250ac4d322",
     "id": null,
     "metadata": {},
     "name": "LayoutSubmissionQuery",
     "operationKind": "query",
-    "text": "query LayoutSubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    ...SubmissionLayoutFragment\n    id\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  state\n  entity {\n    __typename\n    __isEntity: __typename\n    title\n    id\n  }\n}\n"
+    "text": "query LayoutSubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    ...SubmissionLayoutFragment\n    id\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  entity {\n    __typename\n    __isEntity: __typename\n    title\n    id\n  }\n}\n"
   }
 };
 })();

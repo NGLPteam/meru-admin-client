@@ -221,6 +221,7 @@
       "deposit_access_request_failed": "Failed to send deposit access request. Please try again.",
       "submissions_open_confirm": "Are you sure you want to open this collection for submissions?",
       "submissions_close_confirm": "Are you sure you want to close submissions for this collection?",
+      "submission_submitted": "Submission successfully submitted for review!",
       "unauthorized": "Unauthorized",
       "unauthorized_body": {
         "users": "Your account is not authorized to manage users.<0/>Please check with your account manager if you need access to this content.",
@@ -445,8 +446,8 @@
         "review_previous": "Review Previous",
         "resubmit": "Resubmit",
         "bulk_publish": "Bulk Publish",
-        "submit_for_review_confirm": "Are you sure you're ready to submit this for review? It will be sent to a reviewer for evaluation.",
-        "resubmit_for_review_confirm": "Are you sure you're ready to resubmit this for review? It will be sent back to a reviewer for evaluation.",
+        "submit_for_review_confirm": "Are you sure you're ready to submit this item for review?",
+        "resubmit_for_review_confirm": "Are you sure you're ready to submit revisions?",
         "publish_confirm_label": "Confirm Publish",
         "publish_confirm_body": "Are you sure you want to publish the {{count}} selected submission(s)?",
         "publish_confirm_body_single": "Are you sure you want to publish \"{{title}}\"?",

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a79c65b008fd25ce0a2864325a271b01>>
+ * @generated SignedSource<<672481df01ffe7e5ab06177d2ea45b6b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,6 +15,7 @@ export type SubmissionLayoutFragment$data = {
   readonly entity: {
     readonly title: string;
   } | null | undefined;
+  readonly id: string;
   readonly state: SubmissionState;
   readonly " $fragmentType": "SubmissionLayoutFragment";
 };
@@ -29,6 +30,13 @@ const node: ReaderFragment = {
   "metadata": null,
   "name": "SubmissionLayoutFragment",
   "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "id",
+      "storageKey": null
+    },
     {
       "alias": null,
       "args": null,
@@ -59,6 +67,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "81236658a0d3dc01b3dcf4c755e22b06";
+(node as any).hash = "64571280cac7a488099c5f567e6d215b";
 
 export default node;

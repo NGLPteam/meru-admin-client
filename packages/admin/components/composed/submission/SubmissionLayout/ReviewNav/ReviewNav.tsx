@@ -21,11 +21,11 @@ export default function ReviewNav({
           iconRotate={270}
           iconLeft
         >
-          {t("actions.review_previous")}
+          {t("actions.submissions.review_previous")}
         </ButtonControlRoute>
       ) : (
         <ButtonControl icon="arrow" iconRotate={270} iconLeft disabled>
-          {t("actions.review_previous")}
+          {t("actions.submissions.review_previous")}
         </ButtonControl>
       )}
       {nextSlug ? (
@@ -35,11 +35,11 @@ export default function ReviewNav({
           icon="arrow"
           iconRotate={90}
         >
-          {t("actions.review_next")}
+          {t("actions.submissions.review_next")}
         </ButtonControlRoute>
       ) : (
         <ButtonControl icon="arrow" iconRotate={90} disabled>
-          {t("actions.review_next")}
+          {t("actions.submissions.review_next")}
         </ButtonControl>
       )}
     </Styled.ReviewNav>
