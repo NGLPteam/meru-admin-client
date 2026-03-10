@@ -1,16 +1,31 @@
+import { graphql, usePreloadedQuery, PreloadedQuery } from "react-relay";
 import SubmissionDetailsView from "components/composed/submission/SubmissionDetails";
+import type { detailsMySubmissionQuery as Query } from "@/relay/detailsMySubmissionQuery.graphql";
 import Layout from "../_layout";
 import type { GetLayout } from "@wdp/lib/types/page";
 
-function SubmissionDetails() {
-  return <SubmissionDetailsView />;
+function SubmissionDetails({ queryRef }: Props) {
+  const { submission } = usePreloadedQuery<Query>(query, queryRef);
+
+  return submission ? <SubmissionDetailsView data={submission} /> : null;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getLayout: GetLayout<any> = (props) => {
-  return <Layout query={null} showLoadingCircle {...props} />;
+const getLayout: GetLayout = (props) => {
+  return <Layout query={query} showLoadingCircle {...props} />;
 };
 
 SubmissionDetails.getLayout = getLayout;
 
 export default SubmissionDetails;
+
+type Props = {
+  queryRef: PreloadedQuery<Query>;
+};
+
+const query = graphql`
+  query detailsMySubmissionQuery($slug: Slug!) {
+    submission(slug: $slug) {
+      ...SubmissionDetailsFragment
+    }
+  }
+`;

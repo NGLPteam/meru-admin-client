@@ -37,7 +37,9 @@ export default function ItemUpdateForm({
   onSuccess,
   onCancel,
   onSaveAndClose,
+  mode = "admin",
 }: Props) {
+  const isDepositor = mode === "depositor";
   const { t } = useTranslation();
 
   const mutationName = "updateItem";
@@ -168,8 +170,14 @@ export default function ItemUpdateForm({
               isWide
               {...register("subtitle")}
             />
-            <Forms.VisibilityFields />
-            <Forms.Input label="forms.fields.doi" {...register("doi")} isWide />
+            {!isDepositor && <Forms.VisibilityFields />}
+            {!isDepositor && (
+              <Forms.Input
+                label="forms.fields.doi"
+                {...register("doi")}
+                isWide
+              />
+            )}
             <Forms.FileImageUpload
               label="forms.fields.thumbnail"
               name="thumbnail"
@@ -188,15 +196,17 @@ export default function ItemUpdateForm({
               {...register("summary")}
               isWide
             />
-            <Forms.VariablePrecisionDateControl
-              name="published"
-              data={published}
-              label="forms.fields.published"
-              isWide
-            />
+            {!isDepositor && (
+              <Forms.VariablePrecisionDateControl
+                name="published"
+                data={published}
+                label="forms.fields.published"
+                isWide
+              />
+            )}
           </Forms.Grid>
           <SchemaFormFields data={fieldsData} schemaKind="ITEM" />
-          <HarvestingStatus data={item} />
+          {!isDepositor && <HarvestingStatus data={item} />}
         </>
       );
     },
@@ -206,7 +216,7 @@ export default function ItemUpdateForm({
   // Don't load the form in until defaultValues and schemaFieldValues are defined
   return defaultValues && schemaFieldValues ? (
     <>
-      <ParentSelector data={item} />
+      {!isDepositor && <ParentSelector data={item} />}
       <MutationForm<ItemUpdateFormMutation, Fields>
         name={mutationName}
         onSuccess={onSuccess}
@@ -233,6 +243,7 @@ interface Props
     "onSuccess" | "onCancel" | "onSaveAndClose"
   > {
   data: ItemUpdateFormFragment$key;
+  mode?: "admin" | "depositor";
 }
 
 type Fields = Omit<UpdateItemInput, "itemId">;

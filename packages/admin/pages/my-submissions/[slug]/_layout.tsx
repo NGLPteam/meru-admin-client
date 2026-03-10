@@ -2,77 +2,71 @@ import { ComponentType } from "react";
 import {
   PreloadedQuery,
   GraphQLTaggedNode,
-  // graphql,
-  // useLazyLoadQuery,
+  graphql,
+  useLazyLoadQuery,
 } from "react-relay";
 import { OperationType } from "relay-runtime";
-// import { useSearchParams } from "next/navigation";
-// import { QueryTransitionWrapper } from "@wdp/lib/api/components";
-import { ModelListProps } from "components/composed/model/ModelList";
+import { QueryTransitionWrapper } from "@wdp/lib/api/components";
+import { ModelNames } from "helpers";
 import SubmissionLayout from "components/composed/submission/SubmissionLayout";
-// import { useRouteSlug } from "hooks";
-// import ErrorPage from "next/error";
-// import { LoadingCircle } from "components/atomic";
-// import ModelListPageSkeleton from "components/composed/model/ModelListPageSkeleton";
-// import type { LayoutSubmissionQuery as LayoutQuery } from "@/relay/LayoutSubmissionQuery.graphql";
+import { useRouteSlug } from "hooks";
+import ErrorPage from "next/error";
+import { LoadingCircle } from "components/atomic";
+import ModelListPageSkeleton from "components/composed/model/ModelListPageSkeleton";
+import type { LayoutSubmissionQuery as LayoutQuery } from "@/relay/LayoutSubmissionQuery.graphql";
 
 export default function Layout<T extends OperationType>(props: Props<T>) {
-  const { PageComponent, pageComponentProps } = props;
+  const slug = useRouteSlug() as string;
 
-  // TODO: Uncomment when real submission API is available
-  // const slug = useRouteSlug() as string;
-  // if (!slug) return <ErrorPage statusCode={404} />;
-  //
-  // const queryVars = useBaseListQueryVars();
-  // const searchParams = useSearchParams();
-  //
-  // const { item } = useLazyLoadQuery<LayoutQuery>(
-  //   submissionQuery,
-  //   { slug },
-  //   { fetchPolicy: "store-or-network" },
-  // );
-  //
-  // if (!item) return <ErrorPage statusCode={404} />;
-  //
-  // const searchVars: Record<string, string> = {};
-  // searchParams.forEach((value, key) => (searchVars[key] = value));
-
-  return (
-    <SubmissionLayout>
-      <PageComponent {...pageComponentProps} />
-    </SubmissionLayout>
+  const { submission } = useLazyLoadQuery<LayoutQuery>(
+    submissionQuery,
+    { slug },
+    { fetchPolicy: "store-or-network" },
   );
 
-  // TODO: Uncomment when real submission API is available
-  // return (
-  //   <SubmissionLayout data={item}>
-  //     <QueryTransitionWrapper<T>
-  //       query={query}
-  //       variables={{
-  //         ...defaultQueryVars,
-  //         ...searchVars,
-  //         ...queryVars,
-  //         slug,
-  //       }}
-  //       loadingFallback={<LoadingCircle />}
-  //       refetchTags={refetchTags}
-  //     >
-  //       {({ queryRef }) =>
-  //         queryRef ? (
-  //           <PageComponent {...pageComponentProps} queryRef={queryRef} />
-  //         ) : showLoadingCircle ? (
-  //           <LoadingCircle className="l-page-loading" />
-  //         ) : (
-  //           <ModelListPageSkeleton
-  //             modelName={modelName}
-  //             headerStyle="secondary"
-  //             hideHeader
-  //           />
-  //         )
-  //       }
-  //     </QueryTransitionWrapper>
-  //   </SubmissionLayout>
-  // );
+  if (!slug || !submission) return <ErrorPage statusCode={404} />;
+
+  const {
+    PageComponent,
+    pageComponentProps,
+    query,
+    refetchTags,
+    showLoadingCircle,
+    modelName,
+  } = props;
+
+  if (!query) {
+    return (
+      <SubmissionLayout data={submission}>
+        <PageComponent {...pageComponentProps} />
+      </SubmissionLayout>
+    );
+  }
+
+  return (
+    <SubmissionLayout data={submission}>
+      <QueryTransitionWrapper<T>
+        query={query}
+        variables={{ slug }}
+        loadingFallback={<LoadingCircle />}
+        refetchTags={refetchTags}
+      >
+        {({ queryRef }) =>
+          queryRef ? (
+            <PageComponent {...pageComponentProps} queryRef={queryRef} />
+          ) : showLoadingCircle ? (
+            <LoadingCircle className="l-page-loading" />
+          ) : (
+            <ModelListPageSkeleton
+              modelName={modelName}
+              headerStyle="secondary"
+              hideHeader
+            />
+          )
+        }
+      </QueryTransitionWrapper>
+    </SubmissionLayout>
+  );
 }
 
 type Props<T extends OperationType> = {
@@ -81,7 +75,7 @@ type Props<T extends OperationType> = {
   query?: GraphQLTaggedNode | null;
   refetchTags?: string[];
   showLoadingCircle?: boolean;
-  modelName?: ModelListProps<any, any>["modelName"]; // eslint-disable-line @typescript-eslint/no-explicit-any
+  modelName?: Lowercase<ModelNames>;
   defaultQueryVars?: Record<string, string>;
 };
 
@@ -89,11 +83,10 @@ type PageProps<T extends OperationType> = {
   queryRef?: PreloadedQuery<T>;
 };
 
-// TODO: Uncomment when real submission API is available
-// const submissionQuery = graphql`
-//   query LayoutSubmissionQuery($slug: Slug!) {
-//     item(slug: $slug) {
-//       ...SubmissionLayoutFragment
-//     }
-//   }
-// `;
+export const submissionQuery = graphql`
+  query LayoutSubmissionQuery($slug: Slug!) {
+    submission(slug: $slug) {
+      ...SubmissionLayoutFragment
+    }
+  }
+`;
