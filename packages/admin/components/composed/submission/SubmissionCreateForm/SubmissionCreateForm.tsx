@@ -1,7 +1,5 @@
-import { useCallback, type CSSProperties } from "react";
-import { useRouter } from "next/router";
+import { useState } from "react";
 import { graphql } from "react-relay";
-import { useFieldArray } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import MutationForm, {
   useRenderForm,
@@ -9,141 +7,194 @@ import MutationForm, {
   Forms,
   useOnSuccess,
 } from "components/api/MutationForm";
-import { ButtonControl } from "components/atomic";
-import { Fieldset } from "components/forms";
-import { RouteHelper } from "routes";
-import useIsMobile from "hooks/useIsMobile";
-import type { SchemaSelectFragment$key } from "@/relay/SchemaSelectFragment.graphql";
-import type {
-  SubmissionCreateFormMutation,
-  CreateItemInput,
-} from "@/relay/SubmissionCreateFormMutation.graphql";
-import type { Control, UseFormRegister } from "react-hook-form";
-
-type Fields = Omit<CreateItemInput, "clientMutationId"> & {
-  contributors: { contributorId: string }[];
-  files: { file: string; caption: string }[];
-};
+import type { SubmissionCreateFormMutation } from "@/relay/SubmissionCreateFormMutation.graphql";
+import type { SubmissionTargetNode, PreselectedTarget, Fields } from "./types";
 
 type Props = {
-  data: SchemaSelectFragment$key;
-  initialCollection?: { id: string; title: string };
+  depositableTargets: SubmissionTargetNode[];
+  preselectedTarget?: PreselectedTarget;
+  preselectedCollectionId?: string;
+  onSuccess: (slug: string) => void;
+  onCancel: () => void;
 };
 
 export default function SubmissionCreateForm({
-  data,
-  initialCollection,
+  depositableTargets,
+  preselectedTarget,
+  preselectedCollectionId,
+  onSuccess,
+  onCancel,
 }: Props) {
   const { t } = useTranslation();
-  const router = useRouter();
 
-  const redirect = useCallback(
-    (routeName: string) => {
-      const newRoute = RouteHelper.findRouteByName(routeName);
-      if (newRoute) router.push({ pathname: newRoute.path });
-    },
-    [router],
+  const [selectedTargetId, setSelectedTargetId] = useState<string>(
+    preselectedTarget?.id ?? "",
   );
 
-  const onSuccess = useOnSuccess<SubmissionCreateFormMutation, Fields>(() => {
-    redirect("my-submissions");
-  }, [redirect]);
+  // Resolve current target data
+  const selectedTarget =
+    preselectedTarget?.id === selectedTargetId
+      ? preselectedTarget
+      : depositableTargets.find((t) => t.id === selectedTargetId);
+
+  const isDescendant = selectedTarget?.depositMode === "DESCENDANT";
+  const depositTargets = selectedTarget?.depositTargets ?? [];
+  const schemaVersions = selectedTarget?.schemaVersions ?? [];
+
+  // For DIRECT mode, parentEntityId is the selected target's entity ID
+  const parentEntityId =
+    preselectedTarget?.id === selectedTargetId
+      ? preselectedCollectionId ?? ""
+      : (selectedTarget as SubmissionTargetNode)?.entity?.id ?? "";
+
+  const defaultDepositTargetId =
+    depositTargets.length === 1 ? depositTargets[0].id : "";
+  const defaultSchemaVersionId =
+    schemaVersions.length === 1 ? schemaVersions[0].id : "";
+
+  const targetOptions = depositableTargets.map((target) => ({
+    label: target.entity.title || target.id,
+    value: target.id,
+  }));
+
+  const depositTargetOptions = depositTargets.map((dt) => ({
+    label: dt.entity.title || dt.id,
+    value: dt.id,
+  }));
+
+  const schemaVersionOptions = schemaVersions.map((sv) => ({
+    label: sv.name,
+    value: sv.id,
+  }));
+
+  const handleSuccess = useOnSuccess<SubmissionCreateFormMutation, Fields>(
+    ({ response }) => {
+      const slug = response?.submissionCreate?.submission?.slug;
+      if (slug) {
+        onSuccess(slug);
+      }
+    },
+    [onSuccess],
+  );
 
   const toVariables = useToVariables<SubmissionCreateFormMutation, Fields>(
-    (data) => ({
-      input: {
-        title: data.title,
-        subtitle: data.subtitle,
-        parentId: data.parentId,
-        schemaVersionSlug: data.schemaVersionSlug,
-        visibility: data.visibility,
-        summary: data.summary,
-        thumbnail: data.thumbnail,
-        heroImage: data.heroImage,
-        published: data.published,
-      },
-    }),
-    [],
+    (data) => {
+      if (isDescendant) {
+        // For DESCENDANT: parentEntityId is the top-level collection,
+        // submissionTargetId comes from the selected deposit target's entity's submissionTarget
+        const depositTarget = depositTargets.find(
+          (dt) => dt.id === data.depositTargetId,
+        );
+        const descendantSubmissionTargetId =
+          depositTarget?.entity?.submissionTarget?.id ?? "";
+
+        return {
+          input: {
+            title: data.title,
+            submissionTargetId: descendantSubmissionTargetId,
+            parentEntityId,
+            schemaVersionId: data.schemaVersionId,
+          },
+        };
+      }
+
+      // For DIRECT: submissionTargetId is the selected target, parentEntityId is its entity
+      return {
+        input: {
+          title: data.title,
+          submissionTargetId: data.submissionTargetId,
+          parentEntityId,
+          schemaVersionId: data.schemaVersionId,
+        },
+      };
+    },
+    [isDescendant, depositTargets, parentEntityId],
   );
 
-  const defaultValues = {
-    visibility: "VISIBLE" as Fields["visibility"],
-    contributors: [] as Fields["contributors"],
-    files: [] as Fields["files"],
-    ...(initialCollection ? { parentId: initialCollection.id } : {}),
+  const defaultValues: Partial<Fields> = {
+    submissionTargetId: selectedTargetId,
+    depositTargetId: defaultDepositTargetId,
+    schemaVersionId: defaultSchemaVersionId,
   };
 
   const renderForm = useRenderForm<Fields>(
-    ({ form: { register, control } }) => (
-      <Forms.Grid>
-        <Forms.Input
-          label="forms.fields.title"
-          required
-          isWide
-          {...register("title")}
-        />
-        <Forms.Input
-          label="forms.fields.subtitle"
-          isWide
-          {...register("subtitle")}
-        />
-        <Forms.CollectionTypeahead
-          control={control}
-          name="parentId"
-          label="forms.fields.collection"
-          required
-          initialOption={
-            initialCollection
-              ? { label: initialCollection.title, value: initialCollection.id }
-              : undefined
-          }
-        />
-        <Forms.SchemaSelect
-          label="forms.schema.label"
-          data={data}
-          required
-          {...register("schemaVersionSlug")}
-        />
-        <div
-          className="t-copy-sm a-color-light"
-          style={
-            {
-              flexBasis: "var(--form-grid-item-width-wide)",
-              paddingBlock: "var(--form-grid-row-gap)",
-            } as CSSProperties
-          }
-        >
-          {t("forms.fields.schema_fields_placeholder")}
-        </div>
-        <Forms.FileImageUpload
-          label="forms.fields.thumbnail"
-          name="thumbnail"
-        />
-        <Forms.FileImageUpload
-          label="forms.fields.hero_image"
-          name="heroImage"
-          description="forms.fields.hero_image_description"
-        />
-        <Forms.Textarea
-          label="forms.fields.summary"
-          {...register("summary")}
-          isWide
-        />
-        <ContributorsFieldArray control={control} />
-        <FilesFieldArray control={control} register={register} />
-      </Forms.Grid>
-    ),
-    [],
+    ({ form: { register, watch, setValue } }) => {
+      const watchedTargetId = watch("submissionTargetId");
+
+      // When submission target changes, update dependent selects
+      if (watchedTargetId !== selectedTargetId) {
+        const newTarget = depositableTargets.find(
+          (t) => t.id === watchedTargetId,
+        );
+        const newDepositTargets = newTarget?.depositTargets ?? [];
+        const newSchemaVersions = newTarget?.schemaVersions ?? [];
+
+        setSelectedTargetId(watchedTargetId);
+        setValue(
+          "depositTargetId",
+          newDepositTargets.length === 1 ? newDepositTargets[0].id : "",
+        );
+        setValue(
+          "schemaVersionId",
+          newSchemaVersions.length === 1 ? newSchemaVersions[0].id : "",
+        );
+      }
+
+      return (
+        <Forms.Grid>
+          <Forms.Input
+            label="forms.fields.title"
+            required
+            isWide
+            {...register("title")}
+          />
+          <Forms.Select
+            label="forms.fields.submission_target"
+            required
+            isWide
+            options={targetOptions}
+            description={t("forms.fields.submission_target_description")}
+            {...register("submissionTargetId")}
+          />
+          {isDescendant && !!depositTargetOptions.length && (
+            <Forms.Select
+              label="forms.fields.deposit_target"
+              required
+              isWide
+              options={depositTargetOptions}
+              placeholder={t("forms.fields.select_deposit_target")}
+              {...register("depositTargetId")}
+            />
+          )}
+          <Forms.Select
+            label="forms.schema.label"
+            required
+            isWide
+            options={schemaVersionOptions}
+            description={t("forms.fields.submission_schema_description")}
+            {...register("schemaVersionId")}
+          />
+        </Forms.Grid>
+      );
+    },
+    [
+      preselectedTarget,
+      targetOptions,
+      depositTargetOptions,
+      schemaVersionOptions,
+      selectedTargetId,
+      isDescendant,
+    ],
   );
 
   return (
     <MutationForm<SubmissionCreateFormMutation, Fields>
       mutation={mutation}
-      onSuccess={onSuccess}
-      onCancel={() => redirect("my-submissions")}
+      onSuccess={handleSuccess}
+      onCancel={onCancel}
       successNotification="messages.create.submission_success"
-      name="createItem"
-      refetchTags={["items"]}
+      name="submissionCreate"
+      refetchTags={["submissions"]}
       toVariables={toVariables}
       defaultValues={defaultValues}
     >
@@ -152,110 +203,10 @@ export default function SubmissionCreateForm({
   );
 }
 
-function ContributorsFieldArray({ control }: { control: Control<Fields> }) {
-  const { t } = useTranslation();
-  const isMobile = useIsMobile();
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "contributors",
-  });
-
-  return (
-    <Fieldset label={t("glossary.contributor_other")}>
-      {fields.map((field, index) => (
-        <Fieldset.Fields key={field.id}>
-          <Fieldset.Field>
-            <Forms.ContributorTypeahead
-              control={control}
-              name={`contributors.${index}.contributorId`}
-              label="forms.fields.contributor"
-            />
-          </Fieldset.Field>
-          <Fieldset.Actions>
-            <ButtonControl
-              type="button"
-              aria-label={t("common.delete")}
-              onClick={() => remove(index)}
-              icon="delete"
-              size={!isMobile ? "large" : undefined}
-            >
-              {isMobile ? t("common.delete") : null}
-            </ButtonControl>
-          </Fieldset.Actions>
-        </Fieldset.Fields>
-      ))}
-      <ButtonControl
-        type="button"
-        onClick={() => append({ contributorId: "" })}
-        icon="plus"
-        size={!isMobile ? "large" : undefined}
-      >
-        {t("actions.add.contributor_row")}
-      </ButtonControl>
-    </Fieldset>
-  );
-}
-
-function FilesFieldArray({
-  control,
-  register,
-}: {
-  control: Control<Fields>;
-  register: UseFormRegister<Fields>;
-}) {
-  const { t } = useTranslation();
-  const isMobile = useIsMobile();
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "files",
-  });
-
-  return (
-    <Fieldset label={t("glossary.file_other")}>
-      {fields.map((field, index) => (
-        <Fieldset.Fields key={field.id}>
-          <Fieldset.Field>
-            <Forms.FileImageUpload
-              label="forms.fields.attachment"
-              name={`files.${index}.file`}
-            />
-          </Fieldset.Field>
-          <Fieldset.Field>
-            <Forms.Input
-              label="forms.fields.caption"
-              {...register(`files.${index}.caption`)}
-            />
-          </Fieldset.Field>
-          <Fieldset.Actions>
-            <ButtonControl
-              type="button"
-              aria-label={t("common.delete")}
-              onClick={() => remove(index)}
-              icon="delete"
-              size={!isMobile ? "large" : undefined}
-            >
-              {isMobile ? t("common.delete") : null}
-            </ButtonControl>
-          </Fieldset.Actions>
-        </Fieldset.Fields>
-      ))}
-      <ButtonControl
-        type="button"
-        onClick={() => append({ file: "", caption: "" })}
-        icon="plus"
-        size={!isMobile ? "large" : undefined}
-      >
-        {t("actions.add.file_row")}
-      </ButtonControl>
-    </Fieldset>
-  );
-}
-
 const mutation = graphql`
-  mutation SubmissionCreateFormMutation($input: CreateItemInput!) {
-    createItem(input: $input) {
-      item {
-        title
+  mutation SubmissionCreateFormMutation($input: SubmissionCreateInput!) {
+    submissionCreate(input: $input) {
+      submission {
         slug
       }
       ...MutationForm_mutationErrors

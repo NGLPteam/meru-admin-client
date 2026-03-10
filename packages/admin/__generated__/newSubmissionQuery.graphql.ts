@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<25c2b68e1d9dc41500cd5b4f575aa21e>>
+ * @generated SignedSource<<d28b5e455297b6ff5b62ac9f233120ed>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,12 +10,9 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type SchemaKind = "COLLECTION" | "COMMUNITY" | "ITEM" | "%future added value";
-export type newSubmissionQuery$variables = {
-  schemaKind: SchemaKind;
-};
+export type newSubmissionQuery$variables = Record<PropertyKey, never>;
 export type newSubmissionQuery$data = {
-  readonly " $fragmentSpreads": FragmentRefs<"SchemaSelectFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"CanSubmitCheckFragment">;
 };
 export type newSubmissionQuery = {
   response: newSubmissionQuery$data;
@@ -23,16 +20,39 @@ export type newSubmissionQuery = {
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = [
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v1 = [
   {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "schemaKind"
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "value",
+    "storageKey": null
   }
-];
+],
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "__typename",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "title",
+  "storageKey": null
+};
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
     "name": "newSubmissionQuery",
@@ -40,7 +60,7 @@ return {
       {
         "args": null,
         "kind": "FragmentSpread",
-        "name": "SchemaSelectFragment"
+        "name": "CanSubmitCheckFragment"
       }
     ],
     "type": "Query",
@@ -48,7 +68,7 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [],
     "kind": "Operation",
     "name": "newSubmissionQuery",
     "selections": [
@@ -56,71 +76,174 @@ return {
         "alias": null,
         "args": [
           {
-            "kind": "Variable",
-            "name": "kind",
-            "variableName": "schemaKind"
+            "kind": "Literal",
+            "name": "filters",
+            "value": {
+              "inState": [
+                "OPEN"
+              ]
+            }
           }
         ],
-        "concreteType": "SchemaVersionOption",
+        "concreteType": "SubmissionTargetConnection",
         "kind": "LinkedField",
-        "name": "schemaVersionOptions",
-        "plural": true,
+        "name": "submissionTargets",
+        "plural": false,
         "selections": [
           {
             "alias": null,
             "args": null,
-            "kind": "ScalarField",
-            "name": "label",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "value",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "concreteType": "SchemaDefinition",
+            "concreteType": "SubmissionTarget",
             "kind": "LinkedField",
-            "name": "schemaDefinition",
-            "plural": false,
+            "name": "nodes",
+            "plural": true,
             "selections": [
+              (v0/*: any*/),
               {
                 "alias": null,
                 "args": null,
                 "kind": "ScalarField",
-                "name": "slug",
+                "name": "depositMode",
                 "storageKey": null
               },
               {
                 "alias": null,
                 "args": null,
-                "kind": "ScalarField",
-                "name": "id",
+                "concreteType": "AuthorizationResult",
+                "kind": "LinkedField",
+                "name": "canDeposit",
+                "plural": false,
+                "selections": (v1/*: any*/),
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "AuthorizationResult",
+                "kind": "LinkedField",
+                "name": "canRequestDepositAccess",
+                "plural": false,
+                "selections": (v1/*: any*/),
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": null,
+                "kind": "LinkedField",
+                "name": "entity",
+                "plural": false,
+                "selections": [
+                  (v2/*: any*/),
+                  (v0/*: any*/),
+                  {
+                    "kind": "InlineFragment",
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "slug",
+                        "storageKey": null
+                      },
+                      (v3/*: any*/)
+                    ],
+                    "type": "Collection",
+                    "abstractKey": null
+                  }
+                ],
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "SubmissionDepositTarget",
+                "kind": "LinkedField",
+                "name": "depositTargets",
+                "plural": true,
+                "selections": [
+                  (v0/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": null,
+                    "kind": "LinkedField",
+                    "name": "entity",
+                    "plural": false,
+                    "selections": [
+                      (v2/*: any*/),
+                      {
+                        "kind": "InlineFragment",
+                        "selections": [
+                          (v3/*: any*/),
+                          {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "SubmissionTarget",
+                            "kind": "LinkedField",
+                            "name": "submissionTarget",
+                            "plural": false,
+                            "selections": [
+                              (v0/*: any*/)
+                            ],
+                            "storageKey": null
+                          }
+                        ],
+                        "type": "Collection",
+                        "abstractKey": null
+                      },
+                      (v0/*: any*/)
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "SchemaVersion",
+                "kind": "LinkedField",
+                "name": "schemaVersions",
+                "plural": true,
+                "selections": [
+                  (v0/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "name",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "identifier",
+                    "storageKey": null
+                  }
+                ],
                 "storageKey": null
               }
             ],
             "storageKey": null
           }
         ],
-        "storageKey": null
+        "storageKey": "submissionTargets(filters:{\"inState\":[\"OPEN\"]})"
       }
     ]
   },
   "params": {
-    "cacheID": "c6d3deeff48fd3577ce979aa8ab61689",
+    "cacheID": "9f83ecc26267e8feaea5d33fccaf647d",
     "id": null,
     "metadata": {},
     "name": "newSubmissionQuery",
     "operationKind": "query",
-    "text": "query newSubmissionQuery(\n  $schemaKind: SchemaKind!\n) {\n  ...SchemaSelectFragment\n}\n\nfragment SchemaSelectFragment on Query {\n  schemaVersionOptions(kind: $schemaKind) {\n    label\n    value\n    schemaDefinition {\n      slug\n      id\n    }\n  }\n}\n"
+    "text": "query newSubmissionQuery {\n  ...CanSubmitCheckFragment\n}\n\nfragment CanSubmitCheckFragment on Query {\n  submissionTargets(filters: {inState: [OPEN]}) {\n    nodes {\n      id\n      depositMode\n      canDeposit {\n        value\n      }\n      canRequestDepositAccess {\n        value\n      }\n      entity {\n        __typename\n        ... on Collection {\n          id\n          slug\n          title\n        }\n        id\n      }\n      depositTargets {\n        id\n        entity {\n          __typename\n          ... on Collection {\n            title\n            submissionTarget {\n              id\n            }\n          }\n          id\n        }\n      }\n      schemaVersions {\n        id\n        name\n        identifier\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "d5804e429d22879a53aa11594eadd350";
+(node as any).hash = "d8a07432ce104de98c14ea859e27b6d5";
 
 export default node;

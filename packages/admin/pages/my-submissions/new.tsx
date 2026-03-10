@@ -11,7 +11,7 @@ import routeQueryArrayToString from "@wdp/lib/routes/helpers/routeQueryArrayToSt
 import { LoadingPage } from "components/atomic/loading";
 import { PageHeader, BackToAll } from "components/layout";
 import HtmlHead from "components/global/HtmlHead";
-import SubmissionCreateForm from "components/composed/submission/SubmissionCreateForm";
+import SubmissionCreateForm from "components/composed/submission/SubmissionCreateForm/CanSubmitCheck";
 import type { newSubmissionQuery as Query } from "@/relay/newSubmissionQuery.graphql";
 import type { newSubmissionCollectionQuery as CollectionQuery } from "@/relay/newSubmissionCollectionQuery.graphql";
 
@@ -27,7 +27,7 @@ export default function NewSubmission() {
       <PageHeader title={t("nav.new_submission")} />
       <QueryTransitionWrapper<Query>
         query={query}
-        variables={{ schemaKind: "ITEM" }}
+        variables={{}}
         loadingFallback={<LoadingPage />}
       >
         {({ queryRef }) =>
@@ -47,18 +47,10 @@ export default function NewSubmission() {
   );
 }
 
-const FormWithData = ({
-  queryRef,
-  initialCollection,
-}: {
-  queryRef: PreloadedQuery<Query>;
-  initialCollection?: { id: string; title: string };
-}) => {
+const FormWithData = ({ queryRef }: { queryRef: PreloadedQuery<Query> }) => {
   const data = usePreloadedQuery<Query>(query, queryRef);
 
-  return (
-    <SubmissionCreateForm data={data} initialCollection={initialCollection} />
-  );
+  return <SubmissionCreateForm data={data} />;
 };
 
 const FormWithCollection = ({
@@ -71,21 +63,25 @@ const FormWithCollection = ({
   const { collection } = useLazyLoadQuery<CollectionQuery>(
     collectionQuery,
     { slug: collectionSlug },
-    { fetchPolicy: "store-or-network" },
+    { fetchPolicy: "store-and-network" },
   );
 
-  const initialCollection = collection
-    ? { id: collection.id, title: collection.title }
-    : undefined;
+  const preselectedTarget = collection?.submissionTarget ?? undefined;
+
+  const data = usePreloadedQuery<Query>(query, queryRef);
 
   return (
-    <FormWithData queryRef={queryRef} initialCollection={initialCollection} />
+    <SubmissionCreateForm
+      data={data}
+      preselectedTarget={preselectedTarget}
+      preselectedCollectionId={collection?.id}
+    />
   );
 };
 
 const query = graphql`
-  query newSubmissionQuery($schemaKind: SchemaKind!) {
-    ...SchemaSelectFragment
+  query newSubmissionQuery {
+    ...CanSubmitCheckFragment
   }
 `;
 
@@ -94,6 +90,32 @@ const collectionQuery = graphql`
     collection(slug: $slug) {
       id
       title
+      submissionTarget {
+        id
+        depositMode
+        canDeposit {
+          value
+        }
+        canRequestDepositAccess {
+          value
+        }
+        depositTargets {
+          id
+          entity {
+            ... on Collection {
+              title
+              submissionTarget {
+                id
+              }
+            }
+          }
+        }
+        schemaVersions {
+          id
+          name
+          identifier
+        }
+      }
     }
   }
 `;
