@@ -9,9 +9,8 @@ function SubmissionHistory() {
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getLayout: GetLayout<any> = (props) => {
-  return <Layout query={null} showLoadingCircle {...props} />;
+const getLayout: GetLayout = (props) => {
+  return <Layout {...props} />;
 };
 
 SubmissionHistory.getLayout = getLayout;
