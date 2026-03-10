@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<12be081833a177b0b3007657eeb20133>>
+ * @generated SignedSource<<a79c65b008fd25ce0a2864325a271b01>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,11 +9,13 @@
 // @ts-nocheck
 
 import { Fragment, ReaderFragment } from 'relay-runtime';
+export type SubmissionState = "APPROVED" | "DRAFT" | "PUBLISHED" | "REJECTED" | "REVISION_REQUESTED" | "SUBMITTED" | "UNDER_REVIEW" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type SubmissionLayoutFragment$data = {
-  readonly __typename: "Item";
-  readonly slug: string;
-  readonly title: string;
+  readonly entity: {
+    readonly title: string;
+  } | null | undefined;
+  readonly state: SubmissionState;
   readonly " $fragmentType": "SubmissionLayoutFragment";
 };
 export type SubmissionLayoutFragment$key = {
@@ -31,28 +33,32 @@ const node: ReaderFragment = {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "__typename",
+      "name": "state",
       "storageKey": null
     },
     {
       "alias": null,
       "args": null,
-      "kind": "ScalarField",
-      "name": "slug",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "title",
+      "concreteType": null,
+      "kind": "LinkedField",
+      "name": "entity",
+      "plural": false,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "title",
+          "storageKey": null
+        }
+      ],
       "storageKey": null
     }
   ],
-  "type": "Item",
+  "type": "Submission",
   "abstractKey": null
 };
 
-(node as any).hash = "f5a8320104a4ff90b3599b2a92b6b308";
+(node as any).hash = "81236658a0d3dc01b3dcf4c755e22b06";
 
 export default node;

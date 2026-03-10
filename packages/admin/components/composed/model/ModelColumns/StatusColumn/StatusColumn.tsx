@@ -1,7 +1,8 @@
 import get from "lodash/get";
 import styled from "styled-components";
-import { StatusBadge } from "components/atomic";
+import { StatusBadge } from "components/composed/submission/SubmissionList/StatusBadge";
 import { PartialColumnish, Node } from "../types";
+import type { SubmissionState } from "types/graphql-schema";
 import type { ColumnDef } from "@tanstack/react-table";
 
 const ListBadge = styled(StatusBadge)`
@@ -22,7 +23,7 @@ const StatusColumn = <T extends Node>({
     accessorFn: (originalRow: T) => get(originalRow, "status"),
     enableSorting: false,
     cell: (info) => {
-      const value = info.getValue<string>();
+      const value = info.getValue<SubmissionState>();
       return <ListBadge status={value} />;
     },
     ...props,

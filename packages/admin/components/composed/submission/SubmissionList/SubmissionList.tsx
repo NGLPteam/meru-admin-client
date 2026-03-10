@@ -1,23 +1,31 @@
-import { graphql, useFragment } from "react-relay";
+import { graphql } from "react-relay";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
+import { useMaybeFragment } from "@wdp/lib/api/hooks";
 import ModelListPage from "components/composed/model/ModelListPage";
 import ModelColumns from "components/composed/model/ModelColumns";
 import { ButtonControlGroup, ButtonControlRoute } from "components/atomic";
+import SubmissionSearchWithFilters from "components/composed/submission/SubmissionSearchWithFilters";
+import CurrentSubmissionFilters from "components/composed/submission/CurrentSubmissionFilters";
 import type {
   SubmissionListFragment$data,
   SubmissionListFragment$key,
 } from "@/relay/SubmissionListFragment.graphql";
-import { MOCK_SUBMISSIONS, type SubmissionNode } from "./mockData";
+import type { SubmissionState } from "types/graphql-schema";
 import type { ModelTableActionProps } from "@tanstack/react-table";
 
+type SubmissionNode = SubmissionListFragment$data["nodes"][number];
+
 type Props = {
-  data?: SubmissionListFragment$key;
+  data?: SubmissionListFragment$key | null;
   mode?: "review" | "my-submissions";
 };
 
 function SubmissionList({ data, mode = "review" }: Props) {
-  const connection = useFragment<SubmissionListFragment$key>(fragment, data);
+  const submissions = useMaybeFragment<SubmissionListFragment$key>(
+    fragment,
+    data,
+  );
 
   const { t } = useTranslation();
   const router = useRouter();
@@ -28,34 +36,24 @@ function SubmissionList({ data, mode = "review" }: Props) {
     : "submissions.detail";
   const basePath = isMySubmissions ? "my-submissions" : "submissions";
 
-  const filteredSubmissions = isMySubmissions
-    ? MOCK_SUBMISSIONS
-    : MOCK_SUBMISSIONS.filter(
-        (s) => s.status === "In Review" || s.status === "Revisions Requested",
-      );
-
-  const dataWithMockNodes = connection
-    ? ({
-        ...connection,
-        nodes: filteredSubmissions,
-      } as SubmissionListFragment$data)
-    : undefined;
-
   const columns = [
     ModelColumns.NameColumn<SubmissionNode>({
-      accessor: "title",
+      accessor: (row: SubmissionNode) => row.entity?.title,
       route: detailRoute,
       enableSorting: false,
     }),
     ModelColumns.StatusColumn<SubmissionNode>({
       header: () => t("lists.status_column"),
+      accessorFn: (row: SubmissionNode) => row.state,
     }),
     ModelColumns.StringColumn<SubmissionNode>({
       id: "collection",
       header: () => t("lists.collection_column"),
+      accessorFn: (row: SubmissionNode) =>
+        row.submissionTarget?.entity?.title ?? "",
     }),
-    ModelColumns.UpdatedAtColumn<SubmissionNode>({
-      enableSorting: false,
+    ModelColumns.CreatedAtColumn<SubmissionNode>({
+      enableSorting: true,
     }),
   ];
 
@@ -84,6 +82,20 @@ function SubmissionList({ data, mode = "review" }: Props) {
       ]
     : undefined;
 
+  const ALL_STATES: SubmissionState[] = [
+    "DRAFT",
+    "SUBMITTED",
+    "UNDER_REVIEW",
+    "REVISION_REQUESTED",
+    "APPROVED",
+    "PUBLISHED",
+    "REJECTED",
+  ];
+
+  const REVIEWER_STATES = ALL_STATES.filter((s) => s !== "DRAFT");
+
+  const stateOptions = isMySubmissions ? ALL_STATES : REVIEWER_STATES;
+
   return (
     <ModelListPage<SubmissionListFragment$data, SubmissionNode>
       modelName="submission"
@@ -91,23 +103,41 @@ function SubmissionList({ data, mode = "review" }: Props) {
         isMySubmissions ? "nav.my_submissions" : "nav.submissions_header",
       )}
       columns={columns}
-      data={dataWithMockNodes}
+      data={submissions}
       actions={actions}
       buttons={buttons}
       tabRoutes={tabRoutes}
       tabLinksOnly
-      showSearch
-      hideFilters
-      disableSortBy
+      searchOverride={
+        <SubmissionSearchWithFilters stateOptions={stateOptions} />
+      }
+      currentFiltersOverride={<CurrentSubmissionFilters />}
     />
   );
 }
 
 const fragment = graphql`
-  fragment SubmissionListFragment on ItemConnection {
+  fragment SubmissionListFragment on SubmissionConnection {
     nodes {
       id
       slug
+      state
+      createdAt
+      entity {
+        ... on Node {
+          id
+        }
+        ... on Entity {
+          title
+        }
+      }
+      submissionTarget {
+        entity {
+          ... on Entity {
+            title
+          }
+        }
+      }
     }
     ...ModelListPageFragment
   }

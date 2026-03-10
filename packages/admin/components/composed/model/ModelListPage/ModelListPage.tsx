@@ -42,6 +42,10 @@ type ModelListPageProps<
     selectedCount?: number;
     /** Rendered between count row and table (e.g. SelectAll bar) */
     selectionBar?: React.ReactNode;
+    /** Custom search element; overrides showSearch/hideFilters when provided */
+    searchOverride?: React.ReactNode;
+    /** Additional filter tags rendered below the search bar */
+    currentFiltersOverride?: React.ReactNode;
   };
 
 function ModelListPage<
@@ -63,6 +67,8 @@ function ModelListPage<
   countActions,
   selectedCount,
   selectionBar,
+  searchOverride,
+  currentFiltersOverride,
   ...modelListProps
 }: ModelListPageProps<U, V>) {
   const { t } = useTranslation();
@@ -97,6 +103,12 @@ function ModelListPage<
         ? ("COLLECTION" as const)
         : undefined;
 
+  const CurrentFiltersComponent = searchScope ? (
+    <CurrentSearchFilters data={searchScope} />
+  ) : currentFiltersOverride ? (
+    currentFiltersOverride
+  ) : undefined;
+
   return (
     <section>
       <PageHeader
@@ -113,7 +125,9 @@ function ModelListPage<
         setView={setView}
         listId={listId}
         search={
-          hideFilters ? (
+          searchOverride ? (
+            searchOverride
+          ) : hideFilters ? (
             <Search />
           ) : (
             showSearch && (
@@ -122,7 +136,7 @@ function ModelListPage<
           )
         }
       />
-      {searchScope && <CurrentSearchFilters data={searchScope} />}
+      {CurrentFiltersComponent}
       <ModelPageCountActions
         data={instance}
         actions={pageCountActions}

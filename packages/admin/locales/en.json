@@ -746,10 +746,24 @@
       "publication_filters": "Publication:",
       "schema_filters": "Schema:",
       "show_all_schemas": "Show all schemas",
-      "show_less": "Show less"
+      "show_less": "Show less",
+      "submissions": {
+        "filter_by_status": "Status",
+        "filter_by_date": "Date Updated",
+        "updated_tag_label": "Updated",
+        "updated_after": "after",
+        "updated_before": "before",
+        "submission_target": "Submission target"
+      }
     },
-    "submission_detail": {
-      "revisions_requested": "Revisions Requested"
+    "status": {
+      "draft_label": "Draft",
+      "submitted_label": "Submitted",
+      "under_review_label": "In Review",
+      "revision_requested_label": "Revisions Requested",
+      "approved_label": "Approved",
+      "published_label": "Published",
+      "rejected_label": "Rejected"
     },
     "harvesting": {
       "mode": "Mode",

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9bb8539618441b670bcfcad920863c4d>>
+ * @generated SignedSource<<25102a701cecb9f4853eeb7ab2e986b7>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,11 +9,23 @@
 // @ts-nocheck
 
 import { Fragment, ReaderFragment } from 'relay-runtime';
+export type SubmissionState = "APPROVED" | "DRAFT" | "PUBLISHED" | "REJECTED" | "REVISION_REQUESTED" | "SUBMITTED" | "UNDER_REVIEW" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type SubmissionListFragment$data = {
   readonly nodes: ReadonlyArray<{
+    readonly createdAt: string;
+    readonly entity: {
+      readonly id?: string;
+      readonly title: string;
+    } | null | undefined;
     readonly id: string;
     readonly slug: string;
+    readonly state: SubmissionState;
+    readonly submissionTarget: {
+      readonly entity: {
+        readonly title: string;
+      };
+    } | null | undefined;
   }>;
   readonly " $fragmentSpreads": FragmentRefs<"ModelListPageFragment">;
   readonly " $fragmentType": "SubmissionListFragment";
@@ -23,7 +35,22 @@ export type SubmissionListFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"SubmissionListFragment">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "title",
+  "storageKey": null
+};
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -32,23 +59,74 @@ const node: ReaderFragment = {
     {
       "alias": null,
       "args": null,
-      "concreteType": "Item",
+      "concreteType": "Submission",
       "kind": "LinkedField",
       "name": "nodes",
       "plural": true,
       "selections": [
+        (v0/*: any*/),
         {
           "alias": null,
           "args": null,
           "kind": "ScalarField",
-          "name": "id",
+          "name": "slug",
           "storageKey": null
         },
         {
           "alias": null,
           "args": null,
           "kind": "ScalarField",
-          "name": "slug",
+          "name": "state",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "createdAt",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": null,
+          "kind": "LinkedField",
+          "name": "entity",
+          "plural": false,
+          "selections": [
+            {
+              "kind": "InlineFragment",
+              "selections": [
+                (v0/*: any*/)
+              ],
+              "type": "Node",
+              "abstractKey": "__isNode"
+            },
+            (v1/*: any*/)
+          ],
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "SubmissionTarget",
+          "kind": "LinkedField",
+          "name": "submissionTarget",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "concreteType": null,
+              "kind": "LinkedField",
+              "name": "entity",
+              "plural": false,
+              "selections": [
+                (v1/*: any*/)
+              ],
+              "storageKey": null
+            }
+          ],
           "storageKey": null
         }
       ],
@@ -60,10 +138,11 @@ const node: ReaderFragment = {
       "name": "ModelListPageFragment"
     }
   ],
-  "type": "ItemConnection",
+  "type": "SubmissionConnection",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "d8e8ff16a0ac9eee771354eba1663900";
+(node as any).hash = "fc94ce83ec45813a5e7d4deadfbfc8a7";
 
 export default node;

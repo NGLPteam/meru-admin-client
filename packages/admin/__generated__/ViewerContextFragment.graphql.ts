@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f23dfcae3525321ac9fda457bddcf5b0>>
+ * @generated SignedSource<<dad89bda29fc7a810a9051f75298b187>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,6 +17,7 @@ export type ViewerContextFragment$data = {
       readonly " $fragmentSpreads": FragmentRefs<"AvatarFragment">;
     };
     readonly globalAdmin: boolean;
+    readonly id: string;
     readonly name: string | null | undefined;
     readonly uploadAccess: boolean;
     readonly uploadToken: string | null | undefined;
@@ -42,6 +43,13 @@ const node: ReaderFragment = {
       "name": "viewer",
       "plural": false,
       "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "id",
+          "storageKey": null
+        },
         {
           "alias": null,
           "args": null,
@@ -101,6 +109,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "953b219e45e60e9e3a7cb9278c03215e";
+(node as any).hash = "22c8b71da66138537ac4b0faf87f74b8";
 
 export default node;
