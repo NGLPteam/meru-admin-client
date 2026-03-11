@@ -206,6 +206,7 @@
       "publish": "Publish",
       "new_submission": "New Submission",
       "history": "History",
+      "reviews": "Reviews",
       "my_publications": "My Publications"
     },
     "messages": {
@@ -778,7 +779,8 @@
       "revision_requested_label": "Revisions Requested",
       "approved_label": "Approved",
       "published_label": "Published",
-      "rejected_label": "Rejected"
+      "rejected_label": "Rejected",
+      "pending_label": "Pending"
     },
     "harvesting": {
       "mode": "Mode",

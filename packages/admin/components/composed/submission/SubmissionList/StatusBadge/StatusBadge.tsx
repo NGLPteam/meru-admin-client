@@ -2,11 +2,14 @@ import { useTranslation } from "react-i18next";
 import * as Styled from "./StatusBadge.styles";
 import type { SubmissionState } from "types/graphql-schema";
 
-type KnownSubmissionState = Exclude<SubmissionState, "%future added value">;
+type KnownSubmissionState =
+  | Exclude<SubmissionState, "%future added value">
+  | "PENDING";
 type ColorConfig = { bg: string; color: string };
 
 const STATUS_COLORS: Record<KnownSubmissionState, ColorConfig> = {
   DRAFT: { bg: "var(--neutral10)", color: "var(--neutral80)" },
+  PENDING: { bg: "var(--neutral10)", color: "var(--neutral80)" },
   SUBMITTED: { bg: "var(--brand20)", color: "var(--brand100)" },
   UNDER_REVIEW: { bg: "var(--brand20)", color: "var(--brand100)" },
   REVISION_REQUESTED: {
@@ -30,9 +33,12 @@ const FALLBACK_COLORS: ColorConfig = {
 
 const StatusBadge = ({ status, className }: Props) => {
   const { t } = useTranslation();
+
+  if (!status) return null;
+
   const colors =
     STATUS_COLORS[status as KnownSubmissionState] ?? FALLBACK_COLORS;
-  const label = t(`status.${status.toLowerCase()}_label`);
+  const label = t(`status.${status?.toLowerCase()}_label`);
 
   return (
     <Styled.Badge $bg={colors.bg} $color={colors.color} className={className}>

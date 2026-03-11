@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<45d1a2ef6b05fa02563088306e1f310c>>
+ * @generated SignedSource<<cd8ba4cd6f26f1f6c3383b1af977cee3>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,6 +15,7 @@ export type LayoutSubmissionQuery$variables = {
 };
 export type LayoutSubmissionQuery$data = {
   readonly submission: {
+    readonly id: string;
     readonly " $fragmentSpreads": FragmentRefs<"SubmissionLayoutFragment">;
   } | null | undefined;
 };
@@ -49,19 +50,20 @@ v3 = [
   {
     "alias": null,
     "args": null,
+    "kind": "ScalarField",
+    "name": "value",
+    "storageKey": null
+  }
+],
+v4 = [
+  {
+    "alias": null,
+    "args": null,
     "concreteType": "AuthorizationResult",
     "kind": "LinkedField",
     "name": "canTransition",
     "plural": false,
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "value",
-        "storageKey": null
-      }
-    ],
+    "selections": (v3/*: any*/),
     "storageKey": null
   },
   {
@@ -108,6 +110,7 @@ return {
         "name": "submission",
         "plural": false,
         "selections": [
+          (v2/*: any*/),
           {
             "args": null,
             "kind": "FragmentSpread",
@@ -149,7 +152,7 @@ return {
             "kind": "LinkedField",
             "name": "currentStatus",
             "plural": false,
-            "selections": (v3/*: any*/),
+            "selections": (v4/*: any*/),
             "storageKey": null
           },
           {
@@ -159,6 +162,16 @@ return {
             "kind": "LinkedField",
             "name": "availableTransitions",
             "plural": true,
+            "selections": (v4/*: any*/),
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "AuthorizationResult",
+            "kind": "LinkedField",
+            "name": "canReview",
+            "plural": false,
             "selections": (v3/*: any*/),
             "storageKey": null
           },
@@ -198,16 +211,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "14edff0b6094f217f0e917eea5cc7a34",
+    "cacheID": "51e1deb6f8c6de386b0b6e27eb1a2ef0",
     "id": null,
     "metadata": {},
     "name": "LayoutSubmissionQuery",
     "operationKind": "query",
-    "text": "query LayoutSubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    ...SubmissionLayoutFragment\n    id\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  currentStatus {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  availableTransitions {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  entity {\n    __typename\n    __isEntity: __typename\n    title\n    id\n  }\n}\n"
+    "text": "query LayoutSubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    id\n    ...SubmissionLayoutFragment\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  currentStatus {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  availableTransitions {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  canReview {\n    value\n  }\n  entity {\n    __typename\n    __isEntity: __typename\n    title\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "621b53760fbd790c12f87cdf44b1f8c9";
+(node as any).hash = "a05946859defe055d8c1ab6b863deaca";
 
 export default node;
