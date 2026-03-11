@@ -33,21 +33,24 @@ export default function Layout<T extends OperationType>(props: Props<T>) {
     refetchTags,
     showLoadingCircle,
     modelName,
+    useIdVar,
   } = props;
 
   if (!query) {
     return (
-      <SubmissionLayout data={submission}>
+      <SubmissionLayout data={submission} mode="review">
         <PageComponent {...pageComponentProps} />
       </SubmissionLayout>
     );
   }
 
+  const variables = useIdVar ? { submissionIds: [submission.id] } : { slug };
+
   return (
-    <SubmissionLayout data={submission}>
+    <SubmissionLayout data={submission} mode="review">
       <QueryTransitionWrapper<T>
         query={query}
-        variables={{ slug }}
+        variables={variables}
         loadingFallback={<LoadingCircle />}
         refetchTags={refetchTags}
       >
@@ -76,7 +79,7 @@ type Props<T extends OperationType> = {
   refetchTags?: string[];
   showLoadingCircle?: boolean;
   modelName?: Lowercase<ModelNames>;
-  defaultQueryVars?: Record<string, string>;
+  useIdVar?: boolean;
 };
 
 type PageProps<T extends OperationType> = {

@@ -1,34 +1,35 @@
-// import { graphql, usePreloadedQuery, PreloadedQuery } from "react-relay";
-// import type { historySubmissionQuery as Query } from "@/relay/historySubmissionQuery.graphql";
+import { graphql, usePreloadedQuery, PreloadedQuery } from "react-relay";
+import SubmissionTransitionList from "components/composed/submission/SubmissionTransitionList";
+import type { historyMySubmissionQuery as Query } from "@/relay/historyMySubmissionQuery.graphql";
 import Layout from "./_layout";
 import type { GetLayout } from "@wdp/lib/types/page";
 
-function SubmissionHistory() {
-  // TODO: Uncomment when real submission API is available
-  // const { item } = usePreloadedQuery<Query>(query, queryRef);
+function MySubmissionHistory({ queryRef }: Props) {
+  const { submission } = usePreloadedQuery<Query>(query, queryRef);
 
-  return (
-    <div className="t-copy-sm a-color-light l-container-wide">
-      Submission history coming soon.
-    </div>
-  );
+  return submission ? (
+    <SubmissionTransitionList data={submission.transitions} />
+  ) : null;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getLayout: GetLayout<any> = (props) => {
-  return <Layout query={null} showLoadingCircle {...props} />;
+const getLayout: GetLayout = (props) => {
+  return <Layout query={query} showLoadingCircle {...props} />;
 };
 
-SubmissionHistory.getLayout = getLayout;
+MySubmissionHistory.getLayout = getLayout;
 
-export default SubmissionHistory;
+export default MySubmissionHistory;
 
-// TODO: Uncomment when real submission API is available
-// const query = graphql`
-//   query historySubmissionQuery($slug: Slug!) {
-//     item(slug: $slug) {
-//       title
-//       slug
-//     }
-//   }
-// `;
+type Props = {
+  queryRef: PreloadedQuery<Query>;
+};
+
+const query = graphql`
+  query historyMySubmissionQuery($slug: Slug!) {
+    submission(slug: $slug) {
+      transitions {
+        ...SubmissionTransitionListFragment
+      }
+    }
+  }
+`;

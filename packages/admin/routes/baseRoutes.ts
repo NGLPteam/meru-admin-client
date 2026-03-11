@@ -293,6 +293,11 @@ export const baseRoutes: BaseRoute[] = [
             path: "/my-submissions/[slug]/history",
             label: "nav.history",
           },
+          {
+            name: "my-submissions.detail.reviews",
+            path: "/my-submissions/[slug]/reviews",
+            label: "nav.reviews",
+          },
         ],
       },
     ],
@@ -335,6 +340,11 @@ export const baseRoutes: BaseRoute[] = [
             name: "submissions.detail.history",
             path: "/submissions/[slug]/history",
             label: "nav.history",
+          },
+          {
+            name: "submissions.detail.reviews",
+            path: "/submissions/[slug]/reviews",
+            label: "nav.reviews",
           },
         ],
       },

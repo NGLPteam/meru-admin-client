@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9fb6efd48cfa37b19ffd77acd6a13b84>>
+ * @generated SignedSource<<4a5c8ba02fcf5442ba3063b5bfadd639>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -35,6 +35,11 @@ export type SubmissionReviewFormMutation$data = {
       readonly id: string;
       readonly state: SubmissionState;
     } | null | undefined;
+    readonly submissionReview: {
+      readonly comment: string | null | undefined;
+      readonly id: string;
+      readonly state: SubmissionReviewState;
+    } | null | undefined;
   } | null | undefined;
 };
 export type SubmissionReviewFormMutation = {
@@ -54,10 +59,24 @@ v1 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "state",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "type",
   "storageKey": null
 },
-v2 = [
+v4 = [
   {
     "alias": null,
     "args": [
@@ -80,18 +99,26 @@ v2 = [
         "name": "submission",
         "plural": false,
         "selections": [
+          (v1/*: any*/),
+          (v2/*: any*/)
+        ],
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "SubmissionReview",
+        "kind": "LinkedField",
+        "name": "submissionReview",
+        "plural": false,
+        "selections": [
+          (v1/*: any*/),
+          (v2/*: any*/),
           {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "id",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "state",
+            "name": "comment",
             "storageKey": null
           }
         ],
@@ -119,7 +146,7 @@ v2 = [
             "name": "path",
             "storageKey": null
           },
-          (v1/*: any*/)
+          (v3/*: any*/)
         ],
         "storageKey": null
       },
@@ -138,7 +165,7 @@ v2 = [
             "name": "message",
             "storageKey": null
           },
-          (v1/*: any*/)
+          (v3/*: any*/)
         ],
         "storageKey": null
       }
@@ -152,7 +179,7 @@ return {
     "kind": "Fragment",
     "metadata": null,
     "name": "SubmissionReviewFormMutation",
-    "selections": (v2/*: any*/),
+    "selections": (v4/*: any*/),
     "type": "Mutation",
     "abstractKey": null
   },
@@ -161,19 +188,19 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "SubmissionReviewFormMutation",
-    "selections": (v2/*: any*/)
+    "selections": (v4/*: any*/)
   },
   "params": {
-    "cacheID": "0f220774c09551ed5ee63e6cab8c5341",
+    "cacheID": "8899ef98373bd8f7950afe73d550fdc9",
     "id": null,
     "metadata": {},
     "name": "SubmissionReviewFormMutation",
     "operationKind": "mutation",
-    "text": "mutation SubmissionReviewFormMutation(\n  $input: SubmissionLeaveReviewInput!\n) {\n  submissionLeaveReview(input: $input) {\n    submission {\n      id\n      state\n    }\n    attributeErrors {\n      messages\n      path\n      type\n    }\n    globalErrors {\n      message\n      type\n    }\n  }\n}\n"
+    "text": "mutation SubmissionReviewFormMutation(\n  $input: SubmissionLeaveReviewInput!\n) {\n  submissionLeaveReview(input: $input) {\n    submission {\n      id\n      state\n    }\n    submissionReview {\n      id\n      state\n      comment\n    }\n    attributeErrors {\n      messages\n      path\n      type\n    }\n    globalErrors {\n      message\n      type\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "45a2b333635c42d059950cb58efa713d";
+(node as any).hash = "44f6cdad1063deaa5afe1f5fa0a2b21a";
 
 export default node;
