@@ -11,7 +11,15 @@ function MySubmissionReviews({ queryRef }: Props) {
 }
 
 const getLayout: GetLayout = (props) => {
-  return <Layout query={query} useIdVar showLoadingCircle {...props} />;
+  return (
+    <Layout
+      query={query}
+      refetchTags={["submissions"]}
+      useIdVar
+      showLoadingCircle
+      {...props}
+    />
+  );
 };
 
 MySubmissionReviews.getLayout = getLayout;

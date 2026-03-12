@@ -7,17 +7,19 @@ import type {
   SubmissionTransitionListFragment$key,
 } from "@/relay/SubmissionTransitionListFragment.graphql";
 
-type TransitionNode = SubmissionTransitionListFragment$data["nodes"][number];
+type Nodes = SubmissionTransitionListFragment$data["transitions"];
+type TransitionNode = Nodes["nodes"][number];
 
 type Props = {
   data?: SubmissionTransitionListFragment$key | null;
 };
 
 function SubmissionTransitionList({ data }: Props) {
-  const transitions = useFragment<SubmissionTransitionListFragment$key>(
+  const submission = useFragment<SubmissionTransitionListFragment$key>(
     fragment,
-    data
+    data,
   );
+  const { transitions, canReview } = submission ?? {};
 
   const { t } = useTranslation();
 
@@ -25,11 +27,15 @@ function SubmissionTransitionList({ data }: Props) {
     ModelColumns.CreatedAtColumn<TransitionNode>({
       enableSorting: false,
     }),
-    ModelColumns.StringColumn<TransitionNode>({
-      id: "user",
-      header: () => t("glossary.user"),
-      accessorFn: (row: TransitionNode) => row.user?.name ?? "",
-    }),
+    ...(canReview
+      ? [
+          ModelColumns.StringColumn<TransitionNode>({
+            id: "user",
+            header: () => t("glossary.user"),
+            accessorFn: (row: TransitionNode) => row.user?.name ?? "",
+          }),
+        ]
+      : []),
     ModelColumns.StatusColumn<TransitionNode>({
       id: "fromState",
       header: () => t("lists.from_state_column", "From"),
@@ -43,7 +49,7 @@ function SubmissionTransitionList({ data }: Props) {
   ];
 
   return (
-    <ModelListPage<SubmissionTransitionListFragment$data, TransitionNode>
+    <ModelListPage<Nodes, TransitionNode>
       columns={columns}
       data={transitions}
       hideHeader
@@ -52,19 +58,24 @@ function SubmissionTransitionList({ data }: Props) {
 }
 
 const fragment = graphql`
-  fragment SubmissionTransitionListFragment on SubmissionTransitionConnection {
-    nodes {
-      id
-      slug
-      createdAt
-      fromState
-      toState
-      user {
-        id
-        name
-      }
+  fragment SubmissionTransitionListFragment on Submission {
+    canReview {
+      value
     }
-    ...ModelListPageFragment
+    transitions {
+      nodes {
+        id
+        slug
+        createdAt
+        fromState
+        toState
+        user {
+          id
+          name
+        }
+      }
+      ...ModelListPageFragment
+    }
   }
 `;
 

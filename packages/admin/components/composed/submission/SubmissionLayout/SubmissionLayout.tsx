@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
-import { graphql } from "react-relay";
-import { useChildRouteLinks, useMaybeFragment, useRouteSlug } from "hooks";
+import { graphql, useFragment } from "react-relay";
+import { useChildRouteLinks, useRouteSlug } from "hooks";
 import {
   ButtonControlGroup,
   ButtonControlDrawer,
@@ -12,38 +12,55 @@ import { PageHeader, BackToAll } from "components/layout";
 import HtmlHead from "components/global/HtmlHead";
 import type { SubmissionLayoutFragment$key } from "@/relay/SubmissionLayoutFragment.graphql";
 import SubmitForReviewButton from "./SubmitForReviewButton";
+import TransitionSubmissionButton from "./TransitionSubmissionButton";
 import ReviewNav from "./ReviewNav";
+
+const getRoutes = (mode: "deposit" | "review") => {
+  if (mode === "deposit")
+    return {
+      parentRoute: "my-submissions",
+      detailRoute: "my-submissions.detail",
+      editRoute: "my-submissions.detail.details.edit",
+    };
+
+  return {
+    parentRoute: "submissions",
+    detailRoute: "submissions.detail",
+    editRoute: "submissions.detail.details.edit",
+  };
+};
 
 export default function SubmissionLayout({
   children,
   data,
+  mode,
 }: {
   children: React.ReactNode;
-  data?: SubmissionLayoutFragment$key | null;
+  data?: SubmissionLayoutFragment$key;
+  mode: "deposit" | "review";
 }) {
   const { t } = useTranslation();
   const router = useRouter();
   const slug = useRouteSlug() || undefined;
 
-  // Derive route names from the current pathname
-  const routePrefix = router.pathname.startsWith("/my-submissions")
-    ? "my-submissions"
-    : "submissions";
-  const parentRoute = routePrefix;
-  const detailRoute = `${routePrefix}.detail`;
-  const editRoute = `${routePrefix}.detail.details.edit`;
-
+  const { parentRoute, detailRoute, editRoute } = getRoutes(mode);
   const tabRoutes = useChildRouteLinks(detailRoute, { slug });
-  const submission = useMaybeFragment(fragment, data);
-  const isEditing = router.asPath.endsWith("/edit");
 
+  const submission = useFragment(fragment, data);
+
+  const isEditing = router.asPath.endsWith("/edit");
   const title = submission?.entity?.title;
   const state = submission?.state;
-  const isPublished = state === "PUBLISHED";
-  const canEdit =
-    parentRoute === "my-submissions"
-      ? state === "DRAFT" || state === "REVISION_REQUESTED"
-      : !isPublished;
+
+  const canSubmit = submission?.availableTransitions.some(
+    (transition) => transition.toState === "SUBMITTED",
+  );
+  const canReview =
+    submission?.canReview.value &&
+    !!submission?.availableTransitions.length &&
+    state !== "DRAFT";
+  const canEdit = submission?.currentStatus?.mutableState;
+  const canTransition = !!submission?.availableTransitions.length;
 
   const buttons = isEditing ? (
     <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
@@ -55,14 +72,14 @@ export default function SubmissionLayout({
         {t("common.cancel")}
       </ButtonControlRoute>
     </ButtonControlGroup>
-  ) : !isPublished ? (
+  ) : (
     <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
       {canEdit && (
         <ButtonControlRoute route={editRoute} query={{ slug }} icon="edit">
           {t("common.edit")}
         </ButtonControlRoute>
       )}
-      {parentRoute === "submissions" ? (
+      {canReview && (
         <ButtonControlDrawer
           drawer="reviewSubmission"
           drawerQuery={{ drawerSlug: slug || "" }}
@@ -70,12 +87,11 @@ export default function SubmissionLayout({
         >
           {t("actions.submissions.review")}
         </ButtonControlDrawer>
-      ) : (state === "DRAFT" || state === "REVISION_REQUESTED") &&
-        submission?.id ? (
-        <SubmitForReviewButton submissionId={submission.id} state={state} />
-      ) : null}
+      )}
+      {canSubmit && <SubmitForReviewButton submission={submission} />}
+      {canTransition && <TransitionSubmissionButton submission={submission} />}
     </ButtonControlGroup>
-  ) : undefined;
+  );
 
   return (
     <>
@@ -119,6 +135,9 @@ const fragment = graphql`
       mutableState
       fromState
       toState
+    }
+    canReview {
+      value
     }
     entity {
       ... on Entity {

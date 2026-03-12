@@ -11,7 +11,14 @@ function SubmissionDetails({ queryRef }: Props) {
 }
 
 const getLayout: GetLayout = (props) => {
-  return <Layout query={query} showLoadingCircle {...props} />;
+  return (
+    <Layout
+      query={query}
+      refetchTags={["submissions"]}
+      showLoadingCircle
+      {...props}
+    />
+  );
 };
 
 SubmissionDetails.getLayout = getLayout;

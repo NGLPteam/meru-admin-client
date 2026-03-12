@@ -223,6 +223,7 @@
       "submissions_open_confirm": "Are you sure you want to open this collection for submissions?",
       "submissions_close_confirm": "Are you sure you want to close submissions for this collection?",
       "submission_submitted": "Submission successfully submitted for review!",
+      "submission_state_changed": "Submission status updated successfully.",
       "unauthorized": "Unauthorized",
       "unauthorized_body": {
         "users": "Your account is not authorized to manage users.<0/>Please check with your account manager if you need access to this content.",
@@ -460,7 +461,9 @@
         "disable_submissions": "Disable Submissions",
         "submissions_opened": "Submissions are now open.",
         "submissions_closed": "Submissions are now closed.",
-        "request_deposit_access": "Request Access"
+        "request_deposit_access": "Request Access",
+        "transition": "Update Status",
+        "transition_select_label": "New status"
       }
     },
     "sort": {

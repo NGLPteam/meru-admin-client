@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<561e12f9be6ac47bea0966416cc0c055>>
+ * @generated SignedSource<<1d0b6dfae60a63be8618df49ea1de929>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -21,6 +21,9 @@ export type SubmissionLayoutFragment$data = {
     readonly mutableState: boolean;
     readonly toState: SubmissionState;
   }>;
+  readonly canReview: {
+    readonly value: boolean;
+  };
   readonly currentStatus: {
     readonly canTransition: {
       readonly value: boolean;
@@ -47,19 +50,20 @@ var v0 = [
   {
     "alias": null,
     "args": null,
+    "kind": "ScalarField",
+    "name": "value",
+    "storageKey": null
+  }
+],
+v1 = [
+  {
+    "alias": null,
+    "args": null,
     "concreteType": "AuthorizationResult",
     "kind": "LinkedField",
     "name": "canTransition",
     "plural": false,
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "value",
-        "storageKey": null
-      }
-    ],
+    "selections": (v0/*: any*/),
     "storageKey": null
   },
   {
@@ -118,7 +122,7 @@ return {
       "kind": "LinkedField",
       "name": "currentStatus",
       "plural": false,
-      "selections": (v0/*: any*/),
+      "selections": (v1/*: any*/),
       "storageKey": null
     },
     {
@@ -128,6 +132,16 @@ return {
       "kind": "LinkedField",
       "name": "availableTransitions",
       "plural": true,
+      "selections": (v1/*: any*/),
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "AuthorizationResult",
+      "kind": "LinkedField",
+      "name": "canReview",
+      "plural": false,
       "selections": (v0/*: any*/),
       "storageKey": null
     },
@@ -155,6 +169,6 @@ return {
 };
 })();
 
-(node as any).hash = "4586ff3bdc97acc57a633e211c5be00b";
+(node as any).hash = "917746424a07c1281929122c62bfe2c1";
 
 export default node;

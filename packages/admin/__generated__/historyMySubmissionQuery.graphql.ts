@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0a3b0311bf31d07de42a6ff10308154d>>
+ * @generated SignedSource<<72ba3efe2f1c96c47947a021432241b4>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,9 +15,7 @@ export type historyMySubmissionQuery$variables = {
 };
 export type historyMySubmissionQuery$data = {
   readonly submission: {
-    readonly transitions: {
-      readonly " $fragmentSpreads": FragmentRefs<"SubmissionTransitionListFragment">;
-    };
+    readonly " $fragmentSpreads": FragmentRefs<"SubmissionTransitionListFragment">;
   } | null | undefined;
 };
 export type historyMySubmissionQuery = {
@@ -63,20 +61,9 @@ return {
         "plural": false,
         "selections": [
           {
-            "alias": null,
             "args": null,
-            "concreteType": "SubmissionTransitionConnection",
-            "kind": "LinkedField",
-            "name": "transitions",
-            "plural": false,
-            "selections": [
-              {
-                "args": null,
-                "kind": "FragmentSpread",
-                "name": "SubmissionTransitionListFragment"
-              }
-            ],
-            "storageKey": null
+            "kind": "FragmentSpread",
+            "name": "SubmissionTransitionListFragment"
           }
         ],
         "storageKey": null
@@ -99,6 +86,24 @@ return {
         "name": "submission",
         "plural": false,
         "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "AuthorizationResult",
+            "kind": "LinkedField",
+            "name": "canReview",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "value",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          },
           {
             "alias": null,
             "args": null,
@@ -236,16 +241,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "b59f99ca6db2f2e83d7d473245cd302a",
+    "cacheID": "66ddaf085a0b42d704499c5cd92ca618",
     "id": null,
     "metadata": {},
     "name": "historyMySubmissionQuery",
     "operationKind": "query",
-    "text": "query historyMySubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    transitions {\n      ...SubmissionTransitionListFragment\n    }\n    id\n  }\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionTransitionListFragment on SubmissionTransitionConnection {\n  nodes {\n    id\n    slug\n    createdAt\n    fromState\n    toState\n    user {\n      id\n      name\n    }\n  }\n  ...ModelListPageFragment\n}\n"
+    "text": "query historyMySubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    ...SubmissionTransitionListFragment\n    id\n  }\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionTransitionListFragment on Submission {\n  canReview {\n    value\n  }\n  transitions {\n    nodes {\n      id\n      slug\n      createdAt\n      fromState\n      toState\n      user {\n        id\n        name\n      }\n    }\n    ...ModelListPageFragment\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "540f7c92b11e6c4364fa03cbcbb882e5";
+(node as any).hash = "410fb5e2d9a75b2daa28d78b791adb53";
 
 export default node;

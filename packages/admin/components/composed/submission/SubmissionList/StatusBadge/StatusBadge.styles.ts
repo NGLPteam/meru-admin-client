@@ -10,5 +10,5 @@ export const Badge = styled.span<{ $bg: string; $color: string }>`
   text-align: center;
   background-color: ${({ $bg }) => $bg};
   color: ${({ $color }) => $color};
-  align-self: baseline;
+  align-self: center;
 `;

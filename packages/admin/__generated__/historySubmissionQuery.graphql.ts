@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<df10d71a421bf613e16618d727545189>>
+ * @generated SignedSource<<286e712022af3d1bd6f1aa8f9993cdb6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,9 +15,7 @@ export type historySubmissionQuery$variables = {
 };
 export type historySubmissionQuery$data = {
   readonly submission: {
-    readonly transitions: {
-      readonly " $fragmentSpreads": FragmentRefs<"SubmissionTransitionListFragment">;
-    };
+    readonly " $fragmentSpreads": FragmentRefs<"SubmissionTransitionListFragment">;
   } | null | undefined;
 };
 export type historySubmissionQuery = {
@@ -63,20 +61,9 @@ return {
         "plural": false,
         "selections": [
           {
-            "alias": null,
             "args": null,
-            "concreteType": "SubmissionTransitionConnection",
-            "kind": "LinkedField",
-            "name": "transitions",
-            "plural": false,
-            "selections": [
-              {
-                "args": null,
-                "kind": "FragmentSpread",
-                "name": "SubmissionTransitionListFragment"
-              }
-            ],
-            "storageKey": null
+            "kind": "FragmentSpread",
+            "name": "SubmissionTransitionListFragment"
           }
         ],
         "storageKey": null
@@ -99,6 +86,24 @@ return {
         "name": "submission",
         "plural": false,
         "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "AuthorizationResult",
+            "kind": "LinkedField",
+            "name": "canReview",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "value",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          },
           {
             "alias": null,
             "args": null,
@@ -236,16 +241,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "c88775d914b81621d86c3f856c43f5ae",
+    "cacheID": "2c3f87cdb673abbe3290890ba03ee020",
     "id": null,
     "metadata": {},
     "name": "historySubmissionQuery",
     "operationKind": "query",
-    "text": "query historySubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    transitions {\n      ...SubmissionTransitionListFragment\n    }\n    id\n  }\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionTransitionListFragment on SubmissionTransitionConnection {\n  nodes {\n    id\n    slug\n    createdAt\n    fromState\n    toState\n    user {\n      id\n      name\n    }\n  }\n  ...ModelListPageFragment\n}\n"
+    "text": "query historySubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    ...SubmissionTransitionListFragment\n    id\n  }\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionTransitionListFragment on Submission {\n  canReview {\n    value\n  }\n  transitions {\n    nodes {\n      id\n      slug\n      createdAt\n      fromState\n      toState\n      user {\n        id\n        name\n      }\n    }\n    ...ModelListPageFragment\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "ffa73681a02a85e3a2c50c5b3c0c3a33";
+(node as any).hash = "3cdc9fddda441975d6a391bd8dff8c57";
 
 export default node;

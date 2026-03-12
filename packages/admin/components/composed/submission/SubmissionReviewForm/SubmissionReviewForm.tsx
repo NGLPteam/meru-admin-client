@@ -80,6 +80,7 @@ export default function SubmissionReviewForm({
           <Select
             label="forms.fields.decision"
             options={decisionOptions}
+            placeholder={t("forms.fields.select_placeholder")}
             required
             isWide
             {...register("decision", { required: true })}
@@ -111,6 +112,11 @@ const mutation = graphql`
       submission {
         id
         state
+      }
+      submissionReview {
+        id
+        state
+        comment
       }
       attributeErrors {
         messages
