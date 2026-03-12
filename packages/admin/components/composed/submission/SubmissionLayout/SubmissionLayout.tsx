@@ -52,15 +52,18 @@ export default function SubmissionLayout({
   const title = submission?.entity?.title;
   const state = submission?.state;
 
-  const canSubmit = submission?.availableTransitions.some(
-    (transition) => transition.toState === "SUBMITTED",
-  );
+  const canSubmit =
+    submission?.availableTransitions.some(
+      (transition) => transition.toState === "SUBMITTED",
+    ) && mode === "deposit";
   const canReview =
     submission?.canReview.value &&
     !!submission?.availableTransitions.length &&
-    state !== "DRAFT";
+    state !== "DRAFT" &&
+    mode === "review";
   const canEdit = submission?.currentStatus?.mutableState;
-  const canTransition = !!submission?.availableTransitions.length;
+  const canTransition =
+    !!submission?.availableTransitions.length && mode === "review";
 
   const buttons = isEditing ? (
     <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
