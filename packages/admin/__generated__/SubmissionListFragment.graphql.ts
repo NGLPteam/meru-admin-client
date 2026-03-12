@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<25102a701cecb9f4853eeb7ab2e986b7>>
+ * @generated SignedSource<<ca6f8902849e52a81ef31aa0f6923039>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,9 @@ import { FragmentRefs } from "relay-runtime";
 export type SubmissionListFragment$data = {
   readonly nodes: ReadonlyArray<{
     readonly createdAt: string;
+    readonly currentStatus: {
+      readonly mutableState: boolean;
+    };
     readonly entity: {
       readonly id?: string;
       readonly title: string;
@@ -109,6 +112,24 @@ return {
         {
           "alias": null,
           "args": null,
+          "concreteType": "SubmissionStatus",
+          "kind": "LinkedField",
+          "name": "currentStatus",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "mutableState",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
           "concreteType": "SubmissionTarget",
           "kind": "LinkedField",
           "name": "submissionTarget",
@@ -143,6 +164,6 @@ return {
 };
 })();
 
-(node as any).hash = "fc94ce83ec45813a5e7d4deadfbfc8a7";
+(node as any).hash = "d34058ab969f350207aa91c7f515d614";
 
 export default node;

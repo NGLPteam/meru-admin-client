@@ -17,7 +17,7 @@ import type {
   SubmissionListFragment$key,
 } from "@/relay/SubmissionListFragment.graphql";
 import type { SubmissionState } from "types/graphql-schema";
-import type { ModelTableActionProps } from "@tanstack/react-table";
+import type { ModelTableActionProps, Row } from "@tanstack/react-table";
 
 type SubmissionNode = SubmissionListFragment$data["nodes"][number];
 
@@ -63,13 +63,19 @@ function SubmissionList({ data, mode = "review" }: Props) {
   ];
 
   const actions = {
+    actionsFilter: (all: Record<string, unknown>, row: Row<SubmissionNode>) =>
+      Object.keys(all).reduce((obj, a) => {
+        if (row.original.currentStatus.mutableState || a !== "edit")
+          return { ...obj, [a]: all[a] };
+        return obj;
+      }, {}),
+    handleView: ({ row }: ModelTableActionProps<SubmissionNode>) =>
+      row.original.slug ? `/${basePath}/${row.original.slug}/details` : null,
     handleEdit: ({ row }: ModelTableActionProps<SubmissionNode>) => {
       if (row.original.slug) {
         router.push(`/${basePath}/${row.original.slug}/details/edit`);
       }
     },
-    handleView: ({ row }: ModelTableActionProps<SubmissionNode>) =>
-      row.original.slug ? `/${basePath}/${row.original.slug}/details` : null,
   };
 
   const buttons = isMySubmissions ? (
@@ -145,6 +151,9 @@ const fragment = graphql`
         ... on Entity {
           title
         }
+      }
+      currentStatus {
+        mutableState
       }
       submissionTarget {
         entity {

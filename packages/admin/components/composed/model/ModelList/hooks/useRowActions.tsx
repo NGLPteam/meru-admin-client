@@ -264,6 +264,10 @@ export interface Actions<T extends Record<string, unknown>> {
   hideDisable?: (props: ModelTableActionProps<T>) => boolean;
   handlePublish?: (props: ModelTableActionProps<T>) => void;
   publishModalBody?: (props: ModelTableActionProps<T>) => React.ReactNode;
+  actionsFilter?: (
+    actions: Record<string, unknown>,
+    row: Row<T>,
+  ) => Record<string, unknown>;
 }
 
 function useRowActions<D extends Record<string, unknown>>(
@@ -336,7 +340,10 @@ function useRowActions<D extends Record<string, unknown>>(
     header: () => <span className="a-hidden">Actions</span>,
     id: "actions",
     cell: ({ row }: { row: Row<D> }) => {
-      return renderActions<D>(row, rowActions, disableDelete);
+      const finalActions = actions?.actionsFilter
+        ? actions.actionsFilter(rowActions, row)
+        : rowActions;
+      return renderActions<D>(row, finalActions, disableDelete);
     },
     meta: {
       cellType: "actions",
