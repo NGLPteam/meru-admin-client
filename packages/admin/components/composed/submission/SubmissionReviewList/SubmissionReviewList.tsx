@@ -22,15 +22,21 @@ function SubmissionReviewList({ data }: Props) {
 
   const { t } = useTranslation();
 
+  const canReview = !!reviews?.nodes?.[0]?.submission.canReview.value;
+
   const columns = [
     ModelColumns.UpdatedAtColumn<ReviewNode>({
       enableSorting: false,
     }),
-    ModelColumns.StringColumn<ReviewNode>({
-      id: "user",
-      header: () => t("glossary.user"),
-      accessorFn: (row: ReviewNode) => row.user?.name ?? "",
-    }),
+    ...(canReview
+      ? [
+          ModelColumns.StringColumn<ReviewNode>({
+            id: "user",
+            header: () => t("glossary.user"),
+            accessorFn: (row: ReviewNode) => row.user?.name ?? "",
+          }),
+        ]
+      : []),
     ModelColumns.StatusColumn<ReviewNode>({
       header: () => t("lists.status_column"),
       accessorFn: (row: ReviewNode) => row.state,
@@ -61,6 +67,11 @@ const fragment = graphql`
       comment
       user {
         name
+      }
+      submission {
+        canReview {
+          value
+        }
       }
     }
     ...ModelListPageFragment

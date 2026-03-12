@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<29d88fd88c15c9febdbc270817f60396>>
+ * @generated SignedSource<<8003c5f6b30e9adecad43a4f53471b0d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -147,6 +147,36 @@ return {
                   (v2/*: any*/)
                 ],
                 "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Submission",
+                "kind": "LinkedField",
+                "name": "submission",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "AuthorizationResult",
+                    "kind": "LinkedField",
+                    "name": "canReview",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "value",
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  },
+                  (v2/*: any*/)
+                ],
+                "storageKey": null
               }
             ],
             "storageKey": null
@@ -217,12 +247,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "f0b3a4555053ca4ecba4eeacc74e9c00",
+    "cacheID": "34773453645ebf5c986135484d5a027a",
     "id": null,
     "metadata": {},
     "name": "reviewsSubmissionReviewsQuery",
     "operationKind": "query",
-    "text": "query reviewsSubmissionReviewsQuery(\n  $submissionIds: [ID!]\n) {\n  submissionReviews(filters: {submissionIds: $submissionIds}) {\n    ...SubmissionReviewListFragment\n  }\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionReviewListFragment on SubmissionReviewConnection {\n  nodes {\n    id\n    slug\n    updatedAt\n    state\n    comment\n    user {\n      name\n      id\n    }\n  }\n  ...ModelListPageFragment\n}\n"
+    "text": "query reviewsSubmissionReviewsQuery(\n  $submissionIds: [ID!]\n) {\n  submissionReviews(filters: {submissionIds: $submissionIds}) {\n    ...SubmissionReviewListFragment\n  }\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionReviewListFragment on SubmissionReviewConnection {\n  nodes {\n    id\n    slug\n    updatedAt\n    state\n    comment\n    user {\n      name\n      id\n    }\n    submission {\n      canReview {\n        value\n      }\n      id\n    }\n  }\n  ...ModelListPageFragment\n}\n"
   }
 };
 })();

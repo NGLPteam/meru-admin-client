@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<236fee0190ac544c19d243482bcad9ac>>
+ * @generated SignedSource<<88df1b79c7bcc1ffb2111ff6c4dd37d0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,6 +9,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Mutation } from 'relay-runtime';
+import { FragmentRefs } from "relay-runtime";
 export type SubmissionState = "APPROVED" | "DRAFT" | "PUBLISHED" | "REJECTED" | "REVISION_REQUESTED" | "SUBMITTED" | "UNDER_REVIEW" | "%future added value";
 export type SubmissionChangeStateInput = {
   clientMutationId?: string | null | undefined;
@@ -30,8 +31,7 @@ export type SubmitForReviewButtonMutation$data = {
       readonly type: string;
     }>;
     readonly submission: {
-      readonly id: string;
-      readonly state: SubmissionState;
+      readonly " $fragmentSpreads": FragmentRefs<"SubmissionLayoutFragment">;
     } | null | undefined;
   } | null | undefined;
 };
@@ -48,99 +48,118 @@ var v0 = [
     "name": "input"
   }
 ],
-v1 = {
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "input",
+    "variableName": "input"
+  }
+],
+v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "type",
   "storageKey": null
 },
-v2 = [
+v3 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "MutationAttributeError",
+  "kind": "LinkedField",
+  "name": "attributeErrors",
+  "plural": true,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "messages",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "path",
+      "storageKey": null
+    },
+    (v2/*: any*/)
+  ],
+  "storageKey": null
+},
+v4 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "MutationGlobalError",
+  "kind": "LinkedField",
+  "name": "globalErrors",
+  "plural": true,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "message",
+      "storageKey": null
+    },
+    (v2/*: any*/)
+  ],
+  "storageKey": null
+},
+v5 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v6 = [
   {
     "alias": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "input",
-        "variableName": "input"
-      }
-    ],
-    "concreteType": "SubmissionChangeStatePayload",
+    "args": null,
+    "kind": "ScalarField",
+    "name": "value",
+    "storageKey": null
+  }
+],
+v7 = [
+  {
+    "alias": null,
+    "args": null,
+    "concreteType": "AuthorizationResult",
     "kind": "LinkedField",
-    "name": "submissionChangeState",
+    "name": "canTransition",
     "plural": false,
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "concreteType": "Submission",
-        "kind": "LinkedField",
-        "name": "submission",
-        "plural": false,
-        "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "id",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "state",
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "concreteType": "MutationAttributeError",
-        "kind": "LinkedField",
-        "name": "attributeErrors",
-        "plural": true,
-        "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "messages",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "path",
-            "storageKey": null
-          },
-          (v1/*: any*/)
-        ],
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "concreteType": "MutationGlobalError",
-        "kind": "LinkedField",
-        "name": "globalErrors",
-        "plural": true,
-        "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "message",
-            "storageKey": null
-          },
-          (v1/*: any*/)
-        ],
-        "storageKey": null
-      }
-    ],
+    "selections": (v6/*: any*/),
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "lockedState",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "mutableState",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "fromState",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "toState",
     "storageKey": null
   }
 ];
@@ -150,7 +169,37 @@ return {
     "kind": "Fragment",
     "metadata": null,
     "name": "SubmitForReviewButtonMutation",
-    "selections": (v2/*: any*/),
+    "selections": [
+      {
+        "alias": null,
+        "args": (v1/*: any*/),
+        "concreteType": "SubmissionChangeStatePayload",
+        "kind": "LinkedField",
+        "name": "submissionChangeState",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "Submission",
+            "kind": "LinkedField",
+            "name": "submission",
+            "plural": false,
+            "selections": [
+              {
+                "args": null,
+                "kind": "FragmentSpread",
+                "name": "SubmissionLayoutFragment"
+              }
+            ],
+            "storageKey": null
+          },
+          (v3/*: any*/),
+          (v4/*: any*/)
+        ],
+        "storageKey": null
+      }
+    ],
     "type": "Mutation",
     "abstractKey": null
   },
@@ -159,19 +208,112 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "SubmitForReviewButtonMutation",
-    "selections": (v2/*: any*/)
+    "selections": [
+      {
+        "alias": null,
+        "args": (v1/*: any*/),
+        "concreteType": "SubmissionChangeStatePayload",
+        "kind": "LinkedField",
+        "name": "submissionChangeState",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "Submission",
+            "kind": "LinkedField",
+            "name": "submission",
+            "plural": false,
+            "selections": [
+              (v5/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "state",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "SubmissionStatus",
+                "kind": "LinkedField",
+                "name": "currentStatus",
+                "plural": false,
+                "selections": (v7/*: any*/),
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "SubmissionStatus",
+                "kind": "LinkedField",
+                "name": "availableTransitions",
+                "plural": true,
+                "selections": (v7/*: any*/),
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "AuthorizationResult",
+                "kind": "LinkedField",
+                "name": "canReview",
+                "plural": false,
+                "selections": (v6/*: any*/),
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": null,
+                "kind": "LinkedField",
+                "name": "entity",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "__typename",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "TypeDiscriminator",
+                    "abstractKey": "__isEntity"
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "title",
+                    "storageKey": null
+                  },
+                  (v5/*: any*/)
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          },
+          (v3/*: any*/),
+          (v4/*: any*/)
+        ],
+        "storageKey": null
+      }
+    ]
   },
   "params": {
-    "cacheID": "4ad9e4157959aca20ed0f46d0d9582a5",
+    "cacheID": "51c3eb8064fd8e717ab5be8423dd6a23",
     "id": null,
     "metadata": {},
     "name": "SubmitForReviewButtonMutation",
     "operationKind": "mutation",
-    "text": "mutation SubmitForReviewButtonMutation(\n  $input: SubmissionChangeStateInput!\n) {\n  submissionChangeState(input: $input) {\n    submission {\n      id\n      state\n    }\n    attributeErrors {\n      messages\n      path\n      type\n    }\n    globalErrors {\n      message\n      type\n    }\n  }\n}\n"
+    "text": "mutation SubmitForReviewButtonMutation(\n  $input: SubmissionChangeStateInput!\n) {\n  submissionChangeState(input: $input) {\n    submission {\n      ...SubmissionLayoutFragment\n      id\n    }\n    attributeErrors {\n      messages\n      path\n      type\n    }\n    globalErrors {\n      message\n      type\n    }\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  currentStatus {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  availableTransitions {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  canReview {\n    value\n  }\n  entity {\n    __typename\n    __isEntity: __typename\n    title\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "0617bcf5287a5312cad49d93bd0ffd1f";
+(node as any).hash = "0bdc24694c79d42a91558a59003b022f";
 
 export default node;

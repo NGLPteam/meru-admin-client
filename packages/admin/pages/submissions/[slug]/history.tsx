@@ -7,13 +7,18 @@ import type { GetLayout } from "@wdp/lib/types/page";
 function SubmissionHistory({ queryRef }: Props) {
   const { submission } = usePreloadedQuery<Query>(query, queryRef);
 
-  return submission ? (
-    <SubmissionTransitionList data={submission.transitions} />
-  ) : null;
+  return submission ? <SubmissionTransitionList data={submission} /> : null;
 }
 
 const getLayout: GetLayout = (props) => {
-  return <Layout query={query} showLoadingCircle {...props} />;
+  return (
+    <Layout
+      query={query}
+      refetchTags={["submissions"]}
+      showLoadingCircle
+      {...props}
+    />
+  );
 };
 
 SubmissionHistory.getLayout = getLayout;
@@ -27,9 +32,7 @@ type Props = {
 const query = graphql`
   query historySubmissionQuery($slug: Slug!) {
     submission(slug: $slug) {
-      transitions {
-        ...SubmissionTransitionListFragment
-      }
+      ...SubmissionTransitionListFragment
     }
   }
 `;

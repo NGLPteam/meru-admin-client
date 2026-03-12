@@ -7,9 +7,10 @@ import type {
   SubmitForReviewButtonMutation as Mutation,
   SubmitForReviewButtonMutation$data as Mutation$data,
 } from "@/relay/SubmitForReviewButtonMutation.graphql";
+import type { SubmissionLayoutFragment$data } from "@/relay/SubmissionLayoutFragment.graphql";
 import type { MutationAttributeError } from "types/graphql-schema";
 
-export default function SubmitForReviewButton({ submissionId, state }: Props) {
+export default function SubmitForReviewButton({ submission }: Props) {
   const { t } = useTranslation();
   const notify = useNotify();
 
@@ -34,11 +35,15 @@ export default function SubmitForReviewButton({ submissionId, state }: Props) {
     [notify, t],
   );
 
+  if (!submission) return null;
+
+  const { id, state } = submission;
+
   const handleSubmitForReview = (hideDialog: () => void) => {
     commitSubmit({
       variables: {
         input: {
-          submissionId,
+          submissionId: id,
           toState: "SUBMITTED",
         },
       },
@@ -77,16 +82,14 @@ export default function SubmitForReviewButton({ submissionId, state }: Props) {
 }
 
 interface Props {
-  submissionId: string;
-  state: "DRAFT" | "REVISION_REQUESTED";
+  submission?: SubmissionLayoutFragment$data | null;
 }
 
 const mutation = graphql`
   mutation SubmitForReviewButtonMutation($input: SubmissionChangeStateInput!) {
     submissionChangeState(input: $input) {
       submission {
-        id
-        state
+        ...SubmissionLayoutFragment
       }
       attributeErrors {
         messages

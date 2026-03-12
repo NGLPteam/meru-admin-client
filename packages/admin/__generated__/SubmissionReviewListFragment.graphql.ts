@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<bf7e48f67ac555095c8d773c78b8ad91>>
+ * @generated SignedSource<<5bd6970ba2e1ca8eb80dc8ee1b9f1d0a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,6 +17,11 @@ export type SubmissionReviewListFragment$data = {
     readonly id: string;
     readonly slug: string;
     readonly state: SubmissionReviewState;
+    readonly submission: {
+      readonly canReview: {
+        readonly value: boolean;
+      };
+    };
     readonly updatedAt: string;
     readonly user: {
       readonly name: string | null | undefined;
@@ -96,6 +101,35 @@ const node: ReaderFragment = {
             }
           ],
           "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "Submission",
+          "kind": "LinkedField",
+          "name": "submission",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "concreteType": "AuthorizationResult",
+              "kind": "LinkedField",
+              "name": "canReview",
+              "plural": false,
+              "selections": [
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "value",
+                  "storageKey": null
+                }
+              ],
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
         }
       ],
       "storageKey": null
@@ -110,6 +144,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "c8591a63536dfcdc62347d0915eceb36";
+(node as any).hash = "566a046ec4c702f4c4dfa864887ffdd9";
 
 export default node;
