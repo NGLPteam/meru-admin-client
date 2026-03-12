@@ -7,7 +7,7 @@ import type { GetLayout } from "@wdp/lib/types/page";
 function MySubmissionReviews({ queryRef }: Props) {
   const { submissionReviews } = usePreloadedQuery<Query>(query, queryRef);
 
-  return <SubmissionReviewList data={submissionReviews} />;
+  return <SubmissionReviewList data={submissionReviews} mode="submission" />;
 }
 
 const getLayout: GetLayout = (props) => {

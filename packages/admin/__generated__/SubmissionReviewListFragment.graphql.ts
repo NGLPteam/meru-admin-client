@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5bd6970ba2e1ca8eb80dc8ee1b9f1d0a>>
+ * @generated SignedSource<<df4b6f76e8ea19184321cf71648a6c07>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -21,6 +21,10 @@ export type SubmissionReviewListFragment$data = {
       readonly canReview: {
         readonly value: boolean;
       };
+      readonly entity: {
+        readonly title: string;
+      } | null | undefined;
+      readonly slug: string;
     };
     readonly updatedAt: string;
     readonly user: {
@@ -35,7 +39,15 @@ export type SubmissionReviewListFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"SubmissionReviewListFragment">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "slug",
+  "storageKey": null
+};
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -56,13 +68,7 @@ const node: ReaderFragment = {
           "name": "id",
           "storageKey": null
         },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "slug",
-          "storageKey": null
-        },
+        (v0/*: any*/),
         {
           "alias": null,
           "args": null,
@@ -110,6 +116,7 @@ const node: ReaderFragment = {
           "name": "submission",
           "plural": false,
           "selections": [
+            (v0/*: any*/),
             {
               "alias": null,
               "args": null,
@@ -123,6 +130,24 @@ const node: ReaderFragment = {
                   "args": null,
                   "kind": "ScalarField",
                   "name": "value",
+                  "storageKey": null
+                }
+              ],
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "concreteType": null,
+              "kind": "LinkedField",
+              "name": "entity",
+              "plural": false,
+              "selections": [
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "title",
                   "storageKey": null
                 }
               ],
@@ -143,7 +168,8 @@ const node: ReaderFragment = {
   "type": "SubmissionReviewConnection",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "566a046ec4c702f4c4dfa864887ffdd9";
+(node as any).hash = "e5c58068a8dc2e74e119fcd385c98835";
 
 export default node;

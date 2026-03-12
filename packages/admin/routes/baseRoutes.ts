@@ -298,6 +298,11 @@ export const baseRoutes: BaseRoute[] = [
     ],
   },
   {
+    name: "my-reviews",
+    path: "/my-reviews",
+    label: "nav.my_reviews",
+  },
+  {
     name: "submissions",
     path: "/submissions",
     redirect: "/submissions/review",

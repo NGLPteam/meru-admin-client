@@ -142,6 +142,9 @@ const fragment = graphql`
     canReview {
       value
     }
+    canRequestReview {
+      value
+    }
     entity {
       ... on Entity {
         title

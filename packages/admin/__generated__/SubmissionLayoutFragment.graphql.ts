@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1d0b6dfae60a63be8618df49ea1de929>>
+ * @generated SignedSource<<1e43afef718ab98c6e00272284f7bd1c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -21,6 +21,9 @@ export type SubmissionLayoutFragment$data = {
     readonly mutableState: boolean;
     readonly toState: SubmissionState;
   }>;
+  readonly canRequestReview: {
+    readonly value: boolean;
+  };
   readonly canReview: {
     readonly value: boolean;
   };
@@ -148,6 +151,16 @@ return {
     {
       "alias": null,
       "args": null,
+      "concreteType": "AuthorizationResult",
+      "kind": "LinkedField",
+      "name": "canRequestReview",
+      "plural": false,
+      "selections": (v0/*: any*/),
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
       "concreteType": null,
       "kind": "LinkedField",
       "name": "entity",
@@ -169,6 +182,6 @@ return {
 };
 })();
 
-(node as any).hash = "917746424a07c1281929122c62bfe2c1";
+(node as any).hash = "c89167f8c9e160f3b8ca1471dd45cae7";
 
 export default node;
