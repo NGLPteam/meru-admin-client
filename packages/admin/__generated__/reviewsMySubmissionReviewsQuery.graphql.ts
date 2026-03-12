@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<50b233465dd07d40b16c087024093c75>>
+ * @generated SignedSource<<8c1ae62a0cc92ae60a291f8164793230>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -49,6 +49,13 @@ v2 = {
   "args": null,
   "kind": "ScalarField",
   "name": "id",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "slug",
   "storageKey": null
 };
 return {
@@ -101,13 +108,7 @@ return {
             "plural": true,
             "selections": [
               (v2/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "slug",
-                "storageKey": null
-              },
+              (v3/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -156,6 +157,7 @@ return {
                 "name": "submission",
                 "plural": false,
                 "selections": [
+                  (v3/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -171,6 +173,36 @@ return {
                         "name": "value",
                         "storageKey": null
                       }
+                    ],
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": null,
+                    "kind": "LinkedField",
+                    "name": "entity",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "__typename",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "TypeDiscriminator",
+                        "abstractKey": "__isEntity"
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "title",
+                        "storageKey": null
+                      },
+                      (v2/*: any*/)
                     ],
                     "storageKey": null
                   },
@@ -247,12 +279,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "58868f0a2df96f34b83620b9bacb211e",
+    "cacheID": "cdaa8a47cc3e4ffc459939560fb5d98c",
     "id": null,
     "metadata": {},
     "name": "reviewsMySubmissionReviewsQuery",
     "operationKind": "query",
-    "text": "query reviewsMySubmissionReviewsQuery(\n  $submissionIds: [ID!]\n) {\n  submissionReviews(filters: {submissionIds: $submissionIds}) {\n    ...SubmissionReviewListFragment\n  }\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionReviewListFragment on SubmissionReviewConnection {\n  nodes {\n    id\n    slug\n    updatedAt\n    state\n    comment\n    user {\n      name\n      id\n    }\n    submission {\n      canReview {\n        value\n      }\n      id\n    }\n  }\n  ...ModelListPageFragment\n}\n"
+    "text": "query reviewsMySubmissionReviewsQuery(\n  $submissionIds: [ID!]\n) {\n  submissionReviews(filters: {submissionIds: $submissionIds}) {\n    ...SubmissionReviewListFragment\n  }\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionReviewListFragment on SubmissionReviewConnection {\n  nodes {\n    id\n    slug\n    updatedAt\n    state\n    comment\n    user {\n      name\n      id\n    }\n    submission {\n      slug\n      canReview {\n        value\n      }\n      entity {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n      id\n    }\n  }\n  ...ModelListPageFragment\n}\n"
   }
 };
 })();

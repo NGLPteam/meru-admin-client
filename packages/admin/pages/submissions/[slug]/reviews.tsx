@@ -1,13 +1,20 @@
 import { graphql, usePreloadedQuery, PreloadedQuery } from "react-relay";
 import SubmissionReviewList from "components/composed/submission/SubmissionReviewList";
 import type { reviewsSubmissionReviewsQuery as Query } from "@/relay/reviewsSubmissionReviewsQuery.graphql";
+import type { LayoutManageSubmissionQuery$data } from "@/relay/LayoutManageSubmissionQuery.graphql";
 import Layout from "./_layout";
 import type { GetLayout } from "@wdp/lib/types/page";
 
-function SubmissionReviews({ queryRef }: Props) {
+function SubmissionReviews({ queryRef, submission }: Props) {
   const { submissionReviews } = usePreloadedQuery<Query>(query, queryRef);
 
-  return <SubmissionReviewList data={submissionReviews} />;
+  return (
+    <SubmissionReviewList
+      data={submissionReviews}
+      submission={submission}
+      mode="submission"
+    />
+  );
 }
 
 const getLayout: GetLayout = (props) => {
@@ -28,6 +35,7 @@ export default SubmissionReviews;
 
 type Props = {
   queryRef: PreloadedQuery<Query>;
+  submission?: LayoutManageSubmissionQuery$data["submission"];
 };
 
 const query = graphql`

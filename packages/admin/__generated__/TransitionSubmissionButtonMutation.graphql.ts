@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<67c07761d6e47aa0e17006cfa56ce1d0>>
+ * @generated SignedSource<<e4d1f56435a68a71ed0928a8bace00a2>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -270,6 +270,16 @@ return {
               {
                 "alias": null,
                 "args": null,
+                "concreteType": "AuthorizationResult",
+                "kind": "LinkedField",
+                "name": "canRequestReview",
+                "plural": false,
+                "selections": (v4/*: any*/),
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
                 "concreteType": null,
                 "kind": "LinkedField",
                 "name": "entity",
@@ -307,12 +317,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "f1d6b738a3d8af18efcbc9608a04b263",
+    "cacheID": "e7c770c80390d5139359beb5b1bd07ba",
     "id": null,
     "metadata": {},
     "name": "TransitionSubmissionButtonMutation",
     "operationKind": "mutation",
-    "text": "mutation TransitionSubmissionButtonMutation(\n  $input: SubmissionChangeStateInput!\n) {\n  submissionChangeState(input: $input) {\n    submission {\n      ...SubmissionLayoutFragment\n      id\n    }\n    ...MutationForm_mutationErrors\n  }\n}\n\nfragment MutationForm_mutationErrors on StandardMutationPayload {\n  __isStandardMutationPayload: __typename\n  attributeErrors {\n    path\n    type\n    messages\n  }\n  globalErrors {\n    message\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  currentStatus {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  availableTransitions {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  canReview {\n    value\n  }\n  entity {\n    __typename\n    __isEntity: __typename\n    title\n    id\n  }\n}\n"
+    "text": "mutation TransitionSubmissionButtonMutation(\n  $input: SubmissionChangeStateInput!\n) {\n  submissionChangeState(input: $input) {\n    submission {\n      ...SubmissionLayoutFragment\n      id\n    }\n    ...MutationForm_mutationErrors\n  }\n}\n\nfragment MutationForm_mutationErrors on StandardMutationPayload {\n  __isStandardMutationPayload: __typename\n  attributeErrors {\n    path\n    type\n    messages\n  }\n  globalErrors {\n    message\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  currentStatus {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  availableTransitions {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  canReview {\n    value\n  }\n  canRequestReview {\n    value\n  }\n  entity {\n    __typename\n    __isEntity: __typename\n    title\n    id\n  }\n}\n"
   }
 };
 })();

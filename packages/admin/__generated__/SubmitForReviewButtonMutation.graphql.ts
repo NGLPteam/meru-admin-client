@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<88df1b79c7bcc1ffb2111ff6c4dd37d0>>
+ * @generated SignedSource<<5c01d2ecebcab27aa8b909e624d17fc0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -266,6 +266,16 @@ return {
               {
                 "alias": null,
                 "args": null,
+                "concreteType": "AuthorizationResult",
+                "kind": "LinkedField",
+                "name": "canRequestReview",
+                "plural": false,
+                "selections": (v6/*: any*/),
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
                 "concreteType": null,
                 "kind": "LinkedField",
                 "name": "entity",
@@ -304,12 +314,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "51c3eb8064fd8e717ab5be8423dd6a23",
+    "cacheID": "2bd4309f1239707f4dd0b9a429a0c1d0",
     "id": null,
     "metadata": {},
     "name": "SubmitForReviewButtonMutation",
     "operationKind": "mutation",
-    "text": "mutation SubmitForReviewButtonMutation(\n  $input: SubmissionChangeStateInput!\n) {\n  submissionChangeState(input: $input) {\n    submission {\n      ...SubmissionLayoutFragment\n      id\n    }\n    attributeErrors {\n      messages\n      path\n      type\n    }\n    globalErrors {\n      message\n      type\n    }\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  currentStatus {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  availableTransitions {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  canReview {\n    value\n  }\n  entity {\n    __typename\n    __isEntity: __typename\n    title\n    id\n  }\n}\n"
+    "text": "mutation SubmitForReviewButtonMutation(\n  $input: SubmissionChangeStateInput!\n) {\n  submissionChangeState(input: $input) {\n    submission {\n      ...SubmissionLayoutFragment\n      id\n    }\n    attributeErrors {\n      messages\n      path\n      type\n    }\n    globalErrors {\n      message\n      type\n    }\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  currentStatus {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  availableTransitions {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  canReview {\n    value\n  }\n  canRequestReview {\n    value\n  }\n  entity {\n    __typename\n    __isEntity: __typename\n    title\n    id\n  }\n}\n"
   }
 };
 })();

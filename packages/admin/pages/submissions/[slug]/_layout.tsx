@@ -3,6 +3,7 @@ import {
   PreloadedQuery,
   GraphQLTaggedNode,
   useLazyLoadQuery,
+  graphql,
 } from "react-relay";
 import { OperationType } from "relay-runtime";
 import { QueryTransitionWrapper } from "@wdp/lib/api/components";
@@ -12,8 +13,10 @@ import { useRouteSlug } from "hooks";
 import ErrorPage from "next/error";
 import { LoadingCircle } from "components/atomic";
 import ModelListPageSkeleton from "components/composed/model/ModelListPageSkeleton";
-import type { LayoutSubmissionQuery as LayoutQuery } from "@/relay/LayoutSubmissionQuery.graphql";
-import { submissionQuery } from "../../my-submissions/[slug]/_layout";
+import type {
+  LayoutManageSubmissionQuery as LayoutQuery,
+  LayoutManageSubmissionQuery$data,
+} from "@/relay/LayoutManageSubmissionQuery.graphql";
 
 export default function Layout<T extends OperationType>(props: Props<T>) {
   const slug = useRouteSlug() as string;
@@ -56,7 +59,11 @@ export default function Layout<T extends OperationType>(props: Props<T>) {
       >
         {({ queryRef }) =>
           queryRef ? (
-            <PageComponent {...pageComponentProps} queryRef={queryRef} />
+            <PageComponent
+              {...pageComponentProps}
+              submission={submission}
+              queryRef={queryRef}
+            />
           ) : showLoadingCircle ? (
             <LoadingCircle className="l-page-loading" />
           ) : (
@@ -84,4 +91,17 @@ type Props<T extends OperationType> = {
 
 type PageProps<T extends OperationType> = {
   queryRef?: PreloadedQuery<T>;
+  submission?: LayoutManageSubmissionQuery$data["submission"];
 };
+
+export const submissionQuery = graphql`
+  query LayoutManageSubmissionQuery($slug: Slug!) {
+    submission(slug: $slug) {
+      id
+      canRequestReview {
+        value
+      }
+      ...SubmissionLayoutFragment
+    }
+  }
+`;

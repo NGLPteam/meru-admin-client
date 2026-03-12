@@ -90,6 +90,10 @@ const appData = {
           depositing: true,
         },
         {
+          label: "nav.my_reviews",
+          route: "my-reviews",
+        },
+        {
           label: "nav.profile",
           route: "profile",
         },

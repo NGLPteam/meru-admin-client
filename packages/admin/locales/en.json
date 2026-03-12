@@ -198,6 +198,7 @@
       "new_metadata_mapping": "Metadata Mapping",
       "permalinks": "Permalinks",
       "my_submissions": "My Submissions",
+      "my_reviews": "My Reviews",
       "all_submissions": "All Submissions",
       "review_submissions": "Review Submissions",
       "submissions_header": "Submissions",
@@ -463,7 +464,8 @@
         "submissions_closed": "Submissions are now closed.",
         "request_deposit_access": "Request Access",
         "transition": "Update Status",
-        "transition_select_label": "New status"
+        "transition_select_label": "New status",
+        "request_review": "Request Review"
       }
     },
     "sort": {
@@ -593,6 +595,7 @@
         "depositing_enabled": "Enable depositing",
         "depositing_enabled_description": "Allow users to deposit to this installation.",
         "depositing_agreement": "Depositing Certification",
+        "depositing_agreement_short": "Certification",
         "depositing_agreement_description": "Agreement text users must accept before depositing. Collections may override this with their own certification text.",
         "entity_settings": "Entity Settings",
         "supress_external_links": "Suppress external links",
