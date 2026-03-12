@@ -7,6 +7,7 @@ import MutationForm, {
   Forms,
   useOnSuccess,
 } from "components/api/MutationForm";
+import MockInput from "components/forms/MockInput";
 import type { SubmissionCreateFormMutation } from "@/relay/SubmissionCreateFormMutation.graphql";
 import type { SubmissionTargetNode, PreselectedTarget, Fields } from "./types";
 
@@ -173,6 +174,11 @@ export default function SubmissionCreateForm({
             options={schemaVersionOptions}
             description={t("forms.fields.submission_schema_description")}
             {...register("schemaVersionId")}
+          />
+          <MockInput
+            label={t("forms.fields.depositing_agreement_short")}
+            value="Agreement text goes here"
+            isWide
           />
         </Forms.Grid>
       );
