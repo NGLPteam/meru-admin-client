@@ -16,7 +16,7 @@ import type { SubmissionState } from "types/graphql-schema";
 interface Props {
   onSuccess?: () => void;
   onCancel?: () => void;
-  stateOptions: SubmissionState[];
+  stateOptions?: SubmissionState[];
   schemaOptions?: CheckboxOption[];
   targetOptions?: readonly Option[];
 }
@@ -33,12 +33,14 @@ export default function SubmissionFilterForm({
   const { filters: existingFilters } = useQueryFilters<SubmissionFilters>();
 
   const defaultValues: Record<string, string> = {
-    ...Object.fromEntries(
-      stateOptions.map((s) => [
-        s,
-        existingFilters.inState?.includes(s) ?? false,
-      ]),
-    ),
+    ...(stateOptions
+      ? Object.fromEntries(
+          stateOptions.map((s) => [
+            s,
+            existingFilters.inState?.includes(s) ?? false,
+          ]),
+        )
+      : {}),
     "updatedAt.gteq": existingFilters.updatedAt?.gteq ?? "",
     "updatedAt.lteq": existingFilters.updatedAt?.lteq ?? "",
     submissionTargetId: existingFilters.submissionTargetIds?.[0] ?? "",
@@ -47,7 +49,7 @@ export default function SubmissionFilterForm({
   };
 
   const onSubmit = (data: Record<string, string>) => {
-    const selectedStates = stateOptions.filter((s) => data[s]);
+    const selectedStates = stateOptions?.filter((s) => data[s]);
 
     const cleanedQuery = omitBy(router.query, (_value, key) => {
       return key && typeof key === "string" && key.startsWith("drawer");
@@ -55,7 +57,7 @@ export default function SubmissionFilterForm({
 
     const filters: SubmissionFilters = {};
 
-    if (selectedStates.length) {
+    if (selectedStates?.length) {
       filters.inState = selectedStates;
     }
 
@@ -117,26 +119,28 @@ export default function SubmissionFilterForm({
       {({ form }) => (
         <Styled.Wrapper>
           <Grid>
-            <Styled.FilterGroup>
-              <Styled.GroupLabel className="t-label-lg">
-                {t("search.submissions.filter_by_status")}
-              </Styled.GroupLabel>
-              <Styled.FieldsWrapper>
-                <CheckboxGroup
-                  name="inState"
-                  label="search.submissions.filter_by_status"
-                  hideLabel
-                >
-                  <Styled.TwoColumnCheckboxes>
-                    {stateOptions.map((state) => (
-                      <Checkbox key={state} {...form.register(state)}>
-                        {t(`status.${state.toLowerCase()}_label`)}
-                      </Checkbox>
-                    ))}
-                  </Styled.TwoColumnCheckboxes>
-                </CheckboxGroup>
-              </Styled.FieldsWrapper>
-            </Styled.FilterGroup>
+            {!!stateOptions && (
+              <Styled.FilterGroup>
+                <Styled.GroupLabel className="t-label-lg">
+                  {t("search.submissions.filter_by_status")}
+                </Styled.GroupLabel>
+                <Styled.FieldsWrapper>
+                  <CheckboxGroup
+                    name="inState"
+                    label="search.submissions.filter_by_status"
+                    hideLabel
+                  >
+                    <Styled.TwoColumnCheckboxes>
+                      {stateOptions.map((state) => (
+                        <Checkbox key={state} {...form.register(state)}>
+                          {t(`status.${state.toLowerCase()}_label`)}
+                        </Checkbox>
+                      ))}
+                    </Styled.TwoColumnCheckboxes>
+                  </CheckboxGroup>
+                </Styled.FieldsWrapper>
+              </Styled.FilterGroup>
+            )}
             <Styled.FilterGroup>
               <Styled.GroupLabel className="t-label-lg">
                 {t("search.submissions.filter_by_date")}
