@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<91b2d93396936e0bea71f8507c60a771>>
+ * @generated SignedSource<<f86025082fce9cdcf1add12d7fe6b20b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -208,6 +208,24 @@ return {
               {
                 "alias": null,
                 "args": null,
+                "concreteType": "SubmissionStatus",
+                "kind": "LinkedField",
+                "name": "currentStatus",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "mutableState",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
                 "concreteType": "SubmissionTarget",
                 "kind": "LinkedField",
                 "name": "submissionTarget",
@@ -301,12 +319,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "2d9bc736e3b79f2d95db86a45cd81c64",
+    "cacheID": "294e3c955471017c7da39b7a5b4a6f01",
     "id": null,
     "metadata": {},
     "name": "reviewQuery",
     "operationKind": "query",
-    "text": "query reviewQuery(\n  $page: Int!\n  $order: SubmissionOrder!\n  $filters: SubmissionFilterInput\n) {\n  submissions(page: $page, perPage: 20, order: $order, filters: $filters) {\n    ...SubmissionListFragment\n  }\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionListFragment on SubmissionConnection {\n  nodes {\n    id\n    slug\n    state\n    createdAt\n    entity {\n      __typename\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n      __isEntity: __typename\n      title\n      id\n    }\n    submissionTarget {\n      entity {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n      id\n    }\n  }\n  ...ModelListPageFragment\n}\n"
+    "text": "query reviewQuery(\n  $page: Int!\n  $order: SubmissionOrder!\n  $filters: SubmissionFilterInput\n) {\n  submissions(page: $page, perPage: 20, order: $order, filters: $filters) {\n    ...SubmissionListFragment\n  }\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionListFragment on SubmissionConnection {\n  nodes {\n    id\n    slug\n    state\n    createdAt\n    entity {\n      __typename\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n      __isEntity: __typename\n      title\n      id\n    }\n    currentStatus {\n      mutableState\n    }\n    submissionTarget {\n      entity {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n      id\n    }\n  }\n  ...ModelListPageFragment\n}\n"
   }
 };
 })();

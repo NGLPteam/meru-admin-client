@@ -9,7 +9,14 @@ import { reviewQuery as Query } from "@/relay/reviewQuery.graphql";
 export default function SubmissionsReview() {
   const { page, order, filters } = useSubmissionFilterQueryVars({
     baseFilters: {
-      inState: ["SUBMITTED", "UNDER_REVIEW", "REVISION_REQUESTED"],
+      inState: [
+        "SUBMITTED",
+        "UNDER_REVIEW",
+        "REVISION_REQUESTED",
+        "APPROVED",
+        "REJECTED",
+        "PUBLISHED",
+      ],
     },
   });
 

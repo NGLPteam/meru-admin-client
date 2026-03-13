@@ -1,24 +1,30 @@
 import { usePreloadedQuery, graphql, PreloadedQuery } from "react-relay";
 import { QueryTransitionWrapper } from "@wdp/lib/api/components";
-import { useBaseListQueryVars } from "hooks";
+import { useSubmissionFilterQueryVars } from "hooks";
 import { LoadingPage } from "components/atomic/loading";
-import PublishList from "components/composed/submission/PublishList";
+import SubmissionBulkPublishList from "components/composed/submission/SubmissionBulkPublishList";
 import HtmlHead from "components/global/HtmlHead";
 import { publishQuery as Query } from "@/relay/publishQuery.graphql";
 
 export default function SubmissionsPublish() {
-  const { page } = useBaseListQueryVars();
+  const { page, order, filters } = useSubmissionFilterQueryVars({
+    baseFilters: { inState: ["APPROVED"] },
+  });
 
   return (
     <>
       <HtmlHead />
       <QueryTransitionWrapper<Query>
         query={query}
-        variables={{ page }}
+        variables={{ page, order, filters }}
         loadingFallback={<LoadingPage />}
       >
         {({ queryRef }) =>
-          queryRef ? <ListQuery queryRef={queryRef} /> : <PublishList />
+          queryRef ? (
+            <ListQuery queryRef={queryRef} />
+          ) : (
+            <SubmissionBulkPublishList />
+          )
         }
       </QueryTransitionWrapper>
     </>
@@ -26,19 +32,19 @@ export default function SubmissionsPublish() {
 }
 
 const ListQuery = ({ queryRef }: { queryRef: PreloadedQuery<Query> }) => {
-  const {
-    viewer: { items },
-  } = usePreloadedQuery<Query>(query, queryRef);
+  const { submissions } = usePreloadedQuery<Query>(query, queryRef);
 
-  return <PublishList data={items} />;
+  return <SubmissionBulkPublishList data={submissions} />;
 };
 
 const query = graphql`
-  query publishQuery($page: Int!) {
-    viewer {
-      items(page: $page, perPage: 20) {
-        ...PublishListFragment
-      }
+  query publishQuery(
+    $page: Int!
+    $order: SubmissionOrder!
+    $filters: SubmissionFilterInput
+  ) {
+    submissions(page: $page, perPage: 20, order: $order, filters: $filters) {
+      ...SubmissionBulkPublishListFragment
     }
   }
 `;

@@ -8,7 +8,7 @@ import type { SubmissionState } from "types/graphql-schema";
 
 interface Props {
   dialog: DialogProps;
-  stateOptions: SubmissionState[];
+  stateOptions?: SubmissionState[];
 }
 
 export default function SubmissionFilterDrawer({

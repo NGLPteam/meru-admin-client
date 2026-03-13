@@ -118,7 +118,7 @@ const availableActions: ActionDefinitions = {
   },
   publish: {
     label: i18next.t("nav.publish"),
-    modalLabel: i18next.t("actions.publish_confirm_label"),
+    modalLabel: i18next.t("actions.submissions.publish_confirm_label"),
   },
 };
 
