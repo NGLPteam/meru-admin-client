@@ -5,6 +5,7 @@ import { useNotify } from "hooks";
 import MessageBlock from "components/atomic/MessageBlock";
 import ButtonControl from "components/atomic/buttons/ButtonControl";
 import type { InvalidTargetRequestAccessMutation } from "@/relay/InvalidTargetRequestAccessMutation.graphql";
+import * as Styled from "./InvalidTarget.styles";
 import type { PreselectedTarget } from "../types";
 
 type Props = {
@@ -58,16 +59,16 @@ export default function InvalidTarget({
         name={t("messages.no_deposit_access_heading")}
         message={
           preselectedTarget.canRequestDepositAccess.value ? (
-            <>
-              {t("messages.no_deposit_access_message")}
+            <Styled.Message>
+              <p>{t("messages.no_deposit_access_message")}</p>
               <ButtonControl
                 onClick={handleRequestAccess}
                 disabled={loading}
                 aria-label={t("actions.request_deposit_access")}
               >
-                {t("actions.request_deposit_access")}
+                {t("actions.submissions.request_deposit_access")}
               </ButtonControl>
-            </>
+            </Styled.Message>
           ) : (
             t("messages.no_deposit_access_message")
           )

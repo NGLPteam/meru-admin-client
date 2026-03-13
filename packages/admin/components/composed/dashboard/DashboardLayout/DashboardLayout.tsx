@@ -9,7 +9,7 @@ import { DashboardLayoutQuery } from "@/relay/DashboardLayoutQuery.graphql";
 import DashboardInstallation from "../DashboardInstallation";
 import DashboardCollections from "../DashboardCollections";
 import DashboardItems from "../DashboardItems";
-import DashboardSubmitter from "../DashboardSubmitter";
+import DashboardDepositor from "../DashboardDepositor";
 import * as Styled from "./DashboardLayout.styles";
 import type { KeycloakInstance } from "keycloak-js";
 
@@ -47,7 +47,7 @@ export default function DashboardLayout({ queryRef }: Props) {
             />
           </Styled.BannerArea>
         )}
-        <DashboardSubmitter />
+        <DashboardDepositor data={queryData} />
       </Styled.Wrapper>
     );
   }
@@ -69,9 +69,10 @@ interface Props {
 }
 
 export const query = graphql`
-  query DashboardLayoutQuery($page: Int, $order: EntityOrder) {
+  query DashboardLayoutQuery($page: Int, $order: EntityOrder, $viewerId: ID!) {
     ...DashboardInstallationFragment
     ...DashboardCollectionsFragment @arguments(page: $page, order: $order)
     ...DashboardItemsFragment @arguments(page: $page, order: $order)
+    ...DashboardDepositorFragment @arguments(viewerId: $viewerId)
   }
 `;
