@@ -6,9 +6,9 @@ import {
 } from "react-relay";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
-import { QueryTransitionWrapper } from "@wdp/lib/api/components";
+import { QueryLoaderWrapper } from "@wdp/lib/api/components";
 import routeQueryArrayToString from "@wdp/lib/routes/helpers/routeQueryArrayToString";
-import { LoadingPage } from "components/atomic/loading";
+import { LoadingCircle } from "components/atomic/loading";
 import { PageHeader, BackToAll } from "components/layout";
 import HtmlHead from "components/global/HtmlHead";
 import SubmissionCreateForm from "components/composed/submission/SubmissionCreateForm/CanSubmitCheck";
@@ -25,10 +25,10 @@ export default function NewSubmission() {
       <HtmlHead />
       <BackToAll route="my-submissions" />
       <PageHeader title={t("nav.new_submission")} />
-      <QueryTransitionWrapper<Query>
+      <QueryLoaderWrapper<Query>
         query={query}
         variables={{}}
-        loadingFallback={<LoadingPage />}
+        loadingFallback={<LoadingCircle className="l-page-loading" />}
       >
         {({ queryRef }) =>
           queryRef ? (
@@ -42,7 +42,7 @@ export default function NewSubmission() {
             )
           ) : null
         }
-      </QueryTransitionWrapper>
+      </QueryLoaderWrapper>
     </>
   );
 }
