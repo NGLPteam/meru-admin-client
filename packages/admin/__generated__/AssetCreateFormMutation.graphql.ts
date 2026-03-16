@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<dd839896be0be496c65320100b37808f>>
+ * @generated SignedSource<<c700c16ce9d8929164820d40f4e934a5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,7 +10,7 @@
 
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type AssetKind = "audio" | "document" | "image" | "pdf" | "unknown" | "video" | "%future added value";
+export type AssetKind = "archive" | "audio" | "document" | "image" | "pdf" | "unknown" | "video" | "%future added value";
 export type UploadStorage = "CACHE" | "%future added value";
 export type CreateAssetInput = {
   altText?: string | null | undefined;

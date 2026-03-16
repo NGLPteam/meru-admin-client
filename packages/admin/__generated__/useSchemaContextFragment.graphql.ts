@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3d42c7c7a6c1f3468fa3f30b109d561b>>
+ * @generated SignedSource<<53fd03db74d3330a20875b701cae0620>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,7 @@
 // @ts-nocheck
 
 import { Fragment, ReaderFragment } from 'relay-runtime';
-export type AssetKind = "audio" | "document" | "image" | "pdf" | "unknown" | "video" | "%future added value";
+export type AssetKind = "archive" | "audio" | "document" | "image" | "pdf" | "unknown" | "video" | "%future added value";
 export type ContributorKind = "organization" | "person" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type useSchemaContextFragment$data = {
