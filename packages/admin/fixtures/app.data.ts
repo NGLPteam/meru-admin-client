@@ -92,6 +92,8 @@ const appData = {
         {
           label: "nav.my_reviews",
           route: "my-reviews",
+          actions: ["submissions.review"],
+          depositing: true,
         },
         {
           label: "nav.profile",
