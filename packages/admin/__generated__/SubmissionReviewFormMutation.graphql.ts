@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4a5c8ba02fcf5442ba3063b5bfadd639>>
+ * @generated SignedSource<<d8b5394c76dac0743814c39409c93075>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Mutation } from 'relay-runtime';
-export type SubmissionReviewState = "APPROVED" | "PENDING" | "REJECTED" | "%future added value";
+export type SubmissionReviewState = "APPROVED" | "PENDING" | "REJECTED" | "REVISION_REQUESTED" | "%future added value";
 export type SubmissionState = "APPROVED" | "DRAFT" | "PUBLISHED" | "REJECTED" | "REVISION_REQUESTED" | "SUBMITTED" | "UNDER_REVIEW" | "%future added value";
 export type SubmissionLeaveReviewInput = {
   clientMutationId?: string | null | undefined;

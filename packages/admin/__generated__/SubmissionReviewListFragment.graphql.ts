@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<df4b6f76e8ea19184321cf71648a6c07>>
+ * @generated SignedSource<<19d39d03094c3d5793cee00161fe2c91>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,7 @@
 // @ts-nocheck
 
 import { Fragment, ReaderFragment } from 'relay-runtime';
-export type SubmissionReviewState = "APPROVED" | "PENDING" | "REJECTED" | "%future added value";
+export type SubmissionReviewState = "APPROVED" | "PENDING" | "REJECTED" | "REVISION_REQUESTED" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type SubmissionReviewListFragment$data = {
   readonly nodes: ReadonlyArray<{

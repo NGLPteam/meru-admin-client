@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<220d1f1023c0d34e8598e4b38239330e>>
+ * @generated SignedSource<<cc60492f2c27a50f457b266bf069f95c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type SubmissionReviewOrder = "DEFAULT" | "OLDEST" | "RECENT" | "%future added value";
-export type SubmissionReviewState = "APPROVED" | "PENDING" | "REJECTED" | "%future added value";
+export type SubmissionReviewState = "APPROVED" | "PENDING" | "REJECTED" | "REVISION_REQUESTED" | "%future added value";
 export type SubmissionReviewFilterInput = {
   createdAt?: TimeFilterMatch | null | undefined;
   inState?: ReadonlyArray<SubmissionReviewState> | null | undefined;
