@@ -85,17 +85,32 @@ const HeaderAccount = ({ accountNav }: Props) => {
     );
   };
 
-  const renderLink = (item: HeaderNavLink) => {
+  const maybeAuthorize = (
+    node: AuthorizeProps["children"],
+    item: HeaderNavLink | HeaderNavParent,
+    index: number,
+  ): React.JSX.Element => {
+    if (!item.actions) return node as React.JSX.Element;
+    return (
+      <Authorize key={index} actions={item.actions}>
+        {node}
+      </Authorize>
+    );
+  };
+
+  const renderLink = (item: HeaderNavLink, i: number) => {
     // Check if the individual route link should be active
     const route = RouteHelper.findRouteByName(item.route);
     if (!route) return null;
 
     const active = RouteHelper.isRouteFuzzyActive(route);
 
-    return (
+    return maybeAuthorize(
       <NamedLink route={route.name} passHref>
         <NavLink active={active}>{t(item.label || "")}</NavLink>
-      </NamedLink>
+      </NamedLink>,
+      item,
+      i,
     );
   };
 

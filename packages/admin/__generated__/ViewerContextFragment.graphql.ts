@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<dad89bda29fc7a810a9051f75298b187>>
+ * @generated SignedSource<<2b294b18f33f736fd32e8272119bb476>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,6 +15,9 @@ export type ViewerContextFragment$data = {
     readonly allowedActions: ReadonlyArray<string>;
     readonly avatar: {
       readonly " $fragmentSpreads": FragmentRefs<"AvatarFragment">;
+    };
+    readonly canReceiveReviewRequests: {
+      readonly value: boolean;
     };
     readonly globalAdmin: boolean;
     readonly id: string;
@@ -100,6 +103,24 @@ const node: ReaderFragment = {
           "kind": "ScalarField",
           "name": "globalAdmin",
           "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "AuthorizationResult",
+          "kind": "LinkedField",
+          "name": "canReceiveReviewRequests",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "value",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
         }
       ],
       "storageKey": null
@@ -109,6 +130,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "22c8b71da66138537ac4b0faf87f74b8";
+(node as any).hash = "18ff4c524b4d010848d31a1499e26a5b";
 
 export default node;

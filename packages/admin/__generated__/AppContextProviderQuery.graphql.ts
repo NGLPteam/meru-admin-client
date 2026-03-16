@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5e9460e9c1dbdfe9baf862763752d085>>
+ * @generated SignedSource<<bca9ea2af956ede9a97683979d0948a5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -425,6 +425,24 @@ return {
             "kind": "ScalarField",
             "name": "globalAdmin",
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "AuthorizationResult",
+            "kind": "LinkedField",
+            "name": "canReceiveReviewRequests",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "value",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -432,12 +450,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "2f18e00affb2068ba08b1852e07b6ef3",
+    "cacheID": "8046deae35aa5de587248d3bafb9280b",
     "id": null,
     "metadata": {},
     "name": "AppContextProviderQuery",
     "operationKind": "query",
-    "text": "query AppContextProviderQuery {\n  ...GlobalContextFragment\n  ...ViewerContextFragment\n}\n\nfragment AvatarFragment on ImageAttachment {\n  storage\n  small {\n    webp {\n      ...ImageFragment\n      width\n      height\n    }\n  }\n}\n\nfragment FooterFragment on GlobalConfiguration {\n  site {\n    footer {\n      copyrightStatement\n      description\n    }\n  }\n}\n\nfragment GlobalContextFragment on Query {\n  globalConfiguration {\n    ...ProviderBarFragment\n    ...InstallationNameFragment\n    ...UnauthorizedMessageFragment\n    ...FooterFragment\n    ...InstallationLogoFragment\n    ...HtmlHeadFragment\n    depositing {\n      enabled\n    }\n    id\n  }\n  ...SchemaSelectorSchemasFragment\n}\n\nfragment HtmlHeadFragment on GlobalConfiguration {\n  site {\n    installationName\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment InstallationLogoFragment on GlobalConfiguration {\n  site {\n    installationName\n    logoMode\n  }\n  logo {\n    storage\n    original {\n      originalFilename\n      ...ImageFragment\n    }\n    sansText {\n      size\n      webp {\n        width\n        height\n        ...ImageFragment\n      }\n    }\n  }\n}\n\nfragment InstallationNameFragment on GlobalConfiguration {\n  site {\n    installationName\n  }\n}\n\nfragment ProviderBarFragment on GlobalConfiguration {\n  site {\n    providerName\n  }\n}\n\nfragment SchemaSelectorModalOptionsFragment on SchemaVersionConnection {\n  edges {\n    node {\n      name\n      namespace\n      identifier\n      kind\n      slug\n      number\n      schemaDefinition {\n        slug\n        id\n      }\n      id\n    }\n  }\n}\n\nfragment SchemaSelectorSchemasFragment on Query {\n  schemaVersions {\n    nodes {\n      name\n      kind\n      id\n    }\n    ...SchemaSelectorModalOptionsFragment\n  }\n}\n\nfragment UnauthorizedMessageFragment on GlobalConfiguration {\n  site {\n    providerName\n  }\n}\n\nfragment ViewerContextFragment on Query {\n  viewer {\n    id\n    name\n    allowedActions\n    uploadAccess\n    uploadToken\n    avatar {\n      ...AvatarFragment\n    }\n    globalAdmin\n  }\n}\n"
+    "text": "query AppContextProviderQuery {\n  ...GlobalContextFragment\n  ...ViewerContextFragment\n}\n\nfragment AvatarFragment on ImageAttachment {\n  storage\n  small {\n    webp {\n      ...ImageFragment\n      width\n      height\n    }\n  }\n}\n\nfragment FooterFragment on GlobalConfiguration {\n  site {\n    footer {\n      copyrightStatement\n      description\n    }\n  }\n}\n\nfragment GlobalContextFragment on Query {\n  globalConfiguration {\n    ...ProviderBarFragment\n    ...InstallationNameFragment\n    ...UnauthorizedMessageFragment\n    ...FooterFragment\n    ...InstallationLogoFragment\n    ...HtmlHeadFragment\n    depositing {\n      enabled\n    }\n    id\n  }\n  ...SchemaSelectorSchemasFragment\n}\n\nfragment HtmlHeadFragment on GlobalConfiguration {\n  site {\n    installationName\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment InstallationLogoFragment on GlobalConfiguration {\n  site {\n    installationName\n    logoMode\n  }\n  logo {\n    storage\n    original {\n      originalFilename\n      ...ImageFragment\n    }\n    sansText {\n      size\n      webp {\n        width\n        height\n        ...ImageFragment\n      }\n    }\n  }\n}\n\nfragment InstallationNameFragment on GlobalConfiguration {\n  site {\n    installationName\n  }\n}\n\nfragment ProviderBarFragment on GlobalConfiguration {\n  site {\n    providerName\n  }\n}\n\nfragment SchemaSelectorModalOptionsFragment on SchemaVersionConnection {\n  edges {\n    node {\n      name\n      namespace\n      identifier\n      kind\n      slug\n      number\n      schemaDefinition {\n        slug\n        id\n      }\n      id\n    }\n  }\n}\n\nfragment SchemaSelectorSchemasFragment on Query {\n  schemaVersions {\n    nodes {\n      name\n      kind\n      id\n    }\n    ...SchemaSelectorModalOptionsFragment\n  }\n}\n\nfragment UnauthorizedMessageFragment on GlobalConfiguration {\n  site {\n    providerName\n  }\n}\n\nfragment ViewerContextFragment on Query {\n  viewer {\n    id\n    name\n    allowedActions\n    uploadAccess\n    uploadToken\n    avatar {\n      ...AvatarFragment\n    }\n    globalAdmin\n    canReceiveReviewRequests {\n      value\n    }\n  }\n}\n"
   }
 };
 })();

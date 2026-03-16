@@ -45,6 +45,7 @@ interface ViewerContextProps {
   avatar?: AvatarFragment$key | null;
   globalAdmin?: boolean;
   loading?: boolean;
+  canReceiveReviewRequests?: { value: boolean };
 }
 
 interface Props {
@@ -68,6 +69,9 @@ const fragment = graphql`
         ...AvatarFragment
       }
       globalAdmin
+      canReceiveReviewRequests {
+        value
+      }
     }
   }
 `;
