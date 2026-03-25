@@ -20,7 +20,7 @@
   "engines": {
     "node": "20.x"
   },
-  "packageManager": "yarn@4.12.0",
+  "packageManager": "yarn@4.13.0",
   "scripts": {
     "dev": "yarn workspace @wdp/admin run dev",
     "build": "scripts/do.sh build",
