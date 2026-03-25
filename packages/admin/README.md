@@ -1,4 +1,4 @@
-# NGLP Admin UI
+# Meru Admin UI
 
 ## Development Environment
 

@@ -1,8 +1,8 @@
-# NGLP
+# Meru Admin
 
 ## Development Environment
 
-NGLP is separated into workspaces:
+Meru is separated into workspaces:
 
 - [admin](./packages/admin/README.md) - client admin app
 - lib - library of shared components and themes
