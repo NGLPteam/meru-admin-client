@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Dropdown, NamedLink, NavLink, DrawerLink } from "components/atomic";
+import { Dropdown, NamedLink, NavLink } from "components/atomic";
 import { Authorize } from "components/auth";
 import { RouteHelper } from "routes";
 import { useIsAuthorized } from "hooks";
@@ -54,9 +54,9 @@ function HeaderNavLinks({ navigation }: Props) {
 
   const renderGlobalSettings = () =>
     canUpdateSettings ? (
-      <DrawerLink key="settings" drawer="editSettings" passHref>
+      <NamedLink key="settings" route="settings" passHref>
         <NavLink>{t("nav.global_settings")}</NavLink>
-      </DrawerLink>
+      </NamedLink>
     ) : null;
 
   const filterDepositing = <T extends { depositing?: boolean }>(

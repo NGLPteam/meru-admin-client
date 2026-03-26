@@ -11,7 +11,7 @@ import MobileMenu, { MobileMenuList } from "components/layout/MobileMenu";
 import MobileMenuToggle from "components/layout/MobileMenuToggle";
 import { renderNavLink } from "helpers";
 import SignInOut from "components/auth/SignInOut";
-import { DrawerLink } from "components/atomic";
+import { DrawerLink, NamedLink } from "components/atomic";
 import SearchModal from "components/composed/search/SearchModal";
 import InstallationName from "../InstallationName";
 import ProviderBar from "../ProviderBar";
@@ -36,9 +36,9 @@ function Header() {
   const renderGlobalSettings = () =>
     globalAdmin ? (
       <li>
-        <DrawerLink key="settings" drawer="editSettings" passHref>
+        <NamedLink key="settings" route="settings" passHref>
           <a className="a-link">{t("nav.global_settings")}</a>
-        </DrawerLink>
+        </NamedLink>
       </li>
     ) : null;
 

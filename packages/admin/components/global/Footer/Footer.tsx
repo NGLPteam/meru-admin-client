@@ -5,7 +5,7 @@ import appData from "fixtures/app.data";
 import { InstallationLogo } from "components/global";
 import { renderNavLink } from "helpers";
 import { Authorize } from "components/auth";
-import { DrawerLink, Markdown } from "components/atomic";
+import { NamedLink, Markdown } from "components/atomic";
 import { useGlobalContext, useViewerContext } from "contexts";
 import { FooterFragment$key } from "@/relay/FooterFragment.graphql";
 import * as Styled from "./Footer.styles";
@@ -29,9 +29,9 @@ function Footer() {
   const renderGlobalSettings = () =>
     globalAdmin ? (
       <Styled.ListItem>
-        <DrawerLink key="settings" drawer="editSettings" passHref>
-          {t("nav.global_settings")}
-        </DrawerLink>
+        <NamedLink key="settings" route="settings" passHref>
+          <a>{t("nav.global_settings")}</a>
+        </NamedLink>
       </Styled.ListItem>
     ) : null;
 

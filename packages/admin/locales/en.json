@@ -580,6 +580,7 @@
         "logo_description": "<0>Recommended sizes:</0><1><0>Raster Logos: 566px by 566px. This size ensures it looks crisp, especially on list pages.</0><0>Vector Logos: These are scalable so there are no minimum pixel dimensions, but if there's too much white space around the logo, it may appear smaller than expected.</0></1>",
         "logo_settings": "Logo Settings",
         "logo_settings_description": "Choose if the logo should be displayed with or without the installation name.",
+        "logo_display": "Display Format",
         "logo_settings_with_text": "Display with Installation Name",
         "logo_settings_without_text": "Display without Installation Name",
         "position": "Position",
