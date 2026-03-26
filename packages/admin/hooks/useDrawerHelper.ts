@@ -39,6 +39,7 @@ import EntityPermalinksAddDrawer from "components/composed/permalinks/EntityPerm
 import EntityPermalinksUpdateDrawer from "components/composed/permalinks/EntityPermalinksUpdateDrawer";
 import InstancePermalinksAddDrawer from "components/composed/permalinks/InstancePermalinksAddDrawer";
 import SubmissionReviewDrawer from "components/composed/submission/SubmissionReviewDrawer";
+import SubmissionTargetReviewerAddDrawer from "components/composed/submissionTarget/SubmissionTargetReviewerAddDrawer";
 
 const drawerRegistry = {
   addPerson: ContributorCreatePersonDrawer,
@@ -77,6 +78,7 @@ const drawerRegistry = {
   editPermalink: EntityPermalinksUpdateDrawer,
   addInstancePermalink: InstancePermalinksAddDrawer,
   reviewSubmission: SubmissionReviewDrawer,
+  addReviewer: SubmissionTargetReviewerAddDrawer,
 };
 
 export function useDrawerHelper() {

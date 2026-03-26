@@ -1,10 +1,10 @@
 import { graphql, usePreloadedQuery, PreloadedQuery } from "react-relay";
 import CollectionSubmissionSettings from "components/composed/collection/CollectionSubmissionSettings";
-import type { submissionsManageSlugCollectionsPagesQuery as Query } from "@/relay/submissionsManageSlugCollectionsPagesQuery.graphql";
+import type { settingsSubmissionsSlugCollectionsPagesQuery as Query } from "@/relay/settingsSubmissionsSlugCollectionsPagesQuery.graphql";
 import Layout from "./_layout";
 import type { GetLayout } from "@wdp/lib/types/page";
 
-function CollectionSubmissions({ queryRef }: Props) {
+function CollectionSubmissionsSettings({ queryRef }: Props) {
   const { collection, schemaVersionOptions } = usePreloadedQuery<Query>(
     query,
     queryRef,
@@ -27,14 +27,14 @@ const getLayout: GetLayout<Props> = (props) => (
   />
 );
 
-CollectionSubmissions.getLayout = getLayout;
+CollectionSubmissionsSettings.getLayout = getLayout;
 
 type Props = {
   queryRef: PreloadedQuery<Query>;
 };
 
 const query = graphql`
-  query submissionsManageSlugCollectionsPagesQuery($slug: Slug!) {
+  query settingsSubmissionsSlugCollectionsPagesQuery($slug: Slug!) {
     collection(slug: $slug) {
       slug
       ...CollectionSubmissionSettingsFragment
@@ -49,4 +49,4 @@ const query = graphql`
   }
 `;
 
-export default CollectionSubmissions;
+export default CollectionSubmissionsSettings;
