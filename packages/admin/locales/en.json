@@ -209,12 +209,14 @@
       "history": "History",
       "reviews": "Reviews",
       "my_publications": "My Publications",
-      "reviewers": "Reviewers"
+      "reviewers": "Reviewers",
+      "settings": "Settings"
     },
     "messages": {
       "marked_for_purge": "Marked for purge",
       "submission_target_required_name": "Configuration Required",
       "submission_target_required": "The form below must be completed before this collection can accept submissions. Configuration can be updated at any time, even after submissions have been received.",
+      "submission_target_reviewers_required": "This collection must be setup to accept submissions before reviewers can be added. Go to <0>Settings</0> to configure.",
       "no_targets_heading": "No Available Collections",
       "no_targets_message": "There are no collections you can deposit to at this time. Please contact an administrator if you believe this is an error.",
       "no_deposit_access_heading": "Deposit Access Required",
@@ -252,7 +254,9 @@
         "ordering_failure": "Failed to add ordering.",
         "announcement_success": "Announcement added successfully.",
         "announcement_failure": "Failed to add announcement.",
-        "file_success": "File added successfully."
+        "file_success": "File added successfully.",
+        "reviewer_success": "Reviewer added successfully.",
+        "reviewer_failure": "Failed to add reviewer."
       },
       "update": {
         "success": "$t({{ name }}) updated successfully.",
@@ -379,7 +383,8 @@
         "harvest_metadata_mapping": "$t(glossary.metadata_mapping)",
         "submission": "New Submission",
         "contributor_row": "Add Contributor",
-        "file_row": "Add File"
+        "file_row": "Add File",
+        "reviewer": "Add Reviewer"
       },
       "create": {
         "contributor_person": "Create Person",

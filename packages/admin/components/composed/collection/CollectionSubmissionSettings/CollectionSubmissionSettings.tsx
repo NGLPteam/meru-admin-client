@@ -1,12 +1,10 @@
 import { useFragment, graphql } from "react-relay";
 import { useTranslation } from "react-i18next";
-import capitalize from "lodash/capitalize";
-import { ContentHeader } from "components/layout";
 import { MessageBanner } from "components/atomic/MessageBanner";
+import SubmissionTargetConfigureForm from "components/composed/submissionTarget/SubmissionTargetConfigureForm";
+import SubmissionTargetStateToggle from "components/composed/submissionTarget/SubmissionTargetStateToggle";
 import type { CollectionSubmissionSettingsFragment$key } from "@/relay/CollectionSubmissionSettingsFragment.graphql";
-import type { submissionsManageSlugCollectionsPagesQuery$data } from "@/relay/submissionsManageSlugCollectionsPagesQuery.graphql";
-import SubmissionTargetConfigureForm from "./SubmissionTargetConfigureForm";
-import SubmissionTargetStateToggle from "./SubmissionTargetStateToggle";
+import type { settingsSubmissionsSlugCollectionsPagesQuery$data } from "@/relay/settingsSubmissionsSlugCollectionsPagesQuery.graphql";
 import * as Styled from "./CollectionSubmissionSettings.styles";
 
 export default function CollectionSubmissionSettings({
@@ -24,10 +22,6 @@ export default function CollectionSubmissionSettings({
 
   return (
     <>
-      <ContentHeader
-        headerStyle="secondary"
-        title={capitalize(t("glossary.submission_other"))}
-      />
       {submissionTarget ? (
         <Styled.ToggleWrapper>
           <SubmissionTargetStateToggle data={submissionTarget} />
@@ -51,7 +45,7 @@ export default function CollectionSubmissionSettings({
 
 interface Props {
   data: CollectionSubmissionSettingsFragment$key;
-  schemaVersionOptions: submissionsManageSlugCollectionsPagesQuery$data["schemaVersionOptions"];
+  schemaVersionOptions: settingsSubmissionsSlugCollectionsPagesQuery$data["schemaVersionOptions"];
 }
 
 const fragment = graphql`

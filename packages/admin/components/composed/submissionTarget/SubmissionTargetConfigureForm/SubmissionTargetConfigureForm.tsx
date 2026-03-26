@@ -23,7 +23,7 @@ import type {
   SubmissionTargetConfigureFormOpenMutation,
   SubmissionTargetConfigureFormOpenMutation$data,
 } from "@/relay/SubmissionTargetConfigureFormOpenMutation.graphql";
-import type { submissionsManageSlugCollectionsPagesQuery$data } from "@/relay/submissionsManageSlugCollectionsPagesQuery.graphql";
+import type { settingsSubmissionsSlugCollectionsPagesQuery$data } from "@/relay/settingsSubmissionsSlugCollectionsPagesQuery.graphql";
 
 type DepositTarget = {
   id: string;
@@ -269,7 +269,7 @@ export default function SubmissionTargetConfigureForm({
 interface Props {
   collectionId: string;
   data: SubmissionTargetConfigureFormFragment$key | null;
-  schemaVersionOptions: submissionsManageSlugCollectionsPagesQuery$data["schemaVersionOptions"];
+  schemaVersionOptions: settingsSubmissionsSlugCollectionsPagesQuery$data["schemaVersionOptions"];
 }
 
 const fragment = graphql`
