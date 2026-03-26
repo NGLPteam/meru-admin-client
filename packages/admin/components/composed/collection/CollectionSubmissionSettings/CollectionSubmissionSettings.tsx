@@ -28,17 +28,18 @@ export default function CollectionSubmissionSettings({
         headerStyle="secondary"
         title={capitalize(t("glossary.submission_other"))}
       />
-      <Styled.ToggleWrapper>
-        <SubmissionTargetStateToggle data={submissionTarget ?? null} />
-        {!submissionTarget && (
-          <MessageBanner
-            name={t("messages.submission_target_required_name")}
-            message={t("messages.submission_target_required")}
-            variant="info"
-            icon="statusWarning"
-          />
-        )}
-      </Styled.ToggleWrapper>
+      {submissionTarget ? (
+        <Styled.ToggleWrapper>
+          <SubmissionTargetStateToggle data={submissionTarget} />
+        </Styled.ToggleWrapper>
+      ) : (
+        <MessageBanner
+          name={t("messages.submission_target_required_name")}
+          message={t("messages.submission_target_required")}
+          variant="info"
+          icon="statusWarning"
+        />
+      )}
       <SubmissionTargetConfigureForm
         collectionId={collectionId}
         data={submissionTarget ?? null}

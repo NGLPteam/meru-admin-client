@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4e557f8487876894c980b8ea0cacc669>>
+ * @generated SignedSource<<b3f75835aa9ecb9a7ee7a6201cbaee15>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -36,6 +36,7 @@ export type SubmissionTargetConfigureFormMutation$variables = {
 export type SubmissionTargetConfigureFormMutation$data = {
   readonly submissionTargetConfigure: {
     readonly submissionTarget: {
+      readonly id: string;
       readonly " $fragmentSpreads": FragmentRefs<"SubmissionTargetConfigureFormFragment" | "SubmissionTargetStateToggleFragment">;
     } | null | undefined;
     readonly " $fragmentSpreads": FragmentRefs<"MutationForm_mutationErrors">;
@@ -62,6 +63,13 @@ v1 = [
   }
 ],
 v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v3 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -117,13 +125,6 @@ v2 = {
   ],
   "type": "StandardMutationPayload",
   "abstractKey": "__isStandardMutationPayload"
-},
-v3 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
 };
 return {
   "fragment": {
@@ -148,6 +149,7 @@ return {
             "name": "submissionTarget",
             "plural": false,
             "selections": [
+              (v2/*: any*/),
               {
                 "args": null,
                 "kind": "FragmentSpread",
@@ -165,7 +167,7 @@ return {
             "kind": "InlineDataFragmentSpread",
             "name": "MutationForm_mutationErrors",
             "selections": [
-              (v2/*: any*/)
+              (v3/*: any*/)
             ],
             "args": null,
             "argumentDefinitions": []
@@ -199,6 +201,7 @@ return {
             "name": "submissionTarget",
             "plural": false,
             "selections": [
+              (v2/*: any*/),
               {
                 "alias": "targetId",
                 "args": null,
@@ -260,7 +263,7 @@ return {
                 "name": "schemaVersions",
                 "plural": true,
                 "selections": [
-                  (v3/*: any*/),
+                  (v2/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -305,7 +308,7 @@ return {
                         "name": "title",
                         "storageKey": null
                       },
-                      (v3/*: any*/),
+                      (v2/*: any*/),
                       {
                         "kind": "TypeDiscriminator",
                         "abstractKey": "__isNode"
@@ -313,7 +316,7 @@ return {
                     ],
                     "storageKey": null
                   },
-                  (v3/*: any*/)
+                  (v2/*: any*/)
                 ],
                 "storageKey": null
               },
@@ -330,28 +333,27 @@ return {
                 "kind": "ScalarField",
                 "name": "state",
                 "storageKey": null
-              },
-              (v3/*: any*/)
+              }
             ],
             "storageKey": null
           },
-          (v2/*: any*/)
+          (v3/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "2f4f1d410da7ce911d6d8ad094c9bc2c",
+    "cacheID": "b46c17ee7b40a6d51b7e2a1df90e4828",
     "id": null,
     "metadata": {},
     "name": "SubmissionTargetConfigureFormMutation",
     "operationKind": "mutation",
-    "text": "mutation SubmissionTargetConfigureFormMutation(\n  $input: SubmissionTargetConfigureInput!\n) {\n  submissionTargetConfigure(input: $input) {\n    submissionTarget {\n      ...SubmissionTargetConfigureFormFragment\n      ...SubmissionTargetStateToggleFragment\n      id\n    }\n    ...MutationForm_mutationErrors\n  }\n}\n\nfragment MutationForm_mutationErrors on StandardMutationPayload {\n  __isStandardMutationPayload: __typename\n  attributeErrors {\n    path\n    type\n    messages\n  }\n  globalErrors {\n    message\n  }\n}\n\nfragment SubmissionTargetConfigureFormFragment on SubmissionTarget {\n  targetId: id\n  depositMode\n  agreementRequired\n  agreementContent\n  description {\n    instructions\n    internal\n  }\n  schemaVersions {\n    id\n    name\n  }\n  depositTargets {\n    entity {\n      __typename\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n      __isEntity: __typename\n      title\n      id\n    }\n    id\n  }\n}\n\nfragment SubmissionTargetStateToggleFragment on SubmissionTarget {\n  submissionTargetId: id\n  state\n}\n"
+    "text": "mutation SubmissionTargetConfigureFormMutation(\n  $input: SubmissionTargetConfigureInput!\n) {\n  submissionTargetConfigure(input: $input) {\n    submissionTarget {\n      id\n      ...SubmissionTargetConfigureFormFragment\n      ...SubmissionTargetStateToggleFragment\n    }\n    ...MutationForm_mutationErrors\n  }\n}\n\nfragment MutationForm_mutationErrors on StandardMutationPayload {\n  __isStandardMutationPayload: __typename\n  attributeErrors {\n    path\n    type\n    messages\n  }\n  globalErrors {\n    message\n  }\n}\n\nfragment SubmissionTargetConfigureFormFragment on SubmissionTarget {\n  targetId: id\n  depositMode\n  agreementRequired\n  agreementContent\n  description {\n    instructions\n    internal\n  }\n  schemaVersions {\n    id\n    name\n  }\n  depositTargets {\n    entity {\n      __typename\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n      __isEntity: __typename\n      title\n      id\n    }\n    id\n  }\n}\n\nfragment SubmissionTargetStateToggleFragment on SubmissionTarget {\n  submissionTargetId: id\n  state\n}\n"
   }
 };
 })();
 
-(node as any).hash = "1d5dbb99085883db716f8ceabb153b8b";
+(node as any).hash = "6bc1b64ffa38c49aeff7f80388e11ab3";
 
 export default node;
