@@ -1,10 +1,11 @@
 import { useState, useCallback } from "react";
-import { useFragment, graphql } from "react-relay";
+import { useFragment, useMutation, graphql } from "react-relay";
 import { useTranslation } from "react-i18next";
 import { Controller } from "react-hook-form";
 import MutationForm, {
   useRenderForm,
   useToVariables,
+  useOnSuccess,
   Forms,
 } from "components/api/MutationForm";
 import Multiselect from "components/forms/Multiselect";
@@ -12,12 +13,16 @@ import EntitySelectorDisclosure from "components/forms/EntitySelector/EntitySele
 import BaseArrayList, {
   BaseArrayListItem,
 } from "components/forms/BaseArrayList";
-import { useRouteSlug } from "hooks";
+import { useRouteSlug, useNotify } from "hooks";
 import type { SubmissionTargetConfigureFormFragment$key } from "@/relay/SubmissionTargetConfigureFormFragment.graphql";
 import type {
   SubmissionTargetConfigureInput,
   SubmissionTargetConfigureFormMutation,
 } from "@/relay/SubmissionTargetConfigureFormMutation.graphql";
+import type {
+  SubmissionTargetConfigureFormOpenMutation,
+  SubmissionTargetConfigureFormOpenMutation$data,
+} from "@/relay/SubmissionTargetConfigureFormOpenMutation.graphql";
 import type { submissionsManageSlugCollectionsPagesQuery$data } from "@/relay/submissionsManageSlugCollectionsPagesQuery.graphql";
 
 type DepositTarget = {
@@ -33,10 +38,15 @@ export default function SubmissionTargetConfigureForm({
   const { t } = useTranslation();
   const collectionSlug = useRouteSlug() as string;
 
+  const notify = useNotify();
+
   const target = useFragment<SubmissionTargetConfigureFormFragment$key>(
     fragment,
     data,
   );
+
+  const [commitOpen] =
+    useMutation<SubmissionTargetConfigureFormOpenMutation>(openMutation);
 
   const configurableId = target?.targetId ?? collectionId;
 
@@ -100,23 +110,39 @@ export default function SubmissionTargetConfigureForm({
     [configurableId, depositTargets],
   );
 
+  const handleOpenResponse = useCallback(
+    (response: SubmissionTargetConfigureFormOpenMutation$data) => {
+      const { submissionTarget, globalErrors } =
+        response.submissionTargetOpen ?? {};
+
+      if (submissionTarget) {
+        notify.success(t("actions.submissions.submissions_opened"));
+      } else if (globalErrors?.length) {
+        notify.mutationGlobalError(globalErrors);
+      }
+    },
+    [notify, t],
+  );
+
+  const onSuccess = useOnSuccess<SubmissionTargetConfigureFormMutation>(
+    ({ response }) => {
+      const submissionTargetId =
+        response.submissionTargetConfigure?.submissionTarget?.id;
+
+      if (!target && submissionTargetId) {
+        commitOpen({
+          variables: { input: { submissionTargetId } },
+          onCompleted: handleOpenResponse,
+          onError: (err) => notify.error(err.message),
+        });
+      }
+    },
+    [target, commitOpen, notify, t],
+  );
+
   const renderForm = useRenderForm<SubmissionTargetConfigureInput>(
     ({ form: { register, watch, control } }) => (
       <Forms.Grid>
-        <Controller
-          name="schemaVersionIds"
-          control={control}
-          render={({ field }) => (
-            <Multiselect
-              label={t("forms.fields.accepted_schemas")}
-              options={schemaOptions}
-              required
-              isWide
-              {...field}
-              value={[...(field.value ?? [])]}
-            />
-          )}
-        />
         <Forms.Select
           label="forms.fields.deposit_mode"
           options={[
@@ -169,6 +195,21 @@ export default function SubmissionTargetConfigureForm({
             />
           </Forms.Fieldset>
         </Forms.HiddenField>
+        <Controller
+          name="schemaVersionIds"
+          control={control}
+          render={({ field }) => (
+            <Multiselect
+              label={t("forms.fields.accepted_schemas")}
+              description="forms.fields.accepted_schemas_description"
+              options={schemaOptions}
+              required
+              isWide
+              {...field}
+              value={[...(field.value ?? [])]}
+            />
+          )}
+        />
         <Forms.Textarea
           label="forms.fields.submission_instructions"
           description="forms.fields.submission_instructions_description"
@@ -185,6 +226,7 @@ export default function SubmissionTargetConfigureForm({
           hideLabel
           isWide
           text={t("forms.fields.agreement_required")}
+          description="forms.fields.agreement_required_description"
           {...register("agreementRequired")}
         />
         <Forms.Textarea
@@ -214,6 +256,7 @@ export default function SubmissionTargetConfigureForm({
       mutation={mutation}
       toVariables={toVariables}
       defaultValues={defaultValues}
+      onSuccess={onSuccess}
       successNotification="messages.update.submission_target_success"
       failureNotification="messages.update.submission_target_failure"
       refetchTags={["submissions"]}
@@ -262,10 +305,28 @@ const mutation = graphql`
   ) {
     submissionTargetConfigure(input: $input) {
       submissionTarget {
+        id
         ...SubmissionTargetConfigureFormFragment
         ...SubmissionTargetStateToggleFragment
       }
       ...MutationForm_mutationErrors
+    }
+  }
+`;
+
+const openMutation = graphql`
+  mutation SubmissionTargetConfigureFormOpenMutation(
+    $input: SubmissionTargetOpenInput!
+  ) {
+    submissionTargetOpen(input: $input) {
+      submissionTarget {
+        id
+        state
+      }
+      globalErrors {
+        message
+        type
+      }
     }
   }
 `;
