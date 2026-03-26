@@ -46,36 +46,39 @@ export default function GlobalSettingsEditForm({
           label="forms.fields.installation_name"
           {...register("site.installationName")}
         />
-        <Forms.SiteLogoUpload
-          label="forms.fields.logo"
-          name="logo"
-          data={logo}
-          clearName="clearLogo"
-          description={logoFieldDescription}
-        />
-        <Forms.Select
-          label="forms.fields.logo_settings"
-          options={[
-            {
-              label: t("forms.fields.select_placeholder"),
-              value: "NONE",
-            },
-            {
-              label: t("forms.fields.logo_settings_with_text"),
-              value: "WITH_TEXT",
-            },
-            {
-              label: t("forms.fields.logo_settings_without_text"),
-              value: "SANS_TEXT",
-            },
-          ]}
-          description={t("forms.fields.logo_settings_description")}
-          {...register("site.logoMode")}
-        />
+        <Forms.Fieldset label={t("forms.fields.logo_settings")}>
+          <Forms.SiteLogoUpload
+            label="forms.fields.logo"
+            name="logo"
+            data={logo}
+            clearName="clearLogo"
+            description={logoFieldDescription}
+          />
+          <Forms.Select
+            label="forms.fields.logo_display"
+            options={[
+              {
+                label: t("forms.fields.select_placeholder"),
+                value: "NONE",
+              },
+              {
+                label: t("forms.fields.logo_settings_with_text"),
+                value: "WITH_TEXT",
+              },
+              {
+                label: t("forms.fields.logo_settings_without_text"),
+                value: "SANS_TEXT",
+              },
+            ]}
+            description={t("forms.fields.logo_settings_description")}
+            {...register("site.logoMode")}
+          />
+        </Forms.Fieldset>
         <Forms.Textarea
           label="forms.fields.installation_home_copy"
           description="forms.fields.installation_home_copy_description"
           {...register("site.installationHomePageCopy")}
+          isWide
         />
         <Forms.Fieldset label={t("forms.fields.controlled_vocabularies")}>
           <Forms.ControlledVocabularySelect

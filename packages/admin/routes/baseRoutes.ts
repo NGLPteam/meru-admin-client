@@ -414,6 +414,12 @@ export const baseRoutes: BaseRoute[] = [
     actions: ["settings.update"],
   },
   {
+    name: "settings",
+    path: "/settings",
+    label: "nav.global_settings",
+    actions: ["settings.update"],
+  },
+  {
     name: "contributors",
     path: "/contributors",
     label: "glossary.contributor_other",
