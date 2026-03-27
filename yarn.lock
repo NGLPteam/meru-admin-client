@@ -3075,12 +3075,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uiw/codemirror-theme-quietlight@npm:^4.23.10":
-  version: 4.23.10
-  resolution: "@uiw/codemirror-theme-quietlight@npm:4.23.10"
+"@uiw/codemirror-theme-quietlight@npm:^4.25.2":
+  version: 4.25.2
+  resolution: "@uiw/codemirror-theme-quietlight@npm:4.25.2"
   dependencies:
-    "@uiw/codemirror-themes": "npm:4.23.10"
-  checksum: 10c0/23d687b2e6ff72231c719b7312e4d91846b83dc791eeb57d4f2c3c4b4c720cc6457e226f61644fb532a8580f90a1307412ba383f48d463b33f01db13cd6df171
+    "@uiw/codemirror-themes": "npm:4.25.2"
+  checksum: 10c0/f82fc387ce14e6046a46da1996f34f086fa0c545dcc3a99dc2c9ae3a3088a651d4e4564c2d1c9d73f85b1ada96c246bd7d4d15156ffa1fbbbaaefcd55558236c
   languageName: node
   linkType: hard
 
@@ -3096,6 +3096,21 @@ __metadata:
     "@codemirror/state": ">=6.0.0"
     "@codemirror/view": ">=6.0.0"
   checksum: 10c0/29f980789a535ae021ca8d8bec3ecee4dda8cb11c5451729c04481310cc04cd7c00ddb3011137f5cc305d565bc0a3464ebd88fdde9359e296d8f0a6cf6477811
+  languageName: node
+  linkType: hard
+
+"@uiw/codemirror-themes@npm:4.25.2":
+  version: 4.25.2
+  resolution: "@uiw/codemirror-themes@npm:4.25.2"
+  dependencies:
+    "@codemirror/language": "npm:^6.0.0"
+    "@codemirror/state": "npm:^6.0.0"
+    "@codemirror/view": "npm:^6.0.0"
+  peerDependencies:
+    "@codemirror/language": ">=6.0.0"
+    "@codemirror/state": ">=6.0.0"
+    "@codemirror/view": ">=6.0.0"
+  checksum: 10c0/41e7adabae10d5d7435522ed87f920ebf9343a46b411cc6c728c51be067bd711b05c7982bff4f8f9ba4a81ee37698282330726d15539dfa8fbbecda3e64fc979
   languageName: node
   linkType: hard
 
@@ -3278,7 +3293,7 @@ __metadata:
     "@uiw/codemirror-theme-basic": "npm:^4.23.10"
     "@uiw/codemirror-theme-github": "npm:^4.23.10"
     "@uiw/codemirror-theme-material": "npm:^4.23.10"
-    "@uiw/codemirror-theme-quietlight": "npm:^4.23.10"
+    "@uiw/codemirror-theme-quietlight": "npm:^4.25.2"
     "@uiw/react-codemirror": "npm:^4.23.10"
     "@uppy/core": "npm:^1.20.1"
     "@uppy/tus": "npm:^1.9.2"

@@ -32,7 +32,7 @@
     "@uiw/codemirror-theme-basic": "^4.23.10",
     "@uiw/codemirror-theme-github": "^4.23.10",
     "@uiw/codemirror-theme-material": "^4.23.10",
-    "@uiw/codemirror-theme-quietlight": "^4.23.10",
+    "@uiw/codemirror-theme-quietlight": "^4.25.2",
     "@uiw/react-codemirror": "^4.23.10",
     "@uppy/core": "^1.20.1",
     "@uppy/tus": "^1.9.2",
