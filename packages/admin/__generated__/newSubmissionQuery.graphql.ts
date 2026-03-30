@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d28b5e455297b6ff5b62ac9f233120ed>>
+ * @generated SignedSource<<71b0bff6ff27983c040b4b04e1cc4791>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -202,6 +202,38 @@ return {
               {
                 "alias": null,
                 "args": null,
+                "kind": "ScalarField",
+                "name": "agreementRequired",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "agreementContent",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "SubmissionTargetDescription",
+                "kind": "LinkedField",
+                "name": "description",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "instructions",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
                 "concreteType": "SchemaVersion",
                 "kind": "LinkedField",
                 "name": "schemaVersions",
@@ -234,12 +266,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "9f83ecc26267e8feaea5d33fccaf647d",
+    "cacheID": "43a83f5f2a355d7267be9ecc51d0f164",
     "id": null,
     "metadata": {},
     "name": "newSubmissionQuery",
     "operationKind": "query",
-    "text": "query newSubmissionQuery {\n  ...CanSubmitCheckFragment\n}\n\nfragment CanSubmitCheckFragment on Query {\n  submissionTargets(filters: {inState: [OPEN]}) {\n    nodes {\n      id\n      depositMode\n      canDeposit {\n        value\n      }\n      canRequestDepositAccess {\n        value\n      }\n      entity {\n        __typename\n        ... on Collection {\n          id\n          slug\n          title\n        }\n        id\n      }\n      depositTargets {\n        id\n        entity {\n          __typename\n          ... on Collection {\n            title\n            submissionTarget {\n              id\n            }\n          }\n          id\n        }\n      }\n      schemaVersions {\n        id\n        name\n        identifier\n      }\n    }\n  }\n}\n"
+    "text": "query newSubmissionQuery {\n  ...CanSubmitCheckFragment\n}\n\nfragment CanSubmitCheckFragment on Query {\n  submissionTargets(filters: {inState: [OPEN]}) {\n    nodes {\n      id\n      depositMode\n      canDeposit {\n        value\n      }\n      canRequestDepositAccess {\n        value\n      }\n      entity {\n        __typename\n        ... on Collection {\n          id\n          slug\n          title\n        }\n        id\n      }\n      depositTargets {\n        id\n        entity {\n          __typename\n          ... on Collection {\n            title\n            submissionTarget {\n              id\n            }\n          }\n          id\n        }\n      }\n      agreementRequired\n      agreementContent\n      description {\n        instructions\n      }\n      schemaVersions {\n        id\n        name\n        identifier\n      }\n    }\n  }\n}\n"
   }
 };
 })();

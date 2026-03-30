@@ -12,9 +12,5 @@ export type PreselectedTarget = NonNullable<
 
 export type Fields = {
   title: string;
-  /** The selected submission target's ID (used as-is for DIRECT, overridden for DESCENDANT) */
-  submissionTargetId: string;
-  /** For DESCENDANT mode, the selected deposit target's ID */
-  depositTargetId: string;
   schemaVersionId: string;
 };

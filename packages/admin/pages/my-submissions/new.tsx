@@ -73,8 +73,7 @@ const FormWithCollection = ({
   return (
     <SubmissionCreateForm
       data={data}
-      preselectedTarget={preselectedTarget}
-      preselectedCollectionId={collection?.id}
+      preselectedTargetId={preselectedTarget?.id}
     />
   );
 };
@@ -88,33 +87,8 @@ const query = graphql`
 const collectionQuery = graphql`
   query newSubmissionCollectionQuery($slug: Slug!) {
     collection(slug: $slug) {
-      id
-      title
       submissionTarget {
         id
-        depositMode
-        canDeposit {
-          value
-        }
-        canRequestDepositAccess {
-          value
-        }
-        depositTargets {
-          id
-          entity {
-            ... on Collection {
-              title
-              submissionTarget {
-                id
-              }
-            }
-          }
-        }
-        schemaVersions {
-          id
-          name
-          identifier
-        }
       }
     }
   }

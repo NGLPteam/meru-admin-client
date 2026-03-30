@@ -76,6 +76,7 @@ export default function MutationForm<
     failureNotification,
     refetchTags = [],
     hideGlobalErrorHeader,
+    saveLabel,
   } = props;
   const notify = useNotify();
   const { t } = useTranslation();
@@ -292,7 +293,7 @@ export default function MutationForm<
         {children({ form })}
         <Styled.Footer className="l-flex l-flex--gap">
           <Button type="submit" disabled={submitDisabled} onClick={onSubmit}>
-            {t("common.save")}
+            {t(saveLabel ?? "common.save")}
           </Button>
           {onSaveAndClose && (
             <Button
@@ -450,6 +451,7 @@ interface BaseProps<M extends MutationParameters, T extends FieldValues> {
    * Option to hide header on global errors.
    */
   hideGlobalErrorHeader?: boolean;
+  saveLabel?: string;
 }
 
 type Props<M extends MutationParameters, T extends FieldValues> = BaseProps<
