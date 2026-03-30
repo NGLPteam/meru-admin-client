@@ -25,6 +25,7 @@
       "options": "Options",
       "save": "Save",
       "save_and_close": "Save & Close",
+      "save_and_continue": "Save & Continue",
       "search": "Search",
       "sign_in": "Sign In",
       "sign_out": "Sign Out",
@@ -605,6 +606,7 @@
         "depositing_agreement": "Depositing Certification",
         "depositing_agreement_short": "Certification",
         "depositing_agreement_description": "Agreement text users must accept before depositing. Collections may override this with their own certification text.",
+        "depositing_agreement_accept": "Accept and proceed to submit",
         "entity_settings": "Entity Settings",
         "supress_external_links": "Suppress external links",
         "supress_external_links_description": "Hide external links in metadata.",
@@ -661,9 +663,13 @@
         "accepted_schemas": "Accepted Submission Schemas",
         "accepted_schemas_description": "Users submitting to this collection will see only the selected schema options when creating submissions.",
         "submissions_enabled": "Submissions enabled",
-        "submission_target": "Target Collection",
-        "submission_target_description": "Collections currently accepting submissions are shown here. If you're looking to deposit to another collection, contact the collection administrator.",
-        "submission_schema_description": "Schemas accepted by the chosen collection are listed here. Consider submitting to a different collection if your submission does not match these schemas."
+        "submission_target": "Which collection are you submitting to?",
+        "submission_target_description": "Collections currently accepting submissions are shown here. If the collection you're looking for isn't available, contact the collection administrator.",
+        "child_submission_target": "Sub-Collection",
+        "child_submission_target_description": "This collection is currently accepting submissions in the sub-collections listed above. Please select a destination for your submission.",
+        "submission_schema": "What kind of work are you submitting?",
+        "submission_schema_description": "If your work does not match the available options for this collection, consider submitting to a different collection or reach out to the collection administrator for guidance.",
+        "submission_instructions": "Submission Instructions"
       },
       "validation": {
         "year": "Must be a four digit year",

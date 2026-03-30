@@ -6,10 +6,10 @@ import MessageBlock from "components/atomic/MessageBlock";
 import ButtonControl from "components/atomic/buttons/ButtonControl";
 import type { InvalidTargetRequestAccessMutation } from "@/relay/InvalidTargetRequestAccessMutation.graphql";
 import * as Styled from "./InvalidTarget.styles";
-import type { PreselectedTarget } from "../types";
+import type { SubmissionTargetNode } from "../types";
 
 type Props = {
-  preselectedTarget?: PreselectedTarget;
+  preselectedTarget?: SubmissionTargetNode;
   hasDepositableTargets: boolean;
 };
 

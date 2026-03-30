@@ -1,28 +1,22 @@
 import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 import { graphql, useFragment } from "react-relay";
 import { RouteHelper } from "routes";
+import MessageBlock from "components/atomic/MessageBlock";
 import type { CanSubmitCheckFragment$key } from "@/relay/CanSubmitCheckFragment.graphql";
-import InvalidTarget from "../InvalidTarget";
 import SubmissionCreateForm from "../SubmissionCreateForm";
-import type { PreselectedTarget } from "../types";
 
 type Props = {
   data: CanSubmitCheckFragment$key;
-  preselectedTarget?: PreselectedTarget;
-  preselectedCollectionId?: string;
+  preselectedTargetId?: string;
 };
 
-export default function CanSubmitCheck({
-  data,
-  preselectedTarget,
-  preselectedCollectionId,
-}: Props) {
+export default function CanSubmitCheck({ data, preselectedTargetId }: Props) {
   const router = useRouter();
+  const { t } = useTranslation();
 
   const { submissionTargets } = useFragment(fragment, data);
   const targets = submissionTargets.nodes;
-
-  const depositableTargets = targets.filter((t) => t.canDeposit.value);
 
   const redirectToList = () => {
     const route = RouteHelper.findRouteByName("my-submissions");
@@ -36,24 +30,20 @@ export default function CanSubmitCheck({
     if (route) router.push({ pathname: route.path, query: { slug } });
   };
 
-  const canDeposit =
-    (preselectedTarget && preselectedTarget.canDeposit.value) ||
-    (!preselectedTarget && !!depositableTargets.length);
-
-  if (!canDeposit) {
+  if (!targets.length) {
     return (
-      <InvalidTarget
-        preselectedTarget={preselectedTarget}
-        hasDepositableTargets={!!depositableTargets.length}
+      <MessageBlock
+        type="empty"
+        name={t("messages.no_targets_heading")}
+        message={t("messages.no_targets_message")}
       />
     );
   }
 
   return (
     <SubmissionCreateForm
-      depositableTargets={[...depositableTargets]}
-      preselectedTarget={preselectedTarget}
-      preselectedCollectionId={preselectedCollectionId}
+      targets={[...targets]}
+      preselectedTargetId={preselectedTargetId}
       onSuccess={redirectToEdit}
       onCancel={redirectToList}
     />
@@ -89,6 +79,11 @@ const fragment = graphql`
               }
             }
           }
+        }
+        agreementRequired
+        agreementContent
+        description {
+          instructions
         }
         schemaVersions {
           id

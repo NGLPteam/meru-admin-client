@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0c1c4ba0622166a9552eed2929a1aa6d>>
+ * @generated SignedSource<<dd6dbcfdcc13afaa5f705e6697f40298>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,8 @@ import { FragmentRefs } from "relay-runtime";
 export type CanSubmitCheckFragment$data = {
   readonly submissionTargets: {
     readonly nodes: ReadonlyArray<{
+      readonly agreementContent: string | null | undefined;
+      readonly agreementRequired: boolean;
       readonly canDeposit: {
         readonly value: boolean;
       };
@@ -30,6 +32,9 @@ export type CanSubmitCheckFragment$data = {
         };
         readonly id: string;
       }>;
+      readonly description: {
+        readonly instructions: string;
+      };
       readonly entity: {
         readonly id?: string;
         readonly slug?: string;
@@ -207,6 +212,38 @@ return {
             {
               "alias": null,
               "args": null,
+              "kind": "ScalarField",
+              "name": "agreementRequired",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "agreementContent",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "concreteType": "SubmissionTargetDescription",
+              "kind": "LinkedField",
+              "name": "description",
+              "plural": false,
+              "selections": [
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "instructions",
+                  "storageKey": null
+                }
+              ],
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
               "concreteType": "SchemaVersion",
               "kind": "LinkedField",
               "name": "schemaVersions",
@@ -242,6 +279,6 @@ return {
 };
 })();
 
-(node as any).hash = "4661490636bf51e21b1162e1638849bc";
+(node as any).hash = "28d5ec72652b3e01bfdf61ff28eeff85";
 
 export default node;

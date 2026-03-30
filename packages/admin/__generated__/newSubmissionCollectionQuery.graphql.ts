@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<aacd866bd861b361577569ddc57d42ef>>
+ * @generated SignedSource<<10cc88c413f0ea04add37f02db4e11d0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,38 +9,14 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
-export type SubmissionDepositMode = "DESCENDANT" | "DIRECT" | "%future added value";
 export type newSubmissionCollectionQuery$variables = {
   slug: string;
 };
 export type newSubmissionCollectionQuery$data = {
   readonly collection: {
-    readonly id: string;
     readonly submissionTarget: {
-      readonly canDeposit: {
-        readonly value: boolean;
-      };
-      readonly canRequestDepositAccess: {
-        readonly value: boolean;
-      };
-      readonly depositMode: SubmissionDepositMode;
-      readonly depositTargets: ReadonlyArray<{
-        readonly entity: {
-          readonly submissionTarget?: {
-            readonly id: string;
-          } | null | undefined;
-          readonly title?: string;
-        };
-        readonly id: string;
-      }>;
       readonly id: string;
-      readonly schemaVersions: ReadonlyArray<{
-        readonly id: string;
-        readonly identifier: string;
-        readonly name: string;
-      }>;
     } | null | undefined;
-    readonly title: string;
   } | null | undefined;
 };
 export type newSubmissionCollectionQuery = {
@@ -73,89 +49,12 @@ v2 = {
 v3 = {
   "alias": null,
   "args": null,
-  "kind": "ScalarField",
-  "name": "title",
-  "storageKey": null
-},
-v4 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "depositMode",
-  "storageKey": null
-},
-v5 = [
-  {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "value",
-    "storageKey": null
-  }
-],
-v6 = {
-  "alias": null,
-  "args": null,
-  "concreteType": "AuthorizationResult",
+  "concreteType": "SubmissionTarget",
   "kind": "LinkedField",
-  "name": "canDeposit",
+  "name": "submissionTarget",
   "plural": false,
-  "selections": (v5/*: any*/),
-  "storageKey": null
-},
-v7 = {
-  "alias": null,
-  "args": null,
-  "concreteType": "AuthorizationResult",
-  "kind": "LinkedField",
-  "name": "canRequestDepositAccess",
-  "plural": false,
-  "selections": (v5/*: any*/),
-  "storageKey": null
-},
-v8 = {
-  "kind": "InlineFragment",
   "selections": [
-    (v3/*: any*/),
-    {
-      "alias": null,
-      "args": null,
-      "concreteType": "SubmissionTarget",
-      "kind": "LinkedField",
-      "name": "submissionTarget",
-      "plural": false,
-      "selections": [
-        (v2/*: any*/)
-      ],
-      "storageKey": null
-    }
-  ],
-  "type": "Collection",
-  "abstractKey": null
-},
-v9 = {
-  "alias": null,
-  "args": null,
-  "concreteType": "SchemaVersion",
-  "kind": "LinkedField",
-  "name": "schemaVersions",
-  "plural": true,
-  "selections": [
-    (v2/*: any*/),
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "name",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "identifier",
-      "storageKey": null
-    }
+    (v2/*: any*/)
   ],
   "storageKey": null
 };
@@ -174,48 +73,7 @@ return {
         "name": "collection",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
-          (v3/*: any*/),
-          {
-            "alias": null,
-            "args": null,
-            "concreteType": "SubmissionTarget",
-            "kind": "LinkedField",
-            "name": "submissionTarget",
-            "plural": false,
-            "selections": [
-              (v2/*: any*/),
-              (v4/*: any*/),
-              (v6/*: any*/),
-              (v7/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "SubmissionDepositTarget",
-                "kind": "LinkedField",
-                "name": "depositTargets",
-                "plural": true,
-                "selections": [
-                  (v2/*: any*/),
-                  {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": null,
-                    "kind": "LinkedField",
-                    "name": "entity",
-                    "plural": false,
-                    "selections": [
-                      (v8/*: any*/)
-                    ],
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
-              },
-              (v9/*: any*/)
-            ],
-            "storageKey": null
-          }
+          (v3/*: any*/)
         ],
         "storageKey": null
       }
@@ -237,72 +95,24 @@ return {
         "name": "collection",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
           (v3/*: any*/),
-          {
-            "alias": null,
-            "args": null,
-            "concreteType": "SubmissionTarget",
-            "kind": "LinkedField",
-            "name": "submissionTarget",
-            "plural": false,
-            "selections": [
-              (v2/*: any*/),
-              (v4/*: any*/),
-              (v6/*: any*/),
-              (v7/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "SubmissionDepositTarget",
-                "kind": "LinkedField",
-                "name": "depositTargets",
-                "plural": true,
-                "selections": [
-                  (v2/*: any*/),
-                  {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": null,
-                    "kind": "LinkedField",
-                    "name": "entity",
-                    "plural": false,
-                    "selections": [
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "__typename",
-                        "storageKey": null
-                      },
-                      (v8/*: any*/),
-                      (v2/*: any*/)
-                    ],
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
-              },
-              (v9/*: any*/)
-            ],
-            "storageKey": null
-          }
+          (v2/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "6ca54bf545d4dc359f48b35f5d049bce",
+    "cacheID": "8df7008fd73eba0e6f9c921d0164621a",
     "id": null,
     "metadata": {},
     "name": "newSubmissionCollectionQuery",
     "operationKind": "query",
-    "text": "query newSubmissionCollectionQuery(\n  $slug: Slug!\n) {\n  collection(slug: $slug) {\n    id\n    title\n    submissionTarget {\n      id\n      depositMode\n      canDeposit {\n        value\n      }\n      canRequestDepositAccess {\n        value\n      }\n      depositTargets {\n        id\n        entity {\n          __typename\n          ... on Collection {\n            title\n            submissionTarget {\n              id\n            }\n          }\n          id\n        }\n      }\n      schemaVersions {\n        id\n        name\n        identifier\n      }\n    }\n  }\n}\n"
+    "text": "query newSubmissionCollectionQuery(\n  $slug: Slug!\n) {\n  collection(slug: $slug) {\n    submissionTarget {\n      id\n    }\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "b890b36d2bd26d5d564cc8984452c910";
+(node as any).hash = "a418815112cc853d7e7041004c81df1c";
 
 export default node;
