@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<cc60492f2c27a50f457b266bf069f95c>>
+ * @generated SignedSource<<a3d46dcb3209e6a3f3de453c25b45b18>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -93,6 +93,13 @@ v5 = {
   "kind": "ScalarField",
   "name": "slug",
   "storageKey": null
+},
+v6 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
+  "storageKey": null
 };
 return {
   "fragment": {
@@ -182,13 +189,7 @@ return {
                 "name": "user",
                 "plural": false,
                 "selections": [
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "name",
-                    "storageKey": null
-                  },
+                  (v6/*: any*/),
                   (v4/*: any*/)
                 ],
                 "storageKey": null
@@ -247,6 +248,95 @@ return {
                         "storageKey": null
                       },
                       (v4/*: any*/)
+                    ],
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "User",
+                    "kind": "LinkedField",
+                    "name": "user",
+                    "plural": false,
+                    "selections": [
+                      (v4/*: any*/),
+                      (v5/*: any*/),
+                      (v6/*: any*/),
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "ImageAttachment",
+                        "kind": "LinkedField",
+                        "name": "avatar",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "storage",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "ImageSize",
+                            "kind": "LinkedField",
+                            "name": "small",
+                            "plural": false,
+                            "selections": [
+                              {
+                                "alias": null,
+                                "args": null,
+                                "concreteType": "ImageDerivative",
+                                "kind": "LinkedField",
+                                "name": "webp",
+                                "plural": false,
+                                "selections": [
+                                  {
+                                    "alias": null,
+                                    "args": null,
+                                    "kind": "ScalarField",
+                                    "name": "width",
+                                    "storageKey": null
+                                  },
+                                  {
+                                    "alias": null,
+                                    "args": null,
+                                    "kind": "ScalarField",
+                                    "name": "height",
+                                    "storageKey": null
+                                  },
+                                  {
+                                    "kind": "InlineFragment",
+                                    "selections": [
+                                      {
+                                        "alias": null,
+                                        "args": null,
+                                        "kind": "ScalarField",
+                                        "name": "alt",
+                                        "storageKey": null
+                                      },
+                                      {
+                                        "alias": null,
+                                        "args": null,
+                                        "kind": "ScalarField",
+                                        "name": "url",
+                                        "storageKey": null
+                                      }
+                                    ],
+                                    "type": "Image",
+                                    "abstractKey": "__isImage"
+                                  }
+                                ],
+                                "storageKey": null
+                              }
+                            ],
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      }
                     ],
                     "storageKey": null
                   },
@@ -323,12 +413,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "9cd225c7eff7b24912e18086d3150389",
+    "cacheID": "824983ef9fdef0a0454be585641be5c2",
     "id": null,
     "metadata": {},
     "name": "myReviewsQuery",
     "operationKind": "query",
-    "text": "query myReviewsQuery(\n  $page: Int!\n  $order: SubmissionReviewOrder!\n  $filters: SubmissionReviewFilterInput\n) {\n  submissionReviews(page: $page, perPage: 20, order: $order, filters: $filters) {\n    ...SubmissionReviewListFragment\n  }\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionReviewListFragment on SubmissionReviewConnection {\n  nodes {\n    id\n    slug\n    updatedAt\n    state\n    comment\n    user {\n      name\n      id\n    }\n    submission {\n      slug\n      canReview {\n        value\n      }\n      entity {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n      id\n    }\n  }\n  ...ModelListPageFragment\n}\n"
+    "text": "query myReviewsQuery(\n  $page: Int!\n  $order: SubmissionReviewOrder!\n  $filters: SubmissionReviewFilterInput\n) {\n  submissionReviews(page: $page, perPage: 20, order: $order, filters: $filters) {\n    ...SubmissionReviewListFragment\n  }\n}\n\nfragment AvatarFragment on ImageAttachment {\n  storage\n  small {\n    webp {\n      ...ImageFragment\n      width\n      height\n    }\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionReviewListFragment on SubmissionReviewConnection {\n  nodes {\n    id\n    slug\n    updatedAt\n    state\n    comment\n    user {\n      name\n      id\n    }\n    submission {\n      slug\n      canReview {\n        value\n      }\n      entity {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n      user {\n        id\n        slug\n        ...UserNameColumnCellFragment\n      }\n      id\n    }\n  }\n  ...ModelListPageFragment\n}\n\nfragment UserAvatarFragment on User {\n  avatar {\n    ...AvatarFragment\n  }\n}\n\nfragment UserNameColumnCellFragment on User {\n  name\n  slug\n  ...UserAvatarFragment\n}\n"
   }
 };
 })();

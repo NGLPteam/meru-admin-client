@@ -10,6 +10,7 @@ import {
   ButtonControlGroup,
   ButtonControlRoute,
 } from "components/atomic";
+import UserNameColumnCell from "components/composed/model/ModelColumns/UserNameColumnCell";
 import SubmissionFilterDrawer from "components/composed/submission/SubmissionFilterDrawer";
 import CurrentSubmissionFilters from "components/composed/submission/CurrentSubmissionFilters";
 import type {
@@ -17,7 +18,11 @@ import type {
   SubmissionListFragment$key,
 } from "@/relay/SubmissionListFragment.graphql";
 import type { SubmissionState } from "types/graphql-schema";
-import type { ModelTableActionProps, Row } from "@tanstack/react-table";
+import type {
+  CellContext,
+  ModelTableActionProps,
+  Row,
+} from "@tanstack/react-table";
 
 type SubmissionNode = SubmissionListFragment$data["nodes"][number];
 
@@ -56,6 +61,15 @@ function SubmissionList({ data, mode = "review" }: Props) {
       header: () => t("lists.collection_column"),
       accessorFn: (row: SubmissionNode) =>
         row.submissionTarget?.entity?.title ?? "",
+    }),
+    ModelColumns.NameColumn<SubmissionNode>({
+      id: "submittedBy",
+      header: () => t("lists.submitted_by_column"),
+      accessorKey: "user",
+      cell: ({ row }: CellContext<SubmissionNode, unknown>) => (
+        <UserNameColumnCell data={row.original.user} />
+      ),
+      enableSorting: false,
     }),
     ModelColumns.CreatedAtColumn<SubmissionNode>({
       enableSorting: true,
@@ -161,6 +175,11 @@ const fragment = graphql`
             title
           }
         }
+      }
+      user {
+        id
+        slug
+        ...UserNameColumnCellFragment
       }
     }
     ...ModelListPageFragment

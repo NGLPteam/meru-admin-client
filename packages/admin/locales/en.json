@@ -153,7 +153,8 @@
       "target_entity_column": "Target Entity",
       "attempts_count_column": "Attempts Count",
       "pattern_column": "Pattern",
-      "field_column": "Field"
+      "field_column": "Field",
+      "submitted_by_column": "Submitted By"
     },
     "nav": {
       "manage_header": "Manage",
