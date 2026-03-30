@@ -5,6 +5,7 @@ import { useMaybeFragment } from "@wdp/lib/api/hooks";
 import ModelListPage from "components/composed/model/ModelListPage";
 import ModelColumns from "components/composed/model/ModelColumns";
 import { ButtonControl } from "components/atomic";
+import UserNameColumnCell from "components/composed/model/ModelColumns/UserNameColumnCell";
 import SubmissionReviewFilterDrawer from "components/composed/submission/SubmissionReviewFilterDrawer";
 import CurrentSubmissionReviewFilters from "components/composed/submission/CurrentSubmissionReviewFilters";
 import type {
@@ -13,6 +14,7 @@ import type {
 } from "@/relay/SubmissionReviewListFragment.graphql";
 import type { LayoutManageSubmissionQuery$data } from "@/relay/LayoutManageSubmissionQuery.graphql";
 import RequestReviewButton from "./RequestReviewButton";
+import type { CellContext } from "@tanstack/react-table";
 
 type ReviewNode = SubmissionReviewListFragment$data["nodes"][number];
 
@@ -45,6 +47,15 @@ function SubmissionReviewList({
             accessor: (row: ReviewNode) => row.submission?.entity?.title,
             route: "submissions.detail",
             slugKey: "submission.slug",
+            enableSorting: false,
+          }),
+          ModelColumns.NameColumn<ReviewNode>({
+            id: "submittedBy",
+            header: () => t("lists.submitted_by_column"),
+            accessorKey: "submission.user",
+            cell: ({ row }: CellContext<ReviewNode, unknown>) => (
+              <UserNameColumnCell data={row.original.submission?.user} />
+            ),
             enableSorting: false,
           }),
         ]
@@ -128,6 +139,11 @@ const fragment = graphql`
           ... on Entity {
             title
           }
+        }
+        user {
+          id
+          slug
+          ...UserNameColumnCellFragment
         }
       }
     }

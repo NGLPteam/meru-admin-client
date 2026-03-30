@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<19d39d03094c3d5793cee00161fe2c91>>
+ * @generated SignedSource<<f203320c16e649b33b50badad96a1ca9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -25,6 +25,11 @@ export type SubmissionReviewListFragment$data = {
         readonly title: string;
       } | null | undefined;
       readonly slug: string;
+      readonly user: {
+        readonly id: string;
+        readonly slug: string;
+        readonly " $fragmentSpreads": FragmentRefs<"UserNameColumnCellFragment">;
+      };
     };
     readonly updatedAt: string;
     readonly user: {
@@ -41,6 +46,13 @@ export type SubmissionReviewListFragment$key = {
 
 const node: ReaderFragment = (function(){
 var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v1 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -61,14 +73,8 @@ return {
       "name": "nodes",
       "plural": true,
       "selections": [
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "id",
-          "storageKey": null
-        },
         (v0/*: any*/),
+        (v1/*: any*/),
         {
           "alias": null,
           "args": null,
@@ -116,7 +122,7 @@ return {
           "name": "submission",
           "plural": false,
           "selections": [
-            (v0/*: any*/),
+            (v1/*: any*/),
             {
               "alias": null,
               "args": null,
@@ -152,6 +158,24 @@ return {
                 }
               ],
               "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "concreteType": "User",
+              "kind": "LinkedField",
+              "name": "user",
+              "plural": false,
+              "selections": [
+                (v0/*: any*/),
+                (v1/*: any*/),
+                {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "UserNameColumnCellFragment"
+                }
+              ],
+              "storageKey": null
             }
           ],
           "storageKey": null
@@ -170,6 +194,6 @@ return {
 };
 })();
 
-(node as any).hash = "e5c58068a8dc2e74e119fcd385c98835";
+(node as any).hash = "954c6e7e78b35b3534a6dab6242f4553";
 
 export default node;
