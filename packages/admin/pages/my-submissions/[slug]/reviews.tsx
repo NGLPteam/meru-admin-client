@@ -32,7 +32,12 @@ type Props = {
 
 const query = graphql`
   query reviewsMySubmissionReviewsQuery($submissionIds: [ID!]) {
-    submissionReviews(filters: { submissionIds: $submissionIds }) {
+    submissionReviews(
+      filters: {
+        submissionIds: $submissionIds
+        inState: [APPROVED, REJECTED, REVISION_REQUESTED]
+      }
+    ) {
       ...SubmissionReviewListFragment
     }
   }

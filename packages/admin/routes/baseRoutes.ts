@@ -307,7 +307,6 @@ export const baseRoutes: BaseRoute[] = [
             name: "my-submissions.detail.reviews",
             path: "/my-submissions/[slug]/reviews",
             label: "nav.reviews",
-            actions: ["submissions.review"],
           },
         ],
       },

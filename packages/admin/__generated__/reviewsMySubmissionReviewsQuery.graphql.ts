@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4292a49253ef2b4ea98d8030ec675893>>
+ * @generated SignedSource<<1ebcfea8ce20897d3ad3169734e89f5a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -34,6 +34,15 @@ var v0 = [
 v1 = [
   {
     "fields": [
+      {
+        "kind": "Literal",
+        "name": "inState",
+        "value": [
+          "APPROVED",
+          "REJECTED",
+          "REVISION_REQUESTED"
+        ]
+      },
       {
         "kind": "Variable",
         "name": "submissionIds",
@@ -369,16 +378,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "9b25c726f644baedd08628daa24b81b4",
+    "cacheID": "3777044be6092fe9ceb748556655debf",
     "id": null,
     "metadata": {},
     "name": "reviewsMySubmissionReviewsQuery",
     "operationKind": "query",
-    "text": "query reviewsMySubmissionReviewsQuery(\n  $submissionIds: [ID!]\n) {\n  submissionReviews(filters: {submissionIds: $submissionIds}) {\n    ...SubmissionReviewListFragment\n  }\n}\n\nfragment AvatarFragment on ImageAttachment {\n  storage\n  small {\n    webp {\n      ...ImageFragment\n      width\n      height\n    }\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionReviewListFragment on SubmissionReviewConnection {\n  nodes {\n    id\n    slug\n    updatedAt\n    state\n    comment\n    user {\n      name\n      id\n    }\n    submission {\n      slug\n      canReview {\n        value\n      }\n      entity {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n      user {\n        id\n        slug\n        ...UserNameColumnCellFragment\n      }\n      id\n    }\n  }\n  ...ModelListPageFragment\n}\n\nfragment UserAvatarFragment on User {\n  avatar {\n    ...AvatarFragment\n  }\n}\n\nfragment UserNameColumnCellFragment on User {\n  name\n  slug\n  ...UserAvatarFragment\n}\n"
+    "text": "query reviewsMySubmissionReviewsQuery(\n  $submissionIds: [ID!]\n) {\n  submissionReviews(filters: {submissionIds: $submissionIds, inState: [APPROVED, REJECTED, REVISION_REQUESTED]}) {\n    ...SubmissionReviewListFragment\n  }\n}\n\nfragment AvatarFragment on ImageAttachment {\n  storage\n  small {\n    webp {\n      ...ImageFragment\n      width\n      height\n    }\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionReviewListFragment on SubmissionReviewConnection {\n  nodes {\n    id\n    slug\n    updatedAt\n    state\n    comment\n    user {\n      name\n      id\n    }\n    submission {\n      slug\n      canReview {\n        value\n      }\n      entity {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n      user {\n        id\n        slug\n        ...UserNameColumnCellFragment\n      }\n      id\n    }\n  }\n  ...ModelListPageFragment\n}\n\nfragment UserAvatarFragment on User {\n  avatar {\n    ...AvatarFragment\n  }\n}\n\nfragment UserNameColumnCellFragment on User {\n  name\n  slug\n  ...UserAvatarFragment\n}\n"
   }
 };
 })();
 
-(node as any).hash = "a353c15ca959679af894be94a938cb0c";
+(node as any).hash = "2a1643e3ac9fee2926fb3a8db99c7561";
 
 export default node;
