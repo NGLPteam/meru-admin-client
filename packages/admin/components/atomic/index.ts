@@ -5,6 +5,7 @@ export { default as Breadcrumbs } from "./Breadcrumbs";
 export { default as Pagination } from "./Pagination";
 export { default as DropdownMenu } from "./dropdown/DropdownMenu";
 export { default as Dropdown } from "./dropdown/Dropdown";
+export { default as DataList } from "./DataList";
 export { default as DataViewToggle } from "./DataViewToggle";
 export { default as Toast } from "./Toast";
 export { default as PrecisionDate } from "./PrecisionDate";

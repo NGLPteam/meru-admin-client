@@ -1,57 +1,57 @@
 import { useFragment, graphql } from "react-relay";
-import { Forms } from "components/api/MutationForm";
+import { useTranslation } from "react-i18next";
 import { formatDate } from "@wdp/lib/helpers";
-import MockInput from "components/forms/MockInput";
+import DataList from "components/atomic/DataList";
+import { Legend } from "components/forms/FieldsetSection/FieldsetSection.styles";
 import type { SubmissionDetailsFragment$key } from "@/relay/SubmissionDetailsFragment.graphql";
+import SchemaFields from "./SchemaFieldsDisplay";
+import Image from "./ImageDisplay";
+import * as Styled from "./SubmissionDetails.styles";
 
 export default function SubmissionDetails({ data }: Props) {
+  const { t } = useTranslation();
   const submission = useFragment<SubmissionDetailsFragment$key>(fragment, data);
 
   const item =
     submission.entity?.__typename === "Item" ? submission.entity : null;
 
-  const thumbnailUrl = item?.thumbnail?.small?.png?.url;
-  const heroImageUrl = item?.heroImage?.small?.png?.url;
-
   return (
-    <Forms.Grid>
-      <MockInput label="forms.fields.title" value={item?.title ?? ""} isWide />
-      <MockInput
-        label="forms.fields.subtitle"
-        value={item?.subtitle ?? ""}
-        isWide
-      />
-      <MockInput
-        label="forms.fields.collection"
-        value={submission.submissionTarget?.entity?.title ?? ""}
-      />
-      <MockInput label="forms.fields.status" value={submission.state} />
-      <MockInput
-        label="forms.fields.last_updated"
-        value={formatDate(submission.updatedAt)}
-      />
-      <MockInput
-        label="forms.fields.thumbnail"
-        value={
-          thumbnailUrl ? (
-            <img src={thumbnailUrl} alt={item?.title ?? ""} />
-          ) : null
-        }
-      />
-      <MockInput
-        label="forms.fields.hero_image"
-        value={
-          heroImageUrl ? (
-            <img src={heroImageUrl} alt={item?.title ?? ""} />
-          ) : null
-        }
-      />
-      <MockInput
-        label="forms.fields.summary"
-        value={item?.summary ?? ""}
-        isWide
-      />
-    </Forms.Grid>
+    <Styled.Wrapper>
+      <DataList boxed>
+        <DataList.Item label={t("forms.fields.title")} value={item?.title} />
+        <DataList.Item
+          label={t("forms.fields.subtitle")}
+          value={item?.subtitle}
+        />
+        <DataList.Item
+          label={t("forms.fields.collection")}
+          value={submission.submissionTarget?.entity?.title}
+        />
+        <DataList.Item
+          label={t("forms.fields.last_updated")}
+          value={formatDate(submission.updatedAt)}
+        />
+        <DataList.Item
+          label={t("forms.fields.summary")}
+          value={item?.summary}
+          wide
+        />
+      </DataList>
+      <section>
+        <Legend as="h2">{t("forms.fields.images")}</Legend>
+        <DataList>
+          <DataList.Item
+            label={t("forms.fields.thumbnail")}
+            value={<Image data={item?.thumbnail} />}
+          />
+          <DataList.Item
+            label={t("forms.fields.hero_image")}
+            value={<Image data={item?.heroImage} />}
+          />
+        </DataList>
+      </section>
+      {item && <SchemaFields data={item} />}
+    </Styled.Wrapper>
   );
 }
 
@@ -62,7 +62,6 @@ interface Props {
 const fragment = graphql`
   fragment SubmissionDetailsFragment on Submission {
     state
-    createdAt
     updatedAt
     entity {
       __typename
@@ -71,19 +70,12 @@ const fragment = graphql`
         subtitle
         summary
         thumbnail {
-          small {
-            png {
-              url
-            }
-          }
+          ...ImageDisplayFragment
         }
         heroImage {
-          small {
-            png {
-              url
-            }
-          }
+          ...ImageDisplayFragment
         }
+        ...SchemaFieldsDisplayFragment
       }
     }
     submissionTarget {

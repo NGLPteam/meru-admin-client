@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fad8c1355f7f8e178acd0581587f3ddf>>
+ * @generated SignedSource<<fe75b9d0a8082ec84afded0526114a0e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,26 +12,18 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 export type SubmissionState = "APPROVED" | "DRAFT" | "PUBLISHED" | "REJECTED" | "REVISION_REQUESTED" | "SUBMITTED" | "UNDER_REVIEW" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type SubmissionDetailsFragment$data = {
-  readonly createdAt: string;
   readonly entity: {
     readonly __typename: "Item";
     readonly heroImage: {
-      readonly small: {
-        readonly png: {
-          readonly url: string | null | undefined;
-        };
-      };
+      readonly " $fragmentSpreads": FragmentRefs<"ImageDisplayFragment">;
     };
     readonly subtitle: string | null | undefined;
     readonly summary: string | null | undefined;
     readonly thumbnail: {
-      readonly small: {
-        readonly png: {
-          readonly url: string | null | undefined;
-        };
-      };
+      readonly " $fragmentSpreads": FragmentRefs<"ImageDisplayFragment">;
     };
     readonly title: string;
+    readonly " $fragmentSpreads": FragmentRefs<"SchemaFieldsDisplayFragment">;
   } | {
     // This will never be '%other', but we need some
     // value in case none of the concrete values match.
@@ -61,33 +53,9 @@ var v0 = {
 },
 v1 = [
   {
-    "alias": null,
     "args": null,
-    "concreteType": "ImageSize",
-    "kind": "LinkedField",
-    "name": "small",
-    "plural": false,
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "concreteType": "ImageDerivative",
-        "kind": "LinkedField",
-        "name": "png",
-        "plural": false,
-        "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "url",
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
-      }
-    ],
-    "storageKey": null
+    "kind": "FragmentSpread",
+    "name": "ImageDisplayFragment"
   }
 ];
 return {
@@ -101,13 +69,6 @@ return {
       "args": null,
       "kind": "ScalarField",
       "name": "state",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "createdAt",
       "storageKey": null
     },
     {
@@ -169,6 +130,11 @@ return {
               "plural": false,
               "selections": (v1/*: any*/),
               "storageKey": null
+            },
+            {
+              "args": null,
+              "kind": "FragmentSpread",
+              "name": "SchemaFieldsDisplayFragment"
             }
           ],
           "type": "Item",
@@ -206,6 +172,6 @@ return {
 };
 })();
 
-(node as any).hash = "7faeecd38d49d8bd1934d4b46ae2bd96";
+(node as any).hash = "d3aa338d98e34e525cd158a6fa74e5b8";
 
 export default node;

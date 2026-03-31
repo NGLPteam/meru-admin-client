@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4c1ff098f46de8476da256a079762d5b>>
+ * @generated SignedSource<<d24558629d5f4380c6b65b54cbf61d42>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -49,16 +49,37 @@ v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v4 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "title",
   "storageKey": null
 },
-v4 = [
+v5 = [
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "originalFilename",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "storage",
+    "storageKey": null
+  },
   {
     "alias": null,
     "args": null,
     "concreteType": "ImageSize",
     "kind": "LinkedField",
-    "name": "small",
+    "name": "thumb",
     "plural": false,
     "selections": [
       {
@@ -75,6 +96,34 @@ v4 = [
             "kind": "ScalarField",
             "name": "url",
             "storageKey": null
+          },
+          {
+            "kind": "InlineFragment",
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "alt",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "width",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "height",
+                "storageKey": null
+              }
+            ],
+            "type": "Image",
+            "abstractKey": "__isImage"
           }
         ],
         "storageKey": null
@@ -83,11 +132,32 @@ v4 = [
     "storageKey": null
   }
 ],
-v5 = {
+v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "id",
+  "name": "fullPath",
+  "storageKey": null
+},
+v7 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "label",
+  "storageKey": null
+},
+v8 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "type",
+  "storageKey": null
+},
+v9 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "isWide",
   "storageKey": null
 };
 return {
@@ -142,13 +212,6 @@ return {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "createdAt",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
             "name": "updatedAt",
             "storageKey": null
           },
@@ -161,10 +224,11 @@ return {
             "plural": false,
             "selections": [
               (v2/*: any*/),
+              (v3/*: any*/),
               {
                 "kind": "InlineFragment",
                 "selections": [
-                  (v3/*: any*/),
+                  (v4/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -186,7 +250,7 @@ return {
                     "kind": "LinkedField",
                     "name": "thumbnail",
                     "plural": false,
-                    "selections": (v4/*: any*/),
+                    "selections": (v5/*: any*/),
                     "storageKey": null
                   },
                   {
@@ -196,14 +260,92 @@ return {
                     "kind": "LinkedField",
                     "name": "heroImage",
                     "plural": false,
-                    "selections": (v4/*: any*/),
+                    "selections": (v5/*: any*/),
                     "storageKey": null
+                  },
+                  {
+                    "kind": "InlineFragment",
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "SchemaInstanceContext",
+                        "kind": "LinkedField",
+                        "name": "schemaInstanceContext",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "fieldValues",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": null,
+                        "kind": "LinkedField",
+                        "name": "schemaProperties",
+                        "plural": true,
+                        "selections": [
+                          (v2/*: any*/),
+                          {
+                            "kind": "InlineFragment",
+                            "selections": [
+                              (v6/*: any*/),
+                              (v7/*: any*/),
+                              (v8/*: any*/),
+                              (v9/*: any*/)
+                            ],
+                            "type": "ScalarProperty",
+                            "abstractKey": "__isScalarProperty"
+                          },
+                          {
+                            "kind": "InlineFragment",
+                            "selections": [
+                              (v6/*: any*/),
+                              {
+                                "alias": null,
+                                "args": null,
+                                "kind": "ScalarField",
+                                "name": "legend",
+                                "storageKey": null
+                              },
+                              {
+                                "alias": null,
+                                "args": null,
+                                "concreteType": null,
+                                "kind": "LinkedField",
+                                "name": "properties",
+                                "plural": true,
+                                "selections": [
+                                  (v2/*: any*/),
+                                  (v6/*: any*/),
+                                  (v7/*: any*/),
+                                  (v8/*: any*/),
+                                  (v9/*: any*/)
+                                ],
+                                "storageKey": null
+                              }
+                            ],
+                            "type": "GroupProperty",
+                            "abstractKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      }
+                    ],
+                    "type": "SchemaInstance",
+                    "abstractKey": "__isSchemaInstance"
                   }
                 ],
                 "type": "Item",
                 "abstractKey": null
-              },
-              (v5/*: any*/)
+              }
             ],
             "storageKey": null
           },
@@ -224,28 +366,28 @@ return {
                 "plural": false,
                 "selections": [
                   (v2/*: any*/),
-                  (v3/*: any*/),
-                  (v5/*: any*/)
+                  (v4/*: any*/),
+                  (v3/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v5/*: any*/)
+              (v3/*: any*/)
             ],
             "storageKey": null
           },
-          (v5/*: any*/)
+          (v3/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "cd313acc2cdeb639196995066797b381",
+    "cacheID": "c1b5b8060829b5c2269da7625298a895",
     "id": null,
     "metadata": {},
     "name": "detailsMySubmissionQuery",
     "operationKind": "query",
-    "text": "query detailsMySubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    ...SubmissionDetailsFragment\n    id\n  }\n}\n\nfragment SubmissionDetailsFragment on Submission {\n  state\n  createdAt\n  updatedAt\n  entity {\n    __typename\n    ... on Item {\n      title\n      subtitle\n      summary\n      thumbnail {\n        small {\n          png {\n            url\n          }\n        }\n      }\n      heroImage {\n        small {\n          png {\n            url\n          }\n        }\n      }\n    }\n    id\n  }\n  submissionTarget {\n    entity {\n      __typename\n      title\n      id\n    }\n    id\n  }\n}\n"
+    "text": "query detailsMySubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    ...SubmissionDetailsFragment\n    id\n  }\n}\n\nfragment ImageDisplayFragment on ImageAttachment {\n  originalFilename\n  storage\n  thumb {\n    png {\n      url\n      ...ImageFragment\n    }\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment SchemaFieldsDisplayFragment on SchemaInstance {\n  __isSchemaInstance: __typename\n  schemaInstanceContext {\n    fieldValues\n  }\n  schemaProperties {\n    __typename\n    ... on ScalarProperty {\n      __isScalarProperty: __typename\n      fullPath\n      label\n      type\n      isWide\n    }\n    ... on GroupProperty {\n      fullPath\n      legend\n      properties {\n        __typename\n        fullPath\n        label\n        type\n        isWide\n      }\n    }\n  }\n}\n\nfragment SubmissionDetailsFragment on Submission {\n  state\n  updatedAt\n  entity {\n    __typename\n    ... on Item {\n      title\n      subtitle\n      summary\n      thumbnail {\n        ...ImageDisplayFragment\n      }\n      heroImage {\n        ...ImageDisplayFragment\n      }\n      ...SchemaFieldsDisplayFragment\n    }\n    id\n  }\n  submissionTarget {\n    entity {\n      __typename\n      title\n      id\n    }\n    id\n  }\n}\n"
   }
 };
 })();
