@@ -176,7 +176,7 @@ export default function SubmissionFilterForm({
             {!!schemaOptions.length && (
               <Styled.FilterGroup>
                 <Styled.GroupLabel className="t-label-lg">
-                  {t("glossary.schema")}
+                  {t("lists.type_column")}
                 </Styled.GroupLabel>
                 <Styled.FieldsWrapper>
                   <ExpandableCheckboxList

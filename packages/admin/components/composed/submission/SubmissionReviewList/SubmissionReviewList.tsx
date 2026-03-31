@@ -2,10 +2,12 @@ import { graphql } from "react-relay";
 import { useTranslation } from "react-i18next";
 import { useDialogState, DialogDisclosure } from "reakit/Dialog";
 import { useMaybeFragment } from "@wdp/lib/api/hooks";
+import { IconFactory } from "components/factories";
 import ModelListPage from "components/composed/model/ModelListPage";
 import ModelColumns from "components/composed/model/ModelColumns";
-import { ButtonControl } from "components/atomic";
 import UserNameColumnCell from "components/composed/model/ModelColumns/UserNameColumnCell";
+import Search from "components/composed/search/Search";
+import { FiltersButton } from "components/composed/search/SearchWithFilters/SearchWithFilters.styles";
 import SubmissionReviewFilterDrawer from "components/composed/submission/SubmissionReviewFilterDrawer";
 import CurrentSubmissionReviewFilters from "components/composed/submission/CurrentSubmissionReviewFilters";
 import type {
@@ -89,13 +91,14 @@ function SubmissionReviewList({
         columns={columns}
         data={reviews}
         header={t("nav.my_reviews")}
-        countActions={
+        searchOverride={
           <>
-            <DialogDisclosure
-              as={ButtonControl}
-              icon="settings"
-              aria-label="Filter options"
-              {...dialog}
+            <Search
+              filtersButton={
+                <DialogDisclosure as={FiltersButton} {...dialog}>
+                  <IconFactory icon="settings" title="Filter options" />
+                </DialogDisclosure>
+              }
             />
             <SubmissionReviewFilterDrawer dialog={dialog} />
           </>
