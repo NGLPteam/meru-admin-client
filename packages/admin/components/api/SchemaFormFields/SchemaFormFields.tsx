@@ -10,18 +10,21 @@ export default function SchemaFormFields({
   data,
   schemaKind,
   schemaSlugs,
+  isSubmission = false,
 }: Props) {
   const { properties, ...schema } = useFragment(fragment, data) ?? {};
 
   return (
     <SchemaFormFieldsContextProvider data={schema}>
-      <SchemaSelector
-        schemaData={schema}
-        schemaKind={schemaKind}
-        schemaSlugs={schemaSlugs}
-        title={title}
-        showHeader={!!properties.length}
-      />
+      {!isSubmission && (
+        <SchemaSelector
+          schemaData={schema}
+          schemaKind={schemaKind}
+          schemaSlugs={schemaSlugs}
+          title={title}
+          showHeader={!!properties.length}
+        />
+      )}
       {!!properties.length && (
         <FormGrid>
           {properties.map((prop, index) => (
@@ -39,6 +42,7 @@ interface Props {
   schemaKind: "COLLECTION" | "ITEM" | "COMMUNITY";
   // Filter options by these schema slugs
   schemaSlugs?: string[];
+  isSubmission?: boolean;
 }
 
 const fragment = graphql`
