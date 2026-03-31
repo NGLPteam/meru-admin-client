@@ -1,12 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/router";
 import { graphql, useFragment } from "react-relay";
 import { useChildRouteLinks, useRouteSlug } from "hooks";
-import {
-  ButtonControlGroup,
-  ButtonControlDrawer,
-  ButtonControlRoute,
-} from "components/atomic";
+import { ButtonControlGroup, ButtonControlDrawer } from "components/atomic";
 import { StatusBadge } from "components/composed/submission/SubmissionList/StatusBadge";
 import { PageHeader, BackToAll } from "components/layout";
 import HtmlHead from "components/global/HtmlHead";
@@ -19,13 +14,11 @@ const getRoutes = (mode: "deposit" | "review") => {
     return {
       parentRoute: "my-submissions",
       detailRoute: "my-submissions.detail",
-      editRoute: "my-submissions.detail.details.edit",
     };
 
   return {
     parentRoute: "submissions",
     detailRoute: "submissions.detail",
-    editRoute: "submissions.detail.details.edit",
   };
 };
 
@@ -39,15 +32,13 @@ export default function SubmissionLayout({
   mode: "deposit" | "review";
 }) {
   const { t } = useTranslation();
-  const router = useRouter();
   const slug = useRouteSlug() || undefined;
 
-  const { parentRoute, detailRoute, editRoute } = getRoutes(mode);
+  const { parentRoute, detailRoute } = getRoutes(mode);
   const tabRoutes = useChildRouteLinks(detailRoute, { slug });
 
   const submission = useFragment(fragment, data);
 
-  const isEditing = router.asPath.endsWith("/edit");
   const title = submission?.entity?.title;
   const state = submission?.state;
 
@@ -60,27 +51,11 @@ export default function SubmissionLayout({
     !!submission?.availableTransitions.length &&
     state !== "DRAFT" &&
     mode === "review";
-  const canEdit = submission?.currentStatus?.mutableState;
   const canTransition =
     !!submission?.availableTransitions.length && mode === "review";
 
-  const buttons = isEditing ? (
+  const buttons = (
     <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
-      <ButtonControlRoute
-        route={`${detailRoute}.details`}
-        query={{ slug }}
-        icon="close"
-      >
-        {t("common.cancel")}
-      </ButtonControlRoute>
-    </ButtonControlGroup>
-  ) : (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
-      {canEdit && (
-        <ButtonControlRoute route={editRoute} query={{ slug }} icon="edit">
-          {t("common.edit")}
-        </ButtonControlRoute>
-      )}
       {canReview && (
         <ButtonControlDrawer
           drawer="reviewSubmission"

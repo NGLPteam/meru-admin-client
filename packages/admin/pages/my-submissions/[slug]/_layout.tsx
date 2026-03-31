@@ -13,7 +13,10 @@ import { useRouteSlug } from "hooks";
 import ErrorPage from "next/error";
 import { LoadingCircle } from "components/atomic";
 import ModelListPageSkeleton from "components/composed/model/ModelListPageSkeleton";
-import type { LayoutSubmissionQuery as LayoutQuery } from "@/relay/LayoutSubmissionQuery.graphql";
+import type {
+  LayoutSubmissionQuery as LayoutQuery,
+  LayoutSubmissionQuery$data,
+} from "@/relay/LayoutSubmissionQuery.graphql";
 
 export default function Layout<T extends OperationType>(props: Props<T>) {
   const slug = useRouteSlug() as string;
@@ -56,7 +59,11 @@ export default function Layout<T extends OperationType>(props: Props<T>) {
       >
         {({ queryRef }) =>
           queryRef ? (
-            <PageComponent {...pageComponentProps} queryRef={queryRef} />
+            <PageComponent
+              {...pageComponentProps}
+              submission={submission}
+              queryRef={queryRef}
+            />
           ) : showLoadingCircle ? (
             <LoadingCircle className="l-page-loading" />
           ) : (
@@ -84,12 +91,17 @@ type Props<T extends OperationType> = {
 
 type PageProps<T extends OperationType> = {
   queryRef?: PreloadedQuery<T>;
+  submission?: LayoutSubmissionQuery$data["submission"];
 };
 
 export const submissionQuery = graphql`
   query LayoutSubmissionQuery($slug: Slug!) {
     submission(slug: $slug) {
       id
+      state
+      currentStatus {
+        mutableState
+      }
       ...SubmissionLayoutFragment
     }
   }
