@@ -1,5 +1,5 @@
 import { graphql, usePreloadedQuery, PreloadedQuery } from "react-relay";
-import ItemUpdateForm from "components/composed/item/ItemUpdateForm";
+import SubmissionUpdateForm from "components/composed/submission/SubmissionUpdateForm";
 import type { editMySubmissionQuery as Query } from "@/relay/editMySubmissionQuery.graphql";
 import Layout from "../_layout";
 import type { GetLayout } from "@wdp/lib/types/page";
@@ -10,7 +10,9 @@ function EditSubmission({ queryRef }: Props) {
   const entity =
     submission?.entity?.__typename === "Item" ? submission.entity : null;
 
-  return entity ? <ItemUpdateForm data={entity} mode="depositor" /> : null;
+  return entity ? (
+    <SubmissionUpdateForm data={entity} mode="depositor" />
+  ) : null;
 }
 
 const getLayout: GetLayout = (props) => {
@@ -38,7 +40,7 @@ const query = graphql`
       entity {
         __typename
         ... on Item {
-          ...ItemUpdateFormFragment
+          ...SubmissionUpdateFormFragment
         }
       }
     }

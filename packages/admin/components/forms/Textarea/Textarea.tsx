@@ -3,6 +3,10 @@ import BaseInputWrapper from "../BaseInputWrapper";
 import * as Styled from "./Textarea.styles";
 import type InputProps from "../inputType";
 
+type Props = InputProps & {
+  minHeight?: number;
+};
+
 const Textarea = forwardRef(
   (
     {
@@ -12,8 +16,9 @@ const Textarea = forwardRef(
       description,
       placeholder,
       isWide,
+      minHeight,
       ...textareaProps
-    }: InputProps,
+    }: Props,
     ref: Ref<HTMLTextAreaElement>,
   ) => {
     return (
@@ -28,6 +33,7 @@ const Textarea = forwardRef(
         <Styled.TextareaInput
           name={name}
           ref={ref}
+          $height={minHeight}
           placeholder={placeholder}
           {...textareaProps}
         />
