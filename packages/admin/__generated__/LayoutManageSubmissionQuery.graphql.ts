@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<03a4aa8f8ac97f9db6829ab4d2885534>>
+ * @generated SignedSource<<a4af14dc4174afb539f1423a84c1daf7>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,6 +17,9 @@ export type LayoutManageSubmissionQuery$data = {
   readonly submission: {
     readonly canRequestReview: {
       readonly value: boolean;
+    };
+    readonly currentStatus: {
+      readonly mutableState: boolean;
     };
     readonly id: string;
     readonly " $fragmentSpreads": FragmentRefs<"SubmissionLayoutFragment">;
@@ -49,7 +52,14 @@ v2 = {
   "name": "id",
   "storageKey": null
 },
-v3 = [
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "mutableState",
+  "storageKey": null
+},
+v4 = [
   {
     "alias": null,
     "args": null,
@@ -58,56 +68,47 @@ v3 = [
     "storageKey": null
   }
 ],
-v4 = {
+v5 = {
   "alias": null,
   "args": null,
   "concreteType": "AuthorizationResult",
   "kind": "LinkedField",
   "name": "canRequestReview",
   "plural": false,
-  "selections": (v3/*: any*/),
+  "selections": (v4/*: any*/),
   "storageKey": null
 },
-v5 = [
-  {
-    "alias": null,
-    "args": null,
-    "concreteType": "AuthorizationResult",
-    "kind": "LinkedField",
-    "name": "canTransition",
-    "plural": false,
-    "selections": (v3/*: any*/),
-    "storageKey": null
-  },
-  {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "lockedState",
-    "storageKey": null
-  },
-  {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "mutableState",
-    "storageKey": null
-  },
-  {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "fromState",
-    "storageKey": null
-  },
-  {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "toState",
-    "storageKey": null
-  }
-];
+v6 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "AuthorizationResult",
+  "kind": "LinkedField",
+  "name": "canTransition",
+  "plural": false,
+  "selections": (v4/*: any*/),
+  "storageKey": null
+},
+v7 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "lockedState",
+  "storageKey": null
+},
+v8 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "fromState",
+  "storageKey": null
+},
+v9 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "toState",
+  "storageKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -124,7 +125,19 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
-          (v4/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "SubmissionStatus",
+            "kind": "LinkedField",
+            "name": "currentStatus",
+            "plural": false,
+            "selections": [
+              (v3/*: any*/)
+            ],
+            "storageKey": null
+          },
+          (v5/*: any*/),
           {
             "args": null,
             "kind": "FragmentSpread",
@@ -152,7 +165,23 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
-          (v4/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "SubmissionStatus",
+            "kind": "LinkedField",
+            "name": "currentStatus",
+            "plural": false,
+            "selections": [
+              (v3/*: any*/),
+              (v6/*: any*/),
+              (v7/*: any*/),
+              (v8/*: any*/),
+              (v9/*: any*/)
+            ],
+            "storageKey": null
+          },
+          (v5/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -165,19 +194,15 @@ return {
             "args": null,
             "concreteType": "SubmissionStatus",
             "kind": "LinkedField",
-            "name": "currentStatus",
-            "plural": false,
-            "selections": (v5/*: any*/),
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "concreteType": "SubmissionStatus",
-            "kind": "LinkedField",
             "name": "availableTransitions",
             "plural": true,
-            "selections": (v5/*: any*/),
+            "selections": [
+              (v6/*: any*/),
+              (v7/*: any*/),
+              (v3/*: any*/),
+              (v8/*: any*/),
+              (v9/*: any*/)
+            ],
             "storageKey": null
           },
           {
@@ -187,7 +212,7 @@ return {
             "kind": "LinkedField",
             "name": "canReview",
             "plural": false,
-            "selections": (v3/*: any*/),
+            "selections": (v4/*: any*/),
             "storageKey": null
           },
           {
@@ -226,16 +251,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "b18e8d6c077374015775f3db5a89f0c7",
+    "cacheID": "0388382dbe901a62a1e44eee8b8f4fab",
     "id": null,
     "metadata": {},
     "name": "LayoutManageSubmissionQuery",
     "operationKind": "query",
-    "text": "query LayoutManageSubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    id\n    canRequestReview {\n      value\n    }\n    ...SubmissionLayoutFragment\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  currentStatus {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  availableTransitions {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  canReview {\n    value\n  }\n  canRequestReview {\n    value\n  }\n  entity {\n    __typename\n    __isEntity: __typename\n    title\n    id\n  }\n}\n"
+    "text": "query LayoutManageSubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    id\n    currentStatus {\n      mutableState\n    }\n    canRequestReview {\n      value\n    }\n    ...SubmissionLayoutFragment\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  currentStatus {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  availableTransitions {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  canReview {\n    value\n  }\n  canRequestReview {\n    value\n  }\n  entity {\n    __typename\n    __isEntity: __typename\n    title\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "f794f9f0ed46034a64e4674efa0efcf2";
+(node as any).hash = "7ee7d14ecd9dcca2c8029debabc1688f";
 
 export default node;

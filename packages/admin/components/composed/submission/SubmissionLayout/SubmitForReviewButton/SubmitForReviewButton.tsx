@@ -63,13 +63,9 @@ export default function SubmitForReviewButton({ submission }: Props) {
       modalBody={
         state === "DRAFT"
           ? t("actions.submissions.submit_for_review_confirm")
-          : t("actions.resubmit_for_review_confirm")
+          : t("actions.submissions.resubmit_for_review_confirm")
       }
-      aria-label={
-        state === "DRAFT"
-          ? t("common.submit")
-          : t("actions.resubmit_for_review")
-      }
+      aria-label={t("common.confirm")}
       onClick={handleSubmitForReview}
       icon="arrow"
       disabled={inFlight}

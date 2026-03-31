@@ -98,6 +98,9 @@ export const submissionQuery = graphql`
   query LayoutManageSubmissionQuery($slug: Slug!) {
     submission(slug: $slug) {
       id
+      currentStatus {
+        mutableState
+      }
       canRequestReview {
         value
       }

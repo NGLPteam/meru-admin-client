@@ -295,13 +295,6 @@ export const baseRoutes: BaseRoute[] = [
             name: "my-submissions.detail.details",
             path: "/my-submissions/[slug]/details",
             label: "nav.details",
-            routes: [
-              {
-                name: "my-submissions.detail.details.edit",
-                path: "/my-submissions/[slug]/details/edit",
-                label: "common.edit",
-              },
-            ],
           },
           {
             name: "my-submissions.detail.reviews",
@@ -343,13 +336,6 @@ export const baseRoutes: BaseRoute[] = [
             name: "submissions.detail.details",
             path: "/submissions/[slug]/details",
             label: "nav.details",
-            routes: [
-              {
-                name: "submissions.detail.details.edit",
-                path: "/submissions/[slug]/details/edit",
-                label: "common.edit",
-              },
-            ],
           },
           {
             name: "submissions.detail.history",

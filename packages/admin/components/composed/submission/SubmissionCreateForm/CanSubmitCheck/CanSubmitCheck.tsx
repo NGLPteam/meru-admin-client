@@ -24,9 +24,7 @@ export default function CanSubmitCheck({ data, preselectedTargetId }: Props) {
   };
 
   const redirectToEdit = (slug: string) => {
-    const route = RouteHelper.findRouteByName(
-      "my-submissions.detail.details.edit",
-    );
+    const route = RouteHelper.findRouteByName("my-submissions.detail.details");
     if (route) router.push({ pathname: route.path, query: { slug } });
   };
 
