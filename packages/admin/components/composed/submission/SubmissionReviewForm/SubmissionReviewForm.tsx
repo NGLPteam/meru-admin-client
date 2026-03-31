@@ -70,6 +70,7 @@ export default function SubmissionReviewForm({
 
   const decisionOptions = [
     { label: t("forms.fields.decision_approve"), value: "APPROVED" },
+    { label: t("forms.fields.decision_revise"), value: "REVISION_REQUESTED" },
     { label: t("forms.fields.decision_reject"), value: "REJECTED" },
   ];
 
@@ -87,6 +88,7 @@ export default function SubmissionReviewForm({
           />
           <Textarea
             label="forms.fields.comments_for_depositor"
+            description="forms.fields.comments_for_depositor_description"
             isWide
             {...register("comment")}
           />
