@@ -13,7 +13,6 @@ import HtmlHead from "components/global/HtmlHead";
 import type { SubmissionLayoutFragment$key } from "@/relay/SubmissionLayoutFragment.graphql";
 import SubmitForReviewButton from "./SubmitForReviewButton";
 import TransitionSubmissionButton from "./TransitionSubmissionButton";
-import ReviewNav from "./ReviewNav";
 
 const getRoutes = (mode: "deposit" | "review") => {
   if (mode === "deposit")
@@ -109,9 +108,9 @@ export default function SubmissionLayout({
           buttons={buttons}
         />
         {children}
-        {parentRoute === "submissions" && !isEditing && (
+        {/*{parentRoute === "submissions" && !isEditing && (
           <ReviewNav prevSlug={null} nextSlug={null} />
-        )}
+        )}*/}
       </section>
     </>
   );
