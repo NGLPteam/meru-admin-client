@@ -3,14 +3,13 @@ import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import { useDialogState, DialogDisclosure } from "reakit/Dialog";
 import { useMaybeFragment } from "@wdp/lib/api/hooks";
+import { IconFactory } from "components/factories";
 import ModelListPage from "components/composed/model/ModelListPage";
 import ModelColumns from "components/composed/model/ModelColumns";
-import {
-  ButtonControl,
-  ButtonControlGroup,
-  ButtonControlRoute,
-} from "components/atomic";
+import { ButtonControlGroup, ButtonControlRoute } from "components/atomic";
 import UserNameColumnCell from "components/composed/model/ModelColumns/UserNameColumnCell";
+import Search from "components/composed/search/Search";
+import { FiltersButton } from "components/composed/search/SearchWithFilters/SearchWithFilters.styles";
 import SubmissionFilterDrawer from "components/composed/submission/SubmissionFilterDrawer";
 import CurrentSubmissionFilters from "components/composed/submission/CurrentSubmissionFilters";
 import type {
@@ -135,13 +134,14 @@ function SubmissionList({ data, mode = "review" }: Props) {
       buttons={buttons}
       tabRoutes={tabRoutes}
       tabLinksOnly
-      countActions={
+      searchOverride={
         <>
-          <DialogDisclosure
-            as={ButtonControl}
-            icon="settings"
-            aria-label="Filter options"
-            {...dialog}
+          <Search
+            filtersButton={
+              <DialogDisclosure as={FiltersButton} {...dialog}>
+                <IconFactory icon="settings" title="Filter options" />
+              </DialogDisclosure>
+            }
           />
           <SubmissionFilterDrawer dialog={dialog} stateOptions={stateOptions} />
         </>
