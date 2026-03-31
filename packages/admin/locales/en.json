@@ -669,7 +669,9 @@
         "child_submission_target_description": "This collection is currently accepting submissions in the sub-collections listed above. Please select a destination for your submission.",
         "submission_schema": "What kind of work are you submitting?",
         "submission_schema_description": "If your work does not match the available options for this collection, consider submitting to a different collection or reach out to the collection administrator for guidance.",
-        "submission_instructions": "Submission Instructions"
+        "submission_instructions": "Submission Instructions",
+        "images": "Images",
+        "properties": "Properties"
       },
       "validation": {
         "year": "Must be a four digit year",
