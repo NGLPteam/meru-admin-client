@@ -800,7 +800,9 @@
       "show_all_schemas": "Show all schemas",
       "show_less": "Show less",
       "submissions": {
-        "filter_by_status": "Status",
+        "filter_by_status": "Filter Status",
+        "filter_submitted_by": "Filter Submitted By",
+        "filter_collection": "Filter Collection",
         "filter_by_date": "Date Updated",
         "updated_tag_label": "Updated",
         "updated_after": "after",

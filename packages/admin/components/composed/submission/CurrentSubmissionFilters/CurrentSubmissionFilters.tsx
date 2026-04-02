@@ -12,6 +12,8 @@ export type SubmissionFilters = {
   updatedAt?: { gteq?: string; lteq?: string };
   submissionTargetIds?: string[];
   schemaVersionIds?: string[];
+  userIds?: string[];
+  userName?: string; // display-only — stripped before sending to API
 };
 
 export default function CurrentSubmissionFilters() {
@@ -37,7 +39,14 @@ export default function CurrentSubmissionFilters() {
     return map;
   }, [data]);
 
-  const { inState, updatedAt, submissionTargetIds, schemaVersionIds } = filters;
+  const {
+    inState,
+    updatedAt,
+    submissionTargetIds,
+    schemaVersionIds,
+    userIds,
+    userName,
+  } = filters;
 
   const removeDateFilter = (subkey: "gteq" | "lteq") => {
     const next = { ...filters };
@@ -97,6 +106,21 @@ export default function CurrentSubmissionFilters() {
       label: schemaLabels[id] ?? id,
       onRemove: () => removeArrayFilter("schemaVersionIds", id),
     })) ?? []),
+
+    ...(userIds?.length
+      ? [
+          {
+            key: "user",
+            label: userName ?? userIds[0],
+            onRemove: () => {
+              const next = { ...filters };
+              delete next.userIds;
+              delete next.userName;
+              updateFilters(next);
+            },
+          },
+        ]
+      : []),
   ];
 
   return <FilterTagList tags={tags} />;

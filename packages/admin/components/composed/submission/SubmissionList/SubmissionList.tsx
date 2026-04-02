@@ -1,27 +1,19 @@
-import { graphql } from "react-relay";
-import { useRouter } from "next/router";
+import { graphql, useFragment } from "react-relay";
 import { useTranslation } from "react-i18next";
-import { useDialogState, DialogDisclosure } from "reakit/Dialog";
-import { useMaybeFragment } from "@wdp/lib/api/hooks";
-import { IconFactory } from "components/factories";
 import ModelListPage from "components/composed/model/ModelListPage";
 import ModelColumns from "components/composed/model/ModelColumns";
 import { ButtonControlGroup, ButtonControlRoute } from "components/atomic";
 import UserNameColumnCell from "components/composed/model/ModelColumns/UserNameColumnCell";
-import Search from "components/composed/search/Search";
-import { FiltersButton } from "components/composed/search/SearchWithFilters/SearchWithFilters.styles";
-import SubmissionFilterDrawer from "components/composed/submission/SubmissionFilterDrawer";
+import SubmissionUserFilter from "components/composed/submission/SubmissionUserFilter";
+import SubmissionStatusFilter from "components/composed/submission/SubmissionStatusFilter";
+import SubmissionCollectionFilter from "components/composed/submission/SubmissionCollectionFilter";
 import CurrentSubmissionFilters from "components/composed/submission/CurrentSubmissionFilters";
 import type {
   SubmissionListFragment$data,
   SubmissionListFragment$key,
 } from "@/relay/SubmissionListFragment.graphql";
 import type { SubmissionState } from "types/graphql-schema";
-import type {
-  CellContext,
-  ModelTableActionProps,
-  Row,
-} from "@tanstack/react-table";
+import type { CellContext } from "@tanstack/react-table";
 
 type SubmissionNode = SubmissionListFragment$data["nodes"][number];
 
@@ -31,19 +23,28 @@ type Props = {
 };
 
 function SubmissionList({ data, mode = "review" }: Props) {
-  const submissions = useMaybeFragment<SubmissionListFragment$key>(
-    fragment,
-    data,
-  );
+  const submissions = useFragment<SubmissionListFragment$key>(fragment, data);
 
   const { t } = useTranslation();
-  const router = useRouter();
 
   const isMySubmissions = mode === "my-submissions";
   const detailRoute = isMySubmissions
     ? "my-submissions.detail"
     : "submissions.detail";
-  const basePath = isMySubmissions ? "my-submissions" : "submissions";
+
+  const ALL_STATES: SubmissionState[] = [
+    "DRAFT",
+    "SUBMITTED",
+    "UNDER_REVIEW",
+    "REVISION_REQUESTED",
+    "APPROVED",
+    "PUBLISHED",
+    "REJECTED",
+  ];
+
+  const REVIEWER_STATES = ALL_STATES.filter((s) => s !== "DRAFT");
+
+  const stateOptions = isMySubmissions ? ALL_STATES : REVIEWER_STATES;
 
   const columns = [
     ModelColumns.NameColumn<SubmissionNode>({
@@ -54,42 +55,39 @@ function SubmissionList({ data, mode = "review" }: Props) {
     ModelColumns.StatusColumn<SubmissionNode>({
       header: () => t("lists.status_column"),
       accessorFn: (row: SubmissionNode) => row.state,
+      meta: {
+        filter: <SubmissionStatusFilter stateOptions={stateOptions} />,
+      },
     }),
+    ...(mode === "review"
+      ? [
+          ModelColumns.NameColumn<SubmissionNode>({
+            id: "submittedBy",
+            header: () => t("lists.submitted_by_column"),
+            accessorKey: "user",
+            cell: ({ row }: CellContext<SubmissionNode, unknown>) => (
+              <UserNameColumnCell data={row.original.user} />
+            ),
+            enableSorting: false,
+            meta: {
+              filter: <SubmissionUserFilter />,
+            },
+          }),
+        ]
+      : []),
     ModelColumns.StringColumn<SubmissionNode>({
       id: "collection",
       header: () => t("lists.collection_column"),
       accessorFn: (row: SubmissionNode) =>
         row.submissionTarget?.entity?.title ?? "",
-    }),
-    ModelColumns.NameColumn<SubmissionNode>({
-      id: "submittedBy",
-      header: () => t("lists.submitted_by_column"),
-      accessorKey: "user",
-      cell: ({ row }: CellContext<SubmissionNode, unknown>) => (
-        <UserNameColumnCell data={row.original.user} />
-      ),
-      enableSorting: false,
+      meta: {
+        filter: <SubmissionCollectionFilter />,
+      },
     }),
     ModelColumns.CreatedAtColumn<SubmissionNode>({
       enableSorting: true,
     }),
   ];
-
-  const actions = {
-    actionsFilter: (all: Record<string, unknown>, row: Row<SubmissionNode>) =>
-      Object.keys(all).reduce((obj, a) => {
-        if (row.original.currentStatus.mutableState || a !== "edit")
-          return { ...obj, [a]: all[a] };
-        return obj;
-      }, {}),
-    handleView: ({ row }: ModelTableActionProps<SubmissionNode>) =>
-      row.original.slug ? `/${basePath}/${row.original.slug}/details` : null,
-    handleEdit: ({ row }: ModelTableActionProps<SubmissionNode>) => {
-      if (row.original.slug) {
-        router.push(`/${basePath}/${row.original.slug}/details/edit`);
-      }
-    },
-  };
 
   const buttons = isMySubmissions ? (
     <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
@@ -106,22 +104,6 @@ function SubmissionList({ data, mode = "review" }: Props) {
       ]
     : undefined;
 
-  const ALL_STATES: SubmissionState[] = [
-    "DRAFT",
-    "SUBMITTED",
-    "UNDER_REVIEW",
-    "REVISION_REQUESTED",
-    "APPROVED",
-    "PUBLISHED",
-    "REJECTED",
-  ];
-
-  const REVIEWER_STATES = ALL_STATES.filter((s) => s !== "DRAFT");
-
-  const stateOptions = isMySubmissions ? ALL_STATES : REVIEWER_STATES;
-
-  const dialog = useDialogState({ animated: true });
-
   return (
     <ModelListPage<SubmissionListFragment$data, SubmissionNode>
       modelName="submission"
@@ -130,22 +112,11 @@ function SubmissionList({ data, mode = "review" }: Props) {
       )}
       columns={columns}
       data={submissions}
-      actions={actions}
       buttons={buttons}
       tabRoutes={tabRoutes}
       tabLinksOnly
-      searchOverride={
-        <>
-          <Search
-            filtersButton={
-              <DialogDisclosure as={FiltersButton} {...dialog}>
-                <IconFactory icon="settings" title="Filter options" />
-              </DialogDisclosure>
-            }
-          />
-          <SubmissionFilterDrawer dialog={dialog} stateOptions={stateOptions} />
-        </>
-      }
+      showSearch
+      hideFilters
       currentFiltersOverride={<CurrentSubmissionFilters />}
     />
   );
