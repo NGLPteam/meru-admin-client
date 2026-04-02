@@ -65,6 +65,7 @@ export const HeaderCell = styled.th`
 `;
 
 export const HeaderCellInner = styled.span`
+  position: relative;
   display: flex;
   align-items: center;
   padding-block-start: ${pxToRem(7)};

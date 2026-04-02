@@ -5,6 +5,7 @@ import { Checkbox } from "components/forms";
 import TableHeaderRow from "./TableHeaderRow";
 import * as Styled from "./Table.styles";
 import TableSortIcon from "./TableSortIcon";
+import HeaderFilterPopover from "./filters/HeaderFilterPopover";
 import useTableContext from "./hooks/useTableContext";
 import type { CoreHeaderGroup } from "@tanstack/react-table";
 
@@ -67,6 +68,11 @@ function TableHeader<T extends Record<string, unknown>>({
                         desc={header.column.getIsSorted() === "desc"}
                         isSorted={!!header.column.getIsSorted()}
                       />
+                    )}
+                    {header.column.columnDef.meta?.filter && (
+                      <HeaderFilterPopover label={header.column.id}>
+                        {header.column.columnDef.meta.filter}
+                      </HeaderFilterPopover>
                     )}
                   </Styled.HeaderCellInner>
                 </Styled.HeaderCell>

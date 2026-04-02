@@ -23,9 +23,12 @@ export default function useSubmissionFilterQueryVars({
   const page = parseInt(get(router, "query.page", 1) as string);
   const order = (get(router, "query.order") || defaultOrder) as SubmissionOrder;
 
-  const userFilters: SubmissionFilterInput | undefined = router.query.filters
-    ? JSON.parse(String(router.query.filters))
-    : undefined;
+  const userFilters: SubmissionFilterInput | undefined = (() => {
+    if (!router.query.filters) return undefined;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { userName, ...rest } = JSON.parse(String(router.query.filters));
+    return Object.keys(rest).length > 0 ? rest : undefined;
+  })();
 
   let filters: SubmissionFilterInput | undefined;
 
