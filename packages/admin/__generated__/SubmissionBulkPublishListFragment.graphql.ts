@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<04c55171586f36e54af880a35d0831d6>>
+ * @generated SignedSource<<b7877ad460cc5f672537b006ef7d43d8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,7 @@ export type SubmissionBulkPublishListFragment$data = {
   readonly nodes: ReadonlyArray<{
     readonly entity: {
       readonly id?: string;
+      readonly slug: string;
       readonly title: string;
     } | null | undefined;
     readonly id: string;
@@ -24,6 +25,11 @@ export type SubmissionBulkPublishListFragment$data = {
       };
     } | null | undefined;
     readonly updatedAt: string;
+    readonly user: {
+      readonly id: string;
+      readonly slug: string;
+      readonly " $fragmentSpreads": FragmentRefs<"UserNameColumnCellFragment">;
+    };
   }>;
   readonly " $fragmentSpreads": FragmentRefs<"ModelListPageFragment">;
   readonly " $fragmentType": "SubmissionBulkPublishListFragment";
@@ -45,6 +51,13 @@ v1 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "slug",
+  "storageKey": null
+},
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "title",
   "storageKey": null
 };
@@ -63,13 +76,7 @@ return {
       "plural": true,
       "selections": [
         (v0/*: any*/),
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "slug",
-          "storageKey": null
-        },
+        (v1/*: any*/),
         {
           "alias": null,
           "args": null,
@@ -93,6 +100,7 @@ return {
               "type": "Node",
               "abstractKey": "__isNode"
             },
+            (v2/*: any*/),
             (v1/*: any*/)
           ],
           "storageKey": null
@@ -113,9 +121,27 @@ return {
               "name": "entity",
               "plural": false,
               "selections": [
-                (v1/*: any*/)
+                (v2/*: any*/)
               ],
               "storageKey": null
+            }
+          ],
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "User",
+          "kind": "LinkedField",
+          "name": "user",
+          "plural": false,
+          "selections": [
+            (v0/*: any*/),
+            (v1/*: any*/),
+            {
+              "args": null,
+              "kind": "FragmentSpread",
+              "name": "UserNameColumnCellFragment"
             }
           ],
           "storageKey": null
@@ -134,6 +160,6 @@ return {
 };
 })();
 
-(node as any).hash = "dc183c168167b17fceb100ab7ab19605";
+(node as any).hash = "74a04ef9e1d7d6800d3d7f7a1a47e7a5";
 
 export default node;
