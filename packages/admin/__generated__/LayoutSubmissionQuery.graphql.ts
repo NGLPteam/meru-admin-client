@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f9c9539ece5b9294e23c871208528df4>>
+ * @generated SignedSource<<755d6d972dbf2911fcd7b46b20ddfc4a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -237,6 +237,13 @@ return {
                 "alias": null,
                 "args": null,
                 "kind": "ScalarField",
+                "name": "slug",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
                 "name": "title",
                 "storageKey": null
               },
@@ -250,12 +257,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "7486d5269b77db6e48781a91bff2dad7",
+    "cacheID": "0187513d4fec17f13c0ecd6b6b48e5da",
     "id": null,
     "metadata": {},
     "name": "LayoutSubmissionQuery",
     "operationKind": "query",
-    "text": "query LayoutSubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    id\n    state\n    currentStatus {\n      mutableState\n    }\n    ...SubmissionLayoutFragment\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  currentStatus {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  availableTransitions {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  canReview {\n    value\n  }\n  canRequestReview {\n    value\n  }\n  entity {\n    __typename\n    __isEntity: __typename\n    title\n    id\n  }\n}\n"
+    "text": "query LayoutSubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    id\n    state\n    currentStatus {\n      mutableState\n    }\n    ...SubmissionLayoutFragment\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  currentStatus {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  availableTransitions {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  canReview {\n    value\n  }\n  canRequestReview {\n    value\n  }\n  entity {\n    __typename\n    __isEntity: __typename\n    slug\n    title\n    id\n  }\n}\n"
   }
 };
 })();

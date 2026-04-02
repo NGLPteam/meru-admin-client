@@ -1,7 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { graphql, useFragment } from "react-relay";
 import { useChildRouteLinks, useRouteSlug } from "hooks";
-import { ButtonControlGroup, ButtonControlDrawer } from "components/atomic";
+import {
+  ButtonControlGroup,
+  ButtonControlDrawer,
+  ButtonControlView,
+} from "components/atomic";
 import { StatusBadge } from "components/composed/submission/SubmissionList/StatusBadge";
 import { PageHeader, BackToAll } from "components/layout";
 import HtmlHead from "components/global/HtmlHead";
@@ -67,6 +71,13 @@ export default function SubmissionLayout({
       )}
       {canSubmit && <SubmitForReviewButton submission={submission} />}
       {canTransition && <TransitionSubmissionButton submission={submission} />}
+      {state !== "DRAFT" && submission?.entity && (
+        <ButtonControlView
+          href={`${process.env.NEXT_PUBLIC_FE_URL}/preview/${submission.entity.slug}`}
+        >
+          {t("common.preview")}
+        </ButtonControlView>
+      )}
     </ButtonControlGroup>
   );
 
@@ -121,6 +132,7 @@ const fragment = graphql`
     }
     entity {
       ... on Entity {
+        slug
         title
       }
     }

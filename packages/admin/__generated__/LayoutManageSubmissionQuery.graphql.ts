@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a4af14dc4174afb539f1423a84c1daf7>>
+ * @generated SignedSource<<050d6050e50682025f0306a7944f04ff>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -238,6 +238,13 @@ return {
                 "alias": null,
                 "args": null,
                 "kind": "ScalarField",
+                "name": "slug",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
                 "name": "title",
                 "storageKey": null
               },
@@ -251,12 +258,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "0388382dbe901a62a1e44eee8b8f4fab",
+    "cacheID": "9f7762a671cea189bfe61eb96973b5e4",
     "id": null,
     "metadata": {},
     "name": "LayoutManageSubmissionQuery",
     "operationKind": "query",
-    "text": "query LayoutManageSubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    id\n    currentStatus {\n      mutableState\n    }\n    canRequestReview {\n      value\n    }\n    ...SubmissionLayoutFragment\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  currentStatus {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  availableTransitions {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  canReview {\n    value\n  }\n  canRequestReview {\n    value\n  }\n  entity {\n    __typename\n    __isEntity: __typename\n    title\n    id\n  }\n}\n"
+    "text": "query LayoutManageSubmissionQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    id\n    currentStatus {\n      mutableState\n    }\n    canRequestReview {\n      value\n    }\n    ...SubmissionLayoutFragment\n  }\n}\n\nfragment SubmissionLayoutFragment on Submission {\n  id\n  state\n  currentStatus {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  availableTransitions {\n    canTransition {\n      value\n    }\n    lockedState\n    mutableState\n    fromState\n    toState\n  }\n  canReview {\n    value\n  }\n  canRequestReview {\n    value\n  }\n  entity {\n    __typename\n    __isEntity: __typename\n    slug\n    title\n    id\n  }\n}\n"
   }
 };
 })();

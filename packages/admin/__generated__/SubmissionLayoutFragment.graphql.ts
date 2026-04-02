@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1e43afef718ab98c6e00272284f7bd1c>>
+ * @generated SignedSource<<5e70bad750bb8ab5733e1e749eaf45ab>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -37,6 +37,7 @@ export type SubmissionLayoutFragment$data = {
     readonly toState: SubmissionState;
   };
   readonly entity: {
+    readonly slug: string;
     readonly title: string;
   } | null | undefined;
   readonly id: string;
@@ -170,6 +171,13 @@ return {
           "alias": null,
           "args": null,
           "kind": "ScalarField",
+          "name": "slug",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
           "name": "title",
           "storageKey": null
         }
@@ -182,6 +190,6 @@ return {
 };
 })();
 
-(node as any).hash = "c89167f8c9e160f3b8ca1471dd45cae7";
+(node as any).hash = "2aea4817ff6c601492a728a246a96019";
 
 export default node;
