@@ -1,28 +1,25 @@
 import { useCallback } from "react";
 import { graphql, useMutation } from "react-relay";
 import { useTranslation } from "react-i18next";
-import { useDialogState, DialogDisclosure } from "reakit/Dialog";
 import { useMaybeFragment } from "@wdp/lib/api/hooks";
 import { useNotify } from "hooks";
 import ModelListPage from "components/composed/model/ModelListPage";
 import ModelColumns from "components/composed/model/ModelColumns";
-import {
-  ButtonControlConfirm,
-  ButtonControl,
-  ButtonControlGroup,
-} from "components/atomic";
+import { ButtonControlConfirm, ButtonControlGroup } from "components/atomic";
 import {
   useBulkActions,
   useBulkSelectionBridge,
 } from "components/layout/Table/bulkActions";
-import SubmissionFilterDrawer from "components/composed/submission/SubmissionFilterDrawer";
+import UserNameColumnCell from "components/composed/model/ModelColumns/UserNameColumnCell";
+import SubmissionUserFilter from "components/composed/submission/SubmissionUserFilter";
+import SubmissionCollectionFilter from "components/composed/submission/SubmissionCollectionFilter";
 import CurrentSubmissionFilters from "components/composed/submission/CurrentSubmissionFilters";
 import type {
   SubmissionBulkPublishListFragment$data,
   SubmissionBulkPublishListFragment$key,
 } from "@/relay/SubmissionBulkPublishListFragment.graphql";
 import type { SubmissionBulkPublishListPublishMutation as PublishMutation } from "@/relay/SubmissionBulkPublishListPublishMutation.graphql";
-import type { ModelTableActionProps } from "@tanstack/react-table";
+import type { ModelTableActionProps, CellContext } from "@tanstack/react-table";
 import type { MutationAttributeError } from "types/graphql-schema";
 
 type SubmissionBulkPublishNode =
@@ -103,11 +100,26 @@ function SubmissionBulkPublishList({ data }: Props) {
       route: "submissions.detail",
       enableSorting: false,
     }),
+    ModelColumns.NameColumn<SubmissionBulkPublishNode>({
+      id: "submittedBy",
+      header: () => t("lists.submitted_by_column"),
+      accessorKey: "user",
+      cell: ({ row }: CellContext<SubmissionBulkPublishNode, unknown>) => (
+        <UserNameColumnCell data={row.original.user} />
+      ),
+      enableSorting: false,
+      meta: {
+        filter: <SubmissionUserFilter />,
+      },
+    }),
     ModelColumns.StringColumn<SubmissionBulkPublishNode>({
       id: "collection",
       header: () => t("lists.collection_column"),
       accessorFn: (row: SubmissionBulkPublishNode) =>
         row.submissionTarget?.entity?.title ?? "",
+      meta: {
+        filter: <SubmissionCollectionFilter />,
+      },
     }),
     ModelColumns.UpdatedAtColumn<SubmissionBulkPublishNode>({
       enableSorting: false,
@@ -116,7 +128,7 @@ function SubmissionBulkPublishList({ data }: Props) {
 
   const actions = {
     handleView: ({ row }: ModelTableActionProps<SubmissionBulkPublishNode>) =>
-      row.original.slug ? `/submissions/${row.original.slug}/details` : null,
+      row.original.entity?.slug ? `/preview/${row.original.entity.slug}` : null,
     handlePublish: ({
       row,
     }: ModelTableActionProps<SubmissionBulkPublishNode>) => {
@@ -147,8 +159,6 @@ function SubmissionBulkPublishList({ data }: Props) {
     { route: "submissions.publish", label: t("nav.publish") },
   ];
 
-  const dialog = useDialogState({ animated: true });
-
   return (
     <ModelListPage<
       SubmissionBulkPublishListFragment$data,
@@ -165,6 +175,8 @@ function SubmissionBulkPublishList({ data }: Props) {
       rowSelection={rowSelection}
       onRowSelectionChange={onRowSelectionChange}
       selectedCount={selectedCount}
+      showSearch
+      hideFilters
       countActions={
         <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
           <ButtonControlConfirm
@@ -182,13 +194,6 @@ function SubmissionBulkPublishList({ data }: Props) {
           >
             {t("actions.submissions.bulk_publish")}
           </ButtonControlConfirm>
-          <DialogDisclosure
-            as={ButtonControl}
-            icon="settings"
-            aria-label="Filter options"
-            {...dialog}
-          />
-          <SubmissionFilterDrawer dialog={dialog} />
         </ButtonControlGroup>
       }
       currentFiltersOverride={<CurrentSubmissionFilters />}
@@ -208,6 +213,7 @@ const fragment = graphql`
         }
         ... on Entity {
           title
+          slug
         }
       }
       submissionTarget {
@@ -216,6 +222,11 @@ const fragment = graphql`
             title
           }
         }
+      }
+      user {
+        id
+        slug
+        ...UserNameColumnCellFragment
       }
     }
     ...ModelListPageFragment
