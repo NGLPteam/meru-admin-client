@@ -71,7 +71,7 @@ export default function SubmissionLayout({
       )}
       {canSubmit && <SubmitForReviewButton submission={submission} />}
       {canTransition && <TransitionSubmissionButton submission={submission} />}
-      {state !== "DRAFT" && submission?.entity && (
+      {canReview && submission?.entity && (
         <ButtonControlView
           href={`${process.env.NEXT_PUBLIC_FE_URL}/preview/${submission.entity.slug}`}
         >

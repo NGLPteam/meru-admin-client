@@ -3,16 +3,18 @@ import { StatusBadge } from "components/composed/submission/SubmissionList/Statu
 import SearchableFilterList from "components/layout/Table/filters/SearchableFilterList";
 import useQueryFilters from "hooks/useQueryFilters";
 import type { SelectOption } from "components/layout/Table/filters/SearchableFilterList";
-import type { SubmissionFilters } from "components/composed/submission/CurrentSubmissionFilters";
-import type { SubmissionState } from "types/graphql-schema";
+import type {
+  SubmissionState,
+  SubmissionReviewState,
+} from "types/graphql-schema";
 
 interface Props {
-  stateOptions: SubmissionState[];
+  stateOptions: (SubmissionState | SubmissionReviewState)[];
 }
 
 export default function SubmissionStatusFilter({ stateOptions }: Props) {
   const { t } = useTranslation();
-  const { filters, updateFilters } = useQueryFilters<SubmissionFilters>();
+  const { filters, updateFilters } = useQueryFilters<{ inState?: string[] }>();
 
   const selected = filters.inState ?? [];
 

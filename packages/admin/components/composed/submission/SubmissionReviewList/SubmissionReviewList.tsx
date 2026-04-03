@@ -1,14 +1,10 @@
 import { graphql } from "react-relay";
 import { useTranslation } from "react-i18next";
-import { useDialogState, DialogDisclosure } from "reakit/Dialog";
 import { useMaybeFragment } from "@wdp/lib/api/hooks";
-import { IconFactory } from "components/factories";
 import ModelListPage from "components/composed/model/ModelListPage";
 import ModelColumns from "components/composed/model/ModelColumns";
 import UserNameColumnCell from "components/composed/model/ModelColumns/UserNameColumnCell";
-import Search from "components/composed/search/Search";
-import { FiltersButton } from "components/composed/search/SearchWithFilters/SearchWithFilters.styles";
-import SubmissionReviewFilterDrawer from "components/composed/submission/SubmissionReviewFilterDrawer";
+import SubmissionStatusFilter from "components/composed/submission/SubmissionStatusFilter";
 import CurrentSubmissionReviewFilters from "components/composed/submission/CurrentSubmissionReviewFilters";
 import type {
   SubmissionReviewListFragment$data,
@@ -16,6 +12,7 @@ import type {
 } from "@/relay/SubmissionReviewListFragment.graphql";
 import type { LayoutManageSubmissionQuery$data } from "@/relay/LayoutManageSubmissionQuery.graphql";
 import RequestReviewButton from "./RequestReviewButton";
+import type { SubmissionReviewState } from "types/graphql-schema";
 import type { CellContext } from "@tanstack/react-table";
 
 type ReviewNode = SubmissionReviewListFragment$data["nodes"][number];
@@ -25,6 +22,13 @@ type Props = {
   mode: "reviewer" | "submission";
   submission?: LayoutManageSubmissionQuery$data["submission"];
 };
+
+const REVIEW_STATES: SubmissionReviewState[] = [
+  "PENDING",
+  "APPROVED",
+  "REJECTED",
+  "REVISION_REQUESTED",
+];
 
 function SubmissionReviewList({
   data,
@@ -37,7 +41,6 @@ function SubmissionReviewList({
   );
 
   const { t } = useTranslation();
-  const dialog = useDialogState({ animated: true });
 
   const canReview = !!reviews?.nodes?.[0]?.submission.canReview.value;
 
@@ -77,6 +80,13 @@ function SubmissionReviewList({
     ModelColumns.StatusColumn<ReviewNode>({
       header: () => t("lists.status_column"),
       accessorFn: (row: ReviewNode) => row.state,
+      ...(mode === "reviewer"
+        ? {
+            meta: {
+              filter: <SubmissionStatusFilter stateOptions={REVIEW_STATES} />,
+            },
+          }
+        : {}),
     }),
     ModelColumns.StringColumn<ReviewNode>({
       id: "comment",
@@ -91,18 +101,8 @@ function SubmissionReviewList({
         columns={columns}
         data={reviews}
         header={t("nav.my_reviews")}
-        searchOverride={
-          <>
-            <Search
-              filtersButton={
-                <DialogDisclosure as={FiltersButton} {...dialog}>
-                  <IconFactory icon="settings" title="Filter options" />
-                </DialogDisclosure>
-              }
-            />
-            <SubmissionReviewFilterDrawer dialog={dialog} />
-          </>
-        }
+        showSearch
+        hideFilters
         currentFiltersOverride={<CurrentSubmissionReviewFilters />}
       />
     );
