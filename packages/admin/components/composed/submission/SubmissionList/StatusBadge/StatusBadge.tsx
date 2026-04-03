@@ -1,10 +1,13 @@
 import { useTranslation } from "react-i18next";
 import * as Styled from "./StatusBadge.styles";
-import type { SubmissionState } from "types/graphql-schema";
+import type {
+  SubmissionState,
+  SubmissionReviewState,
+} from "types/graphql-schema";
 
 type KnownSubmissionState =
   | Exclude<SubmissionState, "%future added value">
-  | "PENDING";
+  | Exclude<SubmissionReviewState, "%future added value">;
 type ColorConfig = { bg: string; color: string };
 
 const STATUS_COLORS: Record<KnownSubmissionState, ColorConfig> = {
@@ -22,7 +25,7 @@ const STATUS_COLORS: Record<KnownSubmissionState, ColorConfig> = {
 };
 
 interface Props {
-  status: SubmissionState;
+  status: SubmissionState | SubmissionReviewState;
   className?: string;
 }
 
