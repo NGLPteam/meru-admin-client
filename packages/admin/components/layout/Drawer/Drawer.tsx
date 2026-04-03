@@ -61,7 +61,7 @@ const Drawer = ({
           </Styled.Content>
         ) : (
           <>
-            {header && <Styled.HeaderButtons>{buttons}</Styled.HeaderButtons>}
+            {buttons && <Styled.HeaderButtons>{buttons}</Styled.HeaderButtons>}
             <Styled.Content>{dialog.visible && children}</Styled.Content>
           </>
         )}

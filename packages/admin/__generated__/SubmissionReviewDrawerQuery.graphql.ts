@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a871b6edf0f6fc556a690dcd409fe525>>
+ * @generated SignedSource<<44de69313b3d4e2e61cbbcbfce854d22>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,6 +19,11 @@ export type SubmissionReviewDrawerQuery$data = {
       readonly title: string;
     } | null | undefined;
     readonly id: string;
+    readonly submissionTarget: {
+      readonly description: {
+        readonly internal: string;
+      };
+    } | null | undefined;
   } | null | undefined;
 };
 export type SubmissionReviewDrawerQuery = {
@@ -51,6 +56,24 @@ v2 = {
 v3 = {
   "alias": null,
   "args": null,
+  "concreteType": "SubmissionTargetDescription",
+  "kind": "LinkedField",
+  "name": "description",
+  "plural": false,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "internal",
+      "storageKey": null
+    }
+  ],
+  "storageKey": null
+},
+v4 = {
+  "alias": null,
+  "args": null,
   "kind": "ScalarField",
   "name": "title",
   "storageKey": null
@@ -74,13 +97,25 @@ return {
           {
             "alias": null,
             "args": null,
+            "concreteType": "SubmissionTarget",
+            "kind": "LinkedField",
+            "name": "submissionTarget",
+            "plural": false,
+            "selections": [
+              (v3/*: any*/)
+            ],
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
             "concreteType": null,
             "kind": "LinkedField",
             "name": "entity",
             "plural": false,
             "selections": [
               (v2/*: any*/),
-              (v3/*: any*/)
+              (v4/*: any*/)
             ],
             "storageKey": null
           }
@@ -109,6 +144,19 @@ return {
           {
             "alias": null,
             "args": null,
+            "concreteType": "SubmissionTarget",
+            "kind": "LinkedField",
+            "name": "submissionTarget",
+            "plural": false,
+            "selections": [
+              (v3/*: any*/),
+              (v2/*: any*/)
+            ],
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
             "concreteType": null,
             "kind": "LinkedField",
             "name": "entity",
@@ -126,7 +174,7 @@ return {
                 "abstractKey": "__isEntity"
               },
               (v2/*: any*/),
-              (v3/*: any*/)
+              (v4/*: any*/)
             ],
             "storageKey": null
           }
@@ -136,16 +184,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "b005109ba6a12395203be8c924825c42",
+    "cacheID": "539fc4b5ec6a5f7b9b71c5136e3c9fe1",
     "id": null,
     "metadata": {},
     "name": "SubmissionReviewDrawerQuery",
     "operationKind": "query",
-    "text": "query SubmissionReviewDrawerQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    id\n    entity {\n      __typename\n      __isEntity: __typename\n      id\n      title\n    }\n  }\n}\n"
+    "text": "query SubmissionReviewDrawerQuery(\n  $slug: Slug!\n) {\n  submission(slug: $slug) {\n    id\n    submissionTarget {\n      description {\n        internal\n      }\n      id\n    }\n    entity {\n      __typename\n      __isEntity: __typename\n      id\n      title\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "1a78f898a69fe91453ce00bda3517ba4";
+(node as any).hash = "9c82a4a804c005685e5cbbfa38b9540f";
 
 export default node;

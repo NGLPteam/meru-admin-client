@@ -30,6 +30,9 @@ export default function SubmissionReviewDrawer({
           {data?.submission && (
             <SubmissionReviewForm
               submissionId={data.submission.id}
+              instructions={
+                data.submission.submissionTarget?.description?.internal
+              }
               onSuccess={dialog.hide}
               onCancel={dialog.hide}
             />
@@ -44,6 +47,11 @@ const query = graphql`
   query SubmissionReviewDrawerQuery($slug: Slug!) {
     submission(slug: $slug) {
       id
+      submissionTarget {
+        description {
+          internal
+        }
+      }
       entity {
         ... on Entity {
           id

@@ -4,13 +4,15 @@ import { useTranslation } from "react-i18next";
 import { graphql, useMutation } from "react-relay";
 import { Grid, Select, Textarea } from "components/forms";
 import { Button } from "components/atomic";
-import * as Styled from "components/api/MutationForm/MutationForm.styles";
+import BaseMarkdown from "components/atomic/Markdown/BaseMarkdown";
+import { Footer } from "components/api/MutationForm/MutationForm.styles";
 import { useNotify } from "hooks";
 import type {
   SubmissionReviewFormMutation as Mutation,
   SubmissionReviewFormMutation$data as Mutation$data,
   SubmissionReviewState,
 } from "@/relay/SubmissionReviewFormMutation.graphql";
+import * as Styled from "./SubmissionReviewForm.styles";
 import type { MutationAttributeError } from "types/graphql-schema";
 
 type Fields = {
@@ -22,10 +24,12 @@ export default function SubmissionReviewForm({
   submissionId,
   onSuccess,
   onCancel,
+  instructions,
 }: {
   submissionId: string;
   onSuccess?: () => void;
   onCancel?: () => void;
+  instructions?: string;
 }) {
   const { t } = useTranslation();
   const notify = useNotify();
@@ -78,6 +82,11 @@ export default function SubmissionReviewForm({
     <FormProvider {...form}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid>
+          {!!instructions && (
+            <Styled.Box>
+              <BaseMarkdown>{instructions}</BaseMarkdown>
+            </Styled.Box>
+          )}
           <Select
             label="forms.fields.decision"
             options={decisionOptions}
@@ -93,7 +102,7 @@ export default function SubmissionReviewForm({
             {...register("comment")}
           />
         </Grid>
-        <Styled.Footer className="l-flex l-flex--gap">
+        <Footer className="l-flex l-flex--gap">
           <Button type="submit" disabled={inFlight}>
             {t("common.submit")}
           </Button>
@@ -102,7 +111,7 @@ export default function SubmissionReviewForm({
               {t("common.cancel")}
             </Button>
           )}
-        </Styled.Footer>
+        </Footer>
       </form>
     </FormProvider>
   );
