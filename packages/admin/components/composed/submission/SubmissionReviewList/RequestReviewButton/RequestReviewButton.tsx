@@ -15,6 +15,7 @@ import type {
   SubmissionRequestReviewInput,
   RequestReviewButtonMutation,
 } from "@/relay/RequestReviewButtonMutation.graphql";
+import * as Styled from "./RequestReviewButton.styles";
 
 export default function RequestReviewButton({ submissionId }: Props) {
   const { t } = useTranslation();
@@ -34,13 +35,15 @@ export default function RequestReviewButton({ submissionId }: Props) {
     ({ form: { register, control } }) => (
       <Forms.Grid>
         <input type="hidden" {...register("submissionId")} />
-        <Suspense fallback={<FormFieldSkeleton />}>
-          <UserTypeahead
-            label="forms.fields.user"
-            name="userId"
-            control={control}
-          />
-        </Suspense>
+        <Styled.TypeaheadWrapper>
+          <Suspense fallback={<FormFieldSkeleton />}>
+            <UserTypeahead
+              label="forms.fields.user"
+              name="userId"
+              control={control}
+            />
+          </Suspense>
+        </Styled.TypeaheadWrapper>
       </Forms.Grid>
     ),
     [],
