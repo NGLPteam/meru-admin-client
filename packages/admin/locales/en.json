@@ -307,7 +307,9 @@
       "cache": {
         "instance_success": "Instance cache cleared successfully.",
         "instance_confirm_label": "Confirm Clear Instance Cache",
-        "instance_confirm_body": "Are you sure you want to clear the frontend cache for all entities in this instance?",
+        "instance_confirm_body": "Are you sure you want to clear the frontend cache for all entities in this instance? This is a large update that will take time to process. To update just the homepage communities and counts, select Homepage Only.",
+        "homepage_only": "Homepage Only",
+        "entire_instance": "Entire Instance",
         "entity_success": "Entity cache cleared successfully.",
         "entity_confirm_label": "Confirm Clear Entity Cache",
         "entity_confirm_body": "Are you sure you want to clear the frontend cache for this entity?"
