@@ -101,8 +101,6 @@ function SubmissionReviewList({
         columns={columns}
         data={reviews}
         header={t("nav.my_reviews")}
-        showSearch
-        hideFilters
         currentFiltersOverride={<CurrentSubmissionReviewFilters />}
       />
     );

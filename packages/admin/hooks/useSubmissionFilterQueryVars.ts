@@ -30,6 +30,8 @@ export default function useSubmissionFilterQueryVars({
     return Object.keys(rest).length > 0 ? rest : undefined;
   })();
 
+  const q = String(router.query.q ?? "").trim();
+
   let filters: SubmissionFilterInput | undefined;
 
   if (userFilters?.inState && baseFilters?.inState) {
@@ -45,6 +47,10 @@ export default function useSubmissionFilterQueryVars({
     filters = { ...baseFilters, ...userFilters };
   } else {
     filters = baseFilters;
+  }
+
+  if (q) {
+    filters = { ...(filters ?? {}), query: q };
   }
 
   return { page, order, filters };
