@@ -23,17 +23,12 @@ import type {
   SubmissionTargetConfigureFormOpenMutation,
   SubmissionTargetConfigureFormOpenMutation$data,
 } from "@/relay/SubmissionTargetConfigureFormOpenMutation.graphql";
-import type { settingsSubmissionsSlugCollectionsPagesQuery$data } from "@/relay/settingsSubmissionsSlugCollectionsPagesQuery.graphql";
-
-type DepositTarget = {
-  id: string;
-  title: string;
-};
+import type { CollectionSubmissionSettingsFragment$data } from "@/relay/CollectionSubmissionSettingsFragment.graphql";
 
 export default function SubmissionTargetConfigureForm({
   collectionId,
+  collectionSchema,
   data,
-  schemaVersionOptions,
 }: Props) {
   const { t } = useTranslation();
   const collectionSlug = useRouteSlug() as string;
@@ -50,42 +45,39 @@ export default function SubmissionTargetConfigureForm({
 
   const configurableId = target?.targetId ?? collectionId;
 
-  const schemaOptions = schemaVersionOptions.map((opt) => ({
-    label: opt.label,
-    value: opt.schemaVersion.id,
-  }));
+  const schemaOptions =
+    collectionSchema?.submittableVersions?.map((opt) => ({
+      label: opt.name,
+      value: opt.id,
+    })) ?? [];
 
   const initialSchemaVersionIds =
     target?.schemaVersions?.map((sv) => sv.id) ?? [];
 
-  const initialTargets: DepositTarget[] =
+  const initialTargets =
     target?.depositTargets
-      ?.filter((dt) => dt.entity.id)
+      ?.filter((dt) => !!dt?.entity.id && dt.entity.id !== collectionId)
       .map((dt) => ({
         id: dt.entity.id!,
         title: dt.entity.title,
       })) ?? [];
 
-  const [depositTargets, setDepositTargets] =
-    useState<DepositTarget[]>(initialTargets);
+  const [depositTargets, setDepositTargets] = useState(initialTargets);
 
-  const handleAddTarget = useCallback((id: string, title: string) => {
+  const handleAddTarget = (id: string, title: string) => {
     setDepositTargets((prev) => {
       if (prev.some((t) => t.id === id)) return prev;
       return [...prev, { id, title }];
     });
-  }, []);
+  };
 
-  const handleRemoveTarget = useCallback((id: string) => {
+  const handleRemoveTarget = (id: string) => {
     setDepositTargets((prev) => prev.filter((t) => t.id !== id));
-  }, []);
+  };
 
   const defaultValues: SubmissionTargetConfigureInput = {
     configurableId,
-    depositMode:
-      target?.depositMode === "DIRECT" || target?.depositMode === "DESCENDANT"
-        ? target.depositMode
-        : "DIRECT",
+    depositMode: target?.depositMode ? target.depositMode : "DIRECT",
     description: {
       instructions: target?.description?.instructions ?? "",
       internal: target?.description?.internal ?? "",
@@ -104,7 +96,9 @@ export default function SubmissionTargetConfigureForm({
       input: {
         ...data,
         configurableId,
-        depositTargetIds: depositTargets.map((t) => t.id),
+        ...(depositTargets.length
+          ? { depositTargetIds: depositTargets.map((t) => t.id) }
+          : {}),
       },
     }),
     [configurableId, depositTargets],
@@ -170,7 +164,7 @@ export default function SubmissionTargetConfigureForm({
             label={t("forms.fields.deposit_targets")}
             description={t("forms.fields.deposit_targets_description")}
           >
-            {depositTargets.length > 0 && (
+            {!!depositTargets.length && (
               <BaseArrayList>
                 {depositTargets.map((dt) => (
                   <BaseArrayListItem
@@ -268,8 +262,8 @@ export default function SubmissionTargetConfigureForm({
 
 interface Props {
   collectionId: string;
+  collectionSchema: CollectionSubmissionSettingsFragment$data["schemaVersion"];
   data: SubmissionTargetConfigureFormFragment$key | null;
-  schemaVersionOptions: settingsSubmissionsSlugCollectionsPagesQuery$data["schemaVersionOptions"];
 }
 
 const fragment = graphql`

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a932d3ef9978985e1e0dfbce132e5a0f>>
+ * @generated SignedSource<<656c4c17ea455f91cbb0627d59eba9a9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,6 +11,7 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type SubmissionCreateInput = {
+  agreementAccepted?: boolean | null | undefined;
   clientMutationId?: string | null | undefined;
   parentEntityId: string;
   schemaVersionId: string;

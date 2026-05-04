@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b3f75835aa9ecb9a7ee7a6201cbaee15>>
+ * @generated SignedSource<<9ae076aeb7c51762f656636ca3b9f666>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,7 @@ export type SubmissionDepositMode = "DESCENDANT" | "DIRECT" | "%future added val
 export type SubmissionTargetConfigureInput = {
   agreementContent?: string | null | undefined;
   agreementRequired?: boolean | null | undefined;
+  autoApproveDepositors?: boolean | null | undefined;
   clientMutationId?: string | null | undefined;
   configurableId: string;
   depositMode?: SubmissionDepositMode | null | undefined;

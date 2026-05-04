@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3f4f33eddb0257875d22689555e0df37>>
+ * @generated SignedSource<<5a29b98012247c58320ecd6120b11d3d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,6 +12,12 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type CollectionSubmissionSettingsFragment$data = {
   readonly collectionId: string;
+  readonly schemaVersion: {
+    readonly submittableVersions: ReadonlyArray<{
+      readonly id: string;
+      readonly name: string;
+    }>;
+  };
   readonly submissionTarget: {
     readonly " $fragmentSpreads": FragmentRefs<"SubmissionTargetConfigureFormFragment" | "SubmissionTargetStateToggleFragment">;
   } | null | undefined;
@@ -33,6 +39,42 @@ const node: ReaderFragment = {
       "args": null,
       "kind": "ScalarField",
       "name": "id",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "SchemaVersion",
+      "kind": "LinkedField",
+      "name": "schemaVersion",
+      "plural": false,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "SchemaVersion",
+          "kind": "LinkedField",
+          "name": "submittableVersions",
+          "plural": true,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "id",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "name",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        }
+      ],
       "storageKey": null
     },
     {
@@ -61,6 +103,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "61193f3cbbd77726f321dc00bc8ead9e";
+(node as any).hash = "3e8155fa66ab95b24e1ce69415dfa733";
 
 export default node;

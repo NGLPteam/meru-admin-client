@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1a62882b969d4e0c82d4dfcb792a71b2>>
+ * @generated SignedSource<<c14666d67ea4e7e9c6170edb43e57a95>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,6 +16,8 @@ export type SubmissionFilterInput = {
   createdAt?: TimeFilterMatch | null | undefined;
   inState?: ReadonlyArray<SubmissionState> | null | undefined;
   parentEntity?: ReadonlyArray<string> | null | undefined;
+  prefix?: string | null | undefined;
+  query?: string | null | undefined;
   schemaVersionIds?: ReadonlyArray<string> | null | undefined;
   submissionTargetIds?: ReadonlyArray<string> | null | undefined;
   updatedAt?: TimeFilterMatch | null | undefined;

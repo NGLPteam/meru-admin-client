@@ -5,17 +5,9 @@ import Layout from "./_layout";
 import type { GetLayout } from "@wdp/lib/types/page";
 
 function CollectionSubmissionsSettings({ queryRef }: Props) {
-  const { collection, schemaVersionOptions } = usePreloadedQuery<Query>(
-    query,
-    queryRef,
-  );
+  const { collection } = usePreloadedQuery<Query>(query, queryRef);
 
-  return collection ? (
-    <CollectionSubmissionSettings
-      data={collection}
-      schemaVersionOptions={schemaVersionOptions}
-    />
-  ) : null;
+  return collection ? <CollectionSubmissionSettings data={collection} /> : null;
 }
 
 const getLayout: GetLayout<Props> = (props) => (
@@ -38,13 +30,6 @@ const query = graphql`
     collection(slug: $slug) {
       slug
       ...CollectionSubmissionSettingsFragment
-    }
-    schemaVersionOptions(kind: ITEM) {
-      label
-      value
-      schemaVersion {
-        id
-      }
     }
   }
 `;
