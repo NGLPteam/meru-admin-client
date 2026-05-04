@@ -21,6 +21,7 @@ export default function ContributorsProperty(props: Props) {
         <Controller
           name={name}
           control={control}
+          rules={{ required }}
           render={({ field }) => (
             <Multiselect
               label={label}

@@ -178,7 +178,6 @@ function Multiselect<T extends Record<string, unknown>>(
           <HiddenMultiselect<T>
             ref={ref}
             name={name}
-            required={required}
             defaultValue={selectedItems}
             options={options}
             {...inputProps}

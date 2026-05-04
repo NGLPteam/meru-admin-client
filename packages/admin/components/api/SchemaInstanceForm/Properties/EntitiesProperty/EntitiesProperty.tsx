@@ -33,6 +33,7 @@ export default function EntitiesProperty({ schemaKind, ...props }: Props) {
         <Controller
           name={name}
           control={control}
+          rules={{ required }}
           render={({ field: { ...props } }) => (
             <Multiselect
               label={label}
