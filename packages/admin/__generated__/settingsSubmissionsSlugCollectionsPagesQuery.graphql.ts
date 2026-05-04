@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0cac868cb8c63d36d94bef3c3ac0418f>>
+ * @generated SignedSource<<476f112d5d408f0a29faae40d31522a9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -18,13 +18,6 @@ export type settingsSubmissionsSlugCollectionsPagesQuery$data = {
     readonly slug: string;
     readonly " $fragmentSpreads": FragmentRefs<"CollectionSubmissionSettingsFragment">;
   } | null | undefined;
-  readonly schemaVersionOptions: ReadonlyArray<{
-    readonly label: string;
-    readonly schemaVersion: {
-      readonly id: string;
-    };
-    readonly value: string;
-  }>;
 };
 export type settingsSubmissionsSlugCollectionsPagesQuery = {
   response: settingsSubmissionsSlugCollectionsPagesQuery$data;
@@ -60,49 +53,16 @@ v3 = {
   "name": "id",
   "storageKey": null
 },
-v4 = {
-  "alias": null,
-  "args": [
-    {
-      "kind": "Literal",
-      "name": "kind",
-      "value": "ITEM"
-    }
-  ],
-  "concreteType": "SchemaVersionOption",
-  "kind": "LinkedField",
-  "name": "schemaVersionOptions",
-  "plural": true,
-  "selections": [
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "label",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "value",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "concreteType": "SchemaVersion",
-      "kind": "LinkedField",
-      "name": "schemaVersion",
-      "plural": false,
-      "selections": [
-        (v3/*: any*/)
-      ],
-      "storageKey": null
-    }
-  ],
-  "storageKey": "schemaVersionOptions(kind:\"ITEM\")"
-};
+v4 = [
+  (v3/*: any*/),
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "name",
+    "storageKey": null
+  }
+];
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -126,8 +86,7 @@ return {
           }
         ],
         "storageKey": null
-      },
-      (v4/*: any*/)
+      }
     ],
     "type": "Query",
     "abstractKey": null
@@ -152,6 +111,28 @@ return {
             "args": null,
             "kind": "ScalarField",
             "name": "id",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "SchemaVersion",
+            "kind": "LinkedField",
+            "name": "schemaVersion",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "SchemaVersion",
+                "kind": "LinkedField",
+                "name": "submittableVersions",
+                "plural": true,
+                "selections": (v4/*: any*/),
+                "storageKey": null
+              },
+              (v3/*: any*/)
+            ],
             "storageKey": null
           },
           {
@@ -222,16 +203,7 @@ return {
                 "kind": "LinkedField",
                 "name": "schemaVersions",
                 "plural": true,
-                "selections": [
-                  (v3/*: any*/),
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "name",
-                    "storageKey": null
-                  }
-                ],
+                "selections": (v4/*: any*/),
                 "storageKey": null
               },
               {
@@ -301,21 +273,20 @@ return {
           (v3/*: any*/)
         ],
         "storageKey": null
-      },
-      (v4/*: any*/)
+      }
     ]
   },
   "params": {
-    "cacheID": "0714cae53a44b23926c5a2760aaa6678",
+    "cacheID": "6ab04101fd4ccb0dc50e87a303ed6bbd",
     "id": null,
     "metadata": {},
     "name": "settingsSubmissionsSlugCollectionsPagesQuery",
     "operationKind": "query",
-    "text": "query settingsSubmissionsSlugCollectionsPagesQuery(\n  $slug: Slug!\n) {\n  collection(slug: $slug) {\n    slug\n    ...CollectionSubmissionSettingsFragment\n    id\n  }\n  schemaVersionOptions(kind: ITEM) {\n    label\n    value\n    schemaVersion {\n      id\n    }\n  }\n}\n\nfragment CollectionSubmissionSettingsFragment on Collection {\n  collectionId: id\n  submissionTarget {\n    ...SubmissionTargetConfigureFormFragment\n    ...SubmissionTargetStateToggleFragment\n    id\n  }\n}\n\nfragment SubmissionTargetConfigureFormFragment on SubmissionTarget {\n  targetId: id\n  depositMode\n  agreementRequired\n  agreementContent\n  description {\n    instructions\n    internal\n  }\n  schemaVersions {\n    id\n    name\n  }\n  depositTargets {\n    entity {\n      __typename\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n      __isEntity: __typename\n      title\n      id\n    }\n    id\n  }\n}\n\nfragment SubmissionTargetStateToggleFragment on SubmissionTarget {\n  submissionTargetId: id\n  state\n}\n"
+    "text": "query settingsSubmissionsSlugCollectionsPagesQuery(\n  $slug: Slug!\n) {\n  collection(slug: $slug) {\n    slug\n    ...CollectionSubmissionSettingsFragment\n    id\n  }\n}\n\nfragment CollectionSubmissionSettingsFragment on Collection {\n  collectionId: id\n  schemaVersion {\n    submittableVersions {\n      id\n      name\n    }\n    id\n  }\n  submissionTarget {\n    ...SubmissionTargetConfigureFormFragment\n    ...SubmissionTargetStateToggleFragment\n    id\n  }\n}\n\nfragment SubmissionTargetConfigureFormFragment on SubmissionTarget {\n  targetId: id\n  depositMode\n  agreementRequired\n  agreementContent\n  description {\n    instructions\n    internal\n  }\n  schemaVersions {\n    id\n    name\n  }\n  depositTargets {\n    entity {\n      __typename\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n      __isEntity: __typename\n      title\n      id\n    }\n    id\n  }\n}\n\nfragment SubmissionTargetStateToggleFragment on SubmissionTarget {\n  submissionTargetId: id\n  state\n}\n"
   }
 };
 })();
 
-(node as any).hash = "83d6a881752cef128fea45eaaaa390d1";
+(node as any).hash = "1326f15af8286c23d300edf32f5e1555";
 
 export default node;

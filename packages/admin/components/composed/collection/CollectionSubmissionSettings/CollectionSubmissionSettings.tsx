@@ -4,13 +4,9 @@ import { MessageBanner } from "components/atomic/MessageBanner";
 import SubmissionTargetConfigureForm from "components/composed/submissionTarget/SubmissionTargetConfigureForm";
 import SubmissionTargetStateToggle from "components/composed/submissionTarget/SubmissionTargetStateToggle";
 import type { CollectionSubmissionSettingsFragment$key } from "@/relay/CollectionSubmissionSettingsFragment.graphql";
-import type { settingsSubmissionsSlugCollectionsPagesQuery$data } from "@/relay/settingsSubmissionsSlugCollectionsPagesQuery.graphql";
 import * as Styled from "./CollectionSubmissionSettings.styles";
 
-export default function CollectionSubmissionSettings({
-  data,
-  schemaVersionOptions,
-}: Props) {
+export default function CollectionSubmissionSettings({ data }: Props) {
   const { t } = useTranslation();
 
   const collection = useFragment<CollectionSubmissionSettingsFragment$key>(
@@ -18,7 +14,7 @@ export default function CollectionSubmissionSettings({
     data,
   );
 
-  const { collectionId, submissionTarget } = collection;
+  const { collectionId, schemaVersion, submissionTarget } = collection;
 
   return (
     <>
@@ -36,8 +32,8 @@ export default function CollectionSubmissionSettings({
       )}
       <SubmissionTargetConfigureForm
         collectionId={collectionId}
+        collectionSchema={schemaVersion}
         data={submissionTarget ?? null}
-        schemaVersionOptions={schemaVersionOptions}
       />
     </>
   );
@@ -45,12 +41,17 @@ export default function CollectionSubmissionSettings({
 
 interface Props {
   data: CollectionSubmissionSettingsFragment$key;
-  schemaVersionOptions: settingsSubmissionsSlugCollectionsPagesQuery$data["schemaVersionOptions"];
 }
 
 const fragment = graphql`
   fragment CollectionSubmissionSettingsFragment on Collection {
     collectionId: id
+    schemaVersion {
+      submittableVersions {
+        id
+        name
+      }
+    }
     submissionTarget {
       ...SubmissionTargetConfigureFormFragment
       ...SubmissionTargetStateToggleFragment
