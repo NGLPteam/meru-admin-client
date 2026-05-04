@@ -1119,6 +1119,11 @@ export type AssetProperty = ScalarProperty & SchemaProperty & {
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -1158,6 +1163,11 @@ export type AssetProperty = ScalarProperty & SchemaProperty & {
    *
    */
   required: Scalars['Boolean']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -1314,6 +1324,11 @@ export type AssetsProperty = ScalarProperty & SchemaProperty & {
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -1353,6 +1368,11 @@ export type AssetsProperty = ScalarProperty & SchemaProperty & {
    *
    */
   required: Scalars['Boolean']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -1618,6 +1638,11 @@ export type BooleanProperty = ScalarProperty & SchemaProperty & SearchableProper
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -1655,6 +1680,11 @@ export type BooleanProperty = ScalarProperty & SchemaProperty & SearchableProper
   required: Scalars['Boolean']['output'];
   searchOperators: Array<SearchOperator>;
   searchPath: Scalars['String']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -2879,9 +2909,11 @@ export type CollectionItemsArgs = {
   access?: InputMaybe<EntityPermissionFilter>;
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
+  filters?: InputMaybe<ItemFilterInput>;
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   nodeFilter?: InputMaybe<TreeNodeFilter>;
+  orFilters?: InputMaybe<Array<ItemFilterInput>>;
   order?: InputMaybe<EntityOrder>;
   page?: InputMaybe<Scalars['Int']['input']>;
   pageDirection?: InputMaybe<PageDirection>;
@@ -4132,6 +4164,11 @@ export type Contributor = {
    */
   title?: Maybe<Scalars['String']['output']>;
   url?: Maybe<Scalars['String']['output']>;
+  /**
+   * The link between this contributor and a user, if any exists.
+   *
+   */
+  userLink?: Maybe<ContributorUserLink>;
 };
 
 
@@ -4327,6 +4364,11 @@ export type ContributorBase = {
    */
   title?: Maybe<Scalars['String']['output']>;
   url?: Maybe<Scalars['String']['output']>;
+  /**
+   * The link between this contributor and a user, if any exists.
+   *
+   */
+  userLink?: Maybe<ContributorUserLink>;
 };
 
 /**
@@ -4720,6 +4762,11 @@ export type ContributorProperty = ScalarProperty & SchemaProperty & {
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -4760,6 +4807,11 @@ export type ContributorProperty = ScalarProperty & SchemaProperty & {
    */
   required: Scalars['Boolean']['output'];
   /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
+  /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
    *
@@ -4779,6 +4831,155 @@ export type ContributorSelectOption = {
   label: Scalars['String']['output'];
   value: Scalars['String']['output'];
 };
+
+/**
+ * A link between a `Contributor` and a `User`, indicating that the user
+ * is represented within Meru as that record.
+ *
+ */
+export type ContributorUserLink = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
+  __typename?: 'ContributorUserLink';
+  /**
+   * Whether the current user has permission to destroy this record.
+   *
+   */
+  canDestroy: AuthorizationResult;
+  /**
+   * Whether the current user has permission to update this record.
+   *
+   */
+  canUpdate: AuthorizationResult;
+  /**
+   * The contributor associated with this link.
+   *
+   */
+  contributor: Contributor;
+  /** The date this record was created within the API. */
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was created within the API (date only). */
+  createdOn: Scalars['ISO8601Date']['output'];
+  id: Scalars['ID']['output'];
+  /**
+   * The type of link between the contributor and user.
+   *
+   */
+  linkage: ContributorUserLinkage;
+  slug: Scalars['Slug']['output'];
+  /** The date this record was last updated within the API. */
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  /** The date this record was last updated within the API (date only). */
+  updatedOn: Scalars['ISO8601Date']['output'];
+  /**
+   * The user associated with this link.
+   *
+   * If the current viewer cannot see the user record, this will be null.
+   *
+   */
+  user?: Maybe<User>;
+};
+
+/** Autogenerated input type of ContributorUserLinkDestroy */
+export type ContributorUserLinkDestroyInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The contributor user link to destroy.
+   *
+   */
+  contributorUserLinkId: Scalars['ID']['input'];
+};
+
+/** Autogenerated return type of ContributorUserLinkDestroy. */
+export type ContributorUserLinkDestroyPayload = DestroyMutationPayload & StandardMutationPayload & {
+  __typename?: 'ContributorUserLinkDestroyPayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Whether or not the model was successfully destroyed. If false, check globalErrors */
+  destroyed?: Maybe<Scalars['Boolean']['output']>;
+  /** The ID of the deleted model */
+  destroyedId?: Maybe<Scalars['ID']['output']>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+};
+
+/** Autogenerated input type of ContributorUserLinkUpsert */
+export type ContributorUserLinkUpsertInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The contributor to update.
+   *
+   */
+  contributorId: Scalars['ID']['input'];
+  /**
+   * The type of link to create or update between the contributor and user.
+   *
+   * Setting `PRIMARY` will override any other primary set for the associated user.
+   *
+   */
+  linkage: ContributorUserLinkage;
+  /**
+   * The user to link to the contributor.
+   *
+   */
+  userId: Scalars['ID']['input'];
+};
+
+/** Autogenerated return type of ContributorUserLinkUpsert. */
+export type ContributorUserLinkUpsertPayload = StandardMutationPayload & {
+  __typename?: 'ContributorUserLinkUpsertPayload';
+  attributeErrors: Array<MutationAttributeError>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /**
+   * The newly-linked contributor, if successful.
+   *
+   */
+  contributor?: Maybe<Contributor>;
+  /**
+   * The newly-created or updated link, if successful.
+   *
+   */
+  contributorUserLink?: Maybe<ContributorUserLink>;
+  /** @deprecated Use attributeErrors or globalErrors */
+  errors: Array<UserError>;
+  globalErrors: Array<MutationGlobalError>;
+  /** Not presently used */
+  haltCode?: Maybe<Scalars['String']['output']>;
+  /**
+   * The user linked to the contributor, if successful.
+   *
+   */
+  user?: Maybe<User>;
+};
+
+/**
+ * The type of link between a `Contributor` and a `User` in a `ContributorUserLink`.
+ *
+ */
+export type ContributorUserLinkage =
+  /**
+   * An auxiliary link indicates that the `Contributor` is an additional identity for the user.
+   *
+   * This may be the case for users who've published under different names, or are being managed
+   * by a user account representing a team or organization, etc.
+   *
+   * A user may have multiple auxiliary links. Setting a new auxiliary link does not affect existing ones.
+   *
+   */
+  | 'AUXILIARY'
+  /**
+   * A primary link indicates that the `Contributor` is the primary identity for the user.
+   *
+   * A user may only have one primary link. Setting a new primary link will invalidate the previous.
+   *
+   */
+  | 'PRIMARY'
+  | '%future added value';
 
 export type ContributorsProperty = ScalarProperty & SchemaProperty & {
   __typename?: 'ContributorsProperty';
@@ -4813,6 +5014,11 @@ export type ContributorsProperty = ScalarProperty & SchemaProperty & {
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -4852,6 +5058,11 @@ export type ContributorsProperty = ScalarProperty & SchemaProperty & {
    *
    */
   required: Scalars['Boolean']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -4904,6 +5115,11 @@ export type ControlledVocabulariesProperty = HasControlledVocabulary & ScalarPro
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -4943,6 +5159,11 @@ export type ControlledVocabulariesProperty = HasControlledVocabulary & ScalarPro
    *
    */
   required: Scalars['Boolean']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -5218,6 +5439,11 @@ export type ControlledVocabularyProperty = HasControlledVocabulary & ScalarPrope
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -5257,6 +5483,11 @@ export type ControlledVocabularyProperty = HasControlledVocabulary & ScalarPrope
    *
    */
   required: Scalars['Boolean']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -6000,6 +6231,11 @@ export type DateProperty = ScalarProperty & SchemaProperty & SearchableProperty 
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -6037,6 +6273,11 @@ export type DateProperty = ScalarProperty & SchemaProperty & SearchableProperty 
   required: Scalars['Boolean']['output'];
   searchOperators: Array<SearchOperator>;
   searchPath: Scalars['String']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -7519,6 +7760,11 @@ export type EmailProperty = ScalarProperty & SchemaProperty & {
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -7558,6 +7804,11 @@ export type EmailProperty = ScalarProperty & SchemaProperty & {
    *
    */
   required: Scalars['Boolean']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -7619,6 +7870,11 @@ export type EntitiesProperty = HasAvailableEntities & ScalarProperty & SchemaPro
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -7658,6 +7914,11 @@ export type EntitiesProperty = HasAvailableEntities & ScalarProperty & SchemaPro
    *
    */
   required: Scalars['Boolean']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -8489,6 +8750,11 @@ export type EntityProperty = HasAvailableEntities & ScalarProperty & SchemaPrope
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -8528,6 +8794,11 @@ export type EntityProperty = HasAvailableEntities & ScalarProperty & SchemaPrope
    *
    */
   required: Scalars['Boolean']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -8770,6 +9041,11 @@ export type FloatProperty = ScalarProperty & SchemaProperty & SearchableProperty
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -8807,6 +9083,11 @@ export type FloatProperty = ScalarProperty & SchemaProperty & SearchableProperty
   required: Scalars['Boolean']['output'];
   searchOperators: Array<SearchOperator>;
   searchPath: Scalars['String']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -8917,6 +9198,11 @@ export type FullTextProperty = ScalarProperty & SchemaProperty & SearchablePrope
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -8954,6 +9240,11 @@ export type FullTextProperty = ScalarProperty & SchemaProperty & SearchablePrope
   required: Scalars['Boolean']['output'];
   searchOperators: Array<SearchOperator>;
   searchPath: Scalars['String']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -9158,6 +9449,8 @@ export type HarvestAttempt = CommonPermissions & HasDefaultTimestamps & HasHarve
   extractionMappingTemplate: Scalars['String']['output'];
   /**
    * A list of errors that are associated with this harvesting type.
+   *
+   * @deprecated Harvest errors are no longer returned nor generated. Check the harvest messages instead.
    *
    */
   harvestErrors: Array<HarvestError>;
@@ -10851,6 +11144,8 @@ export type HarvestRecord = CommonPermissions & HasDefaultTimestamps & HasHarves
   /**
    * A list of errors that are associated with this harvesting type.
    *
+   * @deprecated Harvest errors are no longer returned nor generated. Check the harvest messages instead.
+   *
    */
   harvestErrors: Array<HarvestError>;
   harvestMessages: HarvestMessageConnection;
@@ -11826,6 +12121,8 @@ export type HasHarvestErrors = {
   /**
    * A list of errors that are associated with this harvesting type.
    *
+   * @deprecated Harvest errors are no longer returned nor generated. Check the harvest messages instead.
+   *
    */
   harvestErrors: Array<HarvestError>;
 };
@@ -12657,6 +12954,11 @@ export type IntegerProperty = ScalarProperty & SchemaProperty & SearchableProper
    *
    */
   function: SchemaPropertyFunction;
+  /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
   integerValue?: Maybe<Scalars['Int']['output']>;
   /**
    * Whether to render a field as "wide" (two columns) in the form.
@@ -12696,6 +12998,11 @@ export type IntegerProperty = ScalarProperty & SchemaProperty & SearchableProper
   required: Scalars['Boolean']['output'];
   searchOperators: Array<SearchOperator>;
   searchPath: Scalars['String']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -13540,6 +13847,28 @@ export type ItemEdge = {
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Item;
+};
+
+/**
+ * Filters for Item.
+ *
+ */
+export type ItemFilterInput = {
+  /**
+   * Filter the model's `created_at` with time constraints.
+   *
+   */
+  createdAt?: InputMaybe<TimeFilterMatch>;
+  /**
+   * Whether to include items that are in draft state (i.e. items that are associated with a submission).
+   *
+   */
+  includeDrafts?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * Filter the model's `updated_at` with time constraints.
+   *
+   */
+  updatedAt?: InputMaybe<TimeFilterMatch>;
 };
 
 export type ItemParent = Collection | Item | { __typename?: "%other" };
@@ -14543,6 +14872,11 @@ export type MarkdownProperty = ScalarProperty & SchemaProperty & SearchablePrope
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -14580,6 +14914,11 @@ export type MarkdownProperty = ScalarProperty & SchemaProperty & SearchablePrope
   required: Scalars['Boolean']['output'];
   searchOperators: Array<SearchOperator>;
   searchPath: Scalars['String']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -14883,6 +15222,11 @@ export type MultiselectProperty = OptionableProperty & ScalarProperty & SchemaPr
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -14924,6 +15268,11 @@ export type MultiselectProperty = OptionableProperty & ScalarProperty & SchemaPr
   searchPath: Scalars['String']['output'];
   selections?: Maybe<Array<Scalars['String']['output']>>;
   /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
+  /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
    *
@@ -14945,6 +15294,16 @@ export type Mutation = {
   /** Change a schema version for an entity. */
   alterSchemaVersion?: Maybe<AlterSchemaVersionPayload>;
   applySchemaProperties?: Maybe<ApplySchemaPropertiesPayload>;
+  /**
+   * Destroy a single `ContributorUserLink` record.
+   *
+   */
+  contributorUserLinkDestroy?: Maybe<ContributorUserLinkDestroyPayload>;
+  /**
+   * Create or update a link between a `Contributor` and a `User`.
+   *
+   */
+  contributorUserLinkUpsert?: Maybe<ContributorUserLinkUpsertPayload>;
   /**
    * Destroy a single `ControlledVocabulary` record.
    *
@@ -15375,6 +15734,24 @@ export type MutationAlterSchemaVersionArgs = {
  */
 export type MutationApplySchemaPropertiesArgs = {
   input: ApplySchemaPropertiesInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationContributorUserLinkDestroyArgs = {
+  input: ContributorUserLinkDestroyInput;
+};
+
+
+/**
+ * The entry point for making changes to the data within the Meru API.
+ *
+ */
+export type MutationContributorUserLinkUpsertArgs = {
+  input: ContributorUserLinkUpsertInput;
 };
 
 
@@ -17335,6 +17712,11 @@ export type OrganizationContributor = CommonPermissions & Contributor & Contribu
   /** The date this record was last updated within the API (date only). */
   updatedOn: Scalars['ISO8601Date']['output'];
   url?: Maybe<Scalars['String']['output']>;
+  /**
+   * The link between this contributor and a user, if any exists.
+   *
+   */
+  userLink?: Maybe<ContributorUserLink>;
 };
 
 
@@ -17998,6 +18380,11 @@ export type PersonContributor = CommonPermissions & Contributor & ContributorBas
   /** The date this record was last updated within the API (date only). */
   updatedOn: Scalars['ISO8601Date']['output'];
   url?: Maybe<Scalars['String']['output']>;
+  /**
+   * The link between this contributor and a user, if any exists.
+   *
+   */
+  userLink?: Maybe<ContributorUserLink>;
 };
 
 
@@ -20294,6 +20681,11 @@ export type ScalarProperty = {
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -20333,6 +20725,11 @@ export type ScalarProperty = {
    *
    */
   required: Scalars['Boolean']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -20858,6 +21255,11 @@ export type SchemaVersion = CommonPermissions & DescribesSchema & HasDefaultTime
    */
   searchableProperties: Array<SearchableProperty>;
   slug: Scalars['Slug']['output'];
+  /**
+   * The versions that are allowed to be submitted to this schema.
+   *
+   */
+  submittableVersions: Array<SchemaVersion>;
   /** The date this record was last updated within the API. */
   updatedAt: Scalars['ISO8601DateTime']['output'];
   /** The date this record was last updated within the API (date only). */
@@ -21151,6 +21553,11 @@ export type SelectProperty = OptionableProperty & ScalarProperty & SchemaPropert
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -21191,6 +21598,11 @@ export type SelectProperty = OptionableProperty & ScalarProperty & SchemaPropert
   searchOperators: Array<SearchOperator>;
   searchPath: Scalars['String']['output'];
   selection?: Maybe<Scalars['String']['output']>;
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -21463,6 +21875,11 @@ export type StringProperty = ScalarProperty & SchemaProperty & SearchablePropert
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -21501,6 +21918,11 @@ export type StringProperty = ScalarProperty & SchemaProperty & SearchablePropert
   searchOperators: Array<SearchOperator>;
   searchPath: Scalars['String']['output'];
   /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
+  /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
    *
@@ -21520,6 +21942,11 @@ export type StringProperty = ScalarProperty & SchemaProperty & SearchablePropert
  */
 export type Submission = CommonPermissions & HasDefaultTimestamps & Node & Sluggable & {
   __typename?: 'Submission';
+  /**
+   * The timestamp of when the submitter accepted the agreement for this submission, if applicable.
+   *
+   */
+  agreementAcceptedAt?: Maybe<Scalars['ISO8601DateTime']['output']>;
   /**
    * The state transitions that are available for this submission,
    * based on its current state and the permissions of the current user.
@@ -22084,6 +22511,13 @@ export type SubmissionConnection = Paginated & {
 
 /** Autogenerated input type of SubmissionCreate */
 export type SubmissionCreateInput = {
+  /**
+   * Whether or not the submitter has accepted the agreement for this submission.
+   *
+   * This must be true.
+   *
+   */
+  agreementAccepted?: InputMaybe<Scalars['Boolean']['input']>;
   /** A unique identifier for the client performing the mutation. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -22222,6 +22656,16 @@ export type SubmissionFilterInput = {
    *
    */
   parentEntity?: InputMaybe<Array<Scalars['ID']['input']>>;
+  /**
+   * Perform a full-text search to approximately match the provided string.
+   *
+   */
+  prefix?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Perform a full-text search to approximately match the provided string.
+   *
+   */
+  query?: InputMaybe<Scalars['String']['input']>;
   /**
    * Filter submissions to only those with the given schema version(s).
    *
@@ -22891,6 +23335,11 @@ export type SubmissionTarget = CommonPermissions & HasDefaultTimestamps & Node &
    */
   allowedChildKinds: Array<ChildEntityKind>;
   /**
+   * Whether or not depositors should be automatically approved when they request to become a depositor for this submission target.
+   *
+   */
+  autoApproveDepositors: Scalars['Boolean']['output'];
+  /**
    * Whether or not the current user can deposit to this submission target.
    *
    */
@@ -23041,6 +23490,11 @@ export type SubmissionTargetConfigureInput = {
    *
    */
   agreementRequired?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * Whether depositors should be automatically approved when they request to become a depositor for this submission target.
+   *
+   */
+  autoApproveDepositors?: InputMaybe<Scalars['Boolean']['input']>;
   /** A unique identifier for the client performing the mutation. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -23867,6 +24321,11 @@ export type TagsProperty = ScalarProperty & SchemaProperty & {
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -23906,6 +24365,11 @@ export type TagsProperty = ScalarProperty & SchemaProperty & {
    *
    */
   required: Scalars['Boolean']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   tags: Array<Scalars['String']['output']>;
   /**
    * Provided for introspection. This represents the actual data type this property
@@ -24740,6 +25204,11 @@ export type TimestampProperty = ScalarProperty & SchemaProperty & SearchableProp
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -24777,6 +25246,11 @@ export type TimestampProperty = ScalarProperty & SchemaProperty & SearchableProp
   required: Scalars['Boolean']['output'];
   searchOperators: Array<SearchOperator>;
   searchPath: Scalars['String']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   timestamp?: Maybe<Scalars['ISO8601DateTime']['output']>;
   /**
    * Provided for introspection. This represents the actual data type this property
@@ -24834,6 +25308,11 @@ export type UrlProperty = ScalarProperty & SchemaProperty & {
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -24873,6 +25352,11 @@ export type UrlProperty = ScalarProperty & SchemaProperty & {
    *
    */
   required: Scalars['Boolean']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -24948,6 +25432,11 @@ export type UnknownProperty = ScalarProperty & SchemaProperty & {
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -24987,6 +25476,11 @@ export type UnknownProperty = ScalarProperty & SchemaProperty & {
    *
    */
   required: Scalars['Boolean']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -25892,6 +26386,11 @@ export type User = AccessGrantSubject & CommonPermissions & ExposesPermissions &
   communities: CommunityConnection;
   /** All access grants for this user on a community */
   communityAccessGrants: UserCommunityAccessGrantConnection;
+  /**
+   * Any links between this user and contributors in the system.
+   *
+   */
+  contributorLinks: Array<ContributorUserLink>;
   /** The date this record was created within the API. */
   createdAt: Scalars['ISO8601DateTime']['output'];
   /** The date this record was created within the API (date only). */
@@ -25915,6 +26414,13 @@ export type User = AccessGrantSubject & CommonPermissions & ExposesPermissions &
   name?: Maybe<Scalars['String']['output']>;
   /** An array of hashes that can be requested to load in a context */
   permissions: Array<PermissionGrant>;
+  /**
+   * The primary contributor associated with this user, if any.
+   *
+   * For the actual link records, see `User.contributorLinks`.
+   *
+   */
+  primaryContributor?: Maybe<Contributor>;
   /** The primary role associated with this subject. */
   primaryRole?: Maybe<Role>;
   slug: Scalars['Slug']['output'];
@@ -26721,6 +27227,11 @@ export type VariableDateProperty = ScalarProperty & SchemaProperty & SearchableP
    */
   function: SchemaPropertyFunction;
   /**
+   * Instructions for filling out this property during submission, if applicable.
+   *
+   */
+  instructions?: Maybe<Scalars['String']['output']>;
+  /**
    * Whether to render a field as "wide" (two columns) in the form.
    * This is intended to help structure forms logically, as well as
    * provide ample space for certain types of data input, particularly
@@ -26758,6 +27269,11 @@ export type VariableDateProperty = ScalarProperty & SchemaProperty & SearchableP
   required: Scalars['Boolean']['output'];
   searchOperators: Array<SearchOperator>;
   searchPath: Scalars['String']['output'];
+  /**
+   * Whether or not this property should be displayed as part of the submission process for this schema.
+   *
+   */
+  submittable: Scalars['Boolean']['output'];
   /**
    * Provided for introspection. This represents the actual data type this property
    * uses.
@@ -26907,7 +27423,7 @@ export type ResolversInterfaceTypes<RefType extends Record<string, unknown>> = {
   Attribution: ( CollectionAttribution ) | ( ItemAttribution );
   CRUDPermissionGrid: ( AssetPermissionGrid ) | ( EntityPermissionGrid );
   ChildEntity: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
-  CommonPermissions: ( Announcement ) | ( AssetAudio ) | ( AssetDocument ) | ( AssetImage ) | ( AssetPdf ) | ( AssetUnknown ) | ( AssetVideo ) | ( BlurbTemplateDefinition ) | ( BlurbTemplateInstance ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( CollectionAttribution ) | ( CollectionContribution ) | ( Community ) | ( ContextualPermission ) | ( ContributionRoleConfiguration ) | ( ContributorCollectionAttribution ) | ( ContributorItemAttribution ) | ( ContributorListTemplateDefinition ) | ( ContributorListTemplateInstance ) | ( ControlledVocabulary ) | ( ControlledVocabularyItem ) | ( ControlledVocabularySource ) | ( DepositorAgreement ) | ( DepositorAgreementTransition ) | ( DepositorRequest ) | ( DepositorRequestTransition ) | ( DescendantListTemplateDefinition ) | ( DescendantListTemplateInstance ) | ( DetailTemplateDefinition ) | ( DetailTemplateInstance ) | ( EntityLink ) | ( HarvestAttempt ) | ( HarvestAttemptEntityStatus ) | ( HarvestAttemptRecordStatus ) | ( HarvestEntity ) | ( HarvestError ) | ( HarvestMapping ) | ( HarvestMessage ) | ( HarvestMetadataMapping ) | ( HarvestRecord ) | ( HarvestSet ) | ( HarvestSource ) | ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( HeroTemplateDefinition ) | ( HeroTemplateInstance ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( ItemAttribution ) | ( ItemContribution ) | ( LinkListTemplateDefinition ) | ( LinkListTemplateInstance ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( ListItemTemplateDefinition ) | ( ListItemTemplateInstance ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( MetadataTemplateDefinition ) | ( MetadataTemplateInstance ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( NavigationTemplateDefinition ) | ( NavigationTemplateInstance ) | ( Ordering ) | ( OrderingEntry ) | ( OrderingTemplateDefinition ) | ( OrderingTemplateInstance ) | ( OrganizationContributor ) | ( PageListTemplateDefinition ) | ( PageListTemplateInstance ) | ( Permalink ) | ( PersonContributor ) | ( Role ) | ( SchemaDefinition ) | ( SchemaVersion ) | ( Submission ) | ( SubmissionBatchPublication ) | ( SubmissionBatchPublicationTransition ) | ( SubmissionComment ) | ( SubmissionDepositTarget ) | ( SubmissionPublication ) | ( SubmissionPublicationTransition ) | ( SubmissionReview ) | ( SubmissionReviewTransition ) | ( SubmissionTarget ) | ( SubmissionTargetReviewer ) | ( SubmissionTargetTransition ) | ( SubmissionTransition ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } ) | ( SupplementaryTemplateDefinition ) | ( SupplementaryTemplateInstance ) | ( TemplateInstanceSibling ) | ( User ) | ( UserCollectionAccessGrant ) | ( UserCommunityAccessGrant ) | ( UserGroup ) | ( UserGroupCollectionAccessGrant ) | ( UserGroupCommunityAccessGrant ) | ( UserGroupItemAccessGrant ) | ( UserItemAccessGrant );
+  CommonPermissions: ( Announcement ) | ( AssetAudio ) | ( AssetDocument ) | ( AssetImage ) | ( AssetPdf ) | ( AssetUnknown ) | ( AssetVideo ) | ( BlurbTemplateDefinition ) | ( BlurbTemplateInstance ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( CollectionAttribution ) | ( CollectionContribution ) | ( Community ) | ( ContextualPermission ) | ( ContributionRoleConfiguration ) | ( ContributorCollectionAttribution ) | ( ContributorItemAttribution ) | ( ContributorListTemplateDefinition ) | ( ContributorListTemplateInstance ) | ( ContributorUserLink ) | ( ControlledVocabulary ) | ( ControlledVocabularyItem ) | ( ControlledVocabularySource ) | ( DepositorAgreement ) | ( DepositorAgreementTransition ) | ( DepositorRequest ) | ( DepositorRequestTransition ) | ( DescendantListTemplateDefinition ) | ( DescendantListTemplateInstance ) | ( DetailTemplateDefinition ) | ( DetailTemplateInstance ) | ( EntityLink ) | ( HarvestAttempt ) | ( HarvestAttemptEntityStatus ) | ( HarvestAttemptRecordStatus ) | ( HarvestEntity ) | ( HarvestError ) | ( HarvestMapping ) | ( HarvestMessage ) | ( HarvestMetadataMapping ) | ( HarvestRecord ) | ( HarvestSet ) | ( HarvestSource ) | ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( HeroTemplateDefinition ) | ( HeroTemplateInstance ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( ItemAttribution ) | ( ItemContribution ) | ( LinkListTemplateDefinition ) | ( LinkListTemplateInstance ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( ListItemTemplateDefinition ) | ( ListItemTemplateInstance ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( MetadataTemplateDefinition ) | ( MetadataTemplateInstance ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( NavigationTemplateDefinition ) | ( NavigationTemplateInstance ) | ( Ordering ) | ( OrderingEntry ) | ( OrderingTemplateDefinition ) | ( OrderingTemplateInstance ) | ( OrganizationContributor ) | ( PageListTemplateDefinition ) | ( PageListTemplateInstance ) | ( Permalink ) | ( PersonContributor ) | ( Role ) | ( SchemaDefinition ) | ( SchemaVersion ) | ( Submission ) | ( SubmissionBatchPublication ) | ( SubmissionBatchPublicationTransition ) | ( SubmissionComment ) | ( SubmissionDepositTarget ) | ( SubmissionPublication ) | ( SubmissionPublicationTransition ) | ( SubmissionReview ) | ( SubmissionReviewTransition ) | ( SubmissionTarget ) | ( SubmissionTargetReviewer ) | ( SubmissionTargetTransition ) | ( SubmissionTransition ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } ) | ( SupplementaryTemplateDefinition ) | ( SupplementaryTemplateInstance ) | ( TemplateInstanceSibling ) | ( User ) | ( UserCollectionAccessGrant ) | ( UserCommunityAccessGrant ) | ( UserGroup ) | ( UserGroupCollectionAccessGrant ) | ( UserGroupCommunityAccessGrant ) | ( UserGroupItemAccessGrant ) | ( UserItemAccessGrant );
   CommonTransition: ( DepositorAgreementTransition ) | ( DepositorRequestTransition ) | ( SubmissionBatchPublicationTransition ) | ( SubmissionPublicationTransition ) | ( SubmissionReviewTransition ) | ( SubmissionTargetTransition ) | ( SubmissionTransition );
   Contributable: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
   Contribution: ( CollectionContribution ) | ( ItemContribution );
@@ -26916,7 +27432,7 @@ export type ResolversInterfaceTypes<RefType extends Record<string, unknown>> = {
   ContributorAttribution: ( ContributorCollectionAttribution ) | ( ContributorItemAttribution );
   ContributorBase: ( OrganizationContributor ) | ( PersonContributor );
   DescribesSchema: ( HierarchicalSchemaRank ) | ( HierarchicalSchemaVersionRank ) | ( SchemaDefinition ) | ( SchemaVersion );
-  DestroyMutationPayload: ( ControlledVocabularyDestroyPayload ) | ( DestroyAnnouncementPayload ) | ( DestroyAssetPayload ) | ( DestroyCollectionPayload ) | ( DestroyCommunityPayload ) | ( DestroyContributionPayload ) | ( DestroyContributorPayload ) | ( DestroyEntityLinkPayload ) | ( DestroyItemPayload ) | ( DestroyOrderingPayload ) | ( DestroyPagePayload ) | ( EntityPurgePayload ) | ( HarvestMappingDestroyPayload ) | ( HarvestMetadataMappingDestroyPayload ) | ( HarvestSourceDestroyPayload ) | ( PermalinkDestroyPayload ) | ( SubmissionCommentDestroyPayload ) | ( SubmissionTargetReviewerDestroyPayload );
+  DestroyMutationPayload: ( ContributorUserLinkDestroyPayload ) | ( ControlledVocabularyDestroyPayload ) | ( DestroyAnnouncementPayload ) | ( DestroyAssetPayload ) | ( DestroyCollectionPayload ) | ( DestroyCommunityPayload ) | ( DestroyContributionPayload ) | ( DestroyContributorPayload ) | ( DestroyEntityLinkPayload ) | ( DestroyItemPayload ) | ( DestroyOrderingPayload ) | ( DestroyPagePayload ) | ( EntityPurgePayload ) | ( HarvestMappingDestroyPayload ) | ( HarvestMetadataMappingDestroyPayload ) | ( HarvestSourceDestroyPayload ) | ( PermalinkDestroyPayload ) | ( SubmissionCommentDestroyPayload ) | ( SubmissionTargetReviewerDestroyPayload );
   Entity: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
   EntityBase: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
   EntityContextualPermissions: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
@@ -26928,7 +27444,7 @@ export type ResolversInterfaceTypes<RefType extends Record<string, unknown>> = {
   HasAvailableEntities: ( EntitiesProperty ) | ( EntityProperty );
   HasControlledVocabulary: ( ControlledVocabulariesProperty ) | ( ControlledVocabularyProperty );
   HasDOI: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
-  HasDefaultTimestamps: ( Announcement ) | ( AssetAudio ) | ( AssetDocument ) | ( AssetImage ) | ( AssetPdf ) | ( AssetUnknown ) | ( AssetVideo ) | ( BlurbTemplateDefinition ) | ( BlurbTemplateInstance ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( CollectionAttribution ) | ( CollectionContribution ) | ( Community ) | ( ContextualPermission ) | ( ContributionRoleConfiguration ) | ( ContributorCollectionAttribution ) | ( ContributorItemAttribution ) | ( ContributorListTemplateDefinition ) | ( ContributorListTemplateInstance ) | ( ControlledVocabulary ) | ( ControlledVocabularyItem ) | ( ControlledVocabularySource ) | ( DepositorAgreement ) | ( DepositorAgreementTransition ) | ( DepositorRequest ) | ( DepositorRequestTransition ) | ( DescendantListTemplateDefinition ) | ( DescendantListTemplateInstance ) | ( DetailTemplateDefinition ) | ( DetailTemplateInstance ) | ( EntityLink ) | ( HarvestAttempt ) | ( HarvestAttemptEntityStatus ) | ( HarvestAttemptRecordStatus ) | ( HarvestEntity ) | ( HarvestError ) | ( HarvestMapping ) | ( HarvestMessage ) | ( HarvestMetadataMapping ) | ( HarvestRecord ) | ( HarvestSet ) | ( HarvestSource ) | ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( HeroTemplateDefinition ) | ( HeroTemplateInstance ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( ItemAttribution ) | ( ItemContribution ) | ( LinkListTemplateDefinition ) | ( LinkListTemplateInstance ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( ListItemTemplateDefinition ) | ( ListItemTemplateInstance ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( MetadataTemplateDefinition ) | ( MetadataTemplateInstance ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( NavigationTemplateDefinition ) | ( NavigationTemplateInstance ) | ( Ordering ) | ( OrderingEntry ) | ( OrderingTemplateDefinition ) | ( OrderingTemplateInstance ) | ( OrganizationContributor ) | ( PageListTemplateDefinition ) | ( PageListTemplateInstance ) | ( Permalink ) | ( PersonContributor ) | ( Role ) | ( SchemaDefinition ) | ( SchemaVersion ) | ( Submission ) | ( SubmissionBatchPublication ) | ( SubmissionBatchPublicationTransition ) | ( SubmissionComment ) | ( SubmissionDepositTarget ) | ( SubmissionPublication ) | ( SubmissionPublicationTransition ) | ( SubmissionReview ) | ( SubmissionReviewTransition ) | ( SubmissionTarget ) | ( SubmissionTargetReviewer ) | ( SubmissionTargetTransition ) | ( SubmissionTransition ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } ) | ( SupplementaryTemplateDefinition ) | ( SupplementaryTemplateInstance ) | ( TemplateInstanceSibling ) | ( User ) | ( UserCollectionAccessGrant ) | ( UserCommunityAccessGrant ) | ( UserGroup ) | ( UserGroupCollectionAccessGrant ) | ( UserGroupCommunityAccessGrant ) | ( UserGroupItemAccessGrant ) | ( UserItemAccessGrant );
+  HasDefaultTimestamps: ( Announcement ) | ( AssetAudio ) | ( AssetDocument ) | ( AssetImage ) | ( AssetPdf ) | ( AssetUnknown ) | ( AssetVideo ) | ( BlurbTemplateDefinition ) | ( BlurbTemplateInstance ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( CollectionAttribution ) | ( CollectionContribution ) | ( Community ) | ( ContextualPermission ) | ( ContributionRoleConfiguration ) | ( ContributorCollectionAttribution ) | ( ContributorItemAttribution ) | ( ContributorListTemplateDefinition ) | ( ContributorListTemplateInstance ) | ( ContributorUserLink ) | ( ControlledVocabulary ) | ( ControlledVocabularyItem ) | ( ControlledVocabularySource ) | ( DepositorAgreement ) | ( DepositorAgreementTransition ) | ( DepositorRequest ) | ( DepositorRequestTransition ) | ( DescendantListTemplateDefinition ) | ( DescendantListTemplateInstance ) | ( DetailTemplateDefinition ) | ( DetailTemplateInstance ) | ( EntityLink ) | ( HarvestAttempt ) | ( HarvestAttemptEntityStatus ) | ( HarvestAttemptRecordStatus ) | ( HarvestEntity ) | ( HarvestError ) | ( HarvestMapping ) | ( HarvestMessage ) | ( HarvestMetadataMapping ) | ( HarvestRecord ) | ( HarvestSet ) | ( HarvestSource ) | ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( HeroTemplateDefinition ) | ( HeroTemplateInstance ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( ItemAttribution ) | ( ItemContribution ) | ( LinkListTemplateDefinition ) | ( LinkListTemplateInstance ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( ListItemTemplateDefinition ) | ( ListItemTemplateInstance ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( MetadataTemplateDefinition ) | ( MetadataTemplateInstance ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( NavigationTemplateDefinition ) | ( NavigationTemplateInstance ) | ( Ordering ) | ( OrderingEntry ) | ( OrderingTemplateDefinition ) | ( OrderingTemplateInstance ) | ( OrganizationContributor ) | ( PageListTemplateDefinition ) | ( PageListTemplateInstance ) | ( Permalink ) | ( PersonContributor ) | ( Role ) | ( SchemaDefinition ) | ( SchemaVersion ) | ( Submission ) | ( SubmissionBatchPublication ) | ( SubmissionBatchPublicationTransition ) | ( SubmissionComment ) | ( SubmissionDepositTarget ) | ( SubmissionPublication ) | ( SubmissionPublicationTransition ) | ( SubmissionReview ) | ( SubmissionReviewTransition ) | ( SubmissionTarget ) | ( SubmissionTargetReviewer ) | ( SubmissionTargetTransition ) | ( SubmissionTransition ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } ) | ( SupplementaryTemplateDefinition ) | ( SupplementaryTemplateInstance ) | ( TemplateInstanceSibling ) | ( User ) | ( UserCollectionAccessGrant ) | ( UserCommunityAccessGrant ) | ( UserGroup ) | ( UserGroupCollectionAccessGrant ) | ( UserGroupCommunityAccessGrant ) | ( UserGroupItemAccessGrant ) | ( UserItemAccessGrant );
   HasEntityAnalytics: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
   HasEntityBreadcrumbs: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( EntitySelectOption ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
   HasHarvestErrors: ( HarvestAttempt ) | ( HarvestRecord );
@@ -26941,7 +27457,7 @@ export type ResolversInterfaceTypes<RefType extends Record<string, unknown>> = {
   ImageIdentification: ( ImageAttachment ) | ( ImageDerivative ) | ( ImageOriginal ) | ( ImageSize ) | ( SiteLogoAttachment );
   LayoutDefinition: ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } );
   LayoutInstance: ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } );
-  Node: ( Announcement ) | ( AssetAudio ) | ( AssetDocument ) | ( AssetImage ) | ( AssetPdf ) | ( AssetUnknown ) | ( AssetVideo ) | ( BlurbTemplateDefinition ) | ( BlurbTemplateInstance ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( CollectionAttribution ) | ( CollectionContribution ) | ( Community ) | ( ContextualPermission ) | ( ContributionRoleConfiguration ) | ( ContributorCollectionAttribution ) | ( ContributorItemAttribution ) | ( ContributorListTemplateDefinition ) | ( ContributorListTemplateInstance ) | ( ControlledVocabulary ) | ( ControlledVocabularyItem ) | ( ControlledVocabularySource ) | ( DepositorAgreement ) | ( DepositorAgreementTransition ) | ( DepositorRequest ) | ( DepositorRequestTransition ) | ( DescendantListTemplateDefinition ) | ( DescendantListTemplateInstance ) | ( DetailTemplateDefinition ) | ( DetailTemplateInstance ) | ( EntityBreadcrumb ) | ( EntityLink ) | ( GlobalConfiguration ) | ( HarvestAttempt ) | ( HarvestAttemptEntityStatus ) | ( HarvestAttemptRecordStatus ) | ( HarvestEntity ) | ( HarvestError ) | ( HarvestMapping ) | ( HarvestMessage ) | ( HarvestMetadataMapping ) | ( HarvestRecord ) | ( HarvestSet ) | ( HarvestSource ) | ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( HeroTemplateDefinition ) | ( HeroTemplateInstance ) | ( HierarchicalSchemaRank ) | ( HierarchicalSchemaVersionRank ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( ItemAttribution ) | ( ItemContribution ) | ( LinkListTemplateDefinition ) | ( LinkListTemplateInstance ) | ( LinkTargetCandidate ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( ListItemTemplateDefinition ) | ( ListItemTemplateInstance ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( MetadataTemplateDefinition ) | ( MetadataTemplateInstance ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( NavigationTemplateDefinition ) | ( NavigationTemplateInstance ) | ( Ordering ) | ( OrderingEntry ) | ( OrderingTemplateDefinition ) | ( OrderingTemplateInstance ) | ( OrganizationContributor ) | ( Page ) | ( PageListTemplateDefinition ) | ( PageListTemplateInstance ) | ( Permalink ) | ( PersonContributor ) | ( Role ) | ( SchemaDefinition ) | ( SchemaVersion ) | ( SearchResult ) | ( Submission ) | ( SubmissionBatchPublication ) | ( SubmissionBatchPublicationTransition ) | ( SubmissionComment ) | ( SubmissionDepositTarget ) | ( SubmissionPublication ) | ( SubmissionPublicationTransition ) | ( SubmissionReview ) | ( SubmissionReviewTransition ) | ( SubmissionTarget ) | ( SubmissionTargetReviewer ) | ( SubmissionTargetTransition ) | ( SubmissionTransition ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } ) | ( SupplementaryTemplateDefinition ) | ( SupplementaryTemplateInstance ) | ( TemplateInstanceSibling ) | ( User ) | ( UserCollectionAccessGrant ) | ( UserCommunityAccessGrant ) | ( UserGroup ) | ( UserGroupCollectionAccessGrant ) | ( UserGroupCommunityAccessGrant ) | ( UserGroupItemAccessGrant ) | ( UserItemAccessGrant );
+  Node: ( Announcement ) | ( AssetAudio ) | ( AssetDocument ) | ( AssetImage ) | ( AssetPdf ) | ( AssetUnknown ) | ( AssetVideo ) | ( BlurbTemplateDefinition ) | ( BlurbTemplateInstance ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( CollectionAttribution ) | ( CollectionContribution ) | ( Community ) | ( ContextualPermission ) | ( ContributionRoleConfiguration ) | ( ContributorCollectionAttribution ) | ( ContributorItemAttribution ) | ( ContributorListTemplateDefinition ) | ( ContributorListTemplateInstance ) | ( ContributorUserLink ) | ( ControlledVocabulary ) | ( ControlledVocabularyItem ) | ( ControlledVocabularySource ) | ( DepositorAgreement ) | ( DepositorAgreementTransition ) | ( DepositorRequest ) | ( DepositorRequestTransition ) | ( DescendantListTemplateDefinition ) | ( DescendantListTemplateInstance ) | ( DetailTemplateDefinition ) | ( DetailTemplateInstance ) | ( EntityBreadcrumb ) | ( EntityLink ) | ( GlobalConfiguration ) | ( HarvestAttempt ) | ( HarvestAttemptEntityStatus ) | ( HarvestAttemptRecordStatus ) | ( HarvestEntity ) | ( HarvestError ) | ( HarvestMapping ) | ( HarvestMessage ) | ( HarvestMetadataMapping ) | ( HarvestRecord ) | ( HarvestSet ) | ( HarvestSource ) | ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( HeroTemplateDefinition ) | ( HeroTemplateInstance ) | ( HierarchicalSchemaRank ) | ( HierarchicalSchemaVersionRank ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( ItemAttribution ) | ( ItemContribution ) | ( LinkListTemplateDefinition ) | ( LinkListTemplateInstance ) | ( LinkTargetCandidate ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( ListItemTemplateDefinition ) | ( ListItemTemplateInstance ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( MetadataTemplateDefinition ) | ( MetadataTemplateInstance ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( NavigationTemplateDefinition ) | ( NavigationTemplateInstance ) | ( Ordering ) | ( OrderingEntry ) | ( OrderingTemplateDefinition ) | ( OrderingTemplateInstance ) | ( OrganizationContributor ) | ( Page ) | ( PageListTemplateDefinition ) | ( PageListTemplateInstance ) | ( Permalink ) | ( PersonContributor ) | ( Role ) | ( SchemaDefinition ) | ( SchemaVersion ) | ( SearchResult ) | ( Submission ) | ( SubmissionBatchPublication ) | ( SubmissionBatchPublicationTransition ) | ( SubmissionComment ) | ( SubmissionDepositTarget ) | ( SubmissionPublication ) | ( SubmissionPublicationTransition ) | ( SubmissionReview ) | ( SubmissionReviewTransition ) | ( SubmissionTarget ) | ( SubmissionTargetReviewer ) | ( SubmissionTargetTransition ) | ( SubmissionTransition ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } ) | ( SupplementaryTemplateDefinition ) | ( SupplementaryTemplateInstance ) | ( TemplateInstanceSibling ) | ( User ) | ( UserCollectionAccessGrant ) | ( UserCommunityAccessGrant ) | ( UserGroup ) | ( UserGroupCollectionAccessGrant ) | ( UserGroupCommunityAccessGrant ) | ( UserGroupItemAccessGrant ) | ( UserItemAccessGrant );
   OptionableProperty: ( MultiselectProperty ) | ( SelectProperty );
   OrderingEntryable: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( EntityLink ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
   OrderingPath: ( AncestorSchemaOrderingPath ) | ( AncestorStaticOrderingPath ) | ( SchemaOrderingPath ) | ( StaticOrderingPath );
@@ -26977,8 +27493,8 @@ export type ResolversInterfaceTypes<RefType extends Record<string, unknown>> = {
   SchemaProperty: ( AssetProperty ) | ( AssetsProperty ) | ( BooleanProperty ) | ( ContributorProperty ) | ( ContributorsProperty ) | ( ControlledVocabulariesProperty ) | ( ControlledVocabularyProperty ) | ( DateProperty ) | ( EmailProperty ) | ( EntitiesProperty ) | ( EntityProperty ) | ( FloatProperty ) | ( FullTextProperty ) | ( GroupProperty ) | ( IntegerProperty ) | ( MarkdownProperty ) | ( MultiselectProperty ) | ( SelectProperty ) | ( StringProperty ) | ( TagsProperty ) | ( TimestampProperty ) | ( UrlProperty ) | ( UnknownProperty ) | ( VariableDateProperty );
   Searchable: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( Ordering ) | ( Query ) | ( SchemaVersion );
   SearchableProperty: ( BooleanProperty ) | ( DateProperty ) | ( FloatProperty ) | ( FullTextProperty ) | ( IntegerProperty ) | ( MarkdownProperty ) | ( MultiselectProperty ) | ( SearchableCoreProperty ) | ( SelectProperty ) | ( StringProperty ) | ( TimestampProperty ) | ( VariableDateProperty );
-  Sluggable: ( Announcement ) | ( AssetAudio ) | ( AssetDocument ) | ( AssetImage ) | ( AssetPdf ) | ( AssetUnknown ) | ( AssetVideo ) | ( BlurbTemplateDefinition ) | ( BlurbTemplateInstance ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( CollectionAttribution ) | ( CollectionContribution ) | ( Community ) | ( ContextualPermission ) | ( ContributionRoleConfiguration ) | ( ContributorCollectionAttribution ) | ( ContributorItemAttribution ) | ( ContributorListTemplateDefinition ) | ( ContributorListTemplateInstance ) | ( ControlledVocabulary ) | ( ControlledVocabularyItem ) | ( ControlledVocabularySource ) | ( DepositorAgreement ) | ( DepositorAgreementTransition ) | ( DepositorRequest ) | ( DepositorRequestTransition ) | ( DescendantListTemplateDefinition ) | ( DescendantListTemplateInstance ) | ( DetailTemplateDefinition ) | ( DetailTemplateInstance ) | ( EntityLink ) | ( HarvestAttempt ) | ( HarvestAttemptEntityStatus ) | ( HarvestAttemptRecordStatus ) | ( HarvestEntity ) | ( HarvestError ) | ( HarvestMapping ) | ( HarvestMessage ) | ( HarvestMetadataMapping ) | ( HarvestRecord ) | ( HarvestSet ) | ( HarvestSource ) | ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( HeroTemplateDefinition ) | ( HeroTemplateInstance ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( ItemAttribution ) | ( ItemContribution ) | ( LinkListTemplateDefinition ) | ( LinkListTemplateInstance ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( ListItemTemplateDefinition ) | ( ListItemTemplateInstance ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( MetadataTemplateDefinition ) | ( MetadataTemplateInstance ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( NavigationTemplateDefinition ) | ( NavigationTemplateInstance ) | ( Ordering ) | ( OrderingEntry ) | ( OrderingTemplateDefinition ) | ( OrderingTemplateInstance ) | ( OrganizationContributor ) | ( PageListTemplateDefinition ) | ( PageListTemplateInstance ) | ( Permalink ) | ( PersonContributor ) | ( Role ) | ( SchemaDefinition ) | ( SchemaVersion ) | ( SearchResult ) | ( Submission ) | ( SubmissionBatchPublication ) | ( SubmissionBatchPublicationTransition ) | ( SubmissionComment ) | ( SubmissionDepositTarget ) | ( SubmissionPublication ) | ( SubmissionPublicationTransition ) | ( SubmissionReview ) | ( SubmissionReviewTransition ) | ( SubmissionTarget ) | ( SubmissionTargetReviewer ) | ( SubmissionTargetTransition ) | ( SubmissionTransition ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } ) | ( SupplementaryTemplateDefinition ) | ( SupplementaryTemplateInstance ) | ( TemplateInstanceSibling ) | ( User ) | ( UserCollectionAccessGrant ) | ( UserCommunityAccessGrant ) | ( UserGroup ) | ( UserGroupCollectionAccessGrant ) | ( UserGroupCommunityAccessGrant ) | ( UserGroupItemAccessGrant ) | ( UserItemAccessGrant );
-  StandardMutationPayload: ( Omit<AlterSchemaVersionPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( Omit<ApplySchemaPropertiesPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( ControlledVocabularyDestroyPayload ) | ( ControlledVocabularySourceUpdatePayload ) | ( ControlledVocabularyUpsertPayload ) | ( CreateAnnouncementPayload ) | ( Omit<CreateAssetPayload, 'asset'> & { asset?: Maybe<RefType['AnyAsset']> } ) | ( CreateCollectionPayload ) | ( CreateCommunityPayload ) | ( CreateItemPayload ) | ( CreateOrderingPayload ) | ( CreateOrganizationContributorPayload ) | ( CreatePagePayload ) | ( CreatePersonContributorPayload ) | ( CreateRolePayload ) | ( DepositorAgreementAcceptPayload ) | ( DepositorAgreementResetAllPayload ) | ( DepositorAgreementResetPayload ) | ( DepositorRequestChangeStatePayload ) | ( DepositorRequestCreatePayload ) | ( DestroyAnnouncementPayload ) | ( DestroyAssetPayload ) | ( DestroyCollectionPayload ) | ( DestroyCommunityPayload ) | ( DestroyContributionPayload ) | ( DestroyContributorPayload ) | ( DestroyEntityLinkPayload ) | ( DestroyItemPayload ) | ( DestroyOrderingPayload ) | ( DestroyPagePayload ) | ( EntityPurgePayload ) | ( FrontendCacheRevalidateEntityPayload ) | ( FrontendCacheRevalidateInstancePayload ) | ( Omit<GrantAccessPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( HarvestAttemptFromMappingPayload ) | ( HarvestAttemptFromSourcePayload ) | ( HarvestAttemptPruneEntitiesPayload ) | ( HarvestMappingCreatePayload ) | ( HarvestMappingDestroyPayload ) | ( HarvestMappingUpdatePayload ) | ( HarvestMetadataMappingCreatePayload ) | ( HarvestMetadataMappingDestroyPayload ) | ( HarvestSourceCreatePayload ) | ( HarvestSourceDestroyPayload ) | ( HarvestSourcePruneEntitiesPayload ) | ( HarvestSourceUpdatePayload ) | ( LinkEntityPayload ) | ( PermalinkCreatePayload ) | ( PermalinkDestroyPayload ) | ( PermalinkUpdatePayload ) | ( PreviewSlotPayload ) | ( Omit<RenderLayoutsPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( Omit<ReparentEntityPayload, 'child'> & { child?: Maybe<RefType['AnyChildEntity']> } ) | ( ResetOrderingPayload ) | ( Omit<RevokeAccessPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( SubmissionBatchPublishPayload ) | ( SubmissionChangeStatePayload ) | ( SubmissionCommentCreatePayload ) | ( SubmissionCommentDestroyPayload ) | ( SubmissionCommentUpdatePayload ) | ( SubmissionCreatePayload ) | ( SubmissionLeaveReviewPayload ) | ( SubmissionPublishPayload ) | ( SubmissionRequestReviewPayload ) | ( SubmissionTargetClosePayload ) | ( SubmissionTargetConfigurePayload ) | ( SubmissionTargetOpenPayload ) | ( SubmissionTargetReviewerCreatePayload ) | ( SubmissionTargetReviewerDestroyPayload ) | ( UpdateAnnouncementPayload ) | ( Omit<UpdateAssetAttachmentPayload, 'asset'> & { asset?: Maybe<RefType['AnyAsset']> } ) | ( Omit<UpdateAssetPayload, 'asset'> & { asset?: Maybe<RefType['AnyAsset']> } ) | ( UpdateCollectionPayload ) | ( UpdateCommunityPayload ) | ( Omit<UpdateContributionPayload, 'contribution'> & { contribution?: Maybe<RefType['AnyContribution']> } ) | ( UpdateGlobalConfigurationPayload ) | ( UpdateItemPayload ) | ( UpdateOrderingPayload ) | ( UpdateOrganizationContributorPayload ) | ( UpdatePagePayload ) | ( UpdatePersonContributorPayload ) | ( UpdateRolePayload ) | ( UpdateUserPayload ) | ( UpdateViewerSettingsPayload ) | ( Omit<UpsertContributionPayload, 'contribution'> & { contribution?: Maybe<RefType['AnyContribution']> } ) | ( UserResetPasswordPayload );
+  Sluggable: ( Announcement ) | ( AssetAudio ) | ( AssetDocument ) | ( AssetImage ) | ( AssetPdf ) | ( AssetUnknown ) | ( AssetVideo ) | ( BlurbTemplateDefinition ) | ( BlurbTemplateInstance ) | ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( CollectionAttribution ) | ( CollectionContribution ) | ( Community ) | ( ContextualPermission ) | ( ContributionRoleConfiguration ) | ( ContributorCollectionAttribution ) | ( ContributorItemAttribution ) | ( ContributorListTemplateDefinition ) | ( ContributorListTemplateInstance ) | ( ContributorUserLink ) | ( ControlledVocabulary ) | ( ControlledVocabularyItem ) | ( ControlledVocabularySource ) | ( DepositorAgreement ) | ( DepositorAgreementTransition ) | ( DepositorRequest ) | ( DepositorRequestTransition ) | ( DescendantListTemplateDefinition ) | ( DescendantListTemplateInstance ) | ( DetailTemplateDefinition ) | ( DetailTemplateInstance ) | ( EntityLink ) | ( HarvestAttempt ) | ( HarvestAttemptEntityStatus ) | ( HarvestAttemptRecordStatus ) | ( HarvestEntity ) | ( HarvestError ) | ( HarvestMapping ) | ( HarvestMessage ) | ( HarvestMetadataMapping ) | ( HarvestRecord ) | ( HarvestSet ) | ( HarvestSource ) | ( Omit<HeroLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyHeroTemplateDefinition']> } ) | ( Omit<HeroLayoutInstance, 'templates'> & { templates: Array<RefType['AnyHeroTemplateInstance']> } ) | ( HeroTemplateDefinition ) | ( HeroTemplateInstance ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } ) | ( ItemAttribution ) | ( ItemContribution ) | ( LinkListTemplateDefinition ) | ( LinkListTemplateInstance ) | ( Omit<ListItemLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyListItemTemplateDefinition']> } ) | ( Omit<ListItemLayoutInstance, 'templates'> & { templates: Array<RefType['AnyListItemTemplateInstance']> } ) | ( ListItemTemplateDefinition ) | ( ListItemTemplateInstance ) | ( Omit<MainLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMainTemplateDefinition']> } ) | ( Omit<MainLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMainTemplateInstance']> } ) | ( Omit<MetadataLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateDefinition']> } ) | ( Omit<MetadataLayoutInstance, 'templates'> & { templates: Array<RefType['AnyMetadataTemplateInstance']> } ) | ( MetadataTemplateDefinition ) | ( MetadataTemplateInstance ) | ( Omit<NavigationLayoutDefinition, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateDefinition']> } ) | ( Omit<NavigationLayoutInstance, 'templates'> & { templates: Array<RefType['AnyNavigationTemplateInstance']> } ) | ( NavigationTemplateDefinition ) | ( NavigationTemplateInstance ) | ( Ordering ) | ( OrderingEntry ) | ( OrderingTemplateDefinition ) | ( OrderingTemplateInstance ) | ( OrganizationContributor ) | ( PageListTemplateDefinition ) | ( PageListTemplateInstance ) | ( Permalink ) | ( PersonContributor ) | ( Role ) | ( SchemaDefinition ) | ( SchemaVersion ) | ( SearchResult ) | ( Submission ) | ( SubmissionBatchPublication ) | ( SubmissionBatchPublicationTransition ) | ( SubmissionComment ) | ( SubmissionDepositTarget ) | ( SubmissionPublication ) | ( SubmissionPublicationTransition ) | ( SubmissionReview ) | ( SubmissionReviewTransition ) | ( SubmissionTarget ) | ( SubmissionTargetReviewer ) | ( SubmissionTargetTransition ) | ( SubmissionTransition ) | ( Omit<SupplementaryLayoutDefinition, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateDefinition']> } ) | ( Omit<SupplementaryLayoutInstance, 'templates'> & { templates: Array<RefType['AnySupplementaryTemplateInstance']> } ) | ( SupplementaryTemplateDefinition ) | ( SupplementaryTemplateInstance ) | ( TemplateInstanceSibling ) | ( User ) | ( UserCollectionAccessGrant ) | ( UserCommunityAccessGrant ) | ( UserGroup ) | ( UserGroupCollectionAccessGrant ) | ( UserGroupCommunityAccessGrant ) | ( UserGroupItemAccessGrant ) | ( UserItemAccessGrant );
+  StandardMutationPayload: ( Omit<AlterSchemaVersionPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( Omit<ApplySchemaPropertiesPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( ContributorUserLinkDestroyPayload ) | ( ContributorUserLinkUpsertPayload ) | ( ControlledVocabularyDestroyPayload ) | ( ControlledVocabularySourceUpdatePayload ) | ( ControlledVocabularyUpsertPayload ) | ( CreateAnnouncementPayload ) | ( Omit<CreateAssetPayload, 'asset'> & { asset?: Maybe<RefType['AnyAsset']> } ) | ( CreateCollectionPayload ) | ( CreateCommunityPayload ) | ( CreateItemPayload ) | ( CreateOrderingPayload ) | ( CreateOrganizationContributorPayload ) | ( CreatePagePayload ) | ( CreatePersonContributorPayload ) | ( CreateRolePayload ) | ( DepositorAgreementAcceptPayload ) | ( DepositorAgreementResetAllPayload ) | ( DepositorAgreementResetPayload ) | ( DepositorRequestChangeStatePayload ) | ( DepositorRequestCreatePayload ) | ( DestroyAnnouncementPayload ) | ( DestroyAssetPayload ) | ( DestroyCollectionPayload ) | ( DestroyCommunityPayload ) | ( DestroyContributionPayload ) | ( DestroyContributorPayload ) | ( DestroyEntityLinkPayload ) | ( DestroyItemPayload ) | ( DestroyOrderingPayload ) | ( DestroyPagePayload ) | ( EntityPurgePayload ) | ( FrontendCacheRevalidateEntityPayload ) | ( FrontendCacheRevalidateInstancePayload ) | ( Omit<GrantAccessPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( HarvestAttemptFromMappingPayload ) | ( HarvestAttemptFromSourcePayload ) | ( HarvestAttemptPruneEntitiesPayload ) | ( HarvestMappingCreatePayload ) | ( HarvestMappingDestroyPayload ) | ( HarvestMappingUpdatePayload ) | ( HarvestMetadataMappingCreatePayload ) | ( HarvestMetadataMappingDestroyPayload ) | ( HarvestSourceCreatePayload ) | ( HarvestSourceDestroyPayload ) | ( HarvestSourcePruneEntitiesPayload ) | ( HarvestSourceUpdatePayload ) | ( LinkEntityPayload ) | ( PermalinkCreatePayload ) | ( PermalinkDestroyPayload ) | ( PermalinkUpdatePayload ) | ( PreviewSlotPayload ) | ( Omit<RenderLayoutsPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( Omit<ReparentEntityPayload, 'child'> & { child?: Maybe<RefType['AnyChildEntity']> } ) | ( ResetOrderingPayload ) | ( Omit<RevokeAccessPayload, 'entity'> & { entity?: Maybe<RefType['AnyEntity']> } ) | ( SubmissionBatchPublishPayload ) | ( SubmissionChangeStatePayload ) | ( SubmissionCommentCreatePayload ) | ( SubmissionCommentDestroyPayload ) | ( SubmissionCommentUpdatePayload ) | ( SubmissionCreatePayload ) | ( SubmissionLeaveReviewPayload ) | ( SubmissionPublishPayload ) | ( SubmissionRequestReviewPayload ) | ( SubmissionTargetClosePayload ) | ( SubmissionTargetConfigurePayload ) | ( SubmissionTargetOpenPayload ) | ( SubmissionTargetReviewerCreatePayload ) | ( SubmissionTargetReviewerDestroyPayload ) | ( UpdateAnnouncementPayload ) | ( Omit<UpdateAssetAttachmentPayload, 'asset'> & { asset?: Maybe<RefType['AnyAsset']> } ) | ( Omit<UpdateAssetPayload, 'asset'> & { asset?: Maybe<RefType['AnyAsset']> } ) | ( UpdateCollectionPayload ) | ( UpdateCommunityPayload ) | ( Omit<UpdateContributionPayload, 'contribution'> & { contribution?: Maybe<RefType['AnyContribution']> } ) | ( UpdateGlobalConfigurationPayload ) | ( UpdateItemPayload ) | ( UpdateOrderingPayload ) | ( UpdateOrganizationContributorPayload ) | ( UpdatePagePayload ) | ( UpdatePersonContributorPayload ) | ( UpdateRolePayload ) | ( UpdateUserPayload ) | ( UpdateViewerSettingsPayload ) | ( Omit<UpsertContributionPayload, 'contribution'> & { contribution?: Maybe<RefType['AnyContribution']> } ) | ( UserResetPasswordPayload );
   Submittable: ( Omit<Collection, 'parent'> & { parent?: Maybe<RefType['CollectionParent']> } ) | ( Community ) | ( Omit<Item, 'parent'> & { parent?: Maybe<RefType['ItemParent']> } );
   TemplateDefinition: ( BlurbTemplateDefinition ) | ( ContributorListTemplateDefinition ) | ( DescendantListTemplateDefinition ) | ( DetailTemplateDefinition ) | ( HeroTemplateDefinition ) | ( LinkListTemplateDefinition ) | ( ListItemTemplateDefinition ) | ( MetadataTemplateDefinition ) | ( NavigationTemplateDefinition ) | ( OrderingTemplateDefinition ) | ( PageListTemplateDefinition ) | ( SupplementaryTemplateDefinition );
   TemplateHasContributionList: ( ContributorListTemplateInstance );
@@ -27136,6 +27652,12 @@ export type ResolversTypes = {
   ContributorOrder: ContributorOrder;
   ContributorProperty: ResolverTypeWrapper<ContributorProperty>;
   ContributorSelectOption: ResolverTypeWrapper<ContributorSelectOption>;
+  ContributorUserLink: ResolverTypeWrapper<ContributorUserLink>;
+  ContributorUserLinkDestroyInput: ContributorUserLinkDestroyInput;
+  ContributorUserLinkDestroyPayload: ResolverTypeWrapper<ContributorUserLinkDestroyPayload>;
+  ContributorUserLinkUpsertInput: ContributorUserLinkUpsertInput;
+  ContributorUserLinkUpsertPayload: ResolverTypeWrapper<ContributorUserLinkUpsertPayload>;
+  ContributorUserLinkage: ContributorUserLinkage;
   ContributorsProperty: ResolverTypeWrapper<ContributorsProperty>;
   ControlledVocabulariesProperty: ResolverTypeWrapper<ControlledVocabulariesProperty>;
   ControlledVocabulary: ResolverTypeWrapper<ControlledVocabulary>;
@@ -27421,6 +27943,7 @@ export type ResolversTypes = {
   ItemContributionConnection: ResolverTypeWrapper<ItemContributionConnection>;
   ItemContributionEdge: ResolverTypeWrapper<ItemContributionEdge>;
   ItemEdge: ResolverTypeWrapper<ItemEdge>;
+  ItemFilterInput: ItemFilterInput;
   ItemParent: ResolverTypeWrapper<ResolversUnionTypes<ResolversTypes>['ItemParent']>;
   JSON: ResolverTypeWrapper<Scalars['JSON']['output']>;
   LayoutDefinition: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['LayoutDefinition']>;
@@ -27947,6 +28470,11 @@ export type ResolversParentTypes = {
   ContributorListTemplateInstanceSlots: ContributorListTemplateInstanceSlots;
   ContributorProperty: ContributorProperty;
   ContributorSelectOption: ContributorSelectOption;
+  ContributorUserLink: ContributorUserLink;
+  ContributorUserLinkDestroyInput: ContributorUserLinkDestroyInput;
+  ContributorUserLinkDestroyPayload: ContributorUserLinkDestroyPayload;
+  ContributorUserLinkUpsertInput: ContributorUserLinkUpsertInput;
+  ContributorUserLinkUpsertPayload: ContributorUserLinkUpsertPayload;
   ContributorsProperty: ContributorsProperty;
   ControlledVocabulariesProperty: ControlledVocabulariesProperty;
   ControlledVocabulary: ControlledVocabulary;
@@ -28186,6 +28714,7 @@ export type ResolversParentTypes = {
   ItemContributionConnection: ItemContributionConnection;
   ItemContributionEdge: ItemContributionEdge;
   ItemEdge: ItemEdge;
+  ItemFilterInput: ItemFilterInput;
   ItemParent: ResolversUnionTypes<ResolversParentTypes>['ItemParent'];
   JSON: Scalars['JSON']['output'];
   LayoutDefinition: ResolversInterfaceTypes<ResolversParentTypes>['LayoutDefinition'];
@@ -29015,12 +29544,14 @@ export type AssetPropertyResolvers<ContextType = any, ParentType extends Resolve
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   orderable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   path?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -29088,12 +29619,14 @@ export type AssetsPropertyResolvers<ContextType = any, ParentType extends Resolv
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   orderable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   path?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -29181,6 +29714,7 @@ export type BooleanPropertyResolvers<ContextType = any, ParentType extends Resol
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -29189,6 +29723,7 @@ export type BooleanPropertyResolvers<ContextType = any, ParentType extends Resol
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   searchOperators?: Resolver<Array<ResolversTypes['SearchOperator']>, ParentType, ContextType>;
   searchPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -29344,7 +29879,7 @@ export type CollectionResolvers<ContextType = any, ParentType extends ResolversP
   hierarchicalDepth?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   identifier?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  items?: Resolver<ResolversTypes['ItemConnection'], ParentType, ContextType, RequireFields<CollectionItemsArgs, 'access' | 'nodeFilter' | 'order' | 'pageDirection'>>;
+  items?: Resolver<ResolversTypes['ItemConnection'], ParentType, ContextType, RequireFields<CollectionItemsArgs, 'access' | 'filters' | 'nodeFilter' | 'orFilters' | 'order' | 'pageDirection'>>;
   layouts?: Resolver<ResolversTypes['EntityLayouts'], ParentType, ContextType>;
   leaf?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   linkTargetCandidates?: Resolver<ResolversTypes['LinkTargetCandidateConnection'], ParentType, ContextType, RequireFields<CollectionLinkTargetCandidatesArgs, 'kind' | 'pageDirection' | 'title'>>;
@@ -29460,7 +29995,7 @@ export type CollectionParentResolvers<ContextType = any, ParentType extends Reso
 };
 
 export type CommonPermissionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['CommonPermissions'] = ResolversParentTypes['CommonPermissions']> = {
-  __resolveType: TypeResolveFn<'Announcement' | 'AssetAudio' | 'AssetDocument' | 'AssetImage' | 'AssetPDF' | 'AssetUnknown' | 'AssetVideo' | 'BlurbTemplateDefinition' | 'BlurbTemplateInstance' | 'Collection' | 'CollectionAttribution' | 'CollectionContribution' | 'Community' | 'ContextualPermission' | 'ContributionRoleConfiguration' | 'ContributorCollectionAttribution' | 'ContributorItemAttribution' | 'ContributorListTemplateDefinition' | 'ContributorListTemplateInstance' | 'ControlledVocabulary' | 'ControlledVocabularyItem' | 'ControlledVocabularySource' | 'DepositorAgreement' | 'DepositorAgreementTransition' | 'DepositorRequest' | 'DepositorRequestTransition' | 'DescendantListTemplateDefinition' | 'DescendantListTemplateInstance' | 'DetailTemplateDefinition' | 'DetailTemplateInstance' | 'EntityLink' | 'HarvestAttempt' | 'HarvestAttemptEntityStatus' | 'HarvestAttemptRecordStatus' | 'HarvestEntity' | 'HarvestError' | 'HarvestMapping' | 'HarvestMessage' | 'HarvestMetadataMapping' | 'HarvestRecord' | 'HarvestSet' | 'HarvestSource' | 'HeroLayoutDefinition' | 'HeroLayoutInstance' | 'HeroTemplateDefinition' | 'HeroTemplateInstance' | 'Item' | 'ItemAttribution' | 'ItemContribution' | 'LinkListTemplateDefinition' | 'LinkListTemplateInstance' | 'ListItemLayoutDefinition' | 'ListItemLayoutInstance' | 'ListItemTemplateDefinition' | 'ListItemTemplateInstance' | 'MainLayoutDefinition' | 'MainLayoutInstance' | 'MetadataLayoutDefinition' | 'MetadataLayoutInstance' | 'MetadataTemplateDefinition' | 'MetadataTemplateInstance' | 'NavigationLayoutDefinition' | 'NavigationLayoutInstance' | 'NavigationTemplateDefinition' | 'NavigationTemplateInstance' | 'Ordering' | 'OrderingEntry' | 'OrderingTemplateDefinition' | 'OrderingTemplateInstance' | 'OrganizationContributor' | 'PageListTemplateDefinition' | 'PageListTemplateInstance' | 'Permalink' | 'PersonContributor' | 'Role' | 'SchemaDefinition' | 'SchemaVersion' | 'Submission' | 'SubmissionBatchPublication' | 'SubmissionBatchPublicationTransition' | 'SubmissionComment' | 'SubmissionDepositTarget' | 'SubmissionPublication' | 'SubmissionPublicationTransition' | 'SubmissionReview' | 'SubmissionReviewTransition' | 'SubmissionTarget' | 'SubmissionTargetReviewer' | 'SubmissionTargetTransition' | 'SubmissionTransition' | 'SupplementaryLayoutDefinition' | 'SupplementaryLayoutInstance' | 'SupplementaryTemplateDefinition' | 'SupplementaryTemplateInstance' | 'TemplateInstanceSibling' | 'User' | 'UserCollectionAccessGrant' | 'UserCommunityAccessGrant' | 'UserGroup' | 'UserGroupCollectionAccessGrant' | 'UserGroupCommunityAccessGrant' | 'UserGroupItemAccessGrant' | 'UserItemAccessGrant', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'Announcement' | 'AssetAudio' | 'AssetDocument' | 'AssetImage' | 'AssetPDF' | 'AssetUnknown' | 'AssetVideo' | 'BlurbTemplateDefinition' | 'BlurbTemplateInstance' | 'Collection' | 'CollectionAttribution' | 'CollectionContribution' | 'Community' | 'ContextualPermission' | 'ContributionRoleConfiguration' | 'ContributorCollectionAttribution' | 'ContributorItemAttribution' | 'ContributorListTemplateDefinition' | 'ContributorListTemplateInstance' | 'ContributorUserLink' | 'ControlledVocabulary' | 'ControlledVocabularyItem' | 'ControlledVocabularySource' | 'DepositorAgreement' | 'DepositorAgreementTransition' | 'DepositorRequest' | 'DepositorRequestTransition' | 'DescendantListTemplateDefinition' | 'DescendantListTemplateInstance' | 'DetailTemplateDefinition' | 'DetailTemplateInstance' | 'EntityLink' | 'HarvestAttempt' | 'HarvestAttemptEntityStatus' | 'HarvestAttemptRecordStatus' | 'HarvestEntity' | 'HarvestError' | 'HarvestMapping' | 'HarvestMessage' | 'HarvestMetadataMapping' | 'HarvestRecord' | 'HarvestSet' | 'HarvestSource' | 'HeroLayoutDefinition' | 'HeroLayoutInstance' | 'HeroTemplateDefinition' | 'HeroTemplateInstance' | 'Item' | 'ItemAttribution' | 'ItemContribution' | 'LinkListTemplateDefinition' | 'LinkListTemplateInstance' | 'ListItemLayoutDefinition' | 'ListItemLayoutInstance' | 'ListItemTemplateDefinition' | 'ListItemTemplateInstance' | 'MainLayoutDefinition' | 'MainLayoutInstance' | 'MetadataLayoutDefinition' | 'MetadataLayoutInstance' | 'MetadataTemplateDefinition' | 'MetadataTemplateInstance' | 'NavigationLayoutDefinition' | 'NavigationLayoutInstance' | 'NavigationTemplateDefinition' | 'NavigationTemplateInstance' | 'Ordering' | 'OrderingEntry' | 'OrderingTemplateDefinition' | 'OrderingTemplateInstance' | 'OrganizationContributor' | 'PageListTemplateDefinition' | 'PageListTemplateInstance' | 'Permalink' | 'PersonContributor' | 'Role' | 'SchemaDefinition' | 'SchemaVersion' | 'Submission' | 'SubmissionBatchPublication' | 'SubmissionBatchPublicationTransition' | 'SubmissionComment' | 'SubmissionDepositTarget' | 'SubmissionPublication' | 'SubmissionPublicationTransition' | 'SubmissionReview' | 'SubmissionReviewTransition' | 'SubmissionTarget' | 'SubmissionTargetReviewer' | 'SubmissionTargetTransition' | 'SubmissionTransition' | 'SupplementaryLayoutDefinition' | 'SupplementaryLayoutInstance' | 'SupplementaryTemplateDefinition' | 'SupplementaryTemplateInstance' | 'TemplateInstanceSibling' | 'User' | 'UserCollectionAccessGrant' | 'UserCommunityAccessGrant' | 'UserGroup' | 'UserGroupCollectionAccessGrant' | 'UserGroupCommunityAccessGrant' | 'UserGroupItemAccessGrant' | 'UserItemAccessGrant', ParentType, ContextType>;
   canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
 };
@@ -29683,6 +30218,7 @@ export type ContributorResolvers<ContextType = any, ParentType extends Resolvers
   suffix?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  userLink?: Resolver<Maybe<ResolversTypes['ContributorUserLink']>, ParentType, ContextType>;
 };
 
 export type ContributorAttributionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ContributorAttribution'] = ResolversParentTypes['ContributorAttribution']> = {
@@ -29733,6 +30269,7 @@ export type ContributorBaseResolvers<ContextType = any, ParentType extends Resol
   suffix?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  userLink?: Resolver<Maybe<ResolversTypes['ContributorUserLink']>, ParentType, ContextType>;
 };
 
 export type ContributorCollectionAttributionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ContributorCollectionAttribution'] = ResolversParentTypes['ContributorCollectionAttribution']> = {
@@ -29837,12 +30374,14 @@ export type ContributorPropertyResolvers<ContextType = any, ParentType extends R
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   orderable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   path?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -29854,18 +30393,58 @@ export type ContributorSelectOptionResolvers<ContextType = any, ParentType exten
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type ContributorUserLinkResolvers<ContextType = any, ParentType extends ResolversParentTypes['ContributorUserLink'] = ResolversParentTypes['ContributorUserLink']> = {
+  canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  canUpdate?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
+  contributor?: Resolver<ResolversTypes['Contributor'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  linkage?: Resolver<ResolversTypes['ContributorUserLinkage'], ParentType, ContextType>;
+  slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
+  updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type ContributorUserLinkDestroyPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['ContributorUserLinkDestroyPayload'] = ResolversParentTypes['ContributorUserLinkDestroyPayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  destroyed?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  destroyedId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type ContributorUserLinkUpsertPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['ContributorUserLinkUpsertPayload'] = ResolversParentTypes['ContributorUserLinkUpsertPayload']> = {
+  attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  contributor?: Resolver<Maybe<ResolversTypes['Contributor']>, ParentType, ContextType>;
+  contributorUserLink?: Resolver<Maybe<ResolversTypes['ContributorUserLink']>, ParentType, ContextType>;
+  errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
+  globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
+  haltCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type ContributorsPropertyResolvers<ContextType = any, ParentType extends ResolversParentTypes['ContributorsProperty'] = ResolversParentTypes['ContributorsProperty']> = {
   array?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   contributors?: Resolver<Array<ResolversTypes['Contributor']>, ParentType, ContextType>;
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   orderable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   path?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -29877,12 +30456,14 @@ export type ControlledVocabulariesPropertyResolvers<ContextType = any, ParentTyp
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   orderable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   path?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   wants?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -29963,12 +30544,14 @@ export type ControlledVocabularyPropertyResolvers<ContextType = any, ParentType 
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   orderable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   path?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   wants?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -30136,6 +30719,7 @@ export type DatePropertyResolvers<ContextType = any, ParentType extends Resolver
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -30144,6 +30728,7 @@ export type DatePropertyResolvers<ContextType = any, ParentType extends Resolver
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   searchOperators?: Resolver<Array<ResolversTypes['SearchOperator']>, ParentType, ContextType>;
   searchPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -30498,7 +31083,7 @@ export type DestroyItemPayloadResolvers<ContextType = any, ParentType extends Re
 };
 
 export type DestroyMutationPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['DestroyMutationPayload'] = ResolversParentTypes['DestroyMutationPayload']> = {
-  __resolveType: TypeResolveFn<'ControlledVocabularyDestroyPayload' | 'DestroyAnnouncementPayload' | 'DestroyAssetPayload' | 'DestroyCollectionPayload' | 'DestroyCommunityPayload' | 'DestroyContributionPayload' | 'DestroyContributorPayload' | 'DestroyEntityLinkPayload' | 'DestroyItemPayload' | 'DestroyOrderingPayload' | 'DestroyPagePayload' | 'EntityPurgePayload' | 'HarvestMappingDestroyPayload' | 'HarvestMetadataMappingDestroyPayload' | 'HarvestSourceDestroyPayload' | 'PermalinkDestroyPayload' | 'SubmissionCommentDestroyPayload' | 'SubmissionTargetReviewerDestroyPayload', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'ContributorUserLinkDestroyPayload' | 'ControlledVocabularyDestroyPayload' | 'DestroyAnnouncementPayload' | 'DestroyAssetPayload' | 'DestroyCollectionPayload' | 'DestroyCommunityPayload' | 'DestroyContributionPayload' | 'DestroyContributorPayload' | 'DestroyEntityLinkPayload' | 'DestroyItemPayload' | 'DestroyOrderingPayload' | 'DestroyPagePayload' | 'EntityPurgePayload' | 'HarvestMappingDestroyPayload' | 'HarvestMetadataMappingDestroyPayload' | 'HarvestSourceDestroyPayload' | 'PermalinkDestroyPayload' | 'SubmissionCommentDestroyPayload' | 'SubmissionTargetReviewerDestroyPayload', ParentType, ContextType>;
   attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
   destroyed?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   destroyedId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
@@ -30604,12 +31189,14 @@ export type EmailPropertyResolvers<ContextType = any, ParentType extends Resolve
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   orderable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   path?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -30621,12 +31208,14 @@ export type EntitiesPropertyResolvers<ContextType = any, ParentType extends Reso
   entities?: Resolver<Array<ResolversTypes['Entity']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   orderable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   path?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -30815,12 +31404,14 @@ export type EntityPropertyResolvers<ContextType = any, ParentType extends Resolv
   entity?: Resolver<Maybe<ResolversTypes['Entity']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   orderable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   path?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -30868,6 +31459,7 @@ export type FloatPropertyResolvers<ContextType = any, ParentType extends Resolve
   floatValue?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -30876,6 +31468,7 @@ export type FloatPropertyResolvers<ContextType = any, ParentType extends Resolve
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   searchOperators?: Resolver<Array<ResolversTypes['SearchOperator']>, ParentType, ContextType>;
   searchPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -30913,6 +31506,7 @@ export type FullTextPropertyResolvers<ContextType = any, ParentType extends Reso
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   fullText?: Resolver<Maybe<ResolversTypes['FullText']>, ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -30921,6 +31515,7 @@ export type FullTextPropertyResolvers<ContextType = any, ParentType extends Reso
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   searchOperators?: Resolver<Array<ResolversTypes['SearchOperator']>, ParentType, ContextType>;
   searchPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -31493,7 +32088,7 @@ export type HasDoiResolvers<ContextType = any, ParentType extends ResolversParen
 };
 
 export type HasDefaultTimestampsResolvers<ContextType = any, ParentType extends ResolversParentTypes['HasDefaultTimestamps'] = ResolversParentTypes['HasDefaultTimestamps']> = {
-  __resolveType: TypeResolveFn<'Announcement' | 'AssetAudio' | 'AssetDocument' | 'AssetImage' | 'AssetPDF' | 'AssetUnknown' | 'AssetVideo' | 'BlurbTemplateDefinition' | 'BlurbTemplateInstance' | 'Collection' | 'CollectionAttribution' | 'CollectionContribution' | 'Community' | 'ContextualPermission' | 'ContributionRoleConfiguration' | 'ContributorCollectionAttribution' | 'ContributorItemAttribution' | 'ContributorListTemplateDefinition' | 'ContributorListTemplateInstance' | 'ControlledVocabulary' | 'ControlledVocabularyItem' | 'ControlledVocabularySource' | 'DepositorAgreement' | 'DepositorAgreementTransition' | 'DepositorRequest' | 'DepositorRequestTransition' | 'DescendantListTemplateDefinition' | 'DescendantListTemplateInstance' | 'DetailTemplateDefinition' | 'DetailTemplateInstance' | 'EntityLink' | 'HarvestAttempt' | 'HarvestAttemptEntityStatus' | 'HarvestAttemptRecordStatus' | 'HarvestEntity' | 'HarvestError' | 'HarvestMapping' | 'HarvestMessage' | 'HarvestMetadataMapping' | 'HarvestRecord' | 'HarvestSet' | 'HarvestSource' | 'HeroLayoutDefinition' | 'HeroLayoutInstance' | 'HeroTemplateDefinition' | 'HeroTemplateInstance' | 'Item' | 'ItemAttribution' | 'ItemContribution' | 'LinkListTemplateDefinition' | 'LinkListTemplateInstance' | 'ListItemLayoutDefinition' | 'ListItemLayoutInstance' | 'ListItemTemplateDefinition' | 'ListItemTemplateInstance' | 'MainLayoutDefinition' | 'MainLayoutInstance' | 'MetadataLayoutDefinition' | 'MetadataLayoutInstance' | 'MetadataTemplateDefinition' | 'MetadataTemplateInstance' | 'NavigationLayoutDefinition' | 'NavigationLayoutInstance' | 'NavigationTemplateDefinition' | 'NavigationTemplateInstance' | 'Ordering' | 'OrderingEntry' | 'OrderingTemplateDefinition' | 'OrderingTemplateInstance' | 'OrganizationContributor' | 'PageListTemplateDefinition' | 'PageListTemplateInstance' | 'Permalink' | 'PersonContributor' | 'Role' | 'SchemaDefinition' | 'SchemaVersion' | 'Submission' | 'SubmissionBatchPublication' | 'SubmissionBatchPublicationTransition' | 'SubmissionComment' | 'SubmissionDepositTarget' | 'SubmissionPublication' | 'SubmissionPublicationTransition' | 'SubmissionReview' | 'SubmissionReviewTransition' | 'SubmissionTarget' | 'SubmissionTargetReviewer' | 'SubmissionTargetTransition' | 'SubmissionTransition' | 'SupplementaryLayoutDefinition' | 'SupplementaryLayoutInstance' | 'SupplementaryTemplateDefinition' | 'SupplementaryTemplateInstance' | 'TemplateInstanceSibling' | 'User' | 'UserCollectionAccessGrant' | 'UserCommunityAccessGrant' | 'UserGroup' | 'UserGroupCollectionAccessGrant' | 'UserGroupCommunityAccessGrant' | 'UserGroupItemAccessGrant' | 'UserItemAccessGrant', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'Announcement' | 'AssetAudio' | 'AssetDocument' | 'AssetImage' | 'AssetPDF' | 'AssetUnknown' | 'AssetVideo' | 'BlurbTemplateDefinition' | 'BlurbTemplateInstance' | 'Collection' | 'CollectionAttribution' | 'CollectionContribution' | 'Community' | 'ContextualPermission' | 'ContributionRoleConfiguration' | 'ContributorCollectionAttribution' | 'ContributorItemAttribution' | 'ContributorListTemplateDefinition' | 'ContributorListTemplateInstance' | 'ContributorUserLink' | 'ControlledVocabulary' | 'ControlledVocabularyItem' | 'ControlledVocabularySource' | 'DepositorAgreement' | 'DepositorAgreementTransition' | 'DepositorRequest' | 'DepositorRequestTransition' | 'DescendantListTemplateDefinition' | 'DescendantListTemplateInstance' | 'DetailTemplateDefinition' | 'DetailTemplateInstance' | 'EntityLink' | 'HarvestAttempt' | 'HarvestAttemptEntityStatus' | 'HarvestAttemptRecordStatus' | 'HarvestEntity' | 'HarvestError' | 'HarvestMapping' | 'HarvestMessage' | 'HarvestMetadataMapping' | 'HarvestRecord' | 'HarvestSet' | 'HarvestSource' | 'HeroLayoutDefinition' | 'HeroLayoutInstance' | 'HeroTemplateDefinition' | 'HeroTemplateInstance' | 'Item' | 'ItemAttribution' | 'ItemContribution' | 'LinkListTemplateDefinition' | 'LinkListTemplateInstance' | 'ListItemLayoutDefinition' | 'ListItemLayoutInstance' | 'ListItemTemplateDefinition' | 'ListItemTemplateInstance' | 'MainLayoutDefinition' | 'MainLayoutInstance' | 'MetadataLayoutDefinition' | 'MetadataLayoutInstance' | 'MetadataTemplateDefinition' | 'MetadataTemplateInstance' | 'NavigationLayoutDefinition' | 'NavigationLayoutInstance' | 'NavigationTemplateDefinition' | 'NavigationTemplateInstance' | 'Ordering' | 'OrderingEntry' | 'OrderingTemplateDefinition' | 'OrderingTemplateInstance' | 'OrganizationContributor' | 'PageListTemplateDefinition' | 'PageListTemplateInstance' | 'Permalink' | 'PersonContributor' | 'Role' | 'SchemaDefinition' | 'SchemaVersion' | 'Submission' | 'SubmissionBatchPublication' | 'SubmissionBatchPublicationTransition' | 'SubmissionComment' | 'SubmissionDepositTarget' | 'SubmissionPublication' | 'SubmissionPublicationTransition' | 'SubmissionReview' | 'SubmissionReviewTransition' | 'SubmissionTarget' | 'SubmissionTargetReviewer' | 'SubmissionTargetTransition' | 'SubmissionTransition' | 'SupplementaryLayoutDefinition' | 'SupplementaryLayoutInstance' | 'SupplementaryTemplateDefinition' | 'SupplementaryTemplateInstance' | 'TemplateInstanceSibling' | 'User' | 'UserCollectionAccessGrant' | 'UserCommunityAccessGrant' | 'UserGroup' | 'UserGroupCollectionAccessGrant' | 'UserGroupCommunityAccessGrant' | 'UserGroupItemAccessGrant' | 'UserItemAccessGrant', ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
   createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
@@ -31805,6 +32400,7 @@ export type IntegerPropertyResolvers<ContextType = any, ParentType extends Resol
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   integerValue?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
@@ -31814,6 +32410,7 @@ export type IntegerPropertyResolvers<ContextType = any, ParentType extends Resol
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   searchOperators?: Resolver<Array<ResolversTypes['SearchOperator']>, ParentType, ContextType>;
   searchPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -32293,6 +32890,7 @@ export type MarkdownPropertyResolvers<ContextType = any, ParentType extends Reso
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -32301,6 +32899,7 @@ export type MarkdownPropertyResolvers<ContextType = any, ParentType extends Reso
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   searchOperators?: Resolver<Array<ResolversTypes['SearchOperator']>, ParentType, ContextType>;
   searchPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -32402,6 +33001,7 @@ export type MultiselectPropertyResolvers<ContextType = any, ParentType extends R
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -32412,6 +33012,7 @@ export type MultiselectPropertyResolvers<ContextType = any, ParentType extends R
   searchOperators?: Resolver<Array<ResolversTypes['SearchOperator']>, ParentType, ContextType>;
   searchPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   selections?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -32419,6 +33020,8 @@ export type MultiselectPropertyResolvers<ContextType = any, ParentType extends R
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   alterSchemaVersion?: Resolver<Maybe<ResolversTypes['AlterSchemaVersionPayload']>, ParentType, ContextType, RequireFields<MutationAlterSchemaVersionArgs, 'input'>>;
   applySchemaProperties?: Resolver<Maybe<ResolversTypes['ApplySchemaPropertiesPayload']>, ParentType, ContextType, RequireFields<MutationApplySchemaPropertiesArgs, 'input'>>;
+  contributorUserLinkDestroy?: Resolver<Maybe<ResolversTypes['ContributorUserLinkDestroyPayload']>, ParentType, ContextType, RequireFields<MutationContributorUserLinkDestroyArgs, 'input'>>;
+  contributorUserLinkUpsert?: Resolver<Maybe<ResolversTypes['ContributorUserLinkUpsertPayload']>, ParentType, ContextType, RequireFields<MutationContributorUserLinkUpsertArgs, 'input'>>;
   controlledVocabularyDestroy?: Resolver<Maybe<ResolversTypes['ControlledVocabularyDestroyPayload']>, ParentType, ContextType, RequireFields<MutationControlledVocabularyDestroyArgs, 'input'>>;
   controlledVocabularySourceUpdate?: Resolver<Maybe<ResolversTypes['ControlledVocabularySourceUpdatePayload']>, ParentType, ContextType, RequireFields<MutationControlledVocabularySourceUpdateArgs, 'input'>>;
   controlledVocabularyUpsert?: Resolver<Maybe<ResolversTypes['ControlledVocabularyUpsertPayload']>, ParentType, ContextType, RequireFields<MutationControlledVocabularyUpsertArgs, 'input'>>;
@@ -32612,7 +33215,7 @@ export type NavigationTemplateInstanceSlotsResolvers<ContextType = any, ParentTy
 };
 
 export type NodeResolvers<ContextType = any, ParentType extends ResolversParentTypes['Node'] = ResolversParentTypes['Node']> = {
-  __resolveType: TypeResolveFn<'Announcement' | 'AssetAudio' | 'AssetDocument' | 'AssetImage' | 'AssetPDF' | 'AssetUnknown' | 'AssetVideo' | 'BlurbTemplateDefinition' | 'BlurbTemplateInstance' | 'Collection' | 'CollectionAttribution' | 'CollectionContribution' | 'Community' | 'ContextualPermission' | 'ContributionRoleConfiguration' | 'ContributorCollectionAttribution' | 'ContributorItemAttribution' | 'ContributorListTemplateDefinition' | 'ContributorListTemplateInstance' | 'ControlledVocabulary' | 'ControlledVocabularyItem' | 'ControlledVocabularySource' | 'DepositorAgreement' | 'DepositorAgreementTransition' | 'DepositorRequest' | 'DepositorRequestTransition' | 'DescendantListTemplateDefinition' | 'DescendantListTemplateInstance' | 'DetailTemplateDefinition' | 'DetailTemplateInstance' | 'EntityBreadcrumb' | 'EntityLink' | 'GlobalConfiguration' | 'HarvestAttempt' | 'HarvestAttemptEntityStatus' | 'HarvestAttemptRecordStatus' | 'HarvestEntity' | 'HarvestError' | 'HarvestMapping' | 'HarvestMessage' | 'HarvestMetadataMapping' | 'HarvestRecord' | 'HarvestSet' | 'HarvestSource' | 'HeroLayoutDefinition' | 'HeroLayoutInstance' | 'HeroTemplateDefinition' | 'HeroTemplateInstance' | 'HierarchicalSchemaRank' | 'HierarchicalSchemaVersionRank' | 'Item' | 'ItemAttribution' | 'ItemContribution' | 'LinkListTemplateDefinition' | 'LinkListTemplateInstance' | 'LinkTargetCandidate' | 'ListItemLayoutDefinition' | 'ListItemLayoutInstance' | 'ListItemTemplateDefinition' | 'ListItemTemplateInstance' | 'MainLayoutDefinition' | 'MainLayoutInstance' | 'MetadataLayoutDefinition' | 'MetadataLayoutInstance' | 'MetadataTemplateDefinition' | 'MetadataTemplateInstance' | 'NavigationLayoutDefinition' | 'NavigationLayoutInstance' | 'NavigationTemplateDefinition' | 'NavigationTemplateInstance' | 'Ordering' | 'OrderingEntry' | 'OrderingTemplateDefinition' | 'OrderingTemplateInstance' | 'OrganizationContributor' | 'Page' | 'PageListTemplateDefinition' | 'PageListTemplateInstance' | 'Permalink' | 'PersonContributor' | 'Role' | 'SchemaDefinition' | 'SchemaVersion' | 'SearchResult' | 'Submission' | 'SubmissionBatchPublication' | 'SubmissionBatchPublicationTransition' | 'SubmissionComment' | 'SubmissionDepositTarget' | 'SubmissionPublication' | 'SubmissionPublicationTransition' | 'SubmissionReview' | 'SubmissionReviewTransition' | 'SubmissionTarget' | 'SubmissionTargetReviewer' | 'SubmissionTargetTransition' | 'SubmissionTransition' | 'SupplementaryLayoutDefinition' | 'SupplementaryLayoutInstance' | 'SupplementaryTemplateDefinition' | 'SupplementaryTemplateInstance' | 'TemplateInstanceSibling' | 'User' | 'UserCollectionAccessGrant' | 'UserCommunityAccessGrant' | 'UserGroup' | 'UserGroupCollectionAccessGrant' | 'UserGroupCommunityAccessGrant' | 'UserGroupItemAccessGrant' | 'UserItemAccessGrant', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'Announcement' | 'AssetAudio' | 'AssetDocument' | 'AssetImage' | 'AssetPDF' | 'AssetUnknown' | 'AssetVideo' | 'BlurbTemplateDefinition' | 'BlurbTemplateInstance' | 'Collection' | 'CollectionAttribution' | 'CollectionContribution' | 'Community' | 'ContextualPermission' | 'ContributionRoleConfiguration' | 'ContributorCollectionAttribution' | 'ContributorItemAttribution' | 'ContributorListTemplateDefinition' | 'ContributorListTemplateInstance' | 'ContributorUserLink' | 'ControlledVocabulary' | 'ControlledVocabularyItem' | 'ControlledVocabularySource' | 'DepositorAgreement' | 'DepositorAgreementTransition' | 'DepositorRequest' | 'DepositorRequestTransition' | 'DescendantListTemplateDefinition' | 'DescendantListTemplateInstance' | 'DetailTemplateDefinition' | 'DetailTemplateInstance' | 'EntityBreadcrumb' | 'EntityLink' | 'GlobalConfiguration' | 'HarvestAttempt' | 'HarvestAttemptEntityStatus' | 'HarvestAttemptRecordStatus' | 'HarvestEntity' | 'HarvestError' | 'HarvestMapping' | 'HarvestMessage' | 'HarvestMetadataMapping' | 'HarvestRecord' | 'HarvestSet' | 'HarvestSource' | 'HeroLayoutDefinition' | 'HeroLayoutInstance' | 'HeroTemplateDefinition' | 'HeroTemplateInstance' | 'HierarchicalSchemaRank' | 'HierarchicalSchemaVersionRank' | 'Item' | 'ItemAttribution' | 'ItemContribution' | 'LinkListTemplateDefinition' | 'LinkListTemplateInstance' | 'LinkTargetCandidate' | 'ListItemLayoutDefinition' | 'ListItemLayoutInstance' | 'ListItemTemplateDefinition' | 'ListItemTemplateInstance' | 'MainLayoutDefinition' | 'MainLayoutInstance' | 'MetadataLayoutDefinition' | 'MetadataLayoutInstance' | 'MetadataTemplateDefinition' | 'MetadataTemplateInstance' | 'NavigationLayoutDefinition' | 'NavigationLayoutInstance' | 'NavigationTemplateDefinition' | 'NavigationTemplateInstance' | 'Ordering' | 'OrderingEntry' | 'OrderingTemplateDefinition' | 'OrderingTemplateInstance' | 'OrganizationContributor' | 'Page' | 'PageListTemplateDefinition' | 'PageListTemplateInstance' | 'Permalink' | 'PersonContributor' | 'Role' | 'SchemaDefinition' | 'SchemaVersion' | 'SearchResult' | 'Submission' | 'SubmissionBatchPublication' | 'SubmissionBatchPublicationTransition' | 'SubmissionComment' | 'SubmissionDepositTarget' | 'SubmissionPublication' | 'SubmissionPublicationTransition' | 'SubmissionReview' | 'SubmissionReviewTransition' | 'SubmissionTarget' | 'SubmissionTargetReviewer' | 'SubmissionTargetTransition' | 'SubmissionTransition' | 'SupplementaryLayoutDefinition' | 'SupplementaryLayoutInstance' | 'SupplementaryTemplateDefinition' | 'SupplementaryTemplateInstance' | 'TemplateInstanceSibling' | 'User' | 'UserCollectionAccessGrant' | 'UserCommunityAccessGrant' | 'UserGroup' | 'UserGroupCollectionAccessGrant' | 'UserGroupCommunityAccessGrant' | 'UserGroupItemAccessGrant' | 'UserItemAccessGrant', ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
 };
 
@@ -32857,6 +33460,7 @@ export type OrganizationContributorResolvers<ContextType = any, ParentType exten
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
   updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  userLink?: Resolver<Maybe<ResolversTypes['ContributorUserLink']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -33069,6 +33673,7 @@ export type PersonContributorResolvers<ContextType = any, ParentType extends Res
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
   updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  userLink?: Resolver<Maybe<ResolversTypes['ContributorUserLink']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -33390,12 +33995,14 @@ export type ScalarPropertyResolvers<ContextType = any, ParentType extends Resolv
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   orderable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   path?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
 };
 
@@ -33525,6 +34132,7 @@ export type SchemaVersionResolvers<ContextType = any, ParentType extends Resolve
   search?: Resolver<ResolversTypes['SearchScope'], ParentType, ContextType, RequireFields<SchemaVersionSearchArgs, 'visibility'>>;
   searchableProperties?: Resolver<Array<ResolversTypes['SearchableProperty']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
+  submittableVersions?: Resolver<Array<ResolversTypes['SchemaVersion']>, ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
   updatedOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -33620,6 +34228,7 @@ export type SelectPropertyResolvers<ContextType = any, ParentType extends Resolv
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -33630,6 +34239,7 @@ export type SelectPropertyResolvers<ContextType = any, ParentType extends Resolv
   searchOperators?: Resolver<Array<ResolversTypes['SearchOperator']>, ParentType, ContextType>;
   searchPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   selection?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -33666,12 +34276,12 @@ export interface SlugScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 }
 
 export type SluggableResolvers<ContextType = any, ParentType extends ResolversParentTypes['Sluggable'] = ResolversParentTypes['Sluggable']> = {
-  __resolveType: TypeResolveFn<'Announcement' | 'AssetAudio' | 'AssetDocument' | 'AssetImage' | 'AssetPDF' | 'AssetUnknown' | 'AssetVideo' | 'BlurbTemplateDefinition' | 'BlurbTemplateInstance' | 'Collection' | 'CollectionAttribution' | 'CollectionContribution' | 'Community' | 'ContextualPermission' | 'ContributionRoleConfiguration' | 'ContributorCollectionAttribution' | 'ContributorItemAttribution' | 'ContributorListTemplateDefinition' | 'ContributorListTemplateInstance' | 'ControlledVocabulary' | 'ControlledVocabularyItem' | 'ControlledVocabularySource' | 'DepositorAgreement' | 'DepositorAgreementTransition' | 'DepositorRequest' | 'DepositorRequestTransition' | 'DescendantListTemplateDefinition' | 'DescendantListTemplateInstance' | 'DetailTemplateDefinition' | 'DetailTemplateInstance' | 'EntityLink' | 'HarvestAttempt' | 'HarvestAttemptEntityStatus' | 'HarvestAttemptRecordStatus' | 'HarvestEntity' | 'HarvestError' | 'HarvestMapping' | 'HarvestMessage' | 'HarvestMetadataMapping' | 'HarvestRecord' | 'HarvestSet' | 'HarvestSource' | 'HeroLayoutDefinition' | 'HeroLayoutInstance' | 'HeroTemplateDefinition' | 'HeroTemplateInstance' | 'Item' | 'ItemAttribution' | 'ItemContribution' | 'LinkListTemplateDefinition' | 'LinkListTemplateInstance' | 'ListItemLayoutDefinition' | 'ListItemLayoutInstance' | 'ListItemTemplateDefinition' | 'ListItemTemplateInstance' | 'MainLayoutDefinition' | 'MainLayoutInstance' | 'MetadataLayoutDefinition' | 'MetadataLayoutInstance' | 'MetadataTemplateDefinition' | 'MetadataTemplateInstance' | 'NavigationLayoutDefinition' | 'NavigationLayoutInstance' | 'NavigationTemplateDefinition' | 'NavigationTemplateInstance' | 'Ordering' | 'OrderingEntry' | 'OrderingTemplateDefinition' | 'OrderingTemplateInstance' | 'OrganizationContributor' | 'PageListTemplateDefinition' | 'PageListTemplateInstance' | 'Permalink' | 'PersonContributor' | 'Role' | 'SchemaDefinition' | 'SchemaVersion' | 'SearchResult' | 'Submission' | 'SubmissionBatchPublication' | 'SubmissionBatchPublicationTransition' | 'SubmissionComment' | 'SubmissionDepositTarget' | 'SubmissionPublication' | 'SubmissionPublicationTransition' | 'SubmissionReview' | 'SubmissionReviewTransition' | 'SubmissionTarget' | 'SubmissionTargetReviewer' | 'SubmissionTargetTransition' | 'SubmissionTransition' | 'SupplementaryLayoutDefinition' | 'SupplementaryLayoutInstance' | 'SupplementaryTemplateDefinition' | 'SupplementaryTemplateInstance' | 'TemplateInstanceSibling' | 'User' | 'UserCollectionAccessGrant' | 'UserCommunityAccessGrant' | 'UserGroup' | 'UserGroupCollectionAccessGrant' | 'UserGroupCommunityAccessGrant' | 'UserGroupItemAccessGrant' | 'UserItemAccessGrant', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'Announcement' | 'AssetAudio' | 'AssetDocument' | 'AssetImage' | 'AssetPDF' | 'AssetUnknown' | 'AssetVideo' | 'BlurbTemplateDefinition' | 'BlurbTemplateInstance' | 'Collection' | 'CollectionAttribution' | 'CollectionContribution' | 'Community' | 'ContextualPermission' | 'ContributionRoleConfiguration' | 'ContributorCollectionAttribution' | 'ContributorItemAttribution' | 'ContributorListTemplateDefinition' | 'ContributorListTemplateInstance' | 'ContributorUserLink' | 'ControlledVocabulary' | 'ControlledVocabularyItem' | 'ControlledVocabularySource' | 'DepositorAgreement' | 'DepositorAgreementTransition' | 'DepositorRequest' | 'DepositorRequestTransition' | 'DescendantListTemplateDefinition' | 'DescendantListTemplateInstance' | 'DetailTemplateDefinition' | 'DetailTemplateInstance' | 'EntityLink' | 'HarvestAttempt' | 'HarvestAttemptEntityStatus' | 'HarvestAttemptRecordStatus' | 'HarvestEntity' | 'HarvestError' | 'HarvestMapping' | 'HarvestMessage' | 'HarvestMetadataMapping' | 'HarvestRecord' | 'HarvestSet' | 'HarvestSource' | 'HeroLayoutDefinition' | 'HeroLayoutInstance' | 'HeroTemplateDefinition' | 'HeroTemplateInstance' | 'Item' | 'ItemAttribution' | 'ItemContribution' | 'LinkListTemplateDefinition' | 'LinkListTemplateInstance' | 'ListItemLayoutDefinition' | 'ListItemLayoutInstance' | 'ListItemTemplateDefinition' | 'ListItemTemplateInstance' | 'MainLayoutDefinition' | 'MainLayoutInstance' | 'MetadataLayoutDefinition' | 'MetadataLayoutInstance' | 'MetadataTemplateDefinition' | 'MetadataTemplateInstance' | 'NavigationLayoutDefinition' | 'NavigationLayoutInstance' | 'NavigationTemplateDefinition' | 'NavigationTemplateInstance' | 'Ordering' | 'OrderingEntry' | 'OrderingTemplateDefinition' | 'OrderingTemplateInstance' | 'OrganizationContributor' | 'PageListTemplateDefinition' | 'PageListTemplateInstance' | 'Permalink' | 'PersonContributor' | 'Role' | 'SchemaDefinition' | 'SchemaVersion' | 'SearchResult' | 'Submission' | 'SubmissionBatchPublication' | 'SubmissionBatchPublicationTransition' | 'SubmissionComment' | 'SubmissionDepositTarget' | 'SubmissionPublication' | 'SubmissionPublicationTransition' | 'SubmissionReview' | 'SubmissionReviewTransition' | 'SubmissionTarget' | 'SubmissionTargetReviewer' | 'SubmissionTargetTransition' | 'SubmissionTransition' | 'SupplementaryLayoutDefinition' | 'SupplementaryLayoutInstance' | 'SupplementaryTemplateDefinition' | 'SupplementaryTemplateInstance' | 'TemplateInstanceSibling' | 'User' | 'UserCollectionAccessGrant' | 'UserCommunityAccessGrant' | 'UserGroup' | 'UserGroupCollectionAccessGrant' | 'UserGroupCommunityAccessGrant' | 'UserGroupItemAccessGrant' | 'UserItemAccessGrant', ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
 };
 
 export type StandardMutationPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['StandardMutationPayload'] = ResolversParentTypes['StandardMutationPayload']> = {
-  __resolveType: TypeResolveFn<'AlterSchemaVersionPayload' | 'ApplySchemaPropertiesPayload' | 'ControlledVocabularyDestroyPayload' | 'ControlledVocabularySourceUpdatePayload' | 'ControlledVocabularyUpsertPayload' | 'CreateAnnouncementPayload' | 'CreateAssetPayload' | 'CreateCollectionPayload' | 'CreateCommunityPayload' | 'CreateItemPayload' | 'CreateOrderingPayload' | 'CreateOrganizationContributorPayload' | 'CreatePagePayload' | 'CreatePersonContributorPayload' | 'CreateRolePayload' | 'DepositorAgreementAcceptPayload' | 'DepositorAgreementResetAllPayload' | 'DepositorAgreementResetPayload' | 'DepositorRequestChangeStatePayload' | 'DepositorRequestCreatePayload' | 'DestroyAnnouncementPayload' | 'DestroyAssetPayload' | 'DestroyCollectionPayload' | 'DestroyCommunityPayload' | 'DestroyContributionPayload' | 'DestroyContributorPayload' | 'DestroyEntityLinkPayload' | 'DestroyItemPayload' | 'DestroyOrderingPayload' | 'DestroyPagePayload' | 'EntityPurgePayload' | 'FrontendCacheRevalidateEntityPayload' | 'FrontendCacheRevalidateInstancePayload' | 'GrantAccessPayload' | 'HarvestAttemptFromMappingPayload' | 'HarvestAttemptFromSourcePayload' | 'HarvestAttemptPruneEntitiesPayload' | 'HarvestMappingCreatePayload' | 'HarvestMappingDestroyPayload' | 'HarvestMappingUpdatePayload' | 'HarvestMetadataMappingCreatePayload' | 'HarvestMetadataMappingDestroyPayload' | 'HarvestSourceCreatePayload' | 'HarvestSourceDestroyPayload' | 'HarvestSourcePruneEntitiesPayload' | 'HarvestSourceUpdatePayload' | 'LinkEntityPayload' | 'PermalinkCreatePayload' | 'PermalinkDestroyPayload' | 'PermalinkUpdatePayload' | 'PreviewSlotPayload' | 'RenderLayoutsPayload' | 'ReparentEntityPayload' | 'ResetOrderingPayload' | 'RevokeAccessPayload' | 'SubmissionBatchPublishPayload' | 'SubmissionChangeStatePayload' | 'SubmissionCommentCreatePayload' | 'SubmissionCommentDestroyPayload' | 'SubmissionCommentUpdatePayload' | 'SubmissionCreatePayload' | 'SubmissionLeaveReviewPayload' | 'SubmissionPublishPayload' | 'SubmissionRequestReviewPayload' | 'SubmissionTargetClosePayload' | 'SubmissionTargetConfigurePayload' | 'SubmissionTargetOpenPayload' | 'SubmissionTargetReviewerCreatePayload' | 'SubmissionTargetReviewerDestroyPayload' | 'UpdateAnnouncementPayload' | 'UpdateAssetAttachmentPayload' | 'UpdateAssetPayload' | 'UpdateCollectionPayload' | 'UpdateCommunityPayload' | 'UpdateContributionPayload' | 'UpdateGlobalConfigurationPayload' | 'UpdateItemPayload' | 'UpdateOrderingPayload' | 'UpdateOrganizationContributorPayload' | 'UpdatePagePayload' | 'UpdatePersonContributorPayload' | 'UpdateRolePayload' | 'UpdateUserPayload' | 'UpdateViewerSettingsPayload' | 'UpsertContributionPayload' | 'UserResetPasswordPayload', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'AlterSchemaVersionPayload' | 'ApplySchemaPropertiesPayload' | 'ContributorUserLinkDestroyPayload' | 'ContributorUserLinkUpsertPayload' | 'ControlledVocabularyDestroyPayload' | 'ControlledVocabularySourceUpdatePayload' | 'ControlledVocabularyUpsertPayload' | 'CreateAnnouncementPayload' | 'CreateAssetPayload' | 'CreateCollectionPayload' | 'CreateCommunityPayload' | 'CreateItemPayload' | 'CreateOrderingPayload' | 'CreateOrganizationContributorPayload' | 'CreatePagePayload' | 'CreatePersonContributorPayload' | 'CreateRolePayload' | 'DepositorAgreementAcceptPayload' | 'DepositorAgreementResetAllPayload' | 'DepositorAgreementResetPayload' | 'DepositorRequestChangeStatePayload' | 'DepositorRequestCreatePayload' | 'DestroyAnnouncementPayload' | 'DestroyAssetPayload' | 'DestroyCollectionPayload' | 'DestroyCommunityPayload' | 'DestroyContributionPayload' | 'DestroyContributorPayload' | 'DestroyEntityLinkPayload' | 'DestroyItemPayload' | 'DestroyOrderingPayload' | 'DestroyPagePayload' | 'EntityPurgePayload' | 'FrontendCacheRevalidateEntityPayload' | 'FrontendCacheRevalidateInstancePayload' | 'GrantAccessPayload' | 'HarvestAttemptFromMappingPayload' | 'HarvestAttemptFromSourcePayload' | 'HarvestAttemptPruneEntitiesPayload' | 'HarvestMappingCreatePayload' | 'HarvestMappingDestroyPayload' | 'HarvestMappingUpdatePayload' | 'HarvestMetadataMappingCreatePayload' | 'HarvestMetadataMappingDestroyPayload' | 'HarvestSourceCreatePayload' | 'HarvestSourceDestroyPayload' | 'HarvestSourcePruneEntitiesPayload' | 'HarvestSourceUpdatePayload' | 'LinkEntityPayload' | 'PermalinkCreatePayload' | 'PermalinkDestroyPayload' | 'PermalinkUpdatePayload' | 'PreviewSlotPayload' | 'RenderLayoutsPayload' | 'ReparentEntityPayload' | 'ResetOrderingPayload' | 'RevokeAccessPayload' | 'SubmissionBatchPublishPayload' | 'SubmissionChangeStatePayload' | 'SubmissionCommentCreatePayload' | 'SubmissionCommentDestroyPayload' | 'SubmissionCommentUpdatePayload' | 'SubmissionCreatePayload' | 'SubmissionLeaveReviewPayload' | 'SubmissionPublishPayload' | 'SubmissionRequestReviewPayload' | 'SubmissionTargetClosePayload' | 'SubmissionTargetConfigurePayload' | 'SubmissionTargetOpenPayload' | 'SubmissionTargetReviewerCreatePayload' | 'SubmissionTargetReviewerDestroyPayload' | 'UpdateAnnouncementPayload' | 'UpdateAssetAttachmentPayload' | 'UpdateAssetPayload' | 'UpdateCollectionPayload' | 'UpdateCommunityPayload' | 'UpdateContributionPayload' | 'UpdateGlobalConfigurationPayload' | 'UpdateItemPayload' | 'UpdateOrderingPayload' | 'UpdateOrganizationContributorPayload' | 'UpdatePagePayload' | 'UpdatePersonContributorPayload' | 'UpdateRolePayload' | 'UpdateUserPayload' | 'UpdateViewerSettingsPayload' | 'UpsertContributionPayload' | 'UserResetPasswordPayload', ParentType, ContextType>;
   attributeErrors?: Resolver<Array<ResolversTypes['MutationAttributeError']>, ParentType, ContextType>;
   errors?: Resolver<Array<ResolversTypes['UserError']>, ParentType, ContextType>;
   globalErrors?: Resolver<Array<ResolversTypes['MutationGlobalError']>, ParentType, ContextType>;
@@ -33695,6 +34305,7 @@ export type StringPropertyResolvers<ContextType = any, ParentType extends Resolv
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -33703,11 +34314,13 @@ export type StringPropertyResolvers<ContextType = any, ParentType extends Resolv
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   searchOperators?: Resolver<Array<ResolversTypes['SearchOperator']>, ParentType, ContextType>;
   searchPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type SubmissionResolvers<ContextType = any, ParentType extends ResolversParentTypes['Submission'] = ResolversParentTypes['Submission']> = {
+  agreementAcceptedAt?: Resolver<Maybe<ResolversTypes['ISO8601DateTime']>, ParentType, ContextType>;
   availableTransitions?: Resolver<Array<ResolversTypes['SubmissionStatus']>, ParentType, ContextType>;
   canAlterSchemaVersion?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   canComment?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
@@ -34050,6 +34663,7 @@ export type SubmissionTargetResolvers<ContextType = any, ParentType extends Reso
   agreementContent?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   agreementRequired?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   allowedChildKinds?: Resolver<Array<ResolversTypes['ChildEntityKind']>, ParentType, ContextType>;
+  autoApproveDepositors?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   canDeposit?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   canDestroy?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
   canManageReviewers?: Resolver<ResolversTypes['AuthorizationResult'], ParentType, ContextType>;
@@ -34329,12 +34943,14 @@ export type TagsPropertyResolvers<ContextType = any, ParentType extends Resolver
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   orderable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   path?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   tags?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -34519,6 +35135,7 @@ export type TimestampPropertyResolvers<ContextType = any, ParentType extends Res
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -34527,6 +35144,7 @@ export type TimestampPropertyResolvers<ContextType = any, ParentType extends Res
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   searchOperators?: Resolver<Array<ResolversTypes['SearchOperator']>, ParentType, ContextType>;
   searchPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   timestamp?: Resolver<Maybe<ResolversTypes['ISO8601DateTime']>, ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -34537,12 +35155,14 @@ export type UrlPropertyResolvers<ContextType = any, ParentType extends Resolvers
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   orderable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   path?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   url?: Resolver<Maybe<ResolversTypes['URLReference']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -34561,12 +35181,14 @@ export type UnknownPropertyResolvers<ContextType = any, ParentType extends Resol
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   orderable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   path?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   unknownValue?: Resolver<Maybe<ResolversTypes['JSON']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -34757,6 +35379,7 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   collections?: Resolver<ResolversTypes['CollectionConnection'], ParentType, ContextType, RequireFields<UserCollectionsArgs, 'access' | 'nodeFilter' | 'order' | 'pageDirection'>>;
   communities?: Resolver<ResolversTypes['CommunityConnection'], ParentType, ContextType, RequireFields<UserCommunitiesArgs, 'access' | 'nodeFilter' | 'order' | 'pageDirection'>>;
   communityAccessGrants?: Resolver<ResolversTypes['UserCommunityAccessGrantConnection'], ParentType, ContextType, RequireFields<UserCommunityAccessGrantsArgs, 'order' | 'pageDirection'>>;
+  contributorLinks?: Resolver<Array<ResolversTypes['ContributorUserLink']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
   createdOn?: Resolver<ResolversTypes['ISO8601Date'], ParentType, ContextType>;
   email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -34769,6 +35392,7 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   items?: Resolver<ResolversTypes['ItemConnection'], ParentType, ContextType, RequireFields<UserItemsArgs, 'access' | 'nodeFilter' | 'order' | 'pageDirection'>>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   permissions?: Resolver<Array<ResolversTypes['PermissionGrant']>, ParentType, ContextType>;
+  primaryContributor?: Resolver<Maybe<ResolversTypes['Contributor']>, ParentType, ContextType>;
   primaryRole?: Resolver<Maybe<ResolversTypes['Role']>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['Slug'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['ISO8601DateTime'], ParentType, ContextType>;
@@ -35036,6 +35660,7 @@ export type VariableDatePropertyResolvers<ContextType = any, ParentType extends 
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   fullPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   function?: Resolver<ResolversTypes['SchemaPropertyFunction'], ParentType, ContextType>;
+  instructions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   isWide?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['SchemaPropertyKind'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -35044,6 +35669,7 @@ export type VariableDatePropertyResolvers<ContextType = any, ParentType extends 
   required?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   searchOperators?: Resolver<Array<ResolversTypes['SearchOperator']>, ParentType, ContextType>;
   searchPath?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  submittable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['SchemaPropertyType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -35174,6 +35800,9 @@ export type Resolvers<ContextType = any> = {
   ContributorListTemplateInstanceSlots?: ContributorListTemplateInstanceSlotsResolvers<ContextType>;
   ContributorProperty?: ContributorPropertyResolvers<ContextType>;
   ContributorSelectOption?: ContributorSelectOptionResolvers<ContextType>;
+  ContributorUserLink?: ContributorUserLinkResolvers<ContextType>;
+  ContributorUserLinkDestroyPayload?: ContributorUserLinkDestroyPayloadResolvers<ContextType>;
+  ContributorUserLinkUpsertPayload?: ContributorUserLinkUpsertPayloadResolvers<ContextType>;
   ContributorsProperty?: ContributorsPropertyResolvers<ContextType>;
   ControlledVocabulariesProperty?: ControlledVocabulariesPropertyResolvers<ContextType>;
   ControlledVocabulary?: ControlledVocabularyResolvers<ContextType>;

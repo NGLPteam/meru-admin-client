@@ -1171,6 +1171,11 @@ type AssetProperty implements ScalarProperty & SchemaProperty {
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -1210,6 +1215,11 @@ type AssetProperty implements ScalarProperty & SchemaProperty {
   
   """
   required: Boolean!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -1380,6 +1390,11 @@ type AssetsProperty implements ScalarProperty & SchemaProperty {
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -1419,6 +1434,11 @@ type AssetsProperty implements ScalarProperty & SchemaProperty {
   
   """
   required: Boolean!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -1685,6 +1705,11 @@ type BooleanProperty implements ScalarProperty & SchemaProperty & SearchableProp
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -1722,6 +1747,11 @@ type BooleanProperty implements ScalarProperty & SchemaProperty & SearchableProp
   required: Boolean!
   searchOperators: [SearchOperator!]!
   searchPath: String!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -2804,6 +2834,11 @@ type Collection implements Accessible & Attachable & Attributable & ChildEntity 
     Returns the elements in the list that come before the specified cursor.
     """
     before: String
+    """
+    Filters that **must** match.
+    
+    """
+    filters: ItemFilterInput = null
     """Returns the first _n_ elements from the list."""
     first: Int
     """Returns the last _n_ elements from the list."""
@@ -2812,6 +2847,14 @@ type Collection implements Accessible & Attachable & Attributable & ChildEntity 
     Select the classification of nodes to retrieve: see TreeNodeFilter for a more thorough explanation
     """
     nodeFilter: TreeNodeFilter = ROOTS_ONLY
+    """
+    An array of filters, at least one of which must match. This is intended more for debugging and introspection in the API,
+    though a UI could be built.
+    
+    **Note**: If `filters` is also specified, at least one set of filters in `orFilters` must match, along with `filters`.
+    
+    """
+    orFilters: [ItemFilterInput!] = []
     order: EntityOrder = PUBLISHED_DESCENDING
     """The page of edges/nodes to fetch"""
     page: Int
@@ -4401,6 +4444,11 @@ interface Contributor implements ContributorBase & HasHarvestModificationStatus 
   """
   title: String
   url: String
+  """
+  The link between this contributor and a user, if any exists.
+  
+  """
+  userLink: ContributorUserLink
 }
 
 """
@@ -4557,6 +4605,11 @@ interface ContributorBase implements HasHarvestModificationStatus & Sluggable {
   """
   title: String
   url: String
+  """
+  The link between this contributor and a user, if any exists.
+  
+  """
+  userLink: ContributorUserLink
 }
 
 """
@@ -4946,6 +4999,11 @@ type ContributorProperty implements ScalarProperty & SchemaProperty {
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -4986,6 +5044,11 @@ type ContributorProperty implements ScalarProperty & SchemaProperty {
   """
   required: Boolean!
   """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
+  """
   Provided for introspection. This represents the actual data type this property
   uses.
   
@@ -5003,6 +5066,152 @@ type ContributorSelectOption {
   kind: ContributorKind!
   label: String!
   value: String!
+}
+
+"""
+A link between a `Contributor` and a `User`, indicating that the user
+is represented within Meru as that record.
+
+"""
+type ContributorUserLink implements CommonPermissions & HasDefaultTimestamps & Node & Sluggable {
+  """
+  Whether the current user has permission to destroy this record.
+  
+  """
+  canDestroy: AuthorizationResult!
+  """
+  Whether the current user has permission to update this record.
+  
+  """
+  canUpdate: AuthorizationResult!
+  """
+  The contributor associated with this link.
+  
+  """
+  contributor: Contributor!
+  """The date this record was created within the API."""
+  createdAt: ISO8601DateTime!
+  """The date this record was created within the API (date only)."""
+  createdOn: ISO8601Date!
+  id: ID!
+  """
+  The type of link between the contributor and user.
+  
+  """
+  linkage: ContributorUserLinkage!
+  slug: Slug!
+  """The date this record was last updated within the API."""
+  updatedAt: ISO8601DateTime!
+  """The date this record was last updated within the API (date only)."""
+  updatedOn: ISO8601Date!
+  """
+  The user associated with this link.
+  
+  If the current viewer cannot see the user record, this will be null.
+  
+  """
+  user: User
+}
+
+"""Autogenerated input type of ContributorUserLinkDestroy"""
+input ContributorUserLinkDestroyInput {
+  """A unique identifier for the client performing the mutation."""
+  clientMutationId: String
+  """
+  The contributor user link to destroy.
+  
+  """
+  contributorUserLinkId: ID!
+}
+
+"""Autogenerated return type of ContributorUserLinkDestroy."""
+type ContributorUserLinkDestroyPayload implements DestroyMutationPayload & StandardMutationPayload {
+  attributeErrors: [MutationAttributeError!]!
+  """A unique identifier for the client performing the mutation."""
+  clientMutationId: String
+  """
+  Whether or not the model was successfully destroyed. If false, check globalErrors
+  """
+  destroyed: Boolean
+  """The ID of the deleted model"""
+  destroyedId: ID
+  errors: [UserError!]! @deprecated(reason: "Use attributeErrors or globalErrors")
+  globalErrors: [MutationGlobalError!]!
+  """Not presently used"""
+  haltCode: String
+}
+
+"""Autogenerated input type of ContributorUserLinkUpsert"""
+input ContributorUserLinkUpsertInput {
+  """A unique identifier for the client performing the mutation."""
+  clientMutationId: String
+  """
+  The contributor to update.
+  
+  """
+  contributorId: ID!
+  """
+  The type of link to create or update between the contributor and user.
+  
+  Setting `PRIMARY` will override any other primary set for the associated user.
+  
+  """
+  linkage: ContributorUserLinkage!
+  """
+  The user to link to the contributor.
+  
+  """
+  userId: ID!
+}
+
+"""Autogenerated return type of ContributorUserLinkUpsert."""
+type ContributorUserLinkUpsertPayload implements StandardMutationPayload {
+  attributeErrors: [MutationAttributeError!]!
+  """A unique identifier for the client performing the mutation."""
+  clientMutationId: String
+  """
+  The newly-linked contributor, if successful.
+  
+  """
+  contributor: Contributor
+  """
+  The newly-created or updated link, if successful.
+  
+  """
+  contributorUserLink: ContributorUserLink
+  errors: [UserError!]! @deprecated(reason: "Use attributeErrors or globalErrors")
+  globalErrors: [MutationGlobalError!]!
+  """Not presently used"""
+  haltCode: String
+  """
+  The user linked to the contributor, if successful.
+  
+  """
+  user: User
+}
+
+"""
+The type of link between a `Contributor` and a `User` in a `ContributorUserLink`.
+
+"""
+enum ContributorUserLinkage {
+  """
+  An auxiliary link indicates that the `Contributor` is an additional identity for the user.
+  
+  This may be the case for users who've published under different names, or are being managed
+  by a user account representing a team or organization, etc.
+  
+  A user may have multiple auxiliary links. Setting a new auxiliary link does not affect existing ones.
+  
+  """
+  AUXILIARY
+  """
+  A primary link indicates that the `Contributor` is the primary identity for the user.
+  
+  A user may only have one primary link. Setting a new primary link will invalidate the previous.
+  
+  """
+  PRIMARY
 }
 
 type ContributorsProperty implements ScalarProperty & SchemaProperty {
@@ -5037,6 +5246,11 @@ type ContributorsProperty implements ScalarProperty & SchemaProperty {
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -5076,6 +5290,11 @@ type ContributorsProperty implements ScalarProperty & SchemaProperty {
   
   """
   required: Boolean!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -5127,6 +5346,11 @@ type ControlledVocabulariesProperty implements HasControlledVocabulary & ScalarP
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -5166,6 +5390,11 @@ type ControlledVocabulariesProperty implements HasControlledVocabulary & ScalarP
   
   """
   required: Boolean!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -5445,6 +5674,11 @@ type ControlledVocabularyProperty implements HasControlledVocabulary & ScalarPro
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -5484,6 +5718,11 @@ type ControlledVocabularyProperty implements HasControlledVocabulary & ScalarPro
   
   """
   required: Boolean!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -6202,6 +6441,11 @@ type DateProperty implements ScalarProperty & SchemaProperty & SearchablePropert
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -6239,6 +6483,11 @@ type DateProperty implements ScalarProperty & SchemaProperty & SearchablePropert
   required: Boolean!
   searchOperators: [SearchOperator!]!
   searchPath: String!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -7698,6 +7947,11 @@ type EmailProperty implements ScalarProperty & SchemaProperty {
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -7737,6 +7991,11 @@ type EmailProperty implements ScalarProperty & SchemaProperty {
   
   """
   required: Boolean!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -7797,6 +8056,11 @@ type EntitiesProperty implements HasAvailableEntities & ScalarProperty & SchemaP
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -7836,6 +8100,11 @@ type EntitiesProperty implements HasAvailableEntities & ScalarProperty & SchemaP
   
   """
   required: Boolean!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -8709,6 +8978,11 @@ type EntityProperty implements HasAvailableEntities & ScalarProperty & SchemaPro
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -8748,6 +9022,11 @@ type EntityProperty implements HasAvailableEntities & ScalarProperty & SchemaPro
   
   """
   required: Boolean!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -8989,6 +9268,11 @@ type FloatProperty implements ScalarProperty & SchemaProperty & SearchableProper
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -9026,6 +9310,11 @@ type FloatProperty implements ScalarProperty & SchemaProperty & SearchableProper
   required: Boolean!
   searchOperators: [SearchOperator!]!
   searchPath: String!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -9132,6 +9421,11 @@ type FullTextProperty implements ScalarProperty & SchemaProperty & SearchablePro
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -9169,6 +9463,11 @@ type FullTextProperty implements ScalarProperty & SchemaProperty & SearchablePro
   required: Boolean!
   searchOperators: [SearchOperator!]!
   searchPath: String!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -9371,7 +9670,7 @@ type HarvestAttempt implements CommonPermissions & HasDefaultTimestamps & HasHar
   A list of errors that are associated with this harvesting type.
   
   """
-  harvestErrors: [HarvestError!]!
+  harvestErrors: [HarvestError!]! @deprecated(reason: "Harvest errors are no longer returned nor generated. Check the harvest messages instead.\n")
   """
   An optional mapping that may have constrained the harvest attempt.
   
@@ -11061,7 +11360,7 @@ type HarvestRecord implements CommonPermissions & HasDefaultTimestamps & HasHarv
   A list of errors that are associated with this harvesting type.
   
   """
-  harvestErrors: [HarvestError!]!
+  harvestErrors: [HarvestError!]! @deprecated(reason: "Harvest errors are no longer returned nor generated. Check the harvest messages instead.\n")
   harvestMessages(
     """Returns the elements in the list that come after the specified cursor."""
     after: String
@@ -12089,7 +12388,7 @@ interface HasHarvestErrors {
   A list of errors that are associated with this harvesting type.
   
   """
-  harvestErrors: [HarvestError!]!
+  harvestErrors: [HarvestError!]! @deprecated(reason: "Harvest errors are no longer returned nor generated. Check the harvest messages instead.\n")
 }
 
 """
@@ -12927,6 +13226,11 @@ type IntegerProperty implements ScalarProperty & SchemaProperty & SearchableProp
   
   """
   function: SchemaPropertyFunction!
+  """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
   integerValue: Int
   """
   Whether to render a field as "wide" (two columns) in the form.
@@ -12966,6 +13270,11 @@ type IntegerProperty implements ScalarProperty & SchemaProperty & SearchableProp
   required: Boolean!
   searchOperators: [SearchOperator!]!
   searchPath: String!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -13912,6 +14221,28 @@ type ItemEdge {
   cursor: String!
   """The item at the end of the edge."""
   node: Item!
+}
+
+"""
+Filters for Item.
+
+"""
+input ItemFilterInput {
+  """
+  Filter the model's `created_at` with time constraints.
+  
+  """
+  createdAt: TimeFilterMatch
+  """
+  Whether to include items that are in draft state (i.e. items that are associated with a submission).
+  
+  """
+  includeDrafts: Boolean
+  """
+  Filter the model's `updated_at` with time constraints.
+  
+  """
+  updatedAt: TimeFilterMatch
 }
 
 union ItemParent = Collection | Item
@@ -14898,6 +15229,11 @@ type MarkdownProperty implements ScalarProperty & SchemaProperty & SearchablePro
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -14935,6 +15271,11 @@ type MarkdownProperty implements ScalarProperty & SchemaProperty & SearchablePro
   required: Boolean!
   searchOperators: [SearchOperator!]!
   searchPath: String!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -15231,6 +15572,11 @@ type MultiselectProperty implements OptionableProperty & ScalarProperty & Schema
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -15272,6 +15618,11 @@ type MultiselectProperty implements OptionableProperty & ScalarProperty & Schema
   searchPath: String!
   selections: [String!]
   """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
+  """
   Provided for introspection. This represents the actual data type this property
   uses.
   
@@ -15298,6 +15649,22 @@ type Mutation {
     """Parameters for ApplySchemaProperties"""
     input: ApplySchemaPropertiesInput!
   ): ApplySchemaPropertiesPayload
+  """
+  Destroy a single `ContributorUserLink` record.
+  
+  """
+  contributorUserLinkDestroy(
+    """Parameters for ContributorUserLinkDestroy"""
+    input: ContributorUserLinkDestroyInput!
+  ): ContributorUserLinkDestroyPayload
+  """
+  Create or update a link between a `Contributor` and a `User`.
+  
+  """
+  contributorUserLinkUpsert(
+    """Parameters for ContributorUserLinkUpsert"""
+    input: ContributorUserLinkUpsertInput!
+  ): ContributorUserLinkUpsertPayload
   """
   Destroy a single `ControlledVocabulary` record.
   
@@ -17244,6 +17611,11 @@ type OrganizationContributor implements CommonPermissions & Contributor & Contri
   """The date this record was last updated within the API (date only)."""
   updatedOn: ISO8601Date!
   url: String
+  """
+  The link between this contributor and a user, if any exists.
+  
+  """
+  userLink: ContributorUserLink
 }
 
 """A page of arbitrary content for an entity"""
@@ -17912,6 +18284,11 @@ type PersonContributor implements CommonPermissions & Contributor & ContributorB
   """The date this record was last updated within the API (date only)."""
   updatedOn: ISO8601Date!
   url: String
+  """
+  The link between this contributor and a user, if any exists.
+  
+  """
+  userLink: ContributorUserLink
 }
 
 """Autogenerated input type of PreviewSlot"""
@@ -20122,6 +20499,11 @@ interface ScalarProperty implements SchemaProperty {
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -20161,6 +20543,11 @@ interface ScalarProperty implements SchemaProperty {
   
   """
   required: Boolean!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -20714,6 +21101,11 @@ type SchemaVersion implements CommonPermissions & DescribesSchema & HasDefaultTi
   """
   searchableProperties: [SearchableProperty!]!
   slug: Slug!
+  """
+  The versions that are allowed to be submitted to this schema.
+  
+  """
+  submittableVersions: [SchemaVersion!]!
   """The date this record was last updated within the API."""
   updatedAt: ISO8601DateTime!
   """The date this record was last updated within the API (date only)."""
@@ -21018,6 +21410,11 @@ type SelectProperty implements OptionableProperty & ScalarProperty & SchemaPrope
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -21058,6 +21455,11 @@ type SelectProperty implements OptionableProperty & ScalarProperty & SchemaPrope
   searchOperators: [SearchOperator!]!
   searchPath: String!
   selection: String
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -21337,6 +21739,11 @@ type StringProperty implements ScalarProperty & SchemaProperty & SearchablePrope
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -21375,6 +21782,11 @@ type StringProperty implements ScalarProperty & SchemaProperty & SearchablePrope
   searchOperators: [SearchOperator!]!
   searchPath: String!
   """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
+  """
   Provided for introspection. This represents the actual data type this property
   uses.
   
@@ -21393,6 +21805,11 @@ to deposit an entity into the system.
 
 """
 type Submission implements CommonPermissions & HasDefaultTimestamps & Node & Sluggable {
+  """
+  The timestamp of when the submitter accepted the agreement for this submission, if applicable.
+  
+  """
+  agreementAcceptedAt: ISO8601DateTime
   """
   The state transitions that are available for this submission,
   based on its current state and the permissions of the current user.
@@ -21946,6 +22363,13 @@ type SubmissionConnection implements Paginated {
 
 """Autogenerated input type of SubmissionCreate"""
 input SubmissionCreateInput {
+  """
+  Whether or not the submitter has accepted the agreement for this submission.
+  
+  This must be true.
+  
+  """
+  agreementAccepted: Boolean = false
   """A unique identifier for the client performing the mutation."""
   clientMutationId: String
   """
@@ -22080,6 +22504,16 @@ input SubmissionFilterInput {
   
   """
   parentEntity: [ID!]
+  """
+  Perform a full-text search to approximately match the provided string.
+  
+  """
+  prefix: String
+  """
+  Perform a full-text search to approximately match the provided string.
+  
+  """
+  query: String
   """
   Filter submissions to only those with the given schema version(s).
   
@@ -22735,6 +23169,11 @@ type SubmissionTarget implements CommonPermissions & HasDefaultTimestamps & Node
   """
   allowedChildKinds: [ChildEntityKind!]!
   """
+  Whether or not depositors should be automatically approved when they request to become a depositor for this submission target.
+  
+  """
+  autoApproveDepositors: Boolean!
+  """
   Whether or not the current user can deposit to this submission target.
   
   """
@@ -22884,6 +23323,11 @@ input SubmissionTargetConfigureInput {
   
   """
   agreementRequired: Boolean = false
+  """
+  Whether depositors should be automatically approved when they request to become a depositor for this submission target.
+  
+  """
+  autoApproveDepositors: Boolean = false
   """A unique identifier for the client performing the mutation."""
   clientMutationId: String
   """
@@ -23684,6 +24128,11 @@ type TagsProperty implements ScalarProperty & SchemaProperty {
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -23723,6 +24172,11 @@ type TagsProperty implements ScalarProperty & SchemaProperty {
   
   """
   required: Boolean!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   tags: [String!]!
   """
   Provided for introspection. This represents the actual data type this property
@@ -24568,6 +25022,11 @@ type TimestampProperty implements ScalarProperty & SchemaProperty & SearchablePr
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -24605,6 +25064,11 @@ type TimestampProperty implements ScalarProperty & SchemaProperty & SearchablePr
   required: Boolean!
   searchOperators: [SearchOperator!]!
   searchPath: String!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   timestamp: ISO8601DateTime
   """
   Provided for introspection. This represents the actual data type this property
@@ -24667,6 +25131,11 @@ type URLProperty implements ScalarProperty & SchemaProperty {
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -24706,6 +25175,11 @@ type URLProperty implements ScalarProperty & SchemaProperty {
   
   """
   required: Boolean!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -24779,6 +25253,11 @@ type UnknownProperty implements ScalarProperty & SchemaProperty {
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -24818,6 +25297,11 @@ type UnknownProperty implements ScalarProperty & SchemaProperty {
   
   """
   required: Boolean!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.
@@ -25829,6 +26313,11 @@ type User implements AccessGrantSubject & CommonPermissions & ExposesPermissions
     """The amount of edges / nodes to fetch per page"""
     perPage: Int
   ): UserCommunityAccessGrantConnection!
+  """
+  Any links between this user and contributors in the system.
+  
+  """
+  contributorLinks: [ContributorUserLink!]!
   """The date this record was created within the API."""
   createdAt: ISO8601DateTime!
   """The date this record was created within the API (date only)."""
@@ -25903,6 +26392,13 @@ type User implements AccessGrantSubject & CommonPermissions & ExposesPermissions
   name: String
   """An array of hashes that can be requested to load in a context"""
   permissions: [PermissionGrant!]!
+  """
+  The primary contributor associated with this user, if any.
+  
+  For the actual link records, see `User.contributorLinks`.
+  
+  """
+  primaryContributor: Contributor
   """The primary role associated with this subject."""
   primaryRole: Role
   slug: Slug!
@@ -26585,6 +27081,11 @@ type VariableDateProperty implements ScalarProperty & SchemaProperty & Searchabl
   """
   function: SchemaPropertyFunction!
   """
+  Instructions for filling out this property during submission, if applicable.
+  
+  """
+  instructions: String
+  """
   Whether to render a field as "wide" (two columns) in the form.
   This is intended to help structure forms logically, as well as
   provide ample space for certain types of data input, particularly
@@ -26622,6 +27123,11 @@ type VariableDateProperty implements ScalarProperty & SchemaProperty & Searchabl
   required: Boolean!
   searchOperators: [SearchOperator!]!
   searchPath: String!
+  """
+  Whether or not this property should be displayed as part of the submission process for this schema.
+  
+  """
+  submittable: Boolean!
   """
   Provided for introspection. This represents the actual data type this property
   uses.

@@ -6443,6 +6443,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -6525,6 +6537,22 @@
           {
             "name": "required",
             "description": "Whether or not this property is required in order for the schema instance\nto be considered valid.\n\nNote: invalid data provided to a schema property will still invalidate\nthe instance as a whole—the required trait only determines whether a value\n**must** be set.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -7526,6 +7554,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -7608,6 +7648,22 @@
           {
             "name": "required",
             "description": "Whether or not this property is required in order for the schema instance\nto be considered valid.\n\nNote: invalid data provided to a schema property will still invalidate\nthe instance as a whole—the required trait only determines whether a value\n**must** be set.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -8802,6 +8858,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -8931,6 +8999,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               }
             },
@@ -13927,6 +14011,18 @@
                 "deprecationReason": null
               },
               {
+                "name": "filters",
+                "description": "Filters that **must** match.\n",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ItemFilterInput",
+                  "ofType": null
+                },
+                "defaultValue": "null",
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
                 "name": "first",
                 "description": "Returns the first _n_ elements from the list.",
                 "type": {
@@ -13959,6 +14055,26 @@
                   "ofType": null
                 },
                 "defaultValue": "ROOTS_ONLY",
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "orFilters",
+                "description": "An array of filters, at least one of which must match. This is intended more for debugging and introspection in the API,\nthough a UI could be built.\n\n**Note**: If `filters` is also specified, at least one set of filters in `orFilters` must match, along with `filters`.\n",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "ItemFilterInput",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": "[]",
                 "isDeprecated": false,
                 "deprecationReason": null
               },
@@ -16629,6 +16745,11 @@
           {
             "kind": "OBJECT",
             "name": "ContributorListTemplateInstance",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContributorUserLink",
             "ofType": null
           },
           {
@@ -22423,6 +22544,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "userLink",
+            "description": "The link between this contributor and a user, if any exists.\n",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ContributorUserLink",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -23076,6 +23209,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userLink",
+            "description": "The link between this contributor and a user, if any exists.\n",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ContributorUserLink",
               "ofType": null
             },
             "isDeprecated": false,
@@ -24689,6 +24834,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -24771,6 +24928,22 @@
           {
             "name": "required",
             "description": "Whether or not this property is required in order for the schema instance\nto be considered valid.\n\nNote: invalid data provided to a schema property will still invalidate\nthe instance as a whole—the required trait only determines whether a value\n**must** be set.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -24878,6 +25051,634 @@
       },
       {
         "kind": "OBJECT",
+        "name": "ContributorUserLink",
+        "description": "A link between a `Contributor` and a `User`, indicating that the user\nis represented within Meru as that record.\n",
+        "fields": [
+          {
+            "name": "canDestroy",
+            "description": "Whether the current user has permission to destroy this record.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AuthorizationResult",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "canUpdate",
+            "description": "Whether the current user has permission to update this record.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AuthorizationResult",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contributor",
+            "description": "The contributor associated with this link.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INTERFACE",
+                "name": "Contributor",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": "The date this record was created within the API.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ISO8601DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdOn",
+            "description": "The date this record was created within the API (date only).",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ISO8601Date",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "linkage",
+            "description": "The type of link between the contributor and user.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "ContributorUserLinkage",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "slug",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Slug",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "The date this record was last updated within the API.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ISO8601DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedOn",
+            "description": "The date this record was last updated within the API (date only).",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ISO8601Date",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "user",
+            "description": "The user associated with this link.\n\nIf the current viewer cannot see the user record, this will be null.\n",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "User",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "CommonPermissions",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "HasDefaultTimestamps",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "Sluggable",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ContributorUserLinkDestroyInput",
+        "description": "Autogenerated input type of ContributorUserLinkDestroy",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "clientMutationId",
+            "description": "A unique identifier for the client performing the mutation.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contributorUserLinkId",
+            "description": "The contributor user link to destroy.\n",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ContributorUserLinkDestroyPayload",
+        "description": "Autogenerated return type of ContributorUserLinkDestroy.",
+        "fields": [
+          {
+            "name": "attributeErrors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "MutationAttributeError",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "clientMutationId",
+            "description": "A unique identifier for the client performing the mutation.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "destroyed",
+            "description": "Whether or not the model was successfully destroyed. If false, check globalErrors",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "destroyedId",
+            "description": "The ID of the deleted model",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "errors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "UserError",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Use attributeErrors or globalErrors"
+          },
+          {
+            "name": "globalErrors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "MutationGlobalError",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "haltCode",
+            "description": "Not presently used",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "DestroyMutationPayload",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "StandardMutationPayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ContributorUserLinkUpsertInput",
+        "description": "Autogenerated input type of ContributorUserLinkUpsert",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "clientMutationId",
+            "description": "A unique identifier for the client performing the mutation.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contributorId",
+            "description": "The contributor to update.\n",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "linkage",
+            "description": "The type of link to create or update between the contributor and user.\n\nSetting `PRIMARY` will override any other primary set for the associated user.\n",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "ContributorUserLinkage",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userId",
+            "description": "The user to link to the contributor.\n",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ContributorUserLinkUpsertPayload",
+        "description": "Autogenerated return type of ContributorUserLinkUpsert.",
+        "fields": [
+          {
+            "name": "attributeErrors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "MutationAttributeError",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "clientMutationId",
+            "description": "A unique identifier for the client performing the mutation.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contributor",
+            "description": "The newly-linked contributor, if successful.\n",
+            "args": [],
+            "type": {
+              "kind": "INTERFACE",
+              "name": "Contributor",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contributorUserLink",
+            "description": "The newly-created or updated link, if successful.\n",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ContributorUserLink",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "errors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "UserError",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Use attributeErrors or globalErrors"
+          },
+          {
+            "name": "globalErrors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "MutationGlobalError",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "haltCode",
+            "description": "Not presently used",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "user",
+            "description": "The user linked to the contributor, if successful.\n",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "User",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "StandardMutationPayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "ContributorUserLinkage",
+        "description": "The type of link between a `Contributor` and a `User` in a `ContributorUserLink`.\n",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "AUXILIARY",
+            "description": "An auxiliary link indicates that the `Contributor` is an additional identity for the user.\n\nThis may be the case for users who've published under different names, or are being managed\nby a user account representing a team or organization, etc.\n\nA user may have multiple auxiliary links. Setting a new auxiliary link does not affect existing ones.\n",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PRIMARY",
+            "description": "A primary link indicates that the `Contributor` is the primary identity for the user.\n\nA user may only have one primary link. Setting a new primary link will invalidate the previous.\n",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ContributorsProperty",
         "description": null,
         "fields": [
@@ -24966,6 +25767,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -25048,6 +25861,22 @@
           {
             "name": "required",
             "description": "Whether or not this property is required in order for the schema instance\nto be considered valid.\n\nNote: invalid data provided to a schema property will still invalidate\nthe instance as a whole—the required trait only determines whether a value\n**must** be set.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -25196,6 +26025,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -25278,6 +26119,22 @@
           {
             "name": "required",
             "description": "Whether or not this property is required in order for the schema instance\nto be considered valid.\n\nNote: invalid data provided to a schema property will still invalidate\nthe instance as a whole—the required trait only determines whether a value\n**must** be set.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -26406,6 +27263,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -26488,6 +27357,22 @@
           {
             "name": "required",
             "description": "Whether or not this property is required in order for the schema instance\nto be considered valid.\n\nNote: invalid data provided to a schema property will still invalidate\nthe instance as a whole—the required trait only determines whether a value\n**must** be set.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -30319,6 +31204,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -30448,6 +31345,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               }
             },
@@ -35968,6 +36881,11 @@
         "possibleTypes": [
           {
             "kind": "OBJECT",
+            "name": "ContributorUserLinkDestroyPayload",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "ControlledVocabularyDestroyPayload",
             "ofType": null
           },
@@ -37444,6 +38362,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -37526,6 +38456,22 @@
           {
             "name": "required",
             "description": "Whether or not this property is required in order for the schema instance\nto be considered valid.\n\nNote: invalid data provided to a schema property will still invalidate\nthe instance as a whole—the required trait only determines whether a value\n**must** be set.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -37686,6 +38632,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -37768,6 +38726,22 @@
           {
             "name": "required",
             "description": "Whether or not this property is required in order for the schema instance\nto be considered valid.\n\nNote: invalid data provided to a schema property will still invalidate\nthe instance as a whole—the required trait only determines whether a value\n**must** be set.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -41547,6 +42521,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -41629,6 +42615,22 @@
           {
             "name": "required",
             "description": "Whether or not this property is required in order for the schema instance\nto be considered valid.\n\nNote: invalid data provided to a schema property will still invalidate\nthe instance as a whole—the required trait only determines whether a value\n**must** be set.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -42491,6 +43493,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -42620,6 +43634,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               }
             },
@@ -43130,6 +44160,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -43259,6 +44301,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               }
             },
@@ -44068,8 +45126,8 @@
                 }
               }
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Harvest errors are no longer returned nor generated. Check the harvest messages instead.\n"
           },
           {
             "name": "harvestMapping",
@@ -50007,8 +51065,8 @@
                 }
               }
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Harvest errors are no longer returned nor generated. Check the harvest messages instead.\n"
           },
           {
             "name": "harvestMessages",
@@ -53699,6 +54757,11 @@
           },
           {
             "kind": "OBJECT",
+            "name": "ContributorUserLink",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "ControlledVocabulary",
             "ofType": null
           },
@@ -54432,8 +55495,8 @@
                 }
               }
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Harvest errors are no longer returned nor generated. Check the harvest messages instead.\n"
           }
         ],
         "inputFields": null,
@@ -58082,6 +59145,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "integerValue",
             "description": null,
             "args": [],
@@ -58223,6 +59298,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               }
             },
@@ -62990,6 +64081,53 @@
         "possibleTypes": null
       },
       {
+        "kind": "INPUT_OBJECT",
+        "name": "ItemFilterInput",
+        "description": "Filters for Item.\n",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "createdAt",
+            "description": "Filter the model's `created_at` with time constraints.\n",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TimeFilterMatch",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "includeDrafts",
+            "description": "Whether to include items that are in draft state (i.e. items that are associated with a submission).\n",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "Filter the model's `updated_at` with time constraints.\n",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TimeFilterMatch",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "UNION",
         "name": "ItemParent",
         "description": null,
@@ -67215,6 +68353,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -67344,6 +68494,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               }
             },
@@ -68770,6 +69936,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -68950,6 +70128,22 @@
             "deprecationReason": null
           },
           {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "type",
             "description": "Provided for introspection. This represents the actual data type this property\nuses.\n\nRendering in the frontend should rely primarily on the `AnySchemaProperty` and\n`AnyScalarProperty` unions (in that order)`, rather than relying on this value,\nsince the actual implementations of these properties differ in the GraphQL types\nassociated with their values.\n",
             "args": [],
@@ -69050,6 +70244,64 @@
             "type": {
               "kind": "OBJECT",
               "name": "ApplySchemaPropertiesPayload",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contributorUserLinkDestroy",
+            "description": "Destroy a single `ContributorUserLink` record.\n",
+            "args": [
+              {
+                "name": "input",
+                "description": "Parameters for ContributorUserLinkDestroy",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "ContributorUserLinkDestroyInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ContributorUserLinkDestroyPayload",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contributorUserLinkUpsert",
+            "description": "Create or update a link between a `Contributor` and a `User`.\n",
+            "args": [
+              {
+                "name": "input",
+                "description": "Parameters for ContributorUserLinkUpsert",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "ContributorUserLinkUpsertInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ContributorUserLinkUpsertPayload",
               "ofType": null
             },
             "isDeprecated": false,
@@ -73009,6 +74261,11 @@
           {
             "kind": "OBJECT",
             "name": "ContributorListTemplateInstance",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContributorUserLink",
             "ofType": null
           },
           {
@@ -77397,6 +78654,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "userLink",
+            "description": "The link between this contributor and a user, if any exists.\n",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ContributorUserLink",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -80831,6 +82100,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userLink",
+            "description": "The link between this contributor and a user, if any exists.\n",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ContributorUserLink",
               "ofType": null
             },
             "isDeprecated": false,
@@ -90822,6 +92103,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -90904,6 +92197,22 @@
           {
             "name": "required",
             "description": "Whether or not this property is required in order for the schema instance\nto be considered valid.\n\nNote: invalid data provided to a schema property will still invalidate\nthe instance as a whole—the required trait only determines whether a value\n**must** be set.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -93048,6 +94357,30 @@
             "deprecationReason": null
           },
           {
+            "name": "submittableVersions",
+            "description": "The versions that are allowed to be submitted to this schema.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "SchemaVersion",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "updatedAt",
             "description": "The date this record was last updated within the API.",
             "args": [],
@@ -94607,6 +95940,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -94774,6 +96119,22 @@
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -95432,6 +96793,11 @@
           },
           {
             "kind": "OBJECT",
+            "name": "ContributorUserLink",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "ControlledVocabulary",
             "ofType": null
           },
@@ -95959,6 +97325,16 @@
           {
             "kind": "OBJECT",
             "name": "ApplySchemaPropertiesPayload",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContributorUserLinkDestroyPayload",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContributorUserLinkUpsertPayload",
             "ofType": null
           },
           {
@@ -96588,6 +97964,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -96724,6 +98112,22 @@
             "deprecationReason": null
           },
           {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "type",
             "description": "Provided for introspection. This represents the actual data type this property\nuses.\n\nRendering in the frontend should rely primarily on the `AnySchemaProperty` and\n`AnyScalarProperty` unions (in that order)`, rather than relying on this value,\nsince the actual implementations of these properties differ in the GraphQL types\nassociated with their values.\n",
             "args": [],
@@ -96766,6 +98170,18 @@
         "name": "Submission",
         "description": "A submission against a `SubmissionTarget`, representing a single attempt\nto deposit an entity into the system.\n",
         "fields": [
+          {
+            "name": "agreementAcceptedAt",
+            "description": "The timestamp of when the submitter accepted the agreement for this submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "ISO8601DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "availableTransitions",
             "description": "The state transitions that are available for this submission,\nbased on its current state and the permissions of the current user.\n",
@@ -99377,6 +100793,18 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "agreementAccepted",
+            "description": "Whether or not the submitter has accepted the agreement for this submission.\n\nThis must be true.\n",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": "false",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "clientMutationId",
             "description": "A unique identifier for the client performing the mutation.",
             "type": {
@@ -99893,6 +101321,30 @@
                   "ofType": null
                 }
               }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "prefix",
+            "description": "Perform a full-text search to approximately match the provided string.\n",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "query",
+            "description": "Perform a full-text search to approximately match the provided string.\n",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -102460,6 +103912,22 @@
             "deprecationReason": null
           },
           {
+            "name": "autoApproveDepositors",
+            "description": "Whether or not depositors should be automatically approved when they request to become a depositor for this submission target.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "canDeposit",
             "description": "Whether or not the current user can deposit to this submission target.\n",
             "args": [],
@@ -103120,6 +104588,18 @@
           {
             "name": "agreementRequired",
             "description": "Whether submitters must accept an agreement when making a submission to this submission target.\n\nIf true, `agreementContent` must be non-empty.\n",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": "false",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "autoApproveDepositors",
+            "description": "Whether depositors should be automatically approved when they request to become a depositor for this submission target.\n",
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
@@ -106654,6 +108134,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -106736,6 +108228,22 @@
           {
             "name": "required",
             "description": "Whether or not this property is required in order for the schema instance\nto be considered valid.\n\nNote: invalid data provided to a schema property will still invalidate\nthe instance as a whole—the required trait only determines whether a value\n**must** be set.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -109047,6 +110555,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -109176,6 +110696,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               }
             },
@@ -109327,6 +110863,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -109409,6 +110957,22 @@
           {
             "name": "required",
             "description": "Whether or not this property is required in order for the schema instance\nto be considered valid.\n\nNote: invalid data provided to a schema property will still invalidate\nthe instance as a whole—the required trait only determines whether a value\n**must** be set.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -109615,6 +111179,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -109697,6 +111273,22 @@
           {
             "name": "required",
             "description": "Whether or not this property is required in order for the schema instance\nto be considered valid.\n\nNote: invalid data provided to a schema property will still invalidate\nthe instance as a whole—the required trait only determines whether a value\n**must** be set.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -115088,6 +116680,30 @@
             "deprecationReason": null
           },
           {
+            "name": "contributorLinks",
+            "description": "Any links between this user and contributors in the system.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ContributorUserLink",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "createdAt",
             "description": "The date this record was created within the API.",
             "args": [],
@@ -115505,6 +117121,18 @@
                   }
                 }
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "primaryContributor",
+            "description": "The primary contributor associated with this user, if any.\n\nFor the actual link records, see `User.contributorLinks`.\n",
+            "args": [],
+            "type": {
+              "kind": "INTERFACE",
+              "name": "Contributor",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -119662,6 +121290,18 @@
             "deprecationReason": null
           },
           {
+            "name": "instructions",
+            "description": "Instructions for filling out this property during submission, if applicable.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isWide",
             "description": "Whether to render a field as \"wide\" (two columns) in the form.\nThis is intended to help structure forms logically, as well as\nprovide ample space for certain types of data input, particularly\nfull-text, markdown, and other such complex fields.\n",
             "args": [],
@@ -119791,6 +121431,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submittable",
+            "description": "Whether or not this property should be displayed as part of the submission process for this schema.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               }
             },
