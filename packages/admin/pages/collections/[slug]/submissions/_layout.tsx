@@ -49,7 +49,7 @@ export default function Layout<T extends OperationType>(props: Props<T>) {
       <CollectionLayout data={collection} showSidebar useRouteHeader={false}>
         <QueryTransitionWrapper<T>
           query={query}
-          variables={{ ...queryVars, slug }}
+          variables={showLoadingCircle ? { slug } : { ...queryVars, slug }}
           loadingFallback={<LoadingPage />}
           refetchTags={refetchTags}
         >

@@ -85,6 +85,7 @@ export default function SubmissionTargetConfigureForm({
     },
     agreementRequired: target?.agreementRequired ?? false,
     agreementContent: target?.agreementContent ?? "",
+    // autoApproveDepositors: target?.autoApproveDepositors ?? false,
     schemaVersionIds: initialSchemaVersionIds,
   };
 
@@ -192,6 +193,7 @@ export default function SubmissionTargetConfigureForm({
         <Controller
           name="schemaVersionIds"
           control={control}
+          rules={{ required: true }}
           render={({ field }) => (
             <Multiselect
               label={t("forms.fields.accepted_schemas")}
@@ -223,12 +225,27 @@ export default function SubmissionTargetConfigureForm({
           description="forms.fields.agreement_required_description"
           {...register("agreementRequired")}
         />
-        <Forms.Textarea
-          label="forms.fields.agreement_content"
-          description="forms.fields.agreement_content_description"
+        <Forms.HiddenField<SubmissionTargetConfigureInput>
+          watch={watch}
+          field="agreementRequired"
+          showOn={true}
           isWide
-          {...register("agreementContent")}
-        />
+        >
+          <Forms.Textarea
+            label="forms.fields.agreement_content"
+            description="forms.fields.agreement_content_description"
+            isWide
+            {...register("agreementContent")}
+          />
+        </Forms.HiddenField>
+        {/*<Forms.Switch
+          label="forms.fields.auto_approve_depositors"
+          hideLabel
+          isWide
+          text={t("forms.fields.auto_approve_depositors")}
+          description="forms.fields.auto_approve_depositors_description"
+          {...register("autoApproveDepositors")}
+        />*/}
       </Forms.Grid>
     ),
     [
