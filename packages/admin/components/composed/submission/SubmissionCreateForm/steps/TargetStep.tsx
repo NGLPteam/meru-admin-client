@@ -43,11 +43,16 @@ export default function TargetStep({
 }: Props) {
   const { t } = useTranslation();
 
-  const agreementRequired = selectedTarget?.agreementRequired ?? false;
-  const agreementContent = selectedTarget?.agreementContent;
-  const instructions = selectedTarget?.description?.instructions;
-  const depositTargets = selectedTarget?.depositTargets ?? [];
-  const isDescendant = selectedTarget?.depositMode === "DESCENDANT";
+  const {
+    agreementRequired = false,
+    agreementContent,
+    description,
+    depositTargets = [],
+    depositMode,
+  } = selectedTarget ?? {};
+
+  const isDescendant = depositMode === "DESCENDANT";
+  const instructions = description?.instructions;
 
   const onTargetChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newTargetId = e.target.value;
