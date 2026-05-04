@@ -13,6 +13,7 @@ import type { SubmissionTargetNode, Fields } from "../types";
 type Props = {
   selectedTarget?: SubmissionTargetNode;
   selectedDescendantId: string;
+  certificationAccepted: boolean;
   onSuccess: (slug: string) => void;
   onCancel: () => void;
 };
@@ -20,6 +21,7 @@ type Props = {
 export default function DetailsStep({
   selectedTarget,
   selectedDescendantId,
+  certificationAccepted,
   onSuccess,
   onCancel,
 }: Props) {
@@ -48,6 +50,8 @@ export default function DetailsStep({
     [onSuccess],
   );
 
+  const agreementRequired = selectedTarget?.agreementRequired;
+
   const toVariables = useToVariables<DetailsStepMutation, Fields>(
     (data) => {
       if (selectedTarget?.depositMode === "DESCENDANT") {
@@ -57,6 +61,9 @@ export default function DetailsStep({
             submissionTargetId: selectedDescendantId ?? "",
             parentEntityId: selectedTarget.entity.id ?? "",
             schemaVersionId: data.schemaVersionId,
+            ...(agreementRequired
+              ? { agreementAccepted: certificationAccepted }
+              : {}),
           },
         };
       }
@@ -67,6 +74,9 @@ export default function DetailsStep({
           submissionTargetId: selectedTarget?.id ?? "",
           parentEntityId: selectedTarget?.entity.id ?? "",
           schemaVersionId: data.schemaVersionId,
+          ...(agreementRequired
+            ? { agreementAccepted: certificationAccepted }
+            : {}),
         },
       };
     },

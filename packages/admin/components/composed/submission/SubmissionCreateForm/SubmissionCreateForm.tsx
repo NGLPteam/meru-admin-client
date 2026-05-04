@@ -105,6 +105,7 @@ export default function SubmissionCreateForm({
     <DetailsStep
       selectedTarget={selectedTarget}
       selectedDescendantId={selectedDescendantId}
+      certificationAccepted={certificationAccepted}
       onSuccess={onSuccess}
       onCancel={onCancel}
     />
