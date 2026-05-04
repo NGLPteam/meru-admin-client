@@ -46,6 +46,8 @@ export default function Disclosure(props: Props) {
     onBlur: () => {},
   });
 
+  const { visible, ...restContentProps } = contentProps;
+
   return (
     <>
       <Styled.FieldWrapper>
@@ -70,10 +72,7 @@ export default function Disclosure(props: Props) {
             </ButtonControl>
           </Suspense>
         </Styled.Field>
-        <Styled.SelectorWrapper
-          $visible={contentProps.visible}
-          {...contentProps}
-        >
+        <Styled.SelectorWrapper $visible={visible} {...restContentProps}>
           <EntitySelector
             {...props}
             startSlug={selected?.slug ?? startSlug}
@@ -83,7 +82,7 @@ export default function Disclosure(props: Props) {
             }}
             selected={selected}
             isDisclosure
-            visible={contentProps.visible}
+            visible={visible}
             height={"400px"}
           />
         </Styled.SelectorWrapper>
