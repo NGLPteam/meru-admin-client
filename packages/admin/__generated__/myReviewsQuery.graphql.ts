@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a3d46dcb3209e6a3f3de453c25b45b18>>
+ * @generated SignedSource<<44d339734d1ea8d04e442b175eed6abd>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,13 +13,13 @@ import { FragmentRefs } from "relay-runtime";
 export type SubmissionReviewOrder = "DEFAULT" | "OLDEST" | "RECENT" | "%future added value";
 export type SubmissionReviewState = "APPROVED" | "PENDING" | "REJECTED" | "REVISION_REQUESTED" | "%future added value";
 export type SubmissionReviewFilterInput = {
-  createdAt?: TimeFilterMatch | null | undefined;
+  createdAt?: FilterMatchTimeInput | null | undefined;
   inState?: ReadonlyArray<SubmissionReviewState> | null | undefined;
   submissionIds?: ReadonlyArray<string> | null | undefined;
-  updatedAt?: TimeFilterMatch | null | undefined;
+  updatedAt?: FilterMatchTimeInput | null | undefined;
   userIds?: ReadonlyArray<string> | null | undefined;
 };
-export type TimeFilterMatch = {
+export type FilterMatchTimeInput = {
   eq?: string | null | undefined;
   gt?: string | null | undefined;
   gteq?: string | null | undefined;

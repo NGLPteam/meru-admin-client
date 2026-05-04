@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1a62882b969d4e0c82d4dfcb792a71b2>>
+ * @generated SignedSource<<c6c889459a31fff059e96b5620f00e4e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,15 +13,17 @@ import { FragmentRefs } from "relay-runtime";
 export type SubmissionOrder = "DEFAULT" | "OLDEST" | "RECENT" | "%future added value";
 export type SubmissionState = "APPROVED" | "DRAFT" | "PUBLISHED" | "REJECTED" | "REVISION_REQUESTED" | "SUBMITTED" | "UNDER_REVIEW" | "%future added value";
 export type SubmissionFilterInput = {
-  createdAt?: TimeFilterMatch | null | undefined;
+  createdAt?: FilterMatchTimeInput | null | undefined;
   inState?: ReadonlyArray<SubmissionState> | null | undefined;
-  parentEntity?: ReadonlyArray<string> | null | undefined;
+  parentEntityIds?: ReadonlyArray<string> | null | undefined;
+  prefix?: string | null | undefined;
+  query?: string | null | undefined;
   schemaVersionIds?: ReadonlyArray<string> | null | undefined;
   submissionTargetIds?: ReadonlyArray<string> | null | undefined;
-  updatedAt?: TimeFilterMatch | null | undefined;
+  updatedAt?: FilterMatchTimeInput | null | undefined;
   userIds?: ReadonlyArray<string> | null | undefined;
 };
-export type TimeFilterMatch = {
+export type FilterMatchTimeInput = {
   eq?: string | null | undefined;
   gt?: string | null | undefined;
   gteq?: string | null | undefined;
