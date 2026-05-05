@@ -14,6 +14,7 @@ import { sanitizeDateField } from "helpers";
 import { useSchemaContext, useSchemaProperties } from "components/api/hooks";
 import { convertSchemaErrors } from "components/api/SchemaInstanceForm/convertSchemaErrors";
 import SchemaFormFields from "components/api/SchemaFormFields";
+import SubmissionContributors from "components/composed/submission/SubmissionContributors";
 import { LoadingCircle } from "components/atomic";
 import {
   SubmissionUpdateForm_schemaErrorsFragment$data,
@@ -185,6 +186,7 @@ export default function SubmissionUpdateForm({
                 description="forms.fields.hero_image_description"
               />
             </Forms.Grid>
+            <SubmissionContributors data={fieldsData} />
           </Styled.Wrapper>
           <SchemaFormFields data={fieldsData} schemaKind="ITEM" isSubmission />
         </>
@@ -276,6 +278,7 @@ const fragment = graphql`
     ...SubmissionUpdateFormFieldsFragment
     ...SchemaFormFieldsFragment
     ...useSchemaPropertiesFragment
+    ...SubmissionContributorsFragment
   }
 `;
 
