@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d8ee7ee5ca5322795cc6c6710b06641d>>
+ * @generated SignedSource<<92dd59b5ef4940d0f1485089946d64a1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,7 @@ export type SubmissionUpdateFormFragment$data = {
     readonly " $fragmentSpreads": FragmentRefs<"useSchemaContextFragment">;
   };
   readonly itemId: string;
-  readonly " $fragmentSpreads": FragmentRefs<"HarvestingStatusFragment" | "ParentSelectorFragment" | "SchemaFormFieldsFragment" | "SubmissionUpdateFormFieldsFragment" | "useSchemaPropertiesFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"HarvestingStatusFragment" | "ParentSelectorFragment" | "SchemaFormFieldsFragment" | "SubmissionContributorsFragment" | "SubmissionUpdateFormFieldsFragment" | "useSchemaPropertiesFragment">;
   readonly " $fragmentType": "SubmissionUpdateFormFragment";
 };
 export type SubmissionUpdateFormFragment$key = {
@@ -76,12 +76,17 @@ const node: ReaderFragment = {
       "args": null,
       "kind": "FragmentSpread",
       "name": "useSchemaPropertiesFragment"
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "SubmissionContributorsFragment"
     }
   ],
   "type": "Item",
   "abstractKey": null
 };
 
-(node as any).hash = "145e2b15299d8539d1309b89b73c6910";
+(node as any).hash = "f61815c7f075c541f902de4859b70514";
 
 export default node;

@@ -41,7 +41,7 @@ const getLayout: GetLayout = (props) => {
   return (
     <Layout
       query={query}
-      refetchTags={["submissions"]}
+      refetchTags={["submissions", "contributions"]}
       showLoadingCircle
       {...props}
     />
