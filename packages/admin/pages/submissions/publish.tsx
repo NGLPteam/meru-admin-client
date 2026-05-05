@@ -18,6 +18,7 @@ export default function SubmissionsPublish() {
         query={query}
         variables={{ page, order, filters }}
         loadingFallback={<LoadingPage />}
+        refetchTags={["submissions"]}
       >
         {({ queryRef }) =>
           queryRef ? (

@@ -1,8 +1,5 @@
-import { useCallback } from "react";
-import { graphql, useMutation } from "react-relay";
+import { graphql, useFragment } from "react-relay";
 import { useTranslation } from "react-i18next";
-import { useMaybeFragment } from "@wdp/lib/api/hooks";
-import { useNotify } from "hooks";
 import ModelListPage from "components/composed/model/ModelListPage";
 import ModelColumns from "components/composed/model/ModelColumns";
 import { ButtonControlConfirm, ButtonControlGroup } from "components/atomic";
@@ -18,9 +15,9 @@ import type {
   SubmissionBulkPublishListFragment$data,
   SubmissionBulkPublishListFragment$key,
 } from "@/relay/SubmissionBulkPublishListFragment.graphql";
-import type { SubmissionBulkPublishListPublishMutation as PublishMutation } from "@/relay/SubmissionBulkPublishListPublishMutation.graphql";
+import usePublishSubmission from "./hooks/usePublishSubmission";
+import useBatchPublishSubmissions from "./hooks/useBatchPublishSubmissions";
 import type { ModelTableActionProps, CellContext } from "@tanstack/react-table";
-import type { MutationAttributeError } from "types/graphql-schema";
 
 type SubmissionBulkPublishNode =
   SubmissionBulkPublishListFragment$data["nodes"][number];
@@ -30,39 +27,14 @@ type Props = {
 };
 
 function SubmissionBulkPublishList({ data }: Props) {
-  const connection = useMaybeFragment<SubmissionBulkPublishListFragment$key>(
+  const connection = useFragment<SubmissionBulkPublishListFragment$key>(
     fragment,
     data,
   );
 
   const { t } = useTranslation();
-  const notify = useNotify();
-
-  const [commitPublish] = useMutation<PublishMutation>(publishMutation);
-
-  const handlePublishResponse = useCallback(
-    (
-      data:
-        | PublishMutation["response"]["submissionChangeState"]
-        | null
-        | undefined,
-    ) => {
-      if (!data) return;
-
-      const { globalErrors, attributeErrors, submission } = data;
-
-      if (submission) {
-        notify.success(t("messages.submission_state_changed"));
-      } else if (globalErrors?.length) {
-        notify.mutationGlobalError(globalErrors);
-      } else if (attributeErrors?.length) {
-        notify.mutationAttributeError(
-          attributeErrors as MutationAttributeError[],
-        );
-      }
-    },
-    [notify, t],
-  );
+  const publish = usePublishSubmission();
+  const bulkPublish = useBatchPublishSubmissions();
 
   // --- Bulk actions ---
   const records = [...(connection?.nodes ?? [])];
@@ -81,15 +53,10 @@ function SubmissionBulkPublishList({ data }: Props) {
     addPage,
   );
 
-  const allMatchingSelected = !!bulkSelection.filters;
-  const selectedCount = allMatchingSelected
-    ? records.length
-    : bulkSelection.ids.length;
+  const selectedCount = bulkSelection.ids.length;
 
   const handleBulkPublish = (hideDialog: () => void) => {
-    // TODO: wire mutation — send bulkSelection.filters or bulkSelection.ids
-    // eslint-disable-next-line no-console
-    console.log("Bulk publish:", bulkSelection);
+    bulkPublish(records, bulkSelection.ids);
     hideDialog();
   };
 
@@ -131,18 +98,11 @@ function SubmissionBulkPublishList({ data }: Props) {
       row.original.entity?.slug ? `/preview/${row.original.entity.slug}` : null,
     handlePublish: ({
       row,
-    }: ModelTableActionProps<SubmissionBulkPublishNode>) => {
-      commitPublish({
-        variables: {
-          input: {
-            submissionId: row.original.id,
-            toState: "PUBLISHED",
-          },
-        },
-        onCompleted: (response) =>
-          handlePublishResponse(response.submissionChangeState),
-      });
-    },
+    }: ModelTableActionProps<SubmissionBulkPublishNode>) =>
+      publish({
+        id: row.original.id,
+        title: row.original.entity?.title ?? "",
+      }),
     publishModalBody: ({
       row,
     }: ModelTableActionProps<SubmissionBulkPublishNode>) => (
@@ -217,6 +177,7 @@ const fragment = graphql`
         }
       }
       submissionTarget {
+        id
         entity {
           ... on Entity {
             title
@@ -230,28 +191,6 @@ const fragment = graphql`
       }
     }
     ...ModelListPageFragment
-  }
-`;
-
-const publishMutation = graphql`
-  mutation SubmissionBulkPublishListPublishMutation(
-    $input: SubmissionChangeStateInput!
-  ) {
-    submissionChangeState(input: $input) {
-      submission {
-        id
-        state
-      }
-      attributeErrors {
-        messages
-        path
-        type
-      }
-      globalErrors {
-        message
-        type
-      }
-    }
   }
 `;
 
