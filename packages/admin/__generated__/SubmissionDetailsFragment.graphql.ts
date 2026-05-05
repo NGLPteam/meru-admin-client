@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b9dead0f89e8f1beb2c9ee89f0c22de6>>
+ * @generated SignedSource<<a57633816c7c61237ce0b18d52b8675f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -24,7 +24,7 @@ export type SubmissionDetailsFragment$data = {
       readonly " $fragmentSpreads": FragmentRefs<"ImageDisplayFragment">;
     };
     readonly title: string;
-    readonly " $fragmentSpreads": FragmentRefs<"SchemaFieldsDisplayFragment">;
+    readonly " $fragmentSpreads": FragmentRefs<"SchemaFieldsDisplayFragment" | "SubmissionContributorsFragment">;
   } | {
     // This will never be '%other', but we need some
     // value in case none of the concrete values match.
@@ -143,6 +143,11 @@ return {
               "args": null,
               "kind": "FragmentSpread",
               "name": "SchemaFieldsDisplayFragment"
+            },
+            {
+              "args": null,
+              "kind": "FragmentSpread",
+              "name": "SubmissionContributorsFragment"
             }
           ],
           "type": "Item",
@@ -180,6 +185,6 @@ return {
 };
 })();
 
-(node as any).hash = "4a5a3f048fe973469bfe6e2c51c90c71";
+(node as any).hash = "537ab365a65d4d1d94c1be7f87597a27";
 
 export default node;

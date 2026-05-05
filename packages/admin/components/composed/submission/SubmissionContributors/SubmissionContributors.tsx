@@ -12,9 +12,13 @@ import * as Styled from "./SubmissionContributors.styles";
 
 interface Props {
   data: SubmissionContributorsFragment$key;
+  readonly?: boolean;
 }
 
-export default function SubmissionContributors({ data }: Props) {
+export default function SubmissionContributors({
+  data,
+  readonly = false,
+}: Props) {
   const { t } = useTranslation();
   const dialog = useDialogState({ animated: true });
   const item = useFragment<SubmissionContributorsFragment$key>(fragment, data);
@@ -58,16 +62,18 @@ export default function SubmissionContributors({ data }: Props) {
       <Styled.Wrapper>
         <Styled.Header>
           <Styled.Label>{t("forms.fields.contributors")}</Styled.Label>
-          <ButtonControl
-            type="button"
-            icon="plus"
-            iconLeft
-            onClick={() => dialog.show()}
-          >
-            {t("actions.add.contributor")}
-          </ButtonControl>
+          {!readonly && (
+            <ButtonControl
+              type="button"
+              icon="plus"
+              iconLeft
+              onClick={() => dialog.show()}
+            >
+              {t("actions.add.contributor")}
+            </ButtonControl>
+          )}
         </Styled.Header>
-        <Styled.Box>
+        <Styled.Box $readonly={readonly}>
           {!contributions.length ? (
             <Styled.Empty>{t("lists.no_contributors")}</Styled.Empty>
           ) : (
@@ -83,10 +89,12 @@ export default function SubmissionContributors({ data }: Props) {
                   <Styled.HeaderCell data-cell-type="position">
                     {t("forms.fields.position")}
                   </Styled.HeaderCell>
-                  <Styled.HeaderCell
-                    data-cell-type="actions"
-                    aria-label={t("common.delete")}
-                  />
+                  {!readonly && (
+                    <Styled.HeaderCell
+                      data-cell-type="actions"
+                      aria-label={t("common.delete")}
+                    />
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -99,20 +107,22 @@ export default function SubmissionContributors({ data }: Props) {
                     <Styled.Cell data-cell-type="position">
                       {c.outerPosition != null ? c.outerPosition : ""}
                     </Styled.Cell>
-                    <Styled.Cell data-cell-type="actions">
-                      <Styled.RemoveButton
-                        type="button"
-                        aria-label={t("common.delete")}
-                        onClick={() =>
-                          destroy.contribution(
-                            { contributionId: c.id },
-                            "glossary.contribution",
-                          )
-                        }
-                      >
-                        <IconFactory icon="delete" />
-                      </Styled.RemoveButton>
-                    </Styled.Cell>
+                    {!readonly && (
+                      <Styled.Cell data-cell-type="actions">
+                        <Styled.RemoveButton
+                          type="button"
+                          aria-label={t("common.delete")}
+                          onClick={() =>
+                            destroy.contribution(
+                              { contributionId: c.id },
+                              "glossary.contribution",
+                            )
+                          }
+                        >
+                          <IconFactory icon="delete" />
+                        </Styled.RemoveButton>
+                      </Styled.Cell>
+                    )}
                   </tr>
                 ))}
               </tbody>

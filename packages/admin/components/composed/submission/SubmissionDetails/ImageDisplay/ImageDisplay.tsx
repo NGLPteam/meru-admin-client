@@ -3,13 +3,16 @@ import { useTranslation } from "react-i18next";
 import { Image } from "components/atomic";
 import { IconFactory } from "components/factories";
 import { ProcessingFile } from "components/forms/FileUpload/BaseFileUpload/BaseFileUpload.styles";
+import CoverPlaceholder from "@wdp/lib/atomic/CoverPlaceholder";
 import { ImageDisplayFragment$key } from "@/relay/ImageDisplayFragment.graphql";
 import * as Styled from "./ImageDisplay.styles";
 
 export default function ImageDisplay({
   data,
+  placeholderProps,
 }: {
   data?: ImageDisplayFragment$key;
+  placeholderProps: { seed: string; title?: string };
 }) {
   const { t } = useTranslation();
 
@@ -42,7 +45,11 @@ export default function ImageDisplay({
       </Styled.Wrapper>
     );
 
-  return <Styled.Wrapper />;
+  return (
+    <Styled.Wrapper>
+      <CoverPlaceholder {...placeholderProps} />
+    </Styled.Wrapper>
+  );
 }
 
 const fragment = graphql`

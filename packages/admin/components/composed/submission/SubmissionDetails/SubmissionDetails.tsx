@@ -2,8 +2,8 @@ import { useFragment, graphql } from "react-relay";
 import { useTranslation } from "react-i18next";
 import { formatDate } from "@wdp/lib/helpers";
 import DataList from "components/atomic/DataList";
-import { Legend } from "components/forms/FieldsetSection/FieldsetSection.styles";
 import type { SubmissionDetailsFragment$key } from "@/relay/SubmissionDetailsFragment.graphql";
+import SubmissionContributors from "../SubmissionContributors";
 import SchemaFields from "./SchemaFieldsDisplay";
 import Image from "./ImageDisplay";
 import * as Styled from "./SubmissionDetails.styles";
@@ -17,7 +17,20 @@ export default function SubmissionDetails({ data }: Props) {
 
   return (
     <Styled.Wrapper>
-      <DataList boxed>
+      <DataList>
+        <DataList.Item
+          wide
+          label={t("forms.fields.thumbnail")}
+          value={
+            <Image
+              data={item?.thumbnail}
+              placeholderProps={{
+                seed: item?.id ?? "",
+                title: item?.title,
+              }}
+            />
+          }
+        />
         <DataList.Item label={t("forms.fields.title")} value={item?.title} />
         <DataList.Item
           label={t("forms.fields.subtitle")}
@@ -37,20 +50,12 @@ export default function SubmissionDetails({ data }: Props) {
           wide
         />
       </DataList>
-      <section>
-        <Legend as="h2">{t("forms.fields.images")}</Legend>
-        <DataList>
-          <DataList.Item
-            label={t("forms.fields.thumbnail")}
-            value={<Image data={item?.thumbnail} />}
-          />
-          <DataList.Item
-            label={t("forms.fields.hero_image")}
-            value={<Image data={item?.heroImage} />}
-          />
-        </DataList>
-      </section>
-      {item && <SchemaFields data={item} />}
+      {item && (
+        <>
+          <SubmissionContributors data={item} readonly />
+          <SchemaFields data={item} />
+        </>
+      )}
     </Styled.Wrapper>
   );
 }
@@ -66,6 +71,7 @@ const fragment = graphql`
     entity {
       __typename
       ... on Item {
+        id
         title
         subtitle
         summary
@@ -76,6 +82,7 @@ const fragment = graphql`
           ...ImageDisplayFragment
         }
         ...SchemaFieldsDisplayFragment
+        ...SubmissionContributorsFragment
       }
     }
     submissionTarget {

@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { pxToRem } from "theme/mixins/functions";
 
 export const Wrapper = styled.div`
   > * + * {
-    margin-block-start: var(--form-grid-row-gap);
+    margin-block-start: ${pxToRem(20)};
   }
 
   > section > h2 {
