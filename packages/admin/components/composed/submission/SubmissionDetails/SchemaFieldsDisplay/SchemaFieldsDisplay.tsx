@@ -33,13 +33,14 @@ export default function SchemaFields({
     }
   }
 
-  const scalarProps = ungrouped.filter(isScalarProp);
+  const scalarProps = ungrouped
+    .filter(isScalarProp)
+    .filter((p) => p.submittable);
 
   return (
     <>
       {!!scalarProps.length && (
         <section>
-          <Legend as="h2">{"Properties"}</Legend>
           <DataList>
             {scalarProps.map((prop) => (
               <ScalarField
@@ -53,7 +54,9 @@ export default function SchemaFields({
       )}
       {groups.map((group) => {
         if (group.__typename !== "GroupProperty") return null;
-        const childProps = group.properties ?? [];
+        const childProps = (group.properties ?? []).filter(
+          (c) => c.submittable,
+        );
         if (!childProps.length) return null;
 
         return (
@@ -87,6 +90,7 @@ const fragment = graphql`
         label
         type
         isWide
+        submittable
       }
       ... on GroupProperty {
         fullPath
@@ -96,6 +100,7 @@ const fragment = graphql`
           label
           type
           isWide
+          submittable
         }
       }
     }

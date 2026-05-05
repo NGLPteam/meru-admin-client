@@ -178,13 +178,6 @@ export default function SubmissionUpdateForm({
                 clearName="clearThumbnail"
                 description="forms.fields.thumbnail_description"
               />
-              <Forms.FileImageUpload
-                label="forms.fields.hero_image"
-                name="heroImage"
-                data={heroImage}
-                clearName="clearHeroImage"
-                description="forms.fields.hero_image_description"
-              />
             </Forms.Grid>
             <SubmissionContributors data={fieldsData} />
           </Styled.Wrapper>

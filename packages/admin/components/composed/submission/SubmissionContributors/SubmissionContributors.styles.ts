@@ -19,7 +19,7 @@ export const Label = styled.span`
   color: var(--color-light);
 `;
 
-export const Box = styled.div`
+export const Box = styled.div<{ $readonly: boolean }>`
   border: 1px solid var(--neutral60);
   border-radius: var(--border-radius-sm);
   background-color: var(--fieldset-bg-color, var(--neutral05));
@@ -27,6 +27,9 @@ export const Box = styled.div`
   padding-block-end: ${pxToRem(16)};
   padding-inline-start: ${pxToRem(20)};
   padding-inline-end: ${pxToRem(20)};
+
+  ${({ $readonly }) =>
+    $readonly && `border: none; background: none; padding-inline: 0;`}
 `;
 
 export const Table = styled.table`
