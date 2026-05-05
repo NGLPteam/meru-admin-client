@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c14666d67ea4e7e9c6170edb43e57a95>>
+ * @generated SignedSource<<9cc82d919cc6e87d80de19ac94c7ef99>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -210,6 +210,7 @@ return {
                 "name": "submissionTarget",
                 "plural": false,
                 "selections": [
+                  (v4/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -224,8 +225,7 @@ return {
                       (v4/*: any*/)
                     ],
                     "storageKey": null
-                  },
-                  (v4/*: any*/)
+                  }
                 ],
                 "storageKey": null
               },
@@ -393,12 +393,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "18671e38911203437d3be7030e869a3d",
+    "cacheID": "45b36cbcd3051331344167aae1e7c23c",
     "id": null,
     "metadata": {},
     "name": "publishQuery",
     "operationKind": "query",
-    "text": "query publishQuery(\n  $page: Int!\n  $order: SubmissionOrder!\n  $filters: SubmissionFilterInput\n) {\n  submissions(page: $page, perPage: 20, order: $order, filters: $filters) {\n    ...SubmissionBulkPublishListFragment\n  }\n}\n\nfragment AvatarFragment on ImageAttachment {\n  storage\n  small {\n    webp {\n      ...ImageFragment\n      width\n      height\n    }\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionBulkPublishListFragment on SubmissionConnection {\n  nodes {\n    id\n    slug\n    updatedAt\n    entity {\n      __typename\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n      __isEntity: __typename\n      title\n      slug\n      id\n    }\n    submissionTarget {\n      entity {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n      id\n    }\n    user {\n      id\n      slug\n      ...UserNameColumnCellFragment\n    }\n  }\n  ...ModelListPageFragment\n}\n\nfragment UserAvatarFragment on User {\n  avatar {\n    ...AvatarFragment\n  }\n}\n\nfragment UserNameColumnCellFragment on User {\n  name\n  slug\n  ...UserAvatarFragment\n}\n"
+    "text": "query publishQuery(\n  $page: Int!\n  $order: SubmissionOrder!\n  $filters: SubmissionFilterInput\n) {\n  submissions(page: $page, perPage: 20, order: $order, filters: $filters) {\n    ...SubmissionBulkPublishListFragment\n  }\n}\n\nfragment AvatarFragment on ImageAttachment {\n  storage\n  small {\n    webp {\n      ...ImageFragment\n      width\n      height\n    }\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionBulkPublishListFragment on SubmissionConnection {\n  nodes {\n    id\n    slug\n    updatedAt\n    entity {\n      __typename\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n      __isEntity: __typename\n      title\n      slug\n      id\n    }\n    submissionTarget {\n      id\n      entity {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n    }\n    user {\n      id\n      slug\n      ...UserNameColumnCellFragment\n    }\n  }\n  ...ModelListPageFragment\n}\n\nfragment UserAvatarFragment on User {\n  avatar {\n    ...AvatarFragment\n  }\n}\n\nfragment UserNameColumnCellFragment on User {\n  name\n  slug\n  ...UserAvatarFragment\n}\n"
   }
 };
 })();

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b7877ad460cc5f672537b006ef7d43d8>>
+ * @generated SignedSource<<bbb369db08041e3190ad3d3fc04373f1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -23,6 +23,7 @@ export type SubmissionBulkPublishListFragment$data = {
       readonly entity: {
         readonly title: string;
       };
+      readonly id: string;
     } | null | undefined;
     readonly updatedAt: string;
     readonly user: {
@@ -113,6 +114,7 @@ return {
           "name": "submissionTarget",
           "plural": false,
           "selections": [
+            (v0/*: any*/),
             {
               "alias": null,
               "args": null,
@@ -160,6 +162,6 @@ return {
 };
 })();
 
-(node as any).hash = "74a04ef9e1d7d6800d3d7f7a1a47e7a5";
+(node as any).hash = "ea09fcca8b1737b560f58c2146e94f3e";
 
 export default node;
