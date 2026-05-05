@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<cf64cbef6d7ce751dfcb585de484d249>>
+ * @generated SignedSource<<58bad54d924e0396fc32de473e1a6dc5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,6 +12,7 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 export type SchemaPropertyType = "ASSET" | "ASSETS" | "BOOLEAN" | "CONTRIBUTOR" | "CONTRIBUTORS" | "CONTROLLED_VOCABULARIES" | "CONTROLLED_VOCABULARY" | "DATE" | "EMAIL" | "ENTITIES" | "ENTITY" | "FLOAT" | "FULL_TEXT" | "GROUP" | "INTEGER" | "MARKDOWN" | "MULTISELECT" | "SELECT" | "STRING" | "TAGS" | "TIMESTAMP" | "UNKNOWN" | "URL" | "VARIABLE_DATE" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type ScalarPropertyFragment$data = {
+  readonly instructions: string | null | undefined;
   readonly isWide: boolean;
   readonly label: string;
   readonly name: string;
@@ -72,12 +73,19 @@ const node: ReaderFragment = {
       "kind": "ScalarField",
       "name": "isWide",
       "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "instructions",
+      "storageKey": null
     }
   ],
   "type": "ScalarProperty",
   "abstractKey": "__isScalarProperty"
 };
 
-(node as any).hash = "65f7000b4ae93eb94615fe255a31c6e6";
+(node as any).hash = "00a185518e26a84ba527317211a5ee34";
 
 export default node;

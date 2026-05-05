@@ -15,7 +15,7 @@ import type InputProps from "components/forms/inputType";
 
 const VariableDatePicker = forwardRef(
   (
-    { label, defaultValue, value, onChange, required }: Props,
+    { label, defaultValue, value, onChange, required, description }: Props,
     // The ref is passed in from Control, but isn't needed for this input
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ref: Ref<HTMLInputElement>,
@@ -114,7 +114,7 @@ const VariableDatePicker = forwardRef(
     }
 
     return (
-      <Fieldset label={t(label)}>
+      <Fieldset label={t(label)} description={description}>
         <Styled.Wrapper>
           <Input
             name="year"
@@ -172,8 +172,7 @@ type Value = {
   value?: string | null;
 };
 
-interface Props
-  extends Omit<InputProps, "placeholder" | "description" | "onChange"> {
+interface Props extends Omit<InputProps, "placeholder" | "onChange"> {
   /** Returns the current value */
   onChange?: (value: Value) => void;
   /** Default value */

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fe75b9d0a8082ec84afded0526114a0e>>
+ * @generated SignedSource<<b9dead0f89e8f1beb2c9ee89f0c22de6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,6 +17,7 @@ export type SubmissionDetailsFragment$data = {
     readonly heroImage: {
       readonly " $fragmentSpreads": FragmentRefs<"ImageDisplayFragment">;
     };
+    readonly id: string;
     readonly subtitle: string | null | undefined;
     readonly summary: string | null | undefined;
     readonly thumbnail: {
@@ -96,6 +97,13 @@ return {
         {
           "kind": "InlineFragment",
           "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "id",
+              "storageKey": null
+            },
             (v0/*: any*/),
             {
               "alias": null,
@@ -172,6 +180,6 @@ return {
 };
 })();
 
-(node as any).hash = "d3aa338d98e34e525cd158a6fa74e5b8";
+(node as any).hash = "4a5a3f048fe973469bfe6e2c51c90c71";
 
 export default node;

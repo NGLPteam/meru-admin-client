@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<39406a6bd4fed36a99440cb960d083a8>>
+ * @generated SignedSource<<61e3b1e57cd5b60e1f7951794be85a20>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -25,8 +25,10 @@ export type SchemaFieldsDisplayFragment$data = {
       readonly fullPath: string;
       readonly isWide: boolean;
       readonly label: string;
+      readonly submittable: boolean;
       readonly type: SchemaPropertyType;
     }>;
+    readonly submittable?: boolean;
     readonly type?: SchemaPropertyType;
   }>;
   readonly " $fragmentType": "SchemaFieldsDisplayFragment";
@@ -65,6 +67,13 @@ v1 = [
     "args": null,
     "kind": "ScalarField",
     "name": "isWide",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "submittable",
     "storageKey": null
   }
 ];
@@ -147,6 +156,6 @@ return {
 };
 })();
 
-(node as any).hash = "68b45956ffb2e18c8b70badc594823b5";
+(node as any).hash = "00d790da63d629601ca0da78552f92aa";
 
 export default node;

@@ -1,6 +1,7 @@
 import { useFragment, graphql } from "react-relay";
 
 import { SchemaKind } from "types/graphql-schema";
+import { useSchemaFormFieldsContext } from "components/api/SchemaFormFields/SchemaFormFieldsContext";
 import type { SchemaPropertyFragment$key } from "@/relay/SchemaPropertyFragment.graphql";
 import * as Properties from "../../Properties";
 
@@ -10,6 +11,9 @@ import * as Properties from "../../Properties";
  */
 export default function SchemaProperty(props: Props) {
   const field = useFragment(fragment, props.field);
+  const { isSubmission } = useSchemaFormFieldsContext();
+
+  if (isSubmission && !field.submittable) return null;
 
   switch (field.__typename) {
     case "AssetProperty":
@@ -74,6 +78,7 @@ interface Props {
 const fragment = graphql`
   fragment SchemaPropertyFragment on ScalarProperty {
     __typename
+    submittable
 
     ... on AssetProperty {
       # eslint-disable-next-line relay/must-colocate-fragment-spreads
