@@ -11,10 +11,11 @@ export default function IntegerProperty(props: Props) {
 
   return (
     <ScalarProperty field={field}>
-      {({ label, required, name, isWide }) => (
+      {({ label, required, name, isWide, instructions }) => (
         <Input
           label={label}
           required={required}
+          description={instructions}
           type="number"
           isWide={isWide}
           {...register(name)}

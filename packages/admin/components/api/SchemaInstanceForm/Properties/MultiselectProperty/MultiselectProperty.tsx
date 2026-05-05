@@ -15,10 +15,11 @@ export default function MultiselectProperty(props: Props) {
 
   return (
     <ScalarProperty field={field}>
-      {({ label, required, name, isWide }) => (
+      {({ label, required, name, isWide, instructions }) => (
         <Select
           label={label}
           required={required}
+          description={instructions}
           options={field.options}
           multiple
           isWide={isWide}

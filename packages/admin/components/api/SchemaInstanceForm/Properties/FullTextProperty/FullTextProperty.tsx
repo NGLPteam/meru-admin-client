@@ -14,7 +14,7 @@ export default function FullTextProperty(props: Props) {
 
   return (
     <ScalarProperty field={field}>
-      {({ label, required, name, isWide }) => (
+      {({ label, required, name, isWide, instructions }) => (
         <Controller
           name={name}
           control={control}
@@ -23,6 +23,7 @@ export default function FullTextProperty(props: Props) {
             <FullTextInput
               label={label}
               required={required}
+              description={instructions ?? undefined}
               isWide={isWide}
               {...field}
             />

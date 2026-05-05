@@ -10,10 +10,11 @@ export default function StringProperty(props: Props) {
 
   return (
     <ScalarProperty field={field}>
-      {({ name, label, required, isWide }) => (
+      {({ name, label, required, isWide, instructions }) => (
         <Input
           label={label}
           required={required}
+          description={instructions}
           isWide={isWide || register.name === "title"}
           {...register(name)}
         />

@@ -14,20 +14,28 @@ export default function SchemaFormFields({
 }: Props) {
   const { properties, ...schema } = useFragment(fragment, data) ?? {};
 
+  const visibleProperties = isSubmission
+    ? properties.filter((p) =>
+        p.__typename === "GroupProperty"
+          ? !!p.properties?.some((c) => c.submittable)
+          : p.submittable,
+      )
+    : properties;
+
   return (
-    <SchemaFormFieldsContextProvider data={schema}>
+    <SchemaFormFieldsContextProvider data={schema} isSubmission={isSubmission}>
       {!isSubmission && (
         <SchemaSelector
           schemaData={schema}
           schemaKind={schemaKind}
           schemaSlugs={schemaSlugs}
           title={title}
-          showHeader={!!properties.length}
+          showHeader={!!visibleProperties.length}
         />
       )}
-      {!!properties.length && (
+      {!!visibleProperties.length && (
         <FormGrid>
-          {properties.map((prop, index) => (
+          {visibleProperties.map((prop, index) => (
             <Property property={prop} key={index} schemaKind={schemaKind} />
           ))}
         </FormGrid>
@@ -48,6 +56,15 @@ interface Props {
 const fragment = graphql`
   fragment SchemaFormFieldsFragment on SchemaInstance {
     properties: schemaProperties {
+      __typename
+      ... on ScalarProperty {
+        submittable
+      }
+      ... on GroupProperty {
+        properties {
+          submittable
+        }
+      }
       ...SchemaInstancePropertyFragment
     }
     ...SchemaSelectorDataFragment
