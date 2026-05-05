@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useId } from "react";
 import useFocusTrap from "@castiron/hooks/useFocusTrap";
 
-import { useViewerContext } from "contexts";
+import { useGlobalContext, useViewerContext } from "contexts";
 import appData from "fixtures/app.data";
 import { useToggle } from "hooks";
 
@@ -11,7 +11,9 @@ import MobileMenu, { MobileMenuList } from "components/layout/MobileMenu";
 import MobileMenuToggle from "components/layout/MobileMenuToggle";
 import { renderNavLink } from "helpers";
 import SignInOut from "components/auth/SignInOut";
+import { Authorize } from "components/auth";
 import { DrawerLink, NamedLink } from "components/atomic";
+import { RouteHelper } from "routes";
 import SearchModal from "components/composed/search/SearchModal";
 import InstallationName from "../InstallationName";
 import ProviderBar from "../ProviderBar";
@@ -32,6 +34,12 @@ function Header() {
 
   const { headerData, footerData } = appData;
   const { globalAdmin } = useViewerContext();
+  const globalData = useGlobalContext();
+  const depositingEnabled =
+    globalData?.globalConfiguration?.depositing?.enabled ?? false;
+  const accountChildren = depositingEnabled
+    ? headerData.account.children
+    : headerData.account.children.filter((item) => !item.depositing);
 
   const renderGlobalSettings = () =>
     globalAdmin ? (
@@ -91,13 +99,30 @@ function Header() {
             {t("nav.account_header")}
           </h3>
           <MobileMenuList>
+            {accountChildren.map((item, i) => {
+              if (!RouteHelper.findRouteByName(item.route)) return null;
+              const link = (
+                <NamedLink route={item.route} passHref>
+                  <a className="a-link">{t(item.label)}</a>
+                </NamedLink>
+              );
+              return (
+                <li key={i}>
+                  {item.actions ? (
+                    <Authorize actions={item.actions}>{link}</Authorize>
+                  ) : (
+                    link
+                  )}
+                </li>
+              );
+            })}
             <li>
-              <DrawerLink drawer="editProfile">
-                {t("nav.edit_profile")}
+              <DrawerLink drawer="editProfile" passHref>
+                <a className="a-link">{t("nav.edit_profile")}</a>
               </DrawerLink>
             </li>
             <li>
-              <SignInOut />
+              <SignInOut className="a-link" />
             </li>
           </MobileMenuList>
         </div>
