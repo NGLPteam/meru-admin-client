@@ -89,8 +89,10 @@ function InstancePermalinksList({
   );
 }
 
-interface InstancePermalinksListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface InstancePermalinksListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: InstancePermalinksListFragment$key;
 }
 

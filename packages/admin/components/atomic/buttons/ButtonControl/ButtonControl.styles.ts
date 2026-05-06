@@ -19,7 +19,8 @@ export const ButtonControl = styled.button<{
   ${tLabel("sm")}
   text-align: start;
   color: var(--accent-color);
-  transition: var(--color-transition), var(--border-transition),
+  transition:
+    var(--color-transition), var(--border-transition),
     var(--background-transition), var(--opacity-transition);
   opacity: var(--button-control-opacity, 1);
   visibility: var(--button-control-visibility, visible);

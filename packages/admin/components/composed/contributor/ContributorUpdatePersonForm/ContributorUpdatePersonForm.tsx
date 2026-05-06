@@ -101,11 +101,10 @@ export default function ContributorUpdatePersonForm({
   );
 }
 
-interface Props
-  extends Pick<
-    React.ComponentProps<typeof MutationForm>,
-    "onSuccess" | "onCancel"
-  > {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess" | "onCancel"
+> {
   data: ContributorUpdatePersonFormFragment$key;
 }
 

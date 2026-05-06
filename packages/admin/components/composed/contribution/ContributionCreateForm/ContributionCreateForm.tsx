@@ -125,11 +125,10 @@ export default function ContributionCreateForm({
   );
 }
 
-interface Props
-  extends Pick<
-    React.ComponentProps<typeof MutationForm>,
-    "onSuccess" | "onCancel"
-  > {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess" | "onCancel"
+> {
   /** The contributor */
   contributorId?: string;
   contributorName?: string;

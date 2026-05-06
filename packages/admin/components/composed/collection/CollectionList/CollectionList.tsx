@@ -119,8 +119,10 @@ function CollectionList({
   );
 }
 
-interface CollectionListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface CollectionListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   collections?: CollectionListFragment$key;
   search?: CollectionListSearchFragment$key;
 }

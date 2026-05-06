@@ -25,7 +25,7 @@ export default function EntityLinksAddDrawer({
       variables={{ entitySlug: drawerSlug }}
     >
       {({ data }) => {
-        const entity = data ? data.item ?? data.collection : undefined;
+        const entity = data ? (data.item ?? data.collection) : undefined;
         return (
           <Drawer
             header={t("actions.add.link_header")}

@@ -114,8 +114,10 @@ function EntityLinksList({
   );
 }
 
-interface EntityLinksListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface EntityLinksListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: EntityLinksListFragment$key;
 }
 

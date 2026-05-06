@@ -133,11 +133,10 @@ export default function HarvestSourceUpdateForm({
   );
 }
 
-interface Props
-  extends Pick<
-    React.ComponentProps<typeof MutationForm>,
-    "onSuccess" | "onCancel"
-  > {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess" | "onCancel"
+> {
   data: HarvestSourceUpdateFormFragment$key;
 }
 

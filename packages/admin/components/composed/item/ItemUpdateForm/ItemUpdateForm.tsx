@@ -237,11 +237,10 @@ export default function ItemUpdateForm({
   );
 }
 
-interface Props
-  extends Pick<
-    React.ComponentProps<typeof MutationForm>,
-    "onSuccess" | "onCancel" | "onSaveAndClose"
-  > {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess" | "onCancel" | "onSaveAndClose"
+> {
   data: ItemUpdateFormFragment$key;
   mode?: "admin" | "depositor";
 }
