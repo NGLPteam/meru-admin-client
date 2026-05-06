@@ -1,6 +1,7 @@
 import { useCallback } from "react";
-import { graphql, useMutation } from "react-relay";
+import { graphql } from "react-relay";
 import { useTranslation } from "react-i18next";
+import { useLoadingMutation } from "components/api/hooks";
 import { useNotify, usePageContext } from "hooks";
 import type { usePublishSubmissionMutation as PublishMutation } from "@/relay/usePublishSubmissionMutation.graphql";
 import type { MutationAttributeError } from "types/graphql-schema";
@@ -10,7 +11,7 @@ export default function usePublishSubmission() {
   const notify = useNotify();
   const { setTriggeredRefetchTags } = usePageContext();
 
-  const [commitPublish] = useMutation<PublishMutation>(mutation);
+  const [commitPublish] = useLoadingMutation<PublishMutation>(mutation);
 
   return useCallback(
     ({ id, title }: { id: string; title: string }) => {

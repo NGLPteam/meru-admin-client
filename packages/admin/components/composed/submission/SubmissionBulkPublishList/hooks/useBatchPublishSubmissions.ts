@@ -1,5 +1,6 @@
 import { useCallback } from "react";
-import { graphql, useMutation } from "react-relay";
+import { graphql } from "react-relay";
+import { useLoadingMutation } from "components/api/hooks";
 import { useNotify } from "hooks";
 import type { useBatchPublishSubmissionsMutation as BatchMutation } from "@/relay/useBatchPublishSubmissionsMutation.graphql";
 import type { SubmissionBulkPublishListFragment$data } from "@/relay/SubmissionBulkPublishListFragment.graphql";
@@ -11,7 +12,7 @@ type Row = SubmissionBulkPublishListFragment$data["nodes"][number];
 export default function useBatchPublishSubmissions() {
   const notify = useNotify();
   const { enqueue } = useBatchPublishPolling();
-  const [commitBatchPublish] = useMutation<BatchMutation>(mutation);
+  const [commitBatchPublish] = useLoadingMutation<BatchMutation>(mutation);
 
   return useCallback(
     (records: Row[], selectedSlugs: string[]) => {

@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
-import { useFragment, useMutation, graphql } from "react-relay";
+import { useFragment, graphql } from "react-relay";
+import { useLoadingMutation } from "components/api/hooks";
 import { useTranslation } from "react-i18next";
 import { Controller } from "react-hook-form";
 import MutationForm, {
@@ -41,7 +42,7 @@ export default function SubmissionTargetConfigureForm({
   );
 
   const [commitOpen] =
-    useMutation<SubmissionTargetConfigureFormOpenMutation>(openMutation);
+    useLoadingMutation<SubmissionTargetConfigureFormOpenMutation>(openMutation);
 
   const configurableId = target?.targetId ?? collectionId;
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo } from "react";
-import { useFragment, useMutation, graphql } from "react-relay";
+import { useFragment, graphql } from "react-relay";
 import { useTranslation } from "react-i18next";
 import { useForm, useWatch, FormProvider } from "react-hook-form";
 import { useNotify } from "hooks";
-import { useSchemaContext } from "components/api/hooks";
+import { useLoadingMutation, useSchemaContext } from "components/api/hooks";
 import type {
   SchemaInstanceProviderApplyMutation,
   SchemaInstanceProviderApplyMutation$data as MutationResponse,
@@ -31,7 +31,7 @@ export default function SchemaInstanceProvider({
   const { t } = useTranslation();
 
   // eslint-disable-next-line prettier/prettier
-  const [apply] = useMutation<SchemaInstanceProviderApplyMutation>(
+  const [apply] = useLoadingMutation<SchemaInstanceProviderApplyMutation>(
     applyMutation
   );
 

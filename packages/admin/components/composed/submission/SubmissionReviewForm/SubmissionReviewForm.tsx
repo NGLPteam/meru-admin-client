@@ -1,11 +1,12 @@
 import { useCallback } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { graphql, useMutation } from "react-relay";
+import { graphql } from "react-relay";
 import { Grid, Select, Textarea } from "components/forms";
 import { Button } from "components/atomic";
 import BaseMarkdown from "components/atomic/Markdown/BaseMarkdown";
 import { Footer } from "components/api/MutationForm/MutationForm.styles";
+import { useLoadingMutation } from "components/api/hooks";
 import { useNotify } from "hooks";
 import type {
   SubmissionReviewFormMutation as Mutation,
@@ -36,7 +37,7 @@ export default function SubmissionReviewForm({
   const form = useForm<Fields>();
   const { register, handleSubmit } = form;
 
-  const [commit, inFlight] = useMutation<Mutation>(mutation);
+  const [commit, inFlight] = useLoadingMutation<Mutation>(mutation);
 
   const handleResponse = useCallback(
     (data: Mutation$data["submissionLeaveReview"] | null | undefined) => {

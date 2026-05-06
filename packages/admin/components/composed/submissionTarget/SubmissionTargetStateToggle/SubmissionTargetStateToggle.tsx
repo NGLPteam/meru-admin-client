@@ -1,7 +1,8 @@
 import { useCallback, useId } from "react";
-import { useFragment, useMutation, graphql } from "react-relay";
+import { useFragment, graphql } from "react-relay";
 import { useTranslation } from "react-i18next";
 import { useDialogState } from "reakit/Dialog";
+import { useLoadingMutation } from "components/api/hooks";
 import { useNotify } from "hooks";
 import {
   SwitchWrapper,
@@ -35,9 +36,9 @@ export default function SubmissionTargetStateToggle({ data }: Props) {
   const isConfigured = !!target;
 
   const [commitOpen, openLoading] =
-    useMutation<SubmissionTargetStateToggleOpenMutation>(openMutation);
+    useLoadingMutation<SubmissionTargetStateToggleOpenMutation>(openMutation);
   const [commitClose, closeLoading] =
-    useMutation<SubmissionTargetStateToggleCloseMutation>(closeMutation);
+    useLoadingMutation<SubmissionTargetStateToggleCloseMutation>(closeMutation);
 
   const loading = openLoading || closeLoading;
 

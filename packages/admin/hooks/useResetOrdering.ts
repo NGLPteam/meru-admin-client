@@ -1,7 +1,8 @@
 import { useCallback } from "react";
-import { useMutation, graphql } from "react-relay";
+import { graphql } from "react-relay";
 import { useTranslation } from "react-i18next";
 import { GraphQLTaggedNode, readInlineData } from "relay-runtime";
+import { useLoadingMutation } from "components/api/hooks";
 import { useNotify, usePageContext } from "hooks";
 
 import { ResetOrderingInput } from "types/graphql-schema";
@@ -36,7 +37,7 @@ export function useResetOrdering() {
   );
 
   /* Reset an ordering */
-  const [commitResetOrdering] = useMutation<useResetOrderingMutation>(
+  const [commitResetOrdering] = useLoadingMutation<useResetOrderingMutation>(
     resetOrderingMutation,
   );
 

@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useMutation, graphql } from "react-relay";
+import { graphql } from "react-relay";
+import { useLoadingMutation } from "components/api/hooks";
 import { useNotify } from "hooks";
 import MessageBlock from "components/atomic/MessageBlock";
 import ButtonControl from "components/atomic/buttons/ButtonControl";
@@ -22,7 +23,7 @@ export default function InvalidTarget({
   const [requested, setRequested] = useState(false);
 
   const [mutate, loading] =
-    useMutation<InvalidTargetRequestAccessMutation>(mutation);
+    useLoadingMutation<InvalidTargetRequestAccessMutation>(mutation);
 
   const handleRequestAccess = useCallback(() => {
     if (!preselectedTarget) return;
