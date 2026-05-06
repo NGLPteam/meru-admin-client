@@ -52,6 +52,6 @@
   "devDependencies": {
     "@yarnpkg/types": "^4.0.1",
     "concurrently": "^8.2.2",
-    "turbo": "^2.5.3"
+    "turbo": "^2.9.9"
   }
 }

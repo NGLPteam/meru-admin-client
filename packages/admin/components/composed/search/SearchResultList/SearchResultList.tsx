@@ -104,8 +104,10 @@ function SearchResultList({
   );
 }
 
-interface SearchResultListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface SearchResultListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: SearchResultListFragment$key | null;
   searchQuery?: string | null;
   isLoading?: boolean;
