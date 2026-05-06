@@ -15,7 +15,6 @@ export default function SubmissionsReview() {
         "REVISION_REQUESTED",
         "APPROVED",
         "REJECTED",
-        "PUBLISHED",
       ],
     },
   });
