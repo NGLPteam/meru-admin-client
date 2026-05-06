@@ -26,7 +26,7 @@ export default function EntityAnnouncementAddDrawer({
     >
       {({ data }) => {
         const entity = data
-          ? data.item ?? data.collection ?? data.community
+          ? (data.item ?? data.collection ?? data.community)
           : undefined;
         return (
           <Drawer

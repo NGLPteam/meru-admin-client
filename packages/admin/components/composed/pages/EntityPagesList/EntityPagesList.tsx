@@ -100,8 +100,10 @@ function EntityPagesList({
   );
 }
 
-interface EntityPagesListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface EntityPagesListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: EntityPagesListFragment$key | null;
 }
 

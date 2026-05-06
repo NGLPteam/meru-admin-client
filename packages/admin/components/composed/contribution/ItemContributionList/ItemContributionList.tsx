@@ -121,8 +121,10 @@ function ItemContributionList({
   );
 }
 
-interface ItemContributionListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface ItemContributionListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: ItemContributionListFragment$key;
   nameColumn?: "item" | "contributor";
 }

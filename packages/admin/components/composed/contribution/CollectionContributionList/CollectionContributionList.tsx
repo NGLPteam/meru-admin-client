@@ -127,8 +127,10 @@ function CollectionContributionList({
   );
 }
 
-interface CollectionContributionListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface CollectionContributionListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: CollectionContributionListFragment$key;
   nameColumn?: "collection" | "contributor";
 }

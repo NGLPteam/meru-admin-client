@@ -86,8 +86,10 @@ function EntityPermalinksList({
   );
 }
 
-interface EntityPermalinksListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface EntityPermalinksListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: EntityPermalinksListFragment$key;
 }
 

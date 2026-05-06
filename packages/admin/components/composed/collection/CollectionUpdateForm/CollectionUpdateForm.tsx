@@ -230,11 +230,10 @@ export default function CollectionUpdateForm({
   );
 }
 
-interface Props
-  extends Pick<
-    React.ComponentProps<typeof MutationForm>,
-    "onSuccess" | "onSaveAndClose" | "onCancel"
-  > {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess" | "onSaveAndClose" | "onCancel"
+> {
   data: CollectionUpdateFormFragment$key;
 }
 

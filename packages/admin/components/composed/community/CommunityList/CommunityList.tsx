@@ -68,8 +68,10 @@ function CommunityList({ data, hideHeader, headerStyle }: CommunityListProps) {
   );
 }
 
-interface CommunityListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface CommunityListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: CommunityListFragment$key;
 }
 

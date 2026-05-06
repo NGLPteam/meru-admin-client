@@ -88,8 +88,10 @@ function RoleAccessList({
   );
 }
 
-interface RoleAccessListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface RoleAccessListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: RoleAccessListFragment$key | null;
   header?: string;
   // Used to set specific labels on the drawer and form

@@ -79,8 +79,10 @@ function ContributorList({
   );
 }
 
-interface ContributorListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface ContributorListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: ContributorListFragment$key;
 }
 

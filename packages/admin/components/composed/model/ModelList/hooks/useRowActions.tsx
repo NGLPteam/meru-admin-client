@@ -145,7 +145,7 @@ function getButtonControlChildren<D extends Record<string, unknown>>(
     : actionDefinition.modalLabel;
   const dynamicModalBody = actionConfig?.modalBody
     ? actionConfig.modalBody({ row })
-    : actionDefinition.modalBody ?? null;
+    : (actionDefinition.modalBody ?? null);
 
   const buttonControl = actionConfig?.modalConfirm ? (
     <ButtonControlConfirm

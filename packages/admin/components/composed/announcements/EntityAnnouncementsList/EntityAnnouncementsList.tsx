@@ -93,8 +93,10 @@ function EntityAnnouncementsList({
   );
 }
 
-interface EntityAnnouncementsListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface EntityAnnouncementsListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: EntityAnnouncementsListFragment$key | null;
 }
 

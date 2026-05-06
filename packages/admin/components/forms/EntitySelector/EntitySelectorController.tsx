@@ -35,18 +35,24 @@ interface Props {
   visible?: boolean;
 }
 
-interface CommunityOption
-  extends Omit<Partial<Community>, "__typename" | "schemaVersion"> {
+interface CommunityOption extends Omit<
+  Partial<Community>,
+  "__typename" | "schemaVersion"
+> {
   __typename: string;
   schemaVersion: Partial<SchemaVersion>;
 }
-interface CollectionOption
-  extends Omit<Partial<Collection>, "__typename" | "schemaVersion"> {
+interface CollectionOption extends Omit<
+  Partial<Collection>,
+  "__typename" | "schemaVersion"
+> {
   __typename: string;
   schemaVersion: Partial<SchemaVersion>;
 }
-interface ItemOption
-  extends Omit<Partial<Item>, "__typename" | "schemaVersion"> {
+interface ItemOption extends Omit<
+  Partial<Item>,
+  "__typename" | "schemaVersion"
+> {
   __typename: string;
   schemaVersion: Partial<SchemaVersion>;
 }

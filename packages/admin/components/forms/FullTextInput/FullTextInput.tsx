@@ -92,8 +92,10 @@ export type Value = {
   lang?: string;
 };
 
-interface Props
-  extends Omit<InputProps, "placeholder" | "description" | "onChange"> {
+interface Props extends Omit<
+  InputProps,
+  "placeholder" | "description" | "onChange"
+> {
   /** Returns the current value */
   onChange?: (value: Value) => void;
   /** Default value */

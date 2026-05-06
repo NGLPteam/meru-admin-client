@@ -89,7 +89,8 @@ export function aBaseInput() {
     padding: var(--input-padding);
     color: var(--color-base);
     text-align: var(--input-text-align, left);
-    transition: var(--background-transition), var(--color-transition),
+    transition:
+      var(--background-transition), var(--color-transition),
       var(--border-transition), var(--opacity-transition);
 
     &:focus,
@@ -153,7 +154,8 @@ export function aButton(secondary?: boolean) {
     border: 1px solid transparent;
     background-color: var(--button-background-color);
     color: var(--button-text-color);
-    transition: var(--color-transition), var(--border-transition),
+    transition:
+      var(--color-transition), var(--border-transition),
       var(--background-transition), var(--opacity-transition);
 
     &:hover {

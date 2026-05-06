@@ -48,11 +48,10 @@ const RoleEditAccessForm = ({
   );
 };
 
-interface Props
-  extends Pick<
-    React.ComponentProps<typeof MutationForm>,
-    "onSuccess" | "onCancel"
-  > {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess" | "onCancel"
+> {
   entityId?: string;
   userId?: string;
   roleId?: string;

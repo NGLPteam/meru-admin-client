@@ -91,8 +91,10 @@ function FileList({ data, headerStyle, hideHeader }: FileListProps) {
   );
 }
 
-interface FileListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface FileListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: FileListFragment$key;
 }
 
