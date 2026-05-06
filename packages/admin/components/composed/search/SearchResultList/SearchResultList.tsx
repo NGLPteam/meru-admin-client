@@ -10,9 +10,16 @@ import type {
   SearchResultListFragment$data,
   SearchResultListFragment$key,
 } from "@/relay/SearchResultListFragment.graphql";
+import type { Drawers } from "hooks/useDrawerHelper";
 import type { CellContext, ModelTableActionProps } from "@tanstack/react-table";
 
 type HeaderProps = React.ComponentProps<typeof PageHeader>;
+
+const VIEW_PATH_BY_TYPENAME: Record<string, string> = {
+  Community: "/communities",
+  Collection: "/collections",
+  Item: "/items",
+};
 
 function SearchResultList({
   data,
@@ -39,10 +46,7 @@ function SearchResultList({
         const value = getValue<Node["entity"]>();
         if (!row?.original?.entity?.slug) return value.slug;
 
-        const route =
-          row?.original?.entity?.schemaVersion?.kind === "COLLECTION"
-            ? "collection"
-            : "item";
+        const route = row.original.entity.__typename.toLowerCase();
 
         return (
           <NamedLink
@@ -67,20 +71,15 @@ function SearchResultList({
 
   const actions = {
     handleEdit: ({ row }: ModelTableActionProps<Node>) =>
-      drawerHelper.open(
-        row?.original?.entity?.schemaVersion?.kind === "COLLECTION"
-          ? "editCollection"
-          : "editItem",
-        { drawerSlug: row.original.entity.slug },
-      ),
-    handleView: ({ row }: ModelTableActionProps<Node>) =>
-      row.original.entity.slug
-        ? `/${
-            row?.original?.entity?.schemaVersion?.kind === "COLLECTION"
-              ? "collection"
-              : "item"
-          }/${row.original.entity.slug}`
-        : null,
+      drawerHelper.open(`edit${row.original.entity.__typename}` as Drawers, {
+        drawerSlug: row.original.entity.slug,
+      }),
+    handleView: ({ row }: ModelTableActionProps<Node>) => {
+      const { __typename, slug } = row.original.entity;
+      if (!slug) return null;
+      const basePath = VIEW_PATH_BY_TYPENAME[__typename];
+      return basePath ? `${basePath}/${slug}` : null;
+    },
   };
 
   const resultsI18nKey = searchQuery.query
@@ -142,6 +141,7 @@ const fragment = graphql`
             slug
           }
           ... on Entity {
+            __typename
             title
             schemaVersion {
               name

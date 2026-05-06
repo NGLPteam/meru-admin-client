@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c1d535a93f59378cfc585c4ce6aa5a2e>>
+ * @generated SignedSource<<4da29b8fa387abd307dbbc56355b6999>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -125,86 +125,104 @@ v14 = {
   "name": "__typename",
   "storageKey": null
 },
-v15 = {
+v15 = [
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "storage",
+    "storageKey": null
+  },
+  {
+    "alias": "thumb",
+    "args": null,
+    "concreteType": "ImageSize",
+    "kind": "LinkedField",
+    "name": "small",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "ImageDerivative",
+        "kind": "LinkedField",
+        "name": "webp",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "InlineFragment",
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "alt",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "url",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "width",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "height",
+                "storageKey": null
+              }
+            ],
+            "type": "Image",
+            "abstractKey": "__isImage"
+          }
+        ],
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
+  }
+],
+v16 = {
   "alias": null,
   "args": null,
   "concreteType": "ImageAttachment",
   "kind": "LinkedField",
   "name": "thumbnail",
   "plural": false,
+  "selections": (v15/*: any*/),
+  "storageKey": null
+},
+v17 = {
+  "kind": "InlineFragment",
   "selections": [
     {
       "alias": null,
       "args": null,
-      "kind": "ScalarField",
-      "name": "storage",
-      "storageKey": null
-    },
-    {
-      "alias": "thumb",
-      "args": null,
-      "concreteType": "ImageSize",
+      "concreteType": "ImageAttachment",
       "kind": "LinkedField",
-      "name": "small",
+      "name": "logo",
       "plural": false,
-      "selections": [
-        {
-          "alias": null,
-          "args": null,
-          "concreteType": "ImageDerivative",
-          "kind": "LinkedField",
-          "name": "webp",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "InlineFragment",
-              "selections": [
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "alt",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "url",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "width",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "height",
-                  "storageKey": null
-                }
-              ],
-              "type": "Image",
-              "abstractKey": "__isImage"
-            }
-          ],
-          "storageKey": null
-        }
-      ],
+      "selections": (v15/*: any*/),
       "storageKey": null
     }
   ],
-  "storageKey": null
+  "type": "Community",
+  "abstractKey": null
 },
-v16 = {
+v18 = {
   "kind": "TypeDiscriminator",
   "abstractKey": "__isNode"
 },
-v17 = [
+v19 = [
   (v9/*: any*/),
   (v12/*: any*/),
   (v13/*: any*/),
@@ -238,8 +256,9 @@ v17 = [
     "kind": "InlineFragment",
     "selections": [
       (v14/*: any*/),
-      (v15/*: any*/),
       (v16/*: any*/),
+      (v17/*: any*/),
+      (v18/*: any*/),
       {
         "kind": "TypeDiscriminator",
         "abstractKey": "__isSluggable"
@@ -249,7 +268,7 @@ v17 = [
     "abstractKey": "__isEntity"
   }
 ],
-v18 = {
+v20 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -303,7 +322,7 @@ v18 = {
   "type": "Paginated",
   "abstractKey": "__isPaginated"
 },
-v19 = {
+v21 = {
   "items": [
     {
       "kind": "Variable",
@@ -314,23 +333,23 @@ v19 = {
   "kind": "ListValue",
   "name": "userIds"
 },
-v20 = {
+v22 = {
   "kind": "Literal",
   "name": "order",
   "value": "RECENT"
 },
-v21 = {
+v23 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "updatedAt",
   "storageKey": null
 },
-v22 = {
+v24 = {
   "kind": "TypeDiscriminator",
   "abstractKey": "__isEntity"
 },
-v23 = {
+v25 = {
   "alias": null,
   "args": null,
   "concreteType": null,
@@ -339,11 +358,11 @@ v23 = {
   "plural": false,
   "selections": [
     (v14/*: any*/),
-    (v22/*: any*/),
+    (v24/*: any*/),
     (v12/*: any*/),
-    (v15/*: any*/),
-    (v9/*: any*/),
     (v16/*: any*/),
+    (v9/*: any*/),
+    (v18/*: any*/),
     {
       "kind": "InlineFragment",
       "selections": [
@@ -351,11 +370,12 @@ v23 = {
       ],
       "type": "Sluggable",
       "abstractKey": "__isSluggable"
-    }
+    },
+    (v17/*: any*/)
   ],
   "storageKey": null
 },
-v24 = {
+v26 = {
   "alias": null,
   "args": null,
   "concreteType": "SubmissionTarget",
@@ -372,7 +392,7 @@ v24 = {
       "plural": false,
       "selections": [
         (v14/*: any*/),
-        (v22/*: any*/),
+        (v24/*: any*/),
         (v12/*: any*/),
         (v9/*: any*/)
       ],
@@ -507,10 +527,10 @@ return {
                 "kind": "LinkedField",
                 "name": "nodes",
                 "plural": true,
-                "selections": (v17/*: any*/),
+                "selections": (v19/*: any*/),
                 "storageKey": null
               },
-              (v18/*: any*/)
+              (v20/*: any*/)
             ],
             "storageKey": null
           },
@@ -529,10 +549,10 @@ return {
                 "kind": "LinkedField",
                 "name": "nodes",
                 "plural": true,
-                "selections": (v17/*: any*/),
+                "selections": (v19/*: any*/),
                 "storageKey": null
               },
-              (v18/*: any*/)
+              (v20/*: any*/)
             ],
             "storageKey": null
           }
@@ -555,12 +575,12 @@ return {
                   "APPROVED"
                 ]
               },
-              (v19/*: any*/)
+              (v21/*: any*/)
             ],
             "kind": "ObjectValue",
             "name": "filters"
           },
-          (v20/*: any*/),
+          (v22/*: any*/),
           (v10/*: any*/)
         ],
         "concreteType": "SubmissionConnection",
@@ -585,13 +605,13 @@ return {
                 "name": "state",
                 "storageKey": null
               },
-              (v21/*: any*/),
               (v23/*: any*/),
-              (v24/*: any*/)
+              (v25/*: any*/),
+              (v26/*: any*/)
             ],
             "storageKey": null
           },
-          (v18/*: any*/)
+          (v20/*: any*/)
         ],
         "storageKey": null
       },
@@ -607,12 +627,12 @@ return {
                   "PUBLISHED"
                 ]
               },
-              (v19/*: any*/)
+              (v21/*: any*/)
             ],
             "kind": "ObjectValue",
             "name": "filters"
           },
-          (v20/*: any*/),
+          (v22/*: any*/),
           (v10/*: any*/)
         ],
         "concreteType": "SubmissionConnection",
@@ -630,25 +650,25 @@ return {
             "selections": [
               (v9/*: any*/),
               (v13/*: any*/),
-              (v21/*: any*/),
               (v23/*: any*/),
-              (v24/*: any*/)
+              (v25/*: any*/),
+              (v26/*: any*/)
             ],
             "storageKey": null
           },
-          (v18/*: any*/)
+          (v20/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "366ab3b7e5b1c856747e4882eeebab61",
+    "cacheID": "55e1fb4e0990f69830f86b8dccc14ab1",
     "id": null,
     "metadata": {},
     "name": "DashboardLayoutQuery",
     "operationKind": "query",
-    "text": "query DashboardLayoutQuery(\n  $page: Int\n  $order: EntityOrder\n  $viewerId: ID!\n) {\n  ...DashboardInstallationFragment\n  ...DashboardCollectionsFragment_1KnpCu\n  ...DashboardItemsFragment_1KnpCu\n  ...DashboardDepositorFragment_3KSzcj\n}\n\nfragment DashboardCollectionsFragment_1KnpCu on Query {\n  viewer {\n    collections(access: UPDATE, page: $page, order: $order, perPage: 10) {\n      ...DashboardCollectionsListFragment\n    }\n    id\n  }\n}\n\nfragment DashboardCollectionsListFragment on CollectionConnection {\n  nodes {\n    id\n    title\n    slug\n    schemaVersion {\n      name\n      number\n      id\n    }\n    ...EntityThumbnailColumnFragment\n  }\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment DashboardDepositorFragment_3KSzcj on Query {\n  mySubmissions: submissions(filters: {userIds: [$viewerId], inState: [DRAFT, SUBMITTED, UNDER_REVIEW, REVISION_REQUESTED, APPROVED]}, perPage: 10, order: RECENT) {\n    ...DashboardDepositorSubmissionsFragment\n  }\n  myPublications: submissions(filters: {userIds: [$viewerId], inState: [PUBLISHED]}, perPage: 10, order: RECENT) {\n    ...DashboardDepositorPublicationsFragment\n  }\n}\n\nfragment DashboardDepositorPublicationsFragment on SubmissionConnection {\n  nodes {\n    id\n    slug\n    updatedAt\n    entity {\n      __typename\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n      ... on Sluggable {\n        __isSluggable: __typename\n        slug\n      }\n      __isEntity: __typename\n      title\n      ...EntityThumbnailColumnFragment\n      id\n    }\n    submissionTarget {\n      entity {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n      id\n    }\n  }\n  ...ModelPageCountActionsFragment\n}\n\nfragment DashboardDepositorSubmissionsFragment on SubmissionConnection {\n  nodes {\n    id\n    slug\n    state\n    updatedAt\n    entity {\n      __typename\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n      ... on Sluggable {\n        __isSluggable: __typename\n        slug\n      }\n      __isEntity: __typename\n      title\n      ...EntityThumbnailColumnFragment\n      id\n    }\n    submissionTarget {\n      entity {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n      id\n    }\n  }\n  ...ModelPageCountActionsFragment\n}\n\nfragment DashboardInstallationFragment on Query {\n  communities {\n    pageInfo {\n      totalCount\n    }\n  }\n  contributors {\n    pageInfo {\n      totalCount\n    }\n  }\n  users {\n    pageInfo {\n      totalCount\n    }\n  }\n  viewer {\n    allCollections: collections(nodeFilter: ROOTS_AND_LEAVES) {\n      pageInfo {\n        totalCount\n      }\n    }\n    allItems: items(nodeFilter: ROOTS_AND_LEAVES) {\n      pageInfo {\n        totalCount\n      }\n    }\n    id\n  }\n}\n\nfragment DashboardItemsFragment_1KnpCu on Query {\n  viewer {\n    items(access: UPDATE, page: $page, order: $order, perPage: 10) {\n      ...DashboardItemsListFragment\n    }\n    id\n  }\n}\n\nfragment DashboardItemsListFragment on ItemConnection {\n  nodes {\n    id\n    title\n    slug\n    schemaVersion {\n      name\n      number\n      id\n    }\n    ...EntityThumbnailColumnFragment\n  }\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment EntityThumbnailColumnFragment on Entity {\n  __isEntity: __typename\n  __typename\n  title\n  thumbnail {\n    storage\n    thumb: small {\n      webp {\n        ...ImageFragment\n      }\n    }\n  }\n  ... on Node {\n    __isNode: __typename\n    id\n  }\n  ... on Sluggable {\n    __isSluggable: __typename\n    slug\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n"
+    "text": "query DashboardLayoutQuery(\n  $page: Int\n  $order: EntityOrder\n  $viewerId: ID!\n) {\n  ...DashboardInstallationFragment\n  ...DashboardCollectionsFragment_1KnpCu\n  ...DashboardItemsFragment_1KnpCu\n  ...DashboardDepositorFragment_3KSzcj\n}\n\nfragment DashboardCollectionsFragment_1KnpCu on Query {\n  viewer {\n    collections(access: UPDATE, page: $page, order: $order, perPage: 10) {\n      ...DashboardCollectionsListFragment\n    }\n    id\n  }\n}\n\nfragment DashboardCollectionsListFragment on CollectionConnection {\n  nodes {\n    id\n    title\n    slug\n    schemaVersion {\n      name\n      number\n      id\n    }\n    ...EntityThumbnailColumnFragment\n  }\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment DashboardDepositorFragment_3KSzcj on Query {\n  mySubmissions: submissions(filters: {userIds: [$viewerId], inState: [DRAFT, SUBMITTED, UNDER_REVIEW, REVISION_REQUESTED, APPROVED]}, perPage: 10, order: RECENT) {\n    ...DashboardDepositorSubmissionsFragment\n  }\n  myPublications: submissions(filters: {userIds: [$viewerId], inState: [PUBLISHED]}, perPage: 10, order: RECENT) {\n    ...DashboardDepositorPublicationsFragment\n  }\n}\n\nfragment DashboardDepositorPublicationsFragment on SubmissionConnection {\n  nodes {\n    id\n    slug\n    updatedAt\n    entity {\n      __typename\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n      ... on Sluggable {\n        __isSluggable: __typename\n        slug\n      }\n      __isEntity: __typename\n      title\n      ...EntityThumbnailColumnFragment\n      id\n    }\n    submissionTarget {\n      entity {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n      id\n    }\n  }\n  ...ModelPageCountActionsFragment\n}\n\nfragment DashboardDepositorSubmissionsFragment on SubmissionConnection {\n  nodes {\n    id\n    slug\n    state\n    updatedAt\n    entity {\n      __typename\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n      ... on Sluggable {\n        __isSluggable: __typename\n        slug\n      }\n      __isEntity: __typename\n      title\n      ...EntityThumbnailColumnFragment\n      id\n    }\n    submissionTarget {\n      entity {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n      id\n    }\n  }\n  ...ModelPageCountActionsFragment\n}\n\nfragment DashboardInstallationFragment on Query {\n  communities {\n    pageInfo {\n      totalCount\n    }\n  }\n  contributors {\n    pageInfo {\n      totalCount\n    }\n  }\n  users {\n    pageInfo {\n      totalCount\n    }\n  }\n  viewer {\n    allCollections: collections(nodeFilter: ROOTS_AND_LEAVES) {\n      pageInfo {\n        totalCount\n      }\n    }\n    allItems: items(nodeFilter: ROOTS_AND_LEAVES) {\n      pageInfo {\n        totalCount\n      }\n    }\n    id\n  }\n}\n\nfragment DashboardItemsFragment_1KnpCu on Query {\n  viewer {\n    items(access: UPDATE, page: $page, order: $order, perPage: 10) {\n      ...DashboardItemsListFragment\n    }\n    id\n  }\n}\n\nfragment DashboardItemsListFragment on ItemConnection {\n  nodes {\n    id\n    title\n    slug\n    schemaVersion {\n      name\n      number\n      id\n    }\n    ...EntityThumbnailColumnFragment\n  }\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment EntityThumbnailColumnFragment on Entity {\n  __isEntity: __typename\n  __typename\n  title\n  thumbnail {\n    storage\n    thumb: small {\n      webp {\n        ...ImageFragment\n      }\n    }\n  }\n  ... on Community {\n    logo {\n      storage\n      thumb: small {\n        webp {\n          ...ImageFragment\n        }\n      }\n    }\n  }\n  ... on Node {\n    __isNode: __typename\n    id\n  }\n  ... on Sluggable {\n    __isSluggable: __typename\n    slug\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n"
   }
 };
 })();
