@@ -53,9 +53,5 @@
     "@yarnpkg/types": "^4.0.1",
     "concurrently": "^8.2.2",
     "turbo": "^2.5.3"
-  },
-  "dependencies": {
-    "next-auth": "^4.24.7",
-    "react-hook-form": "7.53.0"
   }
 }
