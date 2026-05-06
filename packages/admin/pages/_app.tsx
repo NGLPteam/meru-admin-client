@@ -12,7 +12,7 @@ import {
 } from "@wdp/lib/app";
 import { AppContextProvider } from "contexts";
 import GlobalStyles from "theme";
-import { AppBody, DrawerController } from "components/global";
+import { AppBody, DrawerController, RouterProgress } from "components/global";
 import { RouteHelper } from "routes";
 import { Toast, LoadingPage } from "components/atomic";
 import { updateI18n } from "../i18n";
@@ -85,6 +85,7 @@ const NGLPApp = ({
       <SSRKeycloakProvider {...ssrProps}>
         <KeycloakRelayProvider records={records} isAdmin>
           <AppContextProvider>
+            <RouterProgress />
             <AppBody>
               <Toast />
               <Suspense fallback={<LoadingPage />}>

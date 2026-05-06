@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from "react";
-import { useMutation, graphql, GraphQLTaggedNode } from "react-relay";
+import { graphql, GraphQLTaggedNode } from "react-relay";
+import { useLoadingMutation } from "components/api/hooks";
 
 import { useForm, FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -93,7 +94,7 @@ export default function MutationForm<
 
   const [state, dispatch] = useMutationFormState<M, T>({ form, name });
 
-  const [mutate, loading] = useMutation<M>(props.mutation);
+  const [mutate, loading] = useLoadingMutation<M>(props.mutation);
 
   const {
     getErrors,

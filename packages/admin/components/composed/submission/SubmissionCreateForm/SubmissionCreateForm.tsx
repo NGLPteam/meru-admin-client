@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
-import { useMutation, graphql } from "react-relay";
+import { graphql } from "react-relay";
 import { useTranslation } from "react-i18next";
+import { useLoadingMutation } from "components/api/hooks";
 import { useNotify } from "hooks";
 import MessageBlock from "components/atomic/MessageBlock";
 import type { SubmissionCreateFormRequestAccessMutation } from "@/relay/SubmissionCreateFormRequestAccessMutation.graphql";
@@ -34,7 +35,7 @@ export default function SubmissionCreateForm({
   const [certificationAccepted, setCertificationAccepted] = useState(false);
 
   const [requestAccess] =
-    useMutation<SubmissionCreateFormRequestAccessMutation>(
+    useLoadingMutation<SubmissionCreateFormRequestAccessMutation>(
       requestAccessMutation,
     );
 

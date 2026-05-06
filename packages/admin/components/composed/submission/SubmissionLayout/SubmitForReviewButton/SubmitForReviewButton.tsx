@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { graphql, useMutation } from "react-relay";
+import { graphql } from "react-relay";
+import { useLoadingMutation } from "components/api/hooks";
 import { useNotify } from "hooks";
 import { ButtonControlConfirm } from "components/atomic";
 import type {
@@ -14,7 +15,7 @@ export default function SubmitForReviewButton({ submission }: Props) {
   const { t } = useTranslation();
   const notify = useNotify();
 
-  const [commitSubmit, inFlight] = useMutation<Mutation>(mutation);
+  const [commitSubmit, inFlight] = useLoadingMutation<Mutation>(mutation);
 
   const handleResponse = useCallback(
     (data: Mutation$data["submissionChangeState"] | null | undefined) => {
