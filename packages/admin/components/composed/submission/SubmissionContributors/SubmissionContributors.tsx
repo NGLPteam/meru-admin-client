@@ -24,38 +24,7 @@ export default function SubmissionContributors({
   const item = useFragment<SubmissionContributorsFragment$key>(fragment, data);
   const destroy = useDestroyer();
 
-  const contributions = [
-    {
-      id: "12345",
-      contributionRole: { label: "Author" },
-      outerPosition: 1,
-      contributor: {
-        __typename: "PersonContributor",
-        familyName: "Test",
-        givenName: "Test",
-      },
-    },
-    {
-      id: "12345",
-      contributionRole: { label: "Author" },
-      outerPosition: 1,
-      contributor: {
-        __typename: "PersonContributor",
-        familyName: "Test",
-        givenName: "Test",
-      },
-    },
-    {
-      id: "12345",
-      contributionRole: { label: "Author" },
-      outerPosition: 1,
-      contributor: {
-        __typename: "PersonContributor",
-        familyName: "Test",
-        givenName: "Test",
-      },
-    },
-  ];
+  const contributions = item?.contributions?.nodes ?? [];
 
   return (
     <>
