@@ -2,11 +2,9 @@ import React, { useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useId } from "react";
 import useFocusTrap from "@castiron/hooks/useFocusTrap";
-
 import { useGlobalContext, useViewerContext } from "contexts";
 import appData from "fixtures/app.data";
-import { useToggle } from "hooks";
-
+import { useToggle, useIsAuthorized } from "hooks";
 import MobileMenu, { MobileMenuList } from "components/layout/MobileMenu";
 import MobileMenuToggle from "components/layout/MobileMenuToggle";
 import { renderNavLink } from "helpers";
@@ -34,6 +32,7 @@ function Header() {
 
   const { headerData, footerData } = appData;
   const { globalAdmin } = useViewerContext();
+  const hasAdminAccess = useIsAuthorized({ actions: "admin.access" });
   const globalData = useGlobalContext();
   const depositingEnabled =
     globalData?.globalConfiguration?.depositing?.enabled ?? false;
@@ -63,9 +62,11 @@ function Header() {
               <HeaderNavLinks navigation={headerData.navigation} />
             </ul>
           </Styled.DesktopNavBlock>
-          <Styled.SearchBlock>
-            <SearchModal routeName="search" clearOnSubmit />
-          </Styled.SearchBlock>
+          {hasAdminAccess && (
+            <Styled.SearchBlock>
+              <SearchModal routeName="search" clearOnSubmit />
+            </Styled.SearchBlock>
+          )}
           <Styled.AccountBlock>
             <HeaderAccount accountNav={headerData.account} />
           </Styled.AccountBlock>
@@ -81,19 +82,24 @@ function Header() {
         id={mobileNavId}
         active={isActive}
         onClose={toggleActive}
-        showGlobalSearch
+        showGlobalSearch={hasAdminAccess}
         showProviderBar
       >
-        {footerData.navigation.map((nav, i) => (
-          <div key={i}>
-            <h3 className="t-label-lg a-color-light">{t(nav.header)}</h3>
-            <MobileMenuList>
-              {nav.children &&
-                nav.children.map((child, i) => renderNavLink(child, i, "li"))}
-              {renderGlobalSettings()}
-            </MobileMenuList>
-          </div>
-        ))}
+        {hasAdminAccess &&
+          footerData.navigation.map((nav, i) => {
+            return (
+              <div key={i}>
+                <h3 className="t-label-lg a-color-light">{t(nav.header)}</h3>
+                <MobileMenuList>
+                  {nav.children &&
+                    nav.children.map((child, i) =>
+                      renderNavLink(child, i, "li"),
+                    )}
+                  {renderGlobalSettings()}
+                </MobileMenuList>
+              </div>
+            );
+          })}
         <div>
           <h3 className="t-label-lg a-color-light">
             {t("nav.account_header")}
@@ -106,14 +112,12 @@ function Header() {
                   <a className="a-link">{t(item.label)}</a>
                 </NamedLink>
               );
-              return (
-                <li key={i}>
-                  {item.actions ? (
-                    <Authorize actions={item.actions}>{link}</Authorize>
-                  ) : (
-                    link
-                  )}
-                </li>
+              return item.actions ? (
+                <Authorize actions={item.actions}>
+                  <li key={i}>{link}</li>
+                </Authorize>
+              ) : (
+                <li key={i}>{link}</li>
               );
             })}
             <li>
