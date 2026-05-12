@@ -138,7 +138,10 @@ function SubmissionBulkPublishList({ data }: Props) {
       showSearch
       hideFilters
       countActions={
-        <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+        <ButtonControlGroup
+          toggleLabel={t("common.options")}
+          menuLabel={t("common.options")}
+        >
           <ButtonControlConfirm
             onClick={handleBulkPublish}
             disabled={!selectedCount}

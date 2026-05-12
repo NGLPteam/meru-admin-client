@@ -62,7 +62,10 @@ function HarvestSourcesList({ data, headerStyle, hideHeader }: Props) {
   };
 
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <ButtonControlRoute route="harvestSource.new" icon="plus">
         {t("actions.add.harvest_source")}
       </ButtonControlRoute>

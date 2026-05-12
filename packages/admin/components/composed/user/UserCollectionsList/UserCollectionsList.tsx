@@ -91,7 +91,10 @@ const UserCollectionsList = ({ data }: Props) => {
   };
 
   const buttons = slug && (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <ButtonControlDrawer
         drawer="addUserCollectionAccess"
         drawerQuery={{ drawerSlug: slug }}

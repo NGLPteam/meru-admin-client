@@ -58,7 +58,10 @@ export default function HarvestAttemptLayout({
     : null;
 
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       {id && <PruneEntitiesModal id={id} title={title} type="attempt" />}
       {targetEntity?.slug && (
         <ButtonControlRoute

@@ -88,8 +88,8 @@ export default function ItemLayout({
 
   const buttons = (
     <ButtonControlGroup
-      toggleLabel={t("options")}
-      menuLabel={t("options")}
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
       breakpoint={70}
     >
       <ItemCreateButton parentSlug={slug} />

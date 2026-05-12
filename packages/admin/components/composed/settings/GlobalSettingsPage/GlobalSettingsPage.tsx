@@ -15,7 +15,10 @@ export default function GlobalSettingsPage({ data }: Props) {
   );
 
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <ClearInstanceCache />
     </ButtonControlGroup>
   );

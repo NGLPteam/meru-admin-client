@@ -22,8 +22,8 @@ export default function HarvestSourceLayout({
 
   const buttons = slug && (
     <ButtonControlGroup
-      toggleLabel={t("options")}
-      menuLabel={t("options")}
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
       breakpoint={70}
     >
       <ButtonControlRoute

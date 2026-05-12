@@ -59,7 +59,10 @@ export default function SubmissionLayout({
     !!submission?.availableTransitions.length && mode === "review";
 
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       {canReview && (
         <ButtonControlDrawer
           drawer="reviewSubmission"

@@ -110,8 +110,8 @@ export default function CollectionLayout({
 
   const buttons = (
     <ButtonControlGroup
-      toggleLabel={t("options")}
-      menuLabel={t("options")}
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
       breakpoint={70}
       desktopMax={allowsChildItems && allowsChildCollections ? 3 : 2}
     >
