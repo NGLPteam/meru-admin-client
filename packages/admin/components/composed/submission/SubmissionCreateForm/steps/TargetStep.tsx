@@ -18,6 +18,7 @@ import type { SubmissionTargetNode } from "../types";
 
 type Props = {
   targets: SubmissionTargetNode[];
+  globalAgreement?: string | null;
   selectedTarget?: SubmissionTargetNode;
   selectedDescendantId: string;
   certificationAccepted: boolean;
@@ -31,6 +32,7 @@ type Props = {
 
 export default function TargetStep({
   targets,
+  globalAgreement,
   selectedTarget,
   selectedDescendantId,
   certificationAccepted,
@@ -53,6 +55,7 @@ export default function TargetStep({
 
   const isDescendant = depositMode === "DESCENDANT";
   const instructions = description?.instructions;
+  const effectiveAgreement = agreementContent || globalAgreement;
 
   const onTargetChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newTargetId = e.target.value;
@@ -140,13 +143,13 @@ export default function TargetStep({
             </FieldsetInner>
           </FieldsetStyles>
         )}
-        {selectedTarget && agreementRequired && agreementContent && (
+        {selectedTarget && agreementRequired && effectiveAgreement && (
           <FieldsetStyles>
             <BaseInputLabel>
               {t("forms.fields.depositing_agreement_short")}
             </BaseInputLabel>
             <FieldsetInner>
-              <BaseMarkdown>{agreementContent}</BaseMarkdown>
+              <BaseMarkdown>{effectiveAgreement}</BaseMarkdown>
               <Checkbox
                 checked={certificationAccepted}
                 onChange={(e) => setCertificationAccepted(e.target.checked)}

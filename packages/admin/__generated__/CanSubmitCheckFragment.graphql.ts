@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<dd6dbcfdcc13afaa5f705e6697f40298>>
+ * @generated SignedSource<<905335f05daf9be909d31097f249542c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,6 +12,11 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 export type SubmissionDepositMode = "DESCENDANT" | "DIRECT" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type CanSubmitCheckFragment$data = {
+  readonly globalConfiguration: {
+    readonly depositing: {
+      readonly agreement: string;
+    };
+  };
   readonly submissionTargets: {
     readonly nodes: ReadonlyArray<{
       readonly agreementContent: string | null | undefined;
@@ -85,6 +90,35 @@ return {
   "metadata": null,
   "name": "CanSubmitCheckFragment",
   "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "GlobalConfiguration",
+      "kind": "LinkedField",
+      "name": "globalConfiguration",
+      "plural": false,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "DepositingSettings",
+          "kind": "LinkedField",
+          "name": "depositing",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "agreement",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        }
+      ],
+      "storageKey": null
+    },
     {
       "alias": null,
       "args": [
@@ -279,6 +313,6 @@ return {
 };
 })();
 
-(node as any).hash = "28d5ec72652b3e01bfdf61ff28eeff85";
+(node as any).hash = "27ad744d1079f92e602357e751548872";
 
 export default node;

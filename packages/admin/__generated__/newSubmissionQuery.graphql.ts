@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<71b0bff6ff27983c040b4b04e1cc4791>>
+ * @generated SignedSource<<f1537bf22b38c23f7c8c261c3e53048c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -72,6 +72,36 @@ return {
     "kind": "Operation",
     "name": "newSubmissionQuery",
     "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "GlobalConfiguration",
+        "kind": "LinkedField",
+        "name": "globalConfiguration",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "DepositingSettings",
+            "kind": "LinkedField",
+            "name": "depositing",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "agreement",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          },
+          (v0/*: any*/)
+        ],
+        "storageKey": null
+      },
       {
         "alias": null,
         "args": [
@@ -266,12 +296,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "43a83f5f2a355d7267be9ecc51d0f164",
+    "cacheID": "db1d6b40552bf05ae6cc936f6627dc6f",
     "id": null,
     "metadata": {},
     "name": "newSubmissionQuery",
     "operationKind": "query",
-    "text": "query newSubmissionQuery {\n  ...CanSubmitCheckFragment\n}\n\nfragment CanSubmitCheckFragment on Query {\n  submissionTargets(filters: {inState: [OPEN]}) {\n    nodes {\n      id\n      depositMode\n      canDeposit {\n        value\n      }\n      canRequestDepositAccess {\n        value\n      }\n      entity {\n        __typename\n        ... on Collection {\n          id\n          slug\n          title\n        }\n        id\n      }\n      depositTargets {\n        id\n        entity {\n          __typename\n          ... on Collection {\n            title\n            submissionTarget {\n              id\n            }\n          }\n          id\n        }\n      }\n      agreementRequired\n      agreementContent\n      description {\n        instructions\n      }\n      schemaVersions {\n        id\n        name\n        identifier\n      }\n    }\n  }\n}\n"
+    "text": "query newSubmissionQuery {\n  ...CanSubmitCheckFragment\n}\n\nfragment CanSubmitCheckFragment on Query {\n  globalConfiguration {\n    depositing {\n      agreement\n    }\n    id\n  }\n  submissionTargets(filters: {inState: [OPEN]}) {\n    nodes {\n      id\n      depositMode\n      canDeposit {\n        value\n      }\n      canRequestDepositAccess {\n        value\n      }\n      entity {\n        __typename\n        ... on Collection {\n          id\n          slug\n          title\n        }\n        id\n      }\n      depositTargets {\n        id\n        entity {\n          __typename\n          ... on Collection {\n            title\n            submissionTarget {\n              id\n            }\n          }\n          id\n        }\n      }\n      agreementRequired\n      agreementContent\n      description {\n        instructions\n      }\n      schemaVersions {\n        id\n        name\n        identifier\n      }\n    }\n  }\n}\n"
   }
 };
 })();

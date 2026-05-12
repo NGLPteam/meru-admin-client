@@ -15,8 +15,12 @@ export default function CanSubmitCheck({ data, preselectedTargetId }: Props) {
   const router = useRouter();
   const { t } = useTranslation();
 
-  const { submissionTargets } = useFragment(fragment, data);
+  const { submissionTargets, globalConfiguration } = useFragment(
+    fragment,
+    data,
+  );
   const targets = submissionTargets.nodes;
+  const globalAgreement = globalConfiguration?.depositing?.agreement ?? null;
 
   const redirectToList = () => {
     const route = RouteHelper.findRouteByName("my-submissions");
@@ -41,6 +45,7 @@ export default function CanSubmitCheck({ data, preselectedTargetId }: Props) {
   return (
     <SubmissionCreateForm
       targets={[...targets]}
+      globalAgreement={globalAgreement}
       preselectedTargetId={preselectedTargetId}
       onSuccess={redirectToEdit}
       onCancel={redirectToList}
@@ -50,6 +55,11 @@ export default function CanSubmitCheck({ data, preselectedTargetId }: Props) {
 
 const fragment = graphql`
   fragment CanSubmitCheckFragment on Query {
+    globalConfiguration {
+      depositing {
+        agreement
+      }
+    }
     submissionTargets(filters: { inState: [OPEN] }) {
       nodes {
         id

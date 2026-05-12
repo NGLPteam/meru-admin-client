@@ -11,6 +11,7 @@ import type { SubmissionTargetNode } from "./types";
 
 type Props = {
   targets: SubmissionTargetNode[];
+  globalAgreement?: string | null;
   preselectedTargetId?: string;
   onSuccess: (slug: string) => void;
   onCancel: () => void;
@@ -18,6 +19,7 @@ type Props = {
 
 export default function SubmissionCreateForm({
   targets,
+  globalAgreement,
   preselectedTargetId,
   onSuccess,
   onCancel,
@@ -89,6 +91,7 @@ export default function SubmissionCreateForm({
     return (
       <TargetStep
         targets={targets}
+        globalAgreement={globalAgreement}
         selectedTarget={selectedTarget}
         selectedDescendantId={selectedDescendantId}
         certificationAccepted={certificationAccepted}
