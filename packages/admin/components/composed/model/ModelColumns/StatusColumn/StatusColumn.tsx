@@ -6,7 +6,7 @@ import type { SubmissionState } from "types/graphql-schema";
 import type { ColumnDef } from "@tanstack/react-table";
 
 const ListBadge = styled(StatusBadge)`
-  min-width: 160px;
+  min-width: min(160px, 100%);
 `;
 
 type Props<T extends Node> = PartialColumnish<T> & {
