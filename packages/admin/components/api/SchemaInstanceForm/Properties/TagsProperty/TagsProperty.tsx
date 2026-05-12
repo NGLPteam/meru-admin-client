@@ -1,5 +1,6 @@
 import { useFragment, graphql } from "react-relay";
 import { Controller, useFormContext } from "react-hook-form";
+import { useSchemaFormFieldsContext } from "components/api/SchemaFormFields/SchemaFormFieldsContext";
 import TagsInput from "components/forms/TagsInput";
 import type { TagsPropertyFragment$key } from "@/relay/TagsPropertyFragment.graphql";
 import ScalarProperty from "../ScalarProperty";
@@ -12,6 +13,7 @@ export default function TagsProperty(props: Props) {
   const field = useFragment<TagsPropertyFragment$key>(fragment, props.field);
 
   const { control } = useFormContext();
+  const { isSubmission } = useSchemaFormFieldsContext();
 
   return (
     <ScalarProperty field={field}>
@@ -24,7 +26,7 @@ export default function TagsProperty(props: Props) {
               label={label}
               required={required}
               description={instructions}
-              isWide={isWide}
+              isWide={isWide || isSubmission}
               {...field}
             />
           )}
