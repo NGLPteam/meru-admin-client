@@ -90,7 +90,10 @@ function SubmissionList({ data, mode = "review" }: Props) {
   ];
 
   const buttons = isMySubmissions ? (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <ButtonControlRoute route="my-submissions.new" icon="plus">
         {t("actions.add.submission")}
       </ButtonControlRoute>

@@ -102,7 +102,10 @@ function CollectionContributionList({
   // TODO: We need an authorization check here. The contributors.create check doesn't
   //  exist yet in the API.
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <CreateContributionButton
         type="collection"
         parentSlug={slug}

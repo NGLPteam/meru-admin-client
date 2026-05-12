@@ -60,7 +60,10 @@ export default function SubmissionTargetReviewersList({
   };
 
   const buttons = submissionTargetId ? (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <ButtonControlDrawer
         drawer="addReviewer"
         drawerQuery={{

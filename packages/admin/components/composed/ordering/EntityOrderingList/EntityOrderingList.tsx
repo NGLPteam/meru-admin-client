@@ -98,7 +98,10 @@ function EntityOrderingList({ data, headerStyle, hideHeader }: Props) {
   /* eslint-enable no-console */
 
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <ButtonControlDrawer
         drawer="addOrdering"
         drawerQuery={{

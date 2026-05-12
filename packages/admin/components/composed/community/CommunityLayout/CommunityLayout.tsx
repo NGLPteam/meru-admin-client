@@ -83,7 +83,10 @@ export default function CommunityLayout({
     );
 
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <CollectionCreateButton parentSlug={slug} />
       <ButtonControlView
         href={`${process.env.NEXT_PUBLIC_FE_URL}/communities/${slug}`}

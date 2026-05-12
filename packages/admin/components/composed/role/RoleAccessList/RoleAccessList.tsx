@@ -30,7 +30,10 @@ function RoleAccessList({
 
   const buttons =
     slug && entityType ? (
-      <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+      <ButtonControlGroup
+        toggleLabel={t("common.options")}
+        menuLabel={t("common.options")}
+      >
         <ButtonControlDrawer
           drawer="addRoleAccess"
           drawerQuery={{

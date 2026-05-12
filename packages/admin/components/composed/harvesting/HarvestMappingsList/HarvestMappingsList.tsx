@@ -75,7 +75,10 @@ function HarvestMappingsList({ data, headerStyle, hideHeader }: Props) {
   };
 
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       {sourceSlug && (
         <ButtonControlRoute
           route="harvestSource.mappings.new"

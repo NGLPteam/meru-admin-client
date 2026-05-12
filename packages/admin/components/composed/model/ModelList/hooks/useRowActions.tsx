@@ -239,7 +239,7 @@ function renderActions<D extends Record<string, unknown>>(
 
   return buttons ? (
     <ButtonControlGroup
-      toggleLabel={i18next.t("options")}
+      toggleLabel={i18next.t("common.options")}
       menuLabel={"Options list"}
       breakpoint={70}
       desktopMax={10}
