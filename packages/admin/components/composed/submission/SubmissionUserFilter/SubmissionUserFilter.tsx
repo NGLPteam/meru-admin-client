@@ -87,7 +87,7 @@ export default function SubmissionUserFilter() {
       })}
       listProps={getMenuProps()}
       labelProps={getLabelProps()}
-      label={t("search.submissions.filter_by_user")}
+      label={t("search.submissions.filter_submitted_by")}
       options={opts}
       selected={filters.userIds ?? []}
     />

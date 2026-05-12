@@ -98,7 +98,8 @@
       "metadata": "metadata",
       "metadata_mapping": "metadata mapping",
       "submission": "submission",
-      "submission_other": "submissions"
+      "submission_other": "submissions",
+      "comment": "Comment"
     },
     "lists": {
       "admin_column": "Admin?",
@@ -157,7 +158,9 @@
       "attempts_count_column": "Attempts Count",
       "pattern_column": "Pattern",
       "field_column": "Field",
-      "submitted_by_column": "Submitted By"
+      "submitted_by_column": "Submitted By",
+      "from_state_column": "From",
+      "to_state_column": "To"
     },
     "nav": {
       "manage_header": "Manage",
@@ -243,6 +246,7 @@
       "error_message": "Error: {{error}}",
       "content_error": "There was an issue loading this content. Please try again.",
       "review_submitted": "Thank you for submitting your review!",
+      "review_requested": "Review request sent",
       "add": {
         "success": "$t({{ name }}) added successfully.",
         "link_success": "Link added successfully.",
@@ -360,7 +364,9 @@
         "under_review": "Your submission is currently in review and cannot be edited. If you need to make changes, contact your collection administrator. Reviews of this submission will be available under the Reviews tab as they come in.",
         "revision_requested": "Revisions have been requested for this submission. You can find reviewer comments on the Reviews tab. When your changes are ready, resubmit via the button above.",
         "approved": "Your submission has been approved! When it is published, a link to the public view will be available on your dashboard under My Publications.",
-        "published": "This submission has been published. A link to the public view is available on your dashboard under My Publications."
+        "published": "This submission has been published. A link to the public view is available on your dashboard under My Publications.",
+        "rejected": "This submission has been rejected. You can find reviewer comments on the Reviews tab. Contact your collection administrator if you have questions.",
+        "pending": "This submission is pending. Check back soon for updates."
       }
     },
     "actions": {
