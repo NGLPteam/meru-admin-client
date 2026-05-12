@@ -75,7 +75,7 @@ export default function RequestReviewButton({ submissionId }: Props) {
           mutation={mutation}
           toVariables={toVariables}
           defaultValues={defaultValues}
-          successNotification="messages.submission_review_requested"
+          successNotification="messages.review_requested"
           refetchTags={["submissions"]}
           onSuccess={() => dialog.hide()}
         >

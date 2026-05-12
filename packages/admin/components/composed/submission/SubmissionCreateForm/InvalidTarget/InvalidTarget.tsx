@@ -65,7 +65,7 @@ export default function InvalidTarget({
               <ButtonControl
                 onClick={handleRequestAccess}
                 disabled={loading}
-                aria-label={t("actions.request_deposit_access")}
+                aria-label={t("actions.submissions.request_deposit_access")}
               >
                 {t("actions.submissions.request_deposit_access")}
               </ButtonControl>

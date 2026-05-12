@@ -38,12 +38,11 @@ export default function SubmissionTargetConfigureForm({
 
   const target = useFragment<SubmissionTargetConfigureFormFragment$key>(
     fragment,
-    data
+    data,
   );
 
-  const [commitOpen] = useLoadingMutation<
-    SubmissionTargetConfigureFormOpenMutation
-  >(openMutation);
+  const [commitOpen] =
+    useLoadingMutation<SubmissionTargetConfigureFormOpenMutation>(openMutation);
 
   const configurableId = target?.targetId ?? collectionId;
 
@@ -107,7 +106,7 @@ export default function SubmissionTargetConfigureForm({
         },
       };
     },
-    [configurableId, depositTargets]
+    [configurableId, depositTargets],
   );
 
   const handleOpenResponse = useCallback(
@@ -121,7 +120,7 @@ export default function SubmissionTargetConfigureForm({
         notify.mutationGlobalError(globalErrors);
       }
     },
-    [notify, t]
+    [notify, t],
   );
 
   const onSuccess = useOnSuccess<SubmissionTargetConfigureFormMutation>(
@@ -137,7 +136,7 @@ export default function SubmissionTargetConfigureForm({
         });
       }
     },
-    [target, commitOpen, notify, t]
+    [target, commitOpen, notify, t],
   );
 
   const renderForm = useRenderForm<SubmissionTargetConfigureInput>(
@@ -260,7 +259,7 @@ export default function SubmissionTargetConfigureForm({
       schemaOptions,
       collectionSlug,
       t,
-    ]
+    ],
   );
 
   return (
