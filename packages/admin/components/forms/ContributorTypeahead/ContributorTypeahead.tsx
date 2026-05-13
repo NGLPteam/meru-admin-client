@@ -99,7 +99,12 @@ export default ContributorTypeahead;
 
 const query = graphql`
   query ContributorTypeaheadQuery($query: String!) {
-    contributors(prefix: $query, page: 1, perPage: 50, order: NAME_ASCENDING) {
+    contributors(
+      filters: { nameSearch: { needle: $query, strategy: FUZZY } }
+      page: 1
+      perPage: 50
+      order: NAME_ASCENDING
+    ) {
       edges {
         node {
           ... on PersonContributor {

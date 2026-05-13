@@ -94,7 +94,12 @@ type ContributorNode =
 
 const fragment = graphql`
   fragment ContributorListFragment on Query {
-    contributors(order: $order, page: $page, perPage: 20, prefix: $query) {
+    contributors(
+      order: $order
+      page: $page
+      perPage: 20
+      filters: { nameSearch: { needle: $query, strategy: FUZZY } }
+    ) {
       nodes {
         __typename
         ... on OrganizationContributor {
