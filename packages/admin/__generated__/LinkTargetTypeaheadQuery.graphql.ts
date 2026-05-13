@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<842ae9e14e3b776ca52ab036e1876fe0>>
+ * @generated SignedSource<<b6be9eab7d129c613af3bcbf9bffb2a3>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -211,15 +211,7 @@ v10 = {
   "name": "id",
   "storageKey": null
 },
-v11 = {
-  "kind": "InlineFragment",
-  "selections": [
-    (v10/*: any*/)
-  ],
-  "type": "Node",
-  "abstractKey": "__isNode"
-},
-v12 = [
+v11 = [
   {
     "alias": null,
     "args": null,
@@ -239,7 +231,7 @@ v12 = [
           (v4/*: any*/),
           (v9/*: any*/),
           (v5/*: any*/),
-          (v11/*: any*/)
+          (v10/*: any*/)
         ],
         "storageKey": null
       }
@@ -247,7 +239,7 @@ v12 = [
     "storageKey": null
   }
 ],
-v13 = [
+v12 = [
   {
     "alias": null,
     "args": (v2/*: any*/),
@@ -299,17 +291,17 @@ v13 = [
                   },
                   {
                     "kind": "InlineFragment",
-                    "selections": (v12/*: any*/),
+                    "selections": (v11/*: any*/),
                     "type": "Collection",
                     "abstractKey": null
                   },
                   {
                     "kind": "InlineFragment",
-                    "selections": (v12/*: any*/),
+                    "selections": (v11/*: any*/),
                     "type": "Item",
                     "abstractKey": null
                   },
-                  (v11/*: any*/)
+                  (v10/*: any*/)
                 ],
                 "storageKey": null
               },
@@ -369,7 +361,7 @@ return {
         "kind": "LinkedField",
         "name": "collection",
         "plural": false,
-        "selections": (v13/*: any*/),
+        "selections": (v12/*: any*/),
         "storageKey": null
       },
       {
@@ -379,18 +371,18 @@ return {
         "kind": "LinkedField",
         "name": "item",
         "plural": false,
-        "selections": (v13/*: any*/),
+        "selections": (v12/*: any*/),
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "6fdfaa40dbef60ae42e42e0c93ea41e9",
+    "cacheID": "c5ced593d659682217c48f93cce98fed",
     "id": null,
     "metadata": {},
     "name": "LinkTargetTypeaheadQuery",
     "operationKind": "query",
-    "text": "query LinkTargetTypeaheadQuery(\n  $slug: Slug!\n  $title: String\n) {\n  collection(slug: $slug) {\n    linkTargetCandidates(title: $title) {\n      ...LinkTargetTypeaheadFragment\n    }\n    id\n  }\n  item(slug: $slug) {\n    linkTargetCandidates(title: $title) {\n      ...LinkTargetTypeaheadFragment\n    }\n    id\n  }\n}\n\nfragment LinkTargetTypeaheadFragment on LinkTargetCandidateConnection {\n  edges {\n    node {\n      targetId\n      target {\n        __typename\n        ...getEntityTitleFragment\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      id\n    }\n  }\n}\n\nfragment getEntityTitleFragment on Entity {\n  __isEntity: __typename\n  __typename\n  title\n  schemaVersion {\n    identifier\n    id\n  }\n  ... on Collection {\n    namedAncestors {\n      ancestor {\n        __typename\n        __isEntity: __typename\n        title\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n    }\n  }\n  ... on Item {\n    namedAncestors {\n      ancestor {\n        __typename\n        __isEntity: __typename\n        title\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query LinkTargetTypeaheadQuery(\n  $slug: Slug!\n  $title: String\n) {\n  collection(slug: $slug) {\n    linkTargetCandidates(title: $title) {\n      ...LinkTargetTypeaheadFragment\n    }\n    id\n  }\n  item(slug: $slug) {\n    linkTargetCandidates(title: $title) {\n      ...LinkTargetTypeaheadFragment\n    }\n    id\n  }\n}\n\nfragment LinkTargetTypeaheadFragment on LinkTargetCandidateConnection {\n  edges {\n    node {\n      targetId\n      target {\n        __typename\n        ...getEntityTitleFragment\n        id\n      }\n      id\n    }\n  }\n}\n\nfragment getEntityTitleFragment on Entity {\n  __isEntity: __typename\n  __typename\n  title\n  schemaVersion {\n    identifier\n    id\n  }\n  ... on Collection {\n    namedAncestors {\n      ancestor {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n    }\n  }\n  ... on Item {\n    namedAncestors {\n      ancestor {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n    }\n  }\n}\n"
   }
 };
 })();

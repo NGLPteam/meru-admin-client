@@ -3,13 +3,15 @@ import {
   ContributionOrder,
   UserOrder,
   EntityOrder,
+  SubmissionOrder,
 } from "types/graphql-schema";
 
 export type Orders =
   | EntityOrder
   | ContributorOrder
   | ContributionOrder
-  | UserOrder;
+  | UserOrder
+  | SubmissionOrder;
 
 type OrderableProperties =
   | "createdAt"

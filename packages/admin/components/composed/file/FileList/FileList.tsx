@@ -66,7 +66,10 @@ function FileList({ data, headerStyle, hideHeader }: FileListProps) {
   // TODO: We need an authorization check here.
   // There are currently no allowedActions around assets.
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <ButtonControlDrawer
         icon="plus"
         drawer="addFile"
@@ -91,8 +94,10 @@ function FileList({ data, headerStyle, hideHeader }: FileListProps) {
   );
 }
 
-interface FileListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface FileListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: FileListFragment$key;
 }
 

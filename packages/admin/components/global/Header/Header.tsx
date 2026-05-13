@@ -2,16 +2,16 @@ import React, { useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useId } from "react";
 import useFocusTrap from "@castiron/hooks/useFocusTrap";
-
-import { useViewerContext } from "contexts";
+import { useGlobalContext, useViewerContext } from "contexts";
 import appData from "fixtures/app.data";
-import { useToggle } from "hooks";
-
+import { useToggle, useIsAuthorized } from "hooks";
 import MobileMenu, { MobileMenuList } from "components/layout/MobileMenu";
 import MobileMenuToggle from "components/layout/MobileMenuToggle";
 import { renderNavLink } from "helpers";
 import SignInOut from "components/auth/SignInOut";
-import { DrawerLink } from "components/atomic";
+import { Authorize } from "components/auth";
+import { DrawerLink, NamedLink } from "components/atomic";
+import { RouteHelper } from "routes";
 import SearchModal from "components/composed/search/SearchModal";
 import InstallationName from "../InstallationName";
 import ProviderBar from "../ProviderBar";
@@ -19,6 +19,8 @@ import HeaderWrapper from "./HeaderWrapper";
 import HeaderNavLinks from "./HeaderNavLinks";
 import * as Styled from "./Header.styles";
 import HeaderAccount from "./HeaderAccount";
+import PendingReviewBadge from "./badges/PendingReviewBadge";
+import RevisionRequestedBadge from "./badges/RevisionRequestedBadge";
 
 function Header() {
   const { t } = useTranslation();
@@ -32,13 +34,20 @@ function Header() {
 
   const { headerData, footerData } = appData;
   const { globalAdmin } = useViewerContext();
+  const hasAdminAccess = useIsAuthorized({ actions: "admin.access" });
+  const globalData = useGlobalContext();
+  const depositingEnabled =
+    globalData?.globalConfiguration?.depositing?.enabled ?? false;
+  const accountChildren = depositingEnabled
+    ? headerData.account.children
+    : headerData.account.children.filter((item) => !item.depositing);
 
   const renderGlobalSettings = () =>
     globalAdmin ? (
       <li>
-        <DrawerLink key="settings" drawer="editSettings" passHref>
+        <NamedLink key="settings" route="settings" passHref>
           <a className="a-link">{t("nav.global_settings")}</a>
-        </DrawerLink>
+        </NamedLink>
       </li>
     ) : null;
 
@@ -55,9 +64,11 @@ function Header() {
               <HeaderNavLinks navigation={headerData.navigation} />
             </ul>
           </Styled.DesktopNavBlock>
-          <Styled.SearchBlock>
-            <SearchModal routeName="search" clearOnSubmit />
-          </Styled.SearchBlock>
+          {hasAdminAccess && (
+            <Styled.SearchBlock>
+              <SearchModal routeName="search" clearOnSubmit />
+            </Styled.SearchBlock>
+          )}
           <Styled.AccountBlock>
             <HeaderAccount accountNav={headerData.account} />
           </Styled.AccountBlock>
@@ -73,31 +84,57 @@ function Header() {
         id={mobileNavId}
         active={isActive}
         onClose={toggleActive}
-        showGlobalSearch
+        showGlobalSearch={hasAdminAccess}
         showProviderBar
       >
-        {footerData.navigation.map((nav, i) => (
-          <div key={i}>
-            <h3 className="t-label-lg a-color-light">{t(nav.header)}</h3>
-            <MobileMenuList>
-              {nav.children &&
-                nav.children.map((child, i) => renderNavLink(child, i, "li"))}
-              {renderGlobalSettings()}
-            </MobileMenuList>
-          </div>
-        ))}
+        {hasAdminAccess &&
+          footerData.navigation.map((nav, i) => {
+            return (
+              <div key={i}>
+                <h3 className="t-label-lg a-color-light">{t(nav.header)}</h3>
+                <MobileMenuList>
+                  {nav.children &&
+                    nav.children.map((child, i) =>
+                      renderNavLink(child, i, "li"),
+                    )}
+                  {renderGlobalSettings()}
+                </MobileMenuList>
+              </div>
+            );
+          })}
         <div>
           <h3 className="t-label-lg a-color-light">
             {t("nav.account_header")}
           </h3>
           <MobileMenuList>
+            {accountChildren.map((item, i) => {
+              if (!RouteHelper.findRouteByName(item.route)) return null;
+              const link = (
+                <NamedLink route={item.route} passHref>
+                  <a className="a-link">
+                    {t(item.label)}
+                    {item.route === "my-reviews" && <PendingReviewBadge />}
+                    {item.route === "my-submissions" && (
+                      <RevisionRequestedBadge />
+                    )}
+                  </a>
+                </NamedLink>
+              );
+              return item.actions ? (
+                <Authorize actions={item.actions}>
+                  <li key={i}>{link}</li>
+                </Authorize>
+              ) : (
+                <li key={i}>{link}</li>
+              );
+            })}
             <li>
-              <DrawerLink drawer="editProfile">
-                {t("nav.edit_profile")}
+              <DrawerLink drawer="editProfile" passHref>
+                <a className="a-link">{t("nav.edit_profile")}</a>
               </DrawerLink>
             </li>
             <li>
-              <SignInOut />
+              <SignInOut className="a-link" />
             </li>
           </MobileMenuList>
         </div>

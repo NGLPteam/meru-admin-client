@@ -79,11 +79,10 @@ export default function HarvestAttemptFromMapping({ harvestMapping }: Props) {
   );
 }
 
-interface Props
-  extends Pick<
-    React.ComponentProps<typeof MutationForm>,
-    "onSuccess" | "onCancel"
-  > {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess" | "onCancel"
+> {
   harvestMapping: newHarvestAttemptFromMappingQuery["response"]["harvestMapping"];
 }
 

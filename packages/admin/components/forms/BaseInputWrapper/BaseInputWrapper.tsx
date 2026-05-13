@@ -62,11 +62,10 @@ const BaseInputWrapper = <T extends FieldValues = FieldValues>({
   );
 };
 
-interface Props<T extends FieldValues = FieldValues>
-  extends Pick<
-    InputProps<T>,
-    "name" | "description" | "label" | "hideLabel" | "required"
-  > {
+interface Props<T extends FieldValues = FieldValues> extends Pick<
+  InputProps<T>,
+  "name" | "description" | "label" | "hideLabel" | "required"
+> {
   children: React.JSX.Element | (({ uid }: { uid: string }) => React.ReactNode);
   isWide?: boolean;
   labelProps?: typeof HTMLLabelElement;

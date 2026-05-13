@@ -14,34 +14,14 @@ jobs:
     name: Lint Javascript
 
     steps:
-      - name: "Check out code"
-        uses: actions/checkout@v4
-
-      - name: "Install Node"
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
         with:
-          node-version: "24.x"
-
-      - name: "Restore Node dependencies from cache"
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-node-module-cache-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-module-cache-
-
-      - name: "Install Node dependencies"
-        env:
-          NODE_ENV: development
-        run: |
-          corepack enable
-          yarn install
-        working-directory: ./
-
-      - name: "Lint Client"
-        run: |
-          yarn lint
-        working-directory: ./
+          node-version-file: "package.json"
+          cache: "yarn"
+      - run: yarn install
+      - run: yarn lint
 
   build:
     runs-on: ubuntu-latest

@@ -65,8 +65,10 @@ export default function FileEditForm({ data, onSuccess }: Props) {
   );
 }
 
-interface Props
-  extends Pick<React.ComponentProps<typeof MutationForm>, "onSuccess"> {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess"
+> {
   data: FileEditFormFragment$key;
 }
 

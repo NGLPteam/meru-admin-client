@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<86f6d80ffe3684fd90e8ab860b87aa92>>
+ * @generated SignedSource<<9877655e7600d08805b415e73dbf8d9d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -271,10 +271,17 @@ v14 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "label",
+  "name": "submittable",
   "storageKey": null
 },
 v15 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "label",
+  "storageKey": null
+},
+v16 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -284,7 +291,7 @@ v15 = {
       "name": "fullPath",
       "storageKey": null
     },
-    (v14/*: any*/),
+    (v15/*: any*/),
     (v2/*: any*/),
     {
       "alias": null,
@@ -300,27 +307,34 @@ v15 = {
       "kind": "ScalarField",
       "name": "isWide",
       "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "instructions",
+      "storageKey": null
     }
   ],
   "type": "ScalarProperty",
   "abstractKey": "__isScalarProperty"
 },
-v16 = [
-  (v15/*: any*/)
+v17 = [
+  (v16/*: any*/)
 ],
-v17 = {
+v18 = {
   "kind": "InlineFragment",
-  "selections": (v16/*: any*/),
+  "selections": (v17/*: any*/),
   "type": "AssetProperty",
   "abstractKey": null
 },
-v18 = {
+v19 = {
   "kind": "InlineFragment",
-  "selections": (v16/*: any*/),
+  "selections": (v17/*: any*/),
   "type": "AssetsProperty",
   "abstractKey": null
 },
-v19 = {
+v20 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -337,24 +351,24 @@ v19 = {
       "name": "checkedByDefault",
       "storageKey": null
     },
-    (v15/*: any*/)
+    (v16/*: any*/)
   ],
   "type": "BooleanProperty",
   "abstractKey": null
 },
-v20 = {
+v21 = {
   "kind": "InlineFragment",
-  "selections": (v16/*: any*/),
+  "selections": (v17/*: any*/),
   "type": "ContributorProperty",
   "abstractKey": null
 },
-v21 = {
+v22 = {
   "kind": "InlineFragment",
-  "selections": (v16/*: any*/),
+  "selections": (v17/*: any*/),
   "type": "ContributorsProperty",
   "abstractKey": null
 },
-v22 = {
+v23 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -364,12 +378,12 @@ v22 = {
       "name": "date",
       "storageKey": null
     },
-    (v15/*: any*/)
+    (v16/*: any*/)
   ],
   "type": "DateProperty",
   "abstractKey": null
 },
-v23 = {
+v24 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -386,12 +400,12 @@ v23 = {
       "name": "defaultAddress",
       "storageKey": null
     },
-    (v15/*: any*/)
+    (v16/*: any*/)
   ],
   "type": "EmailProperty",
   "abstractKey": null
 },
-v24 = {
+v25 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -408,12 +422,12 @@ v24 = {
       "name": "defaultFloat",
       "storageKey": null
     },
-    (v15/*: any*/)
+    (v16/*: any*/)
   ],
   "type": "FloatProperty",
   "abstractKey": null
 },
-v25 = {
+v26 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -430,20 +444,20 @@ v25 = {
       "name": "defaultInteger",
       "storageKey": null
     },
-    (v15/*: any*/)
+    (v16/*: any*/)
   ],
   "type": "IntegerProperty",
   "abstractKey": null
 },
-v26 = {
+v27 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "content",
   "storageKey": null
 },
-v27 = [
-  (v26/*: any*/),
+v28 = [
+  (v27/*: any*/),
   {
     "alias": null,
     "args": null,
@@ -451,15 +465,15 @@ v27 = [
     "name": "default",
     "storageKey": null
   },
-  (v15/*: any*/)
+  (v16/*: any*/)
 ],
-v28 = {
+v29 = {
   "kind": "InlineFragment",
-  "selections": (v27/*: any*/),
+  "selections": (v28/*: any*/),
   "type": "MarkdownProperty",
   "abstractKey": null
 },
-v29 = [
+v30 = [
   {
     "alias": null,
     "args": null,
@@ -468,32 +482,32 @@ v29 = [
     "name": "options",
     "plural": true,
     "selections": [
-      (v14/*: any*/),
+      (v15/*: any*/),
       (v9/*: any*/)
     ],
     "storageKey": null
   },
-  (v15/*: any*/)
+  (v16/*: any*/)
 ],
-v30 = {
-  "kind": "InlineFragment",
-  "selections": (v29/*: any*/),
-  "type": "MultiselectProperty",
-  "abstractKey": null
-},
 v31 = {
   "kind": "InlineFragment",
-  "selections": (v29/*: any*/),
-  "type": "SelectProperty",
+  "selections": (v30/*: any*/),
+  "type": "MultiselectProperty",
   "abstractKey": null
 },
 v32 = {
   "kind": "InlineFragment",
-  "selections": (v27/*: any*/),
-  "type": "StringProperty",
+  "selections": (v30/*: any*/),
+  "type": "SelectProperty",
   "abstractKey": null
 },
 v33 = {
+  "kind": "InlineFragment",
+  "selections": (v28/*: any*/),
+  "type": "StringProperty",
+  "abstractKey": null
+},
+v34 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -503,19 +517,19 @@ v33 = {
       "name": "tags",
       "storageKey": null
     },
-    (v15/*: any*/)
+    (v16/*: any*/)
   ],
   "type": "TagsProperty",
   "abstractKey": null
 },
-v34 = {
+v35 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "kind",
   "storageKey": null
 },
-v35 = {
+v36 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -533,8 +547,8 @@ v35 = {
       "name": "fullText",
       "plural": false,
       "selections": [
-        (v26/*: any*/),
-        (v34/*: any*/),
+        (v27/*: any*/),
+        (v35/*: any*/),
         {
           "alias": null,
           "args": null,
@@ -545,12 +559,12 @@ v35 = {
       ],
       "storageKey": null
     },
-    (v15/*: any*/)
+    (v16/*: any*/)
   ],
   "type": "FullTextProperty",
   "abstractKey": null
 },
-v36 = {
+v37 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -568,17 +582,17 @@ v36 = {
           "name": "href",
           "storageKey": null
         },
-        (v14/*: any*/),
+        (v15/*: any*/),
         (v7/*: any*/)
       ],
       "storageKey": null
     },
-    (v15/*: any*/)
+    (v16/*: any*/)
   ],
   "type": "URLProperty",
   "abstractKey": null
 },
-v37 = {
+v38 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -591,22 +605,14 @@ v37 = {
       "selections": (v10/*: any*/),
       "storageKey": null
     },
-    (v15/*: any*/)
+    (v16/*: any*/)
   ],
   "type": "VariableDateProperty",
   "abstractKey": null
 },
-v38 = {
+v39 = {
   "kind": "TypeDiscriminator",
   "abstractKey": "__isEntity"
-},
-v39 = {
-  "kind": "InlineFragment",
-  "selections": [
-    (v11/*: any*/)
-  ],
-  "type": "Node",
-  "abstractKey": "__isNode"
 },
 v40 = [
   {
@@ -626,9 +632,9 @@ v40 = [
         "plural": false,
         "selections": [
           (v13/*: any*/),
-          (v38/*: any*/),
+          (v39/*: any*/),
           (v7/*: any*/),
-          (v39/*: any*/)
+          (v11/*: any*/)
         ],
         "storageKey": null
       }
@@ -645,7 +651,7 @@ v41 = [
     "name": "availableEntities",
     "plural": true,
     "selections": [
-      (v14/*: any*/),
+      (v15/*: any*/),
       (v9/*: any*/),
       {
         "alias": null,
@@ -656,7 +662,7 @@ v41 = [
         "plural": false,
         "selections": [
           (v13/*: any*/),
-          (v38/*: any*/),
+          (v39/*: any*/),
           (v7/*: any*/),
           {
             "alias": null,
@@ -689,14 +695,14 @@ v41 = [
             "type": "Item",
             "abstractKey": null
           },
-          (v39/*: any*/)
+          (v11/*: any*/)
         ],
         "storageKey": null
       }
     ],
     "storageKey": null
   },
-  (v15/*: any*/)
+  (v16/*: any*/)
 ],
 v42 = {
   "kind": "InlineFragment",
@@ -711,8 +717,8 @@ v43 = {
   "abstractKey": null
 },
 v44 = [
-  (v34/*: any*/),
-  (v14/*: any*/),
+  (v35/*: any*/),
+  (v15/*: any*/),
   (v9/*: any*/)
 ],
 v45 = [
@@ -975,14 +981,33 @@ return {
                       {
                         "kind": "InlineFragment",
                         "selections": [
-                          {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "legend",
-                            "storageKey": null
-                          },
-                          (v2/*: any*/),
+                          (v14/*: any*/),
+                          (v18/*: any*/),
+                          (v19/*: any*/),
+                          (v20/*: any*/),
+                          (v21/*: any*/),
+                          (v22/*: any*/),
+                          (v23/*: any*/),
+                          (v24/*: any*/),
+                          (v25/*: any*/),
+                          (v26/*: any*/),
+                          (v29/*: any*/),
+                          (v31/*: any*/),
+                          (v32/*: any*/),
+                          (v33/*: any*/),
+                          (v34/*: any*/),
+                          (v36/*: any*/),
+                          (v37/*: any*/),
+                          (v38/*: any*/),
+                          (v42/*: any*/),
+                          (v43/*: any*/)
+                        ],
+                        "type": "ScalarProperty",
+                        "abstractKey": "__isScalarProperty"
+                      },
+                      {
+                        "kind": "InlineFragment",
+                        "selections": [
                           {
                             "alias": null,
                             "args": null,
@@ -992,11 +1017,11 @@ return {
                             "plural": true,
                             "selections": [
                               (v13/*: any*/),
+                              (v14/*: any*/),
                               {
                                 "kind": "TypeDiscriminator",
                                 "abstractKey": "__isScalarProperty"
                               },
-                              (v17/*: any*/),
                               (v18/*: any*/),
                               (v19/*: any*/),
                               (v20/*: any*/),
@@ -1005,48 +1030,31 @@ return {
                               (v23/*: any*/),
                               (v24/*: any*/),
                               (v25/*: any*/),
-                              (v28/*: any*/),
-                              (v30/*: any*/),
+                              (v26/*: any*/),
+                              (v29/*: any*/),
                               (v31/*: any*/),
                               (v32/*: any*/),
                               (v33/*: any*/),
-                              (v35/*: any*/),
+                              (v34/*: any*/),
                               (v36/*: any*/),
                               (v37/*: any*/),
+                              (v38/*: any*/),
                               (v42/*: any*/),
                               (v43/*: any*/)
                             ],
                             "storageKey": null
-                          }
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "legend",
+                            "storageKey": null
+                          },
+                          (v2/*: any*/)
                         ],
                         "type": "GroupProperty",
                         "abstractKey": null
-                      },
-                      {
-                        "kind": "InlineFragment",
-                        "selections": [
-                          (v17/*: any*/),
-                          (v18/*: any*/),
-                          (v19/*: any*/),
-                          (v20/*: any*/),
-                          (v21/*: any*/),
-                          (v22/*: any*/),
-                          (v23/*: any*/),
-                          (v24/*: any*/),
-                          (v25/*: any*/),
-                          (v28/*: any*/),
-                          (v30/*: any*/),
-                          (v31/*: any*/),
-                          (v32/*: any*/),
-                          (v33/*: any*/),
-                          (v35/*: any*/),
-                          (v36/*: any*/),
-                          (v37/*: any*/),
-                          (v42/*: any*/),
-                          (v43/*: any*/)
-                        ],
-                        "type": "ScalarProperty",
-                        "abstractKey": "__isScalarProperty"
                       }
                     ],
                     "storageKey": null
@@ -1154,12 +1162,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "2edb63d69695a63a21cfe1d487534c6d",
+    "cacheID": "1cd7ba6e19f6b7368721800d0917b8e1",
     "id": null,
     "metadata": {},
     "name": "CollectionUpdateFormMutation",
     "operationKind": "mutation",
-    "text": "mutation CollectionUpdateFormMutation(\n  $input: UpdateCollectionInput!\n) {\n  updateCollection(input: $input) {\n    collection {\n      ...HarvestingStatusFragment\n      ...CollectionUpdateFormFieldsFragment\n      ...SchemaFormFieldsFragment\n      id\n    }\n    ...MutationForm_mutationErrors\n    ...CollectionUpdateForm_schemaErrorsFragment\n  }\n}\n\nfragment AssetPropertyFragment on AssetProperty {\n  ...ScalarPropertyFragment\n}\n\nfragment AssetsPropertyFragment on AssetsProperty {\n  ...ScalarPropertyFragment\n}\n\nfragment BooleanPropertyFragment on BooleanProperty {\n  ...ScalarPropertyFragment\n  checked\n  checkedByDefault\n}\n\nfragment CollectionUpdateFormFieldsFragment on Collection {\n  title\n  subtitle\n  doiData {\n    doi\n  }\n  rawDOI\n  visibility\n  summary\n  visibleAfterAt\n  visibleUntilAt\n  thumbnail {\n    ...FileUploadFragment\n  }\n  heroImage {\n    ...FileUploadFragment\n  }\n  published {\n    ...VariablePrecisionDateControlFragment\n  }\n}\n\nfragment CollectionUpdateForm_schemaErrorsFragment on UpdateCollectionPayload {\n  schemaErrors {\n    hint\n    message\n    metadata\n    path\n  }\n}\n\nfragment ContributorPropertyFragment on ContributorProperty {\n  ...ScalarPropertyFragment\n}\n\nfragment ContributorsPropertyFragment on ContributorsProperty {\n  ...ScalarPropertyFragment\n}\n\nfragment DatePropertyFragment on DateProperty {\n  ...ScalarPropertyFragment\n  date\n}\n\nfragment EmailPropertyFragment on EmailProperty {\n  ...ScalarPropertyFragment\n  address\n  defaultAddress\n}\n\nfragment EntitiesPropertyFragment on EntitiesProperty {\n  ...ScalarPropertyFragment\n  availableEntities {\n    label\n    value\n    entity {\n      __typename\n      ...getEntityTitleFragment\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n    }\n  }\n}\n\nfragment EntityPropertyFragment on EntityProperty {\n  ...ScalarPropertyFragment\n  availableEntities {\n    label\n    value\n    entity {\n      __typename\n      ...getEntityTitleFragment\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n    }\n  }\n}\n\nfragment FileUploadFragment on ImageAttachment {\n  originalFilename\n  storage\n  thumb {\n    png {\n      alt\n      url\n    }\n  }\n}\n\nfragment FloatPropertyFragment on FloatProperty {\n  ...ScalarPropertyFragment\n  floatValue\n  defaultFloat\n}\n\nfragment FullTextPropertyFragment on FullTextProperty {\n  ...ScalarPropertyFragment\n  description\n  fullText {\n    content\n    kind\n    lang\n  }\n}\n\nfragment GroupPropertyFragment on GroupProperty {\n  legend\n  path\n  properties {\n    __typename\n    ...SchemaPropertyFragment\n  }\n}\n\nfragment HarvestingStatusFragment on Entity {\n  __isEntity: __typename\n  ... on Collection {\n    harvestModificationStatus\n  }\n  ... on Item {\n    harvestModificationStatus\n  }\n}\n\nfragment IntegerPropertyFragment on IntegerProperty {\n  ...ScalarPropertyFragment\n  integerValue\n  defaultInteger\n}\n\nfragment MarkdownPropertyFragment on MarkdownProperty {\n  ...ScalarPropertyFragment\n  content\n  default\n}\n\nfragment MultiselectPropertyFragment on MultiselectProperty {\n  ...ScalarPropertyFragment\n  options {\n    label\n    value\n  }\n}\n\nfragment MutationForm_mutationErrors on StandardMutationPayload {\n  __isStandardMutationPayload: __typename\n  attributeErrors {\n    path\n    type\n    messages\n  }\n  globalErrors {\n    message\n  }\n}\n\nfragment ScalarPropertyFragment on ScalarProperty {\n  __isScalarProperty: __typename\n  name: fullPath\n  label\n  path\n  required\n  type\n  isWide\n}\n\nfragment SchemaFormFieldsContextFragment on SchemaInstance {\n  __isSchemaInstance: __typename\n  context: schemaInstanceContext {\n    ...useSchemaContextFragment\n  }\n  ... on Node {\n    __isNode: __typename\n    id\n  }\n}\n\nfragment SchemaFormFieldsFragment on SchemaInstance {\n  __isSchemaInstance: __typename\n  properties: schemaProperties {\n    __typename\n    ...SchemaInstancePropertyFragment\n  }\n  ...SchemaSelectorDataFragment\n  ...SchemaFormFieldsContextFragment\n}\n\nfragment SchemaInstancePropertyFragment on SchemaProperty {\n  __isSchemaProperty: __typename\n  __typename\n  ... on GroupProperty {\n    ...GroupPropertyFragment\n  }\n  ...SchemaPropertyFragment\n}\n\nfragment SchemaPropertyFragment on ScalarProperty {\n  __isScalarProperty: __typename\n  __typename\n  ... on AssetProperty {\n    ...AssetPropertyFragment\n  }\n  ... on AssetsProperty {\n    ...AssetsPropertyFragment\n  }\n  ... on BooleanProperty {\n    ...BooleanPropertyFragment\n  }\n  ... on ContributorProperty {\n    ...ContributorPropertyFragment\n  }\n  ... on ContributorsProperty {\n    ...ContributorsPropertyFragment\n  }\n  ... on DateProperty {\n    ...DatePropertyFragment\n  }\n  ... on EmailProperty {\n    ...EmailPropertyFragment\n  }\n  ... on FloatProperty {\n    ...FloatPropertyFragment\n  }\n  ... on IntegerProperty {\n    ...IntegerPropertyFragment\n  }\n  ... on MarkdownProperty {\n    ...MarkdownPropertyFragment\n  }\n  ... on MultiselectProperty {\n    ...MultiselectPropertyFragment\n  }\n  ... on SelectProperty {\n    ...SelectPropertyFragment\n  }\n  ... on StringProperty {\n    ...StringPropertyFragment\n  }\n  ... on TagsProperty {\n    ...TagsPropertyFragment\n  }\n  ... on FullTextProperty {\n    ...FullTextPropertyFragment\n  }\n  ... on URLProperty {\n    ...URLPropertyFragment\n  }\n  ... on VariableDateProperty {\n    ...VariableDatePropertyFragment\n  }\n  ... on EntityProperty {\n    ...EntityPropertyFragment\n  }\n  ... on EntitiesProperty {\n    ...EntitiesPropertyFragment\n  }\n}\n\nfragment SchemaSelectorDataFragment on Entity {\n  __isEntity: __typename\n  ... on Collection {\n    entityId: id\n    schemaVersion {\n      name\n      number\n      slug\n      id\n    }\n  }\n  ... on Item {\n    entityId: id\n    schemaVersion {\n      name\n      number\n      slug\n      id\n    }\n  }\n  ... on Community {\n    entityId: id\n    schemaVersion {\n      name\n      number\n      slug\n      id\n    }\n  }\n}\n\nfragment SelectPropertyFragment on SelectProperty {\n  options {\n    label\n    value\n  }\n  ...ScalarPropertyFragment\n}\n\nfragment StringPropertyFragment on StringProperty {\n  ...ScalarPropertyFragment\n  content\n  default\n}\n\nfragment TagsPropertyFragment on TagsProperty {\n  ...ScalarPropertyFragment\n  tags\n}\n\nfragment URLPropertyFragment on URLProperty {\n  ...ScalarPropertyFragment\n  url {\n    href\n    label\n    title\n  }\n}\n\nfragment VariableDatePropertyFragment on VariableDateProperty {\n  ...ScalarPropertyFragment\n  dateWithPrecision {\n    ...VariablePrecisionDateControlFragment\n  }\n}\n\nfragment VariablePrecisionDateControlFragment on VariablePrecisionDate {\n  precision\n  value\n}\n\nfragment getEntityTitleFragment on Entity {\n  __isEntity: __typename\n  __typename\n  title\n  schemaVersion {\n    identifier\n    id\n  }\n  ... on Collection {\n    namedAncestors {\n      ancestor {\n        __typename\n        __isEntity: __typename\n        title\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n    }\n  }\n  ... on Item {\n    namedAncestors {\n      ancestor {\n        __typename\n        __isEntity: __typename\n        title\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment useSchemaContextFragment on SchemaInstanceContext {\n  assets {\n    kind\n    label\n    value\n  }\n  contributors {\n    kind\n    label\n    value\n  }\n  defaultValues\n  entityId\n  fieldValues\n  schemaVersionSlug\n}\n"
+    "text": "mutation CollectionUpdateFormMutation(\n  $input: UpdateCollectionInput!\n) {\n  updateCollection(input: $input) {\n    collection {\n      ...HarvestingStatusFragment\n      ...CollectionUpdateFormFieldsFragment\n      ...SchemaFormFieldsFragment\n      id\n    }\n    ...MutationForm_mutationErrors\n    ...CollectionUpdateForm_schemaErrorsFragment\n  }\n}\n\nfragment AssetPropertyFragment on AssetProperty {\n  ...ScalarPropertyFragment\n}\n\nfragment AssetsPropertyFragment on AssetsProperty {\n  ...ScalarPropertyFragment\n}\n\nfragment BooleanPropertyFragment on BooleanProperty {\n  ...ScalarPropertyFragment\n  checked\n  checkedByDefault\n}\n\nfragment CollectionUpdateFormFieldsFragment on Collection {\n  title\n  subtitle\n  doiData {\n    doi\n  }\n  rawDOI\n  visibility\n  summary\n  visibleAfterAt\n  visibleUntilAt\n  thumbnail {\n    ...FileUploadFragment\n  }\n  heroImage {\n    ...FileUploadFragment\n  }\n  published {\n    ...VariablePrecisionDateControlFragment\n  }\n}\n\nfragment CollectionUpdateForm_schemaErrorsFragment on UpdateCollectionPayload {\n  schemaErrors {\n    hint\n    message\n    metadata\n    path\n  }\n}\n\nfragment ContributorPropertyFragment on ContributorProperty {\n  ...ScalarPropertyFragment\n}\n\nfragment ContributorsPropertyFragment on ContributorsProperty {\n  ...ScalarPropertyFragment\n}\n\nfragment DatePropertyFragment on DateProperty {\n  ...ScalarPropertyFragment\n  date\n}\n\nfragment EmailPropertyFragment on EmailProperty {\n  ...ScalarPropertyFragment\n  address\n  defaultAddress\n}\n\nfragment EntitiesPropertyFragment on EntitiesProperty {\n  ...ScalarPropertyFragment\n  availableEntities {\n    label\n    value\n    entity {\n      __typename\n      ...getEntityTitleFragment\n      id\n    }\n  }\n}\n\nfragment EntityPropertyFragment on EntityProperty {\n  ...ScalarPropertyFragment\n  availableEntities {\n    label\n    value\n    entity {\n      __typename\n      ...getEntityTitleFragment\n      id\n    }\n  }\n}\n\nfragment FileUploadFragment on ImageAttachment {\n  originalFilename\n  storage\n  thumb {\n    png {\n      alt\n      url\n    }\n  }\n}\n\nfragment FloatPropertyFragment on FloatProperty {\n  ...ScalarPropertyFragment\n  floatValue\n  defaultFloat\n}\n\nfragment FullTextPropertyFragment on FullTextProperty {\n  ...ScalarPropertyFragment\n  description\n  fullText {\n    content\n    kind\n    lang\n  }\n}\n\nfragment GroupPropertyFragment on GroupProperty {\n  legend\n  path\n  properties {\n    __typename\n    submittable\n    ...SchemaPropertyFragment\n  }\n}\n\nfragment HarvestingStatusFragment on Entity {\n  __isEntity: __typename\n  ... on Collection {\n    harvestModificationStatus\n  }\n  ... on Item {\n    harvestModificationStatus\n  }\n}\n\nfragment IntegerPropertyFragment on IntegerProperty {\n  ...ScalarPropertyFragment\n  integerValue\n  defaultInteger\n}\n\nfragment MarkdownPropertyFragment on MarkdownProperty {\n  ...ScalarPropertyFragment\n  content\n  default\n}\n\nfragment MultiselectPropertyFragment on MultiselectProperty {\n  ...ScalarPropertyFragment\n  options {\n    label\n    value\n  }\n}\n\nfragment MutationForm_mutationErrors on StandardMutationPayload {\n  __isStandardMutationPayload: __typename\n  attributeErrors {\n    path\n    type\n    messages\n  }\n  globalErrors {\n    message\n  }\n}\n\nfragment ScalarPropertyFragment on ScalarProperty {\n  __isScalarProperty: __typename\n  name: fullPath\n  label\n  path\n  required\n  type\n  isWide\n  instructions\n}\n\nfragment SchemaFormFieldsContextFragment on SchemaInstance {\n  __isSchemaInstance: __typename\n  context: schemaInstanceContext {\n    ...useSchemaContextFragment\n  }\n  ... on Node {\n    __isNode: __typename\n    id\n  }\n}\n\nfragment SchemaFormFieldsFragment on SchemaInstance {\n  __isSchemaInstance: __typename\n  properties: schemaProperties {\n    __typename\n    ... on ScalarProperty {\n      __isScalarProperty: __typename\n      submittable\n    }\n    ... on GroupProperty {\n      properties {\n        __typename\n        submittable\n      }\n    }\n    ...SchemaInstancePropertyFragment\n  }\n  ...SchemaSelectorDataFragment\n  ...SchemaFormFieldsContextFragment\n}\n\nfragment SchemaInstancePropertyFragment on SchemaProperty {\n  __isSchemaProperty: __typename\n  __typename\n  ... on ScalarProperty {\n    __isScalarProperty: __typename\n    submittable\n  }\n  ... on GroupProperty {\n    properties {\n      __typename\n      submittable\n    }\n    ...GroupPropertyFragment\n  }\n  ...SchemaPropertyFragment\n}\n\nfragment SchemaPropertyFragment on ScalarProperty {\n  __isScalarProperty: __typename\n  __typename\n  submittable\n  ... on AssetProperty {\n    ...AssetPropertyFragment\n  }\n  ... on AssetsProperty {\n    ...AssetsPropertyFragment\n  }\n  ... on BooleanProperty {\n    ...BooleanPropertyFragment\n  }\n  ... on ContributorProperty {\n    ...ContributorPropertyFragment\n  }\n  ... on ContributorsProperty {\n    ...ContributorsPropertyFragment\n  }\n  ... on DateProperty {\n    ...DatePropertyFragment\n  }\n  ... on EmailProperty {\n    ...EmailPropertyFragment\n  }\n  ... on FloatProperty {\n    ...FloatPropertyFragment\n  }\n  ... on IntegerProperty {\n    ...IntegerPropertyFragment\n  }\n  ... on MarkdownProperty {\n    ...MarkdownPropertyFragment\n  }\n  ... on MultiselectProperty {\n    ...MultiselectPropertyFragment\n  }\n  ... on SelectProperty {\n    ...SelectPropertyFragment\n  }\n  ... on StringProperty {\n    ...StringPropertyFragment\n  }\n  ... on TagsProperty {\n    ...TagsPropertyFragment\n  }\n  ... on FullTextProperty {\n    ...FullTextPropertyFragment\n  }\n  ... on URLProperty {\n    ...URLPropertyFragment\n  }\n  ... on VariableDateProperty {\n    ...VariableDatePropertyFragment\n  }\n  ... on EntityProperty {\n    ...EntityPropertyFragment\n  }\n  ... on EntitiesProperty {\n    ...EntitiesPropertyFragment\n  }\n}\n\nfragment SchemaSelectorDataFragment on Entity {\n  __isEntity: __typename\n  ... on Collection {\n    entityId: id\n    schemaVersion {\n      name\n      number\n      slug\n      id\n    }\n  }\n  ... on Item {\n    entityId: id\n    schemaVersion {\n      name\n      number\n      slug\n      id\n    }\n  }\n  ... on Community {\n    entityId: id\n    schemaVersion {\n      name\n      number\n      slug\n      id\n    }\n  }\n}\n\nfragment SelectPropertyFragment on SelectProperty {\n  options {\n    label\n    value\n  }\n  ...ScalarPropertyFragment\n}\n\nfragment StringPropertyFragment on StringProperty {\n  ...ScalarPropertyFragment\n  content\n  default\n}\n\nfragment TagsPropertyFragment on TagsProperty {\n  ...ScalarPropertyFragment\n  tags\n}\n\nfragment URLPropertyFragment on URLProperty {\n  ...ScalarPropertyFragment\n  url {\n    href\n    label\n    title\n  }\n}\n\nfragment VariableDatePropertyFragment on VariableDateProperty {\n  ...ScalarPropertyFragment\n  dateWithPrecision {\n    ...VariablePrecisionDateControlFragment\n  }\n}\n\nfragment VariablePrecisionDateControlFragment on VariablePrecisionDate {\n  precision\n  value\n}\n\nfragment getEntityTitleFragment on Entity {\n  __isEntity: __typename\n  __typename\n  title\n  schemaVersion {\n    identifier\n    id\n  }\n  ... on Collection {\n    namedAncestors {\n      ancestor {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n    }\n  }\n  ... on Item {\n    namedAncestors {\n      ancestor {\n        __typename\n        __isEntity: __typename\n        title\n        id\n      }\n    }\n  }\n}\n\nfragment useSchemaContextFragment on SchemaInstanceContext {\n  assets {\n    kind\n    label\n    value\n  }\n  contributors {\n    kind\n    label\n    value\n  }\n  defaultValues\n  entityId\n  fieldValues\n  schemaVersionSlug\n}\n"
   }
 };
 })();

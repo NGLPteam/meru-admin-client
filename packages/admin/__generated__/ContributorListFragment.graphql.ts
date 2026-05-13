@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8b148e0c8cf29d1ee715e3b1e43c5fe5>>
+ * @generated SignedSource<<3142b1fcec9de751801deb83278c76b2>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -161,6 +161,28 @@ return {
       "alias": null,
       "args": [
         {
+          "fields": [
+            {
+              "fields": [
+                {
+                  "kind": "Variable",
+                  "name": "needle",
+                  "variableName": "query"
+                },
+                {
+                  "kind": "Literal",
+                  "name": "strategy",
+                  "value": "FUZZY"
+                }
+              ],
+              "kind": "ObjectValue",
+              "name": "nameSearch"
+            }
+          ],
+          "kind": "ObjectValue",
+          "name": "filters"
+        },
+        {
           "kind": "Variable",
           "name": "order",
           "variableName": "order"
@@ -174,11 +196,6 @@ return {
           "kind": "Literal",
           "name": "perPage",
           "value": 20
-        },
-        {
-          "kind": "Variable",
-          "name": "prefix",
-          "variableName": "query"
         }
       ],
       "concreteType": "AnyContributorConnection",
@@ -288,6 +305,6 @@ return {
 };
 })();
 
-(node as any).hash = "c2e489e68014a2baa401d01e04c16006";
+(node as any).hash = "01e675d496630e84f3d7efab8ff93c0e";
 
 export default node;

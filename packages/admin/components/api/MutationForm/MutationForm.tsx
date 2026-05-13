@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from "react";
-import { useMutation, graphql, GraphQLTaggedNode } from "react-relay";
+import { graphql, GraphQLTaggedNode } from "react-relay";
+import { useLoadingMutation } from "components/api/hooks";
 
 import { useForm, FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -76,6 +77,7 @@ export default function MutationForm<
     failureNotification,
     refetchTags = [],
     hideGlobalErrorHeader,
+    saveLabel,
   } = props;
   const notify = useNotify();
   const { t } = useTranslation();
@@ -92,7 +94,7 @@ export default function MutationForm<
 
   const [state, dispatch] = useMutationFormState<M, T>({ form, name });
 
-  const [mutate, loading] = useMutation<M>(props.mutation);
+  const [mutate, loading] = useLoadingMutation<M>(props.mutation);
 
   const {
     getErrors,
@@ -292,7 +294,7 @@ export default function MutationForm<
         {children({ form })}
         <Styled.Footer className="l-flex l-flex--gap">
           <Button type="submit" disabled={submitDisabled} onClick={onSubmit}>
-            {t("common.save")}
+            {t(saveLabel ?? "common.save")}
           </Button>
           {onSaveAndClose && (
             <Button
@@ -450,6 +452,7 @@ interface BaseProps<M extends MutationParameters, T extends FieldValues> {
    * Option to hide header on global errors.
    */
   hideGlobalErrorHeader?: boolean;
+  saveLabel?: string;
 }
 
 type Props<M extends MutationParameters, T extends FieldValues> = BaseProps<

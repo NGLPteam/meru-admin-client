@@ -79,7 +79,10 @@ function EntityLinksList({
   ];
 
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <ButtonControlDrawer
         drawer="addLink"
         drawerQuery={{
@@ -114,8 +117,10 @@ function EntityLinksList({
   );
 }
 
-interface EntityLinksListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface EntityLinksListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: EntityLinksListFragment$key;
 }
 

@@ -102,8 +102,10 @@ const LinkTargetTypeahead = <T extends FieldValues = FieldValues>({
   );
 };
 
-interface Props<T extends FieldValues = FieldValues>
-  extends Omit<TypeaheadProps, "options" | "name"> {
+interface Props<T extends FieldValues = FieldValues> extends Omit<
+  TypeaheadProps,
+  "options" | "name"
+> {
   data?: LinkTargetTypeaheadFragment$key | null;
   control: Control<T>;
   name: Path<T>;

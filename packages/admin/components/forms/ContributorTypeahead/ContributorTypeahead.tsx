@@ -88,8 +88,10 @@ const ContributorTypeahead = <T extends FieldValues = FieldValues>(
   );
 };
 
-interface Props<T extends FieldValues = FieldValues>
-  extends Omit<TypeaheadProps, "options" | "name"> {
+interface Props<T extends FieldValues = FieldValues> extends Omit<
+  TypeaheadProps,
+  "options" | "name"
+> {
   control: Control<T>;
   name: Path<T>;
 }
@@ -97,7 +99,12 @@ export default ContributorTypeahead;
 
 const query = graphql`
   query ContributorTypeaheadQuery($query: String!) {
-    contributors(prefix: $query, page: 1, perPage: 50, order: NAME_ASCENDING) {
+    contributors(
+      filters: { nameSearch: { needle: $query, strategy: FUZZY } }
+      page: 1
+      perPage: 50
+      order: NAME_ASCENDING
+    ) {
       edges {
         node {
           ... on PersonContributor {

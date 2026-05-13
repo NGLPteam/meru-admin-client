@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f77fd4798b7f2739b2b329e5047ff04c>>
+ * @generated SignedSource<<81453b0c733c65e3ffe978bc9f55717e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,6 +15,7 @@ export type SearchResultListFragment$data = {
   readonly results: {
     readonly nodes: ReadonlyArray<{
       readonly entity: {
+        readonly __typename: string;
         readonly allowedActions: ReadonlyArray<string>;
         readonly id?: string;
         readonly schemaVersion: {
@@ -75,9 +76,52 @@ v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "__typename",
+  "storageKey": null
+},
+v4 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "title",
   "storageKey": null
-};
+},
+v5 = [
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "storage",
+    "storageKey": null
+  },
+  {
+    "alias": "thumb",
+    "args": null,
+    "concreteType": "ImageSize",
+    "kind": "LinkedField",
+    "name": "small",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "ImageDerivative",
+        "kind": "LinkedField",
+        "name": "webp",
+        "plural": false,
+        "selections": [
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "ImageFragment"
+          }
+        ],
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
+  }
+];
 return {
   "argumentDefinitions": [
     {
@@ -174,6 +218,7 @@ return {
                 (v1/*: any*/),
                 (v2/*: any*/),
                 (v3/*: any*/),
+                (v4/*: any*/),
                 {
                   "alias": null,
                   "args": null,
@@ -217,14 +262,8 @@ return {
                   "kind": "InlineDataFragmentSpread",
                   "name": "EntityThumbnailColumnFragment",
                   "selections": [
-                    {
-                      "alias": null,
-                      "args": null,
-                      "kind": "ScalarField",
-                      "name": "__typename",
-                      "storageKey": null
-                    },
                     (v3/*: any*/),
+                    (v4/*: any*/),
                     {
                       "alias": null,
                       "args": null,
@@ -232,43 +271,25 @@ return {
                       "kind": "LinkedField",
                       "name": "thumbnail",
                       "plural": false,
+                      "selections": (v5/*: any*/),
+                      "storageKey": null
+                    },
+                    {
+                      "kind": "InlineFragment",
                       "selections": [
                         {
                           "alias": null,
                           "args": null,
-                          "kind": "ScalarField",
-                          "name": "storage",
-                          "storageKey": null
-                        },
-                        {
-                          "alias": "thumb",
-                          "args": null,
-                          "concreteType": "ImageSize",
+                          "concreteType": "ImageAttachment",
                           "kind": "LinkedField",
-                          "name": "small",
+                          "name": "logo",
                           "plural": false,
-                          "selections": [
-                            {
-                              "alias": null,
-                              "args": null,
-                              "concreteType": "ImageDerivative",
-                              "kind": "LinkedField",
-                              "name": "webp",
-                              "plural": false,
-                              "selections": [
-                                {
-                                  "args": null,
-                                  "kind": "FragmentSpread",
-                                  "name": "ImageFragment"
-                                }
-                              ],
-                              "storageKey": null
-                            }
-                          ],
+                          "selections": (v5/*: any*/),
                           "storageKey": null
                         }
                       ],
-                      "storageKey": null
+                      "type": "Community",
+                      "abstractKey": null
                     },
                     (v1/*: any*/),
                     (v2/*: any*/)
@@ -350,6 +371,6 @@ return {
 };
 })();
 
-(node as any).hash = "3502e043b0fc9e1c3c463d436791bc8f";
+(node as any).hash = "83cee55f07c2a246cfc1d4a918ff7e39";
 
 export default node;

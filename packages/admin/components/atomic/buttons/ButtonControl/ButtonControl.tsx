@@ -11,6 +11,7 @@ const ButtonControl = forwardRef(
       children,
       iconRotate,
       iconChecked,
+      iconLeft,
       actions,
       allowedActions,
       $closeDropdown,
@@ -30,6 +31,15 @@ const ButtonControl = forwardRef(
         : onClick
       : $closeDropdown;
 
+    const iconEl = icon && (
+      <IconFactory
+        icon={icon}
+        rotate={iconRotate}
+        checked={iconChecked}
+        role="presentation"
+      />
+    );
+
     const content = (
       <Styled.ButtonControl
         ref={ref}
@@ -39,19 +49,13 @@ const ButtonControl = forwardRef(
         {...props}
       >
         <>
+          {iconLeft && iconEl}
           {children && (
-            <Styled.ButtonText $size={size} $icon={icon}>
+            <Styled.ButtonText $size={size} $icon={icon} $iconLeft={iconLeft}>
               {children}
             </Styled.ButtonText>
           )}
-          {icon && (
-            <IconFactory
-              icon={icon}
-              rotate={iconRotate}
-              checked={iconChecked}
-              role="presentation"
-            />
-          )}
+          {!iconLeft && iconEl}
         </>
       </Styled.ButtonControl>
     );
@@ -72,6 +76,7 @@ interface Props extends Omit<AuthorizeProps, "children"> {
   icon?: IconFactoryProps["icon"];
   iconRotate?: number;
   iconChecked?: boolean;
+  iconLeft?: boolean;
   as?: React.ElementType;
   onClick?: React.MouseEventHandler;
   "aria-label"?: string;

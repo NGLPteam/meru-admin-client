@@ -55,6 +55,7 @@ export const Item = styled.li`
 `;
 
 export const AvatarLink = styled(NavLink)<{ $active?: boolean }>`
+  position: relative;
   margin-block-start: ${pxToRem(5)};
   border-radius: 50%;
 

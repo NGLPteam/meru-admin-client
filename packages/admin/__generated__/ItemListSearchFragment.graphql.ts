@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f528c04567f86a1e4d8fab7d1b12a891>>
+ * @generated SignedSource<<f683e06284af35d8cf76317f55f96709>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -102,7 +102,43 @@ v5 = {
     }
   ],
   "storageKey": null
-};
+},
+v6 = [
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "storage",
+    "storageKey": null
+  },
+  {
+    "alias": "thumb",
+    "args": null,
+    "concreteType": "ImageSize",
+    "kind": "LinkedField",
+    "name": "small",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "ImageDerivative",
+        "kind": "LinkedField",
+        "name": "webp",
+        "plural": false,
+        "selections": [
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "ImageFragment"
+          }
+        ],
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
+  }
+];
 return {
   "argumentDefinitions": [
     {
@@ -369,43 +405,25 @@ return {
                           "kind": "LinkedField",
                           "name": "thumbnail",
                           "plural": false,
+                          "selections": (v6/*: any*/),
+                          "storageKey": null
+                        },
+                        {
+                          "kind": "InlineFragment",
                           "selections": [
                             {
                               "alias": null,
                               "args": null,
-                              "kind": "ScalarField",
-                              "name": "storage",
-                              "storageKey": null
-                            },
-                            {
-                              "alias": "thumb",
-                              "args": null,
-                              "concreteType": "ImageSize",
+                              "concreteType": "ImageAttachment",
                               "kind": "LinkedField",
-                              "name": "small",
+                              "name": "logo",
                               "plural": false,
-                              "selections": [
-                                {
-                                  "alias": null,
-                                  "args": null,
-                                  "concreteType": "ImageDerivative",
-                                  "kind": "LinkedField",
-                                  "name": "webp",
-                                  "plural": false,
-                                  "selections": [
-                                    {
-                                      "args": null,
-                                      "kind": "FragmentSpread",
-                                      "name": "ImageFragment"
-                                    }
-                                  ],
-                                  "storageKey": null
-                                }
-                              ],
+                              "selections": (v6/*: any*/),
                               "storageKey": null
                             }
                           ],
-                          "storageKey": null
+                          "type": "Community",
+                          "abstractKey": null
                         },
                         (v1/*: any*/),
                         (v2/*: any*/)

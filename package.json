@@ -18,14 +18,13 @@
   "description": "NGLP Web Delivery Platform client application",
   "main": "index.js",
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "packageManager": "yarn@4.13.0",
   "scripts": {
     "dev": "yarn workspace @wdp/admin run dev",
     "build": "scripts/do.sh build",
-    "build:ci": "yarn build:admin",
-    "build:admin": "yarn workspace @wdp/admin run build",
+    "build:ci": "yarn workspace @wdp/admin run build",
     "start": "scripts/do.sh start",
     "start:admin": "yarn workspace @wdp/admin run next start -p ${PORT:-3000}",
     "lint": "concurrently -c \"auto\" \"yarn:lint:*\"",
@@ -53,10 +52,6 @@
   "devDependencies": {
     "@yarnpkg/types": "^4.0.1",
     "concurrently": "^8.2.2",
-    "turbo": "^2.5.3"
-  },
-  "dependencies": {
-    "next-auth": "^4.24.7",
-    "react-hook-form": "7.53.0"
+    "turbo": "^2.9.9"
   }
 }

@@ -46,7 +46,16 @@ export default function CollectionLayout({
     { slug },
     collection,
   );
+  const submissionRoutes = useChildRouteLinks(
+    "collection.submissions",
+    { slug },
+    collection,
+  );
   const tabRoutes = useChildRouteLinks("collection", { slug }, collection);
+
+  const sidebarLinks = activeRoute?.name?.startsWith("collection.submissions")
+    ? submissionRoutes
+    : manageRoutes;
   const breadcrumbs = useBreadcrumbs(memoizedCollection || null);
   const destroy = useDestroyer();
 
@@ -101,8 +110,8 @@ export default function CollectionLayout({
 
   const buttons = (
     <ButtonControlGroup
-      toggleLabel={t("options")}
-      menuLabel={t("options")}
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
       breakpoint={70}
       desktopMax={allowsChildItems && allowsChildCollections ? 3 : 2}
     >
@@ -137,11 +146,11 @@ export default function CollectionLayout({
           title={memoizedCollection?.title}
           breadcrumbsProps={breadcrumbs ? { data: breadcrumbs } : undefined}
           tabRoutes={tabRoutes}
-          sidebarLinks={manageRoutes}
+          sidebarLinks={sidebarLinks}
           buttons={buttons}
         />
         {showSidebar ? (
-          <ContentSidebar sidebarLinks={manageRoutes}>
+          <ContentSidebar sidebarLinks={sidebarLinks}>
             {useRouteHeader && activeRoute && activeRoute.label && (
               <ContentHeader
                 headerStyle="secondary"

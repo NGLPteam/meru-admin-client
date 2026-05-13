@@ -47,10 +47,9 @@ const fragment = graphql`
   }
 `;
 
-interface Props
-  extends Pick<
-    React.ComponentProps<typeof MutationForm>,
-    "onSuccess" | "onCancel"
-  > {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess" | "onCancel"
+> {
   data?: ContributorUpdateFormFragment$key | null;
 }

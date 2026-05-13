@@ -54,11 +54,10 @@ const UserGrantCommunityAccessForm = ({
   );
 };
 
-interface Props
-  extends Pick<
-    React.ComponentProps<typeof MutationForm>,
-    "onSuccess" | "onCancel"
-  > {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess" | "onCancel"
+> {
   userId?: string;
   data?: UserGrantCommunityAccessFormFragment$key | null;
 }

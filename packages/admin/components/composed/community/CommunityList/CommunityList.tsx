@@ -48,7 +48,10 @@ function CommunityList({ data, hideHeader, headerStyle }: CommunityListProps) {
   };
 
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <ButtonControlDrawer drawer="addCommunity" icon="plus">
         {t("actions.create.community")}
       </ButtonControlDrawer>
@@ -68,8 +71,10 @@ function CommunityList({ data, hideHeader, headerStyle }: CommunityListProps) {
   );
 }
 
-interface CommunityListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface CommunityListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: CommunityListFragment$key;
 }
 

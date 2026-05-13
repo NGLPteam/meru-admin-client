@@ -19,12 +19,14 @@
       "delete": "Delete",
       "download": "Download",
       "view": "View",
+      "preview": "Preview",
       "loading": "Loading",
       "loading_ellipsis": "Loading...",
       "manage": "Manage",
       "options": "Options",
       "save": "Save",
       "save_and_close": "Save & Close",
+      "save_and_continue": "Save & Continue",
       "search": "Search",
       "sign_in": "Sign In",
       "sign_out": "Sign Out",
@@ -67,6 +69,8 @@
       "file_other": "files",
       "role": "role",
       "role_other": "roles",
+      "reviewer": "reviewer",
+      "reviewer_other": "reviewers",
       "access": "access",
       "access_other": "access",
       "schema": "Schema",
@@ -94,7 +98,10 @@
       "member": "member",
       "member_other": "members",
       "metadata": "metadata",
-      "metadata_mapping": "metadata mapping"
+      "metadata_mapping": "metadata mapping",
+      "submission": "submission",
+      "submission_other": "submissions",
+      "comment": "Comment"
     },
     "lists": {
       "admin_column": "Admin?",
@@ -125,9 +132,10 @@
       "contributors_column": "Contributors",
       "disabled_column": "Disabled",
       "no_results": "No Results",
+      "no_contributors": "No contributors added yet.",
       "contribution_count": "{{count}} contribution",
       "contribution_count_other": "{{count}} contributions",
-      "selected_count": "<0>Selected: {{count}}</0> of <0>{{total}}</0>",
+      "selected_count": "<0>{{count}}</0> Selected",
       "showing_count": "Showing <0>{{start}} - {{end}}</0> of <0>{{total}}</0>",
       "sort": {
         "label": "Sort",
@@ -144,13 +152,17 @@
       "began_at_column": "Started At",
       "ended_at_column": "Ended At",
       "status_column": "Status",
+      "collection_column": "Collection",
       "identifier_column": "Identifier",
       "entity_count_column": "Entity Count",
       "has_errors_column": "Has Errors",
       "target_entity_column": "Target Entity",
       "attempts_count_column": "Attempts Count",
       "pattern_column": "Pattern",
-      "field_column": "Field"
+      "field_column": "Field",
+      "submitted_by_column": "Submitted By",
+      "from_state_column": "From",
+      "to_state_column": "To"
     },
     "nav": {
       "manage_header": "Manage",
@@ -193,10 +205,44 @@
       "harvest_mapping_new": "New Harvest Mapping",
       "metadata_mappings": "Metadata Mappings",
       "new_metadata_mapping": "Metadata Mapping",
-      "permalinks": "Permalinks"
+      "permalinks": "Permalinks",
+      "my_submissions": "My Submissions",
+      "my_reviews": "My Reviews",
+      "all_submissions": "All Submissions",
+      "review_submissions": "Review Submissions",
+      "submissions_header": "Submissions",
+      "publish_submissions": "Publish Submissions",
+      "review": "Review",
+      "publish": "Publish",
+      "new_submission": "New Submission",
+      "history": "History",
+      "reviews": "Reviews",
+      "my_publications": "My Publications",
+      "reviewers": "Reviewers",
+      "settings": "Settings",
+      "pending_reviews_badge_one": "{{count}} pending review",
+      "pending_reviews_badge_other": "{{count}} pending reviews",
+      "revision_requested_badge_one": "{{count}} submission needs revision",
+      "revision_requested_badge_other": "{{count}} submissions need revision",
+      "account_alert_badge_one": "{{count}} submission notification",
+      "account_alert_badge_other": "{{count}} submission notifications"
     },
     "messages": {
       "marked_for_purge": "Marked for purge",
+      "submission_target_required_name": "Configuration Required",
+      "submission_target_required": "The form below must be completed before this collection can accept submissions. Configuration can be updated at any time, even after submissions have been received.",
+      "submission_target_reviewers_required": "This collection must be setup to accept submissions before reviewers can be added. Go to <0>Settings</0> to configure.",
+      "no_targets_heading": "No Available Collections",
+      "no_targets_message": "There are no collections you can deposit to at this time. Please contact an administrator if you believe this is an error.",
+      "no_deposit_access_heading": "Deposit Access Required",
+      "no_deposit_access_message": "You do not have permission to deposit to this collection. If you've already requested access, check back again soon.",
+      "deposit_access_requested_heading": "Request Sent",
+      "deposit_access_requested_message": "Your request for deposit access has been sent. Check back soon for updates.",
+      "deposit_access_request_failed": "Failed to send deposit access request. Please try again.",
+      "submissions_open_confirm": "Are you sure you want to open this collection for submissions?",
+      "submissions_close_confirm": "Are you sure you want to close submissions for this collection?",
+      "submission_submitted": "Submission successfully submitted for review!",
+      "submission_state_changed": "Submission status updated successfully.",
       "unauthorized": "Unauthorized",
       "unauthorized_body": {
         "users": "Your account is not authorized to manage users.<0/>Please check with your account manager if you need access to this content.",
@@ -207,6 +253,8 @@
       },
       "error_message": "Error: {{error}}",
       "content_error": "There was an issue loading this content. Please try again.",
+      "review_submitted": "Thank you for submitting your review!",
+      "review_requested": "Review request sent",
       "add": {
         "success": "$t({{ name }}) added successfully.",
         "link_success": "Link added successfully.",
@@ -222,7 +270,9 @@
         "ordering_failure": "Failed to add ordering.",
         "announcement_success": "Announcement added successfully.",
         "announcement_failure": "Failed to add announcement.",
-        "file_success": "File added successfully."
+        "file_success": "File added successfully.",
+        "reviewer_success": "Reviewer added successfully.",
+        "reviewer_failure": "Failed to add reviewer."
       },
       "update": {
         "success": "$t({{ name }}) updated successfully.",
@@ -255,7 +305,10 @@
         "initial_ordering_success": "Successfully updated initial ordering.",
         "initial_ordering_failure": "Failed to update initial ordering.",
         "harvest_source_success": "Harvest source updated successfully.",
-        "harvest_mapping_success": "Harvest mapping updated successfully."
+        "harvest_mapping_success": "Harvest mapping updated successfully.",
+        "submission_success": "Submission updated successfully.",
+        "submission_target_success": "Submission settings updated.",
+        "submission_target_failure": "Failed to update submission settings."
       },
       "create": {
         "success": "$t({{ name }}) created successfully.",
@@ -268,7 +321,8 @@
         "harvest_source_success": "Harvest source created successfully.",
         "harvest_mapping_success": "Harvest mapping created successfully",
         "harvest_attempt_success": "Harvest attempt started successfully",
-        "harvest_metadata_mapping_success": "Harvest metadata mapping created successfully"
+        "harvest_metadata_mapping_success": "Harvest metadata mapping created successfully",
+        "submission_success": "Submission created successfully."
       },
       "delete": {
         "confirm_label": "Confirm Delete",
@@ -311,6 +365,16 @@
         "entity_success": "Entity cache cleared successfully.",
         "entity_confirm_label": "Confirm Clear Entity Cache",
         "entity_confirm_body": "Are you sure you want to clear the frontend cache for this entity?"
+      },
+      "submission": {
+        "draft": "This is a draft submission. You can make changes below. Click Submit above when you are ready to send the submission to the collection administrator for review. You will not be able to edit after that point, unless a reviewer requests revisions.",
+        "submitted": "Your submission has been submitted and cannot be edited at this time. If you need to make changes, contact your collection administrator. Reviews of this submission will be available under the Reviews tab as they come in.",
+        "under_review": "Your submission is currently in review and cannot be edited. If you need to make changes, contact your collection administrator. Reviews of this submission will be available under the Reviews tab as they come in.",
+        "revision_requested": "Revisions have been requested for this submission. You can find reviewer comments on the Reviews tab. When your changes are ready, resubmit via the button above.",
+        "approved": "Your submission has been approved! When it is published, a link to the public view will be available on your dashboard under My Publications.",
+        "published": "This submission has been published. A link to the public view is available on your dashboard under My Publications.",
+        "rejected": "This submission has been rejected. You can find reviewer comments on the Reviews tab. Contact your collection administrator if you have questions.",
+        "pending": "This submission is pending. Check back soon for updates."
       }
     },
     "actions": {
@@ -342,7 +406,11 @@
         "harvest_mapping": "$t(glossary.harvest_mapping)",
         "harvest_mapping_header": "Add Harvest Mapping",
         "harvest_attempt": "$t(glossary.harvest_attempt)",
-        "harvest_metadata_mapping": "$t(glossary.metadata_mapping)"
+        "harvest_metadata_mapping": "$t(glossary.metadata_mapping)",
+        "submission": "New Submission",
+        "contributor_row": "Add Contributor",
+        "file_row": "Add File",
+        "reviewer": "Add Reviewer"
       },
       "create": {
         "contributor_person": "Create Person",
@@ -407,6 +475,32 @@
         "entity_purge_modal_header": "Delete {{ entityType }}",
         "button_label": "Purge",
         "confirm_body": "Are you sure you want to proceed? This action cannot be undone and may remove many entities."
+      },
+      "submissions": {
+        "review": "Review",
+        "review_next": "Review Next",
+        "review_previous": "Review Previous",
+        "resubmit": "Resubmit",
+        "bulk_publish": "Bulk Publish",
+        "submit_for_review_confirm": "Are you sure you're ready to submit this for review?",
+        "resubmit_for_review_confirm": "Are you sure you're ready to submit revisions?",
+        "publish_confirm_label": "Confirm Publish",
+        "publish_confirm_body": "Are you sure you want to publish the {{count}} selected submission(s)?",
+        "publish_confirm_body_single": "Are you sure you want to publish \"{{title}}\"?",
+        "publish_success": "{{title}} published successfully.",
+        "publish_batch_success": "{{count}} items published in {{target}}.",
+        "publish_batch_queued": "{{count}} items queued for publish in {{target}}.",
+        "select_all": "Select all",
+        "clear_selection": "Clear selection",
+        "select_all_matching": "Select all {{count}} {{unit}}",
+        "enable_submissions": "Enable Submissions",
+        "disable_submissions": "Disable Submissions",
+        "submissions_opened": "Submissions are now open.",
+        "submissions_closed": "Submissions are now closed.",
+        "request_deposit_access": "Request Access",
+        "transition": "Update Status",
+        "transition_select_label": "New status",
+        "request_review": "Request Review"
       }
     },
     "sort": {
@@ -425,8 +519,11 @@
         "subtitle": "Subtitle",
         "tagline": "Tagline",
         "thumbnail": "Thumbnail",
+        "thumbnail_description": "Thumbnail is shown when this work is displayed in lists.",
         "visibility": "Visibility",
         "summary": "Summary",
+        "short_description": "Short Description",
+        "short_description_description": "Brief description used when this work is displayed in lists. The full abstract below will be displayed on the detail page.",
         "visible_after": "Visible After",
         "visible_until": "Visible Until",
         "role": "Role",
@@ -515,11 +612,13 @@
         "logo_description": "<0>Recommended sizes:</0><1><0>Raster Logos: 566px by 566px. This size ensures it looks crisp, especially on list pages.</0><0>Vector Logos: These are scalable so there are no minimum pixel dimensions, but if there's too much white space around the logo, it may appear smaller than expected.</0></1>",
         "logo_settings": "Logo Settings",
         "logo_settings_description": "Choose if the logo should be displayed with or without the installation name.",
+        "logo_display": "Display Format",
         "logo_settings_with_text": "Display with Installation Name",
         "logo_settings_without_text": "Display without Installation Name",
         "position": "Position",
         "order": "Order",
         "order_description": "Optional. Override the default sort by role priority for this contributor.",
+        "order_description_submission": "Optional. By default, contributors will be sorted by role. Use this field to override that default and assign a specific position to this contributor, e.g. 1 for first author.",
         "outer_position": "Overall Position",
         "outer_position_description": "Where this contributor will be displayed among all contributors. Overrides role position if both are set.",
         "inner_position": "Role Position",
@@ -532,6 +631,13 @@
         "search_placeholder": "Enter keyword",
         "initial_ordering": "Initial Ordering",
         "initial_ordering_description": "Set which ordering should be displayed on the landing page of {{name}}.",
+        "depositing_settings": "Depositing",
+        "depositing_enabled": "Enable depositing",
+        "depositing_enabled_description": "Allow users to deposit to this installation.",
+        "depositing_agreement": "Depositing Certification",
+        "depositing_agreement_short": "Certification",
+        "depositing_agreement_description": "Terms users must accept before depositing. Collections may override this with their own certification text.",
+        "depositing_agreement_accept": "Accept and proceed to submit",
         "entity_settings": "Entity Settings",
         "supress_external_links": "Suppress external links",
         "supress_external_links_description": "Hide external links in metadata.",
@@ -557,7 +663,49 @@
         "max_records_description": "Default 80,000",
         "field": "Field",
         "pattern": "Pattern",
-        "pattern_description": "An ANSI-compatible regular expression to match against"
+        "pattern_description": "An ANSI-compatible regular expression to match against",
+        "schema_fields_placeholder": "Schema-specific fields will appear here after this feature is fully connected.",
+        "decision": "Decision",
+        "decision_approve": "Approve",
+        "decision_revise": "Request Revisions",
+        "decision_reject": "Reject",
+        "comments_for_depositor": "Comments",
+        "comments_for_depositor_description": "These comments will be shared with the creator of this submission and also visible to administrators who can manage the submission.",
+        "internal_notes": "Internal Notes",
+        "status": "Status",
+        "last_updated": "Last Updated",
+        "contributors": "Contributors",
+        "files": "Files",
+        "accepts_submissions": "This collection accepts submissions",
+        "deposit_mode": "Deposit Mode",
+        "deposit_mode_direct": "Direct",
+        "deposit_mode_descendant": "Descendant",
+        "deposit_mode_description": "Select Direct if users should submit directly to this collection only; select Descendant to allow users to submit to this collection and one or more of its child collections, e.g. a paper series within a departmental unit.",
+        "deposit_targets": "Deposit Targets",
+        "deposit_targets_description": "Select the child entities that can accept submissions.",
+        "add_deposit_target": "Add Deposit Target",
+        "submission_instructions": "Instructions for Depositors",
+        "submission_instructions_description": "This text will be displayed to users when they create a new submission to this collection. This field accepts markdown.",
+        "submission_internal_notes": "Instructions for Reviewers",
+        "submission_internal_notes_description": "This text will be displayed to reviewers who receive a review request for a submission to this collection. This field accepts markdown.",
+        "agreement_required": "Certification required",
+        "agreement_required_description": "Require users to accept submission terms for each submission to this collection.",
+        "auto_approve_depositors": "Auto-approve depositors",
+        "auto_approve_depositors_description": "Automatically approve users who request to submit to this collection. If not set, users will need to be individually granted permission to submit by a collection manager.",
+        "agreement_content": "Certification Text",
+        "agreement_content_description": "If blank and certification is required, the default agreement for this installation will be used.",
+        "accepted_schemas": "Accepted Submission Schemas",
+        "accepted_schemas_description": "Users submitting to this collection will see only the selected schema options when creating submissions.",
+        "submissions_enabled": "Submissions enabled",
+        "submission_target": "Which collection are you submitting to?",
+        "submission_target_description": "Collections currently accepting submissions are shown here. If the collection you're looking for isn't available, contact the collection administrator.",
+        "child_submission_target": "Sub-Collection",
+        "child_submission_target_description": "This collection is currently accepting submissions in the sub-collections listed above. Please select a destination for your submission.",
+        "submission_schema": "What kind of work are you submitting?",
+        "submission_schema_description": "If your work does not match the available options for this collection, consider submitting to a different collection or reach out to the collection administrator for guidance.",
+        "submission_instructions": "Submission Instructions",
+        "images": "Images",
+        "properties": "Properties"
       },
       "validation": {
         "year": "Must be a four digit year",
@@ -654,7 +802,9 @@
     },
     "dashboard": {
       "installation_header": "Installation",
-      "current_version_label": "Current Version"
+      "current_version_label": "Current Version",
+      "no_admin_access_title": "No Admin Access",
+      "no_admin_access_message": "This account has no admin access. If you're here to submit, you're in the right place and can ignore this message. If you expected to have admin access, please contact your site administrator."
     },
     "search": {
       "results": "Search results",
@@ -670,7 +820,27 @@
       "publication_filters": "Publication:",
       "schema_filters": "Schema:",
       "show_all_schemas": "Show all schemas",
-      "show_less": "Show less"
+      "show_less": "Show less",
+      "submissions": {
+        "filter_by_status": "Filter Status",
+        "filter_submitted_by": "Filter Submitted By",
+        "filter_collection": "Filter Collection",
+        "filter_by_date": "Date Updated",
+        "updated_tag_label": "Updated",
+        "updated_after": "after",
+        "updated_before": "before",
+        "submission_target": "Submission target"
+      }
+    },
+    "status": {
+      "draft_label": "Draft",
+      "submitted_label": "Submitted",
+      "under_review_label": "In Review",
+      "revision_requested_label": "Revisions Requested",
+      "approved_label": "Approved",
+      "published_label": "Published",
+      "rejected_label": "Rejected",
+      "pending_label": "Pending"
     },
     "harvesting": {
       "mode": "Mode",
@@ -718,6 +888,15 @@
       "mapping_details_column_set": "{{format}} to {{target}} ({{set}})",
       "view_target": "View Target",
       "mapping_breadcrumb": "{{format}} Mapping to {{target}}"
+    },
+    "counts": {
+      "range": "<0>{{start}}–{{end}}</0> of {{total}} {{unit}}",
+      "bulk_actions_match": "<0>{{total}}</0> {{unit}} selected"
+    },
+    "records": {
+      "annotations": {
+        "bulk_actions": "Bulk Actions"
+      }
     }
   }
 }

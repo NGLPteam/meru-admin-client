@@ -50,4 +50,9 @@ export interface SchemaContextState<T extends FieldValues = FieldValues> {
    * Is the fragment loading?
    */
   isLoading?: boolean;
+
+  /**
+   * True when these schema fields are rendered inside a submission flow.
+   */
+  isSubmission?: boolean;
 }

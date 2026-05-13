@@ -100,6 +100,28 @@ export const baseRoutes: BaseRoute[] = [
               },
             ],
           },
+          {
+            name: "collection.submissions",
+            path: "/collections/[slug]/submissions",
+            redirect: "/collections/[slug]/submissions/settings",
+            label: "glossary.submission_other",
+            actions: ["self.update"],
+            depositing: true,
+            routes: [
+              {
+                name: "collection.submissions.settings",
+                path: "/collections/[slug]/submissions/settings",
+                label: "nav.settings",
+                actions: ["self.update"],
+              },
+              {
+                name: "collection.submissions.reviewers",
+                path: "/collections/[slug]/submissions/reviewers",
+                label: "nav.reviewers",
+                actions: ["self.update"],
+              },
+            ],
+          },
         ],
       },
     ],
@@ -254,6 +276,82 @@ export const baseRoutes: BaseRoute[] = [
     ],
   },
   {
+    name: "my-submissions",
+    path: "/my-submissions",
+    label: "glossary.submission_other",
+    routes: [
+      {
+        name: "my-submissions.new",
+        path: "/my-submissions/new",
+        label: "nav.new_submission",
+      },
+      {
+        name: "my-submissions.detail",
+        path: "/my-submissions/[slug]",
+        redirect: "/my-submissions/[slug]/details",
+        label: "glossary.submission",
+        routes: [
+          {
+            name: "my-submissions.detail.details",
+            path: "/my-submissions/[slug]/details",
+            label: "nav.details",
+          },
+          {
+            name: "my-submissions.detail.reviews",
+            path: "/my-submissions/[slug]/reviews",
+            label: "nav.reviews",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "my-reviews",
+    path: "/my-reviews",
+    label: "nav.my_reviews",
+  },
+  {
+    name: "submissions",
+    path: "/submissions",
+    redirect: "/submissions/review",
+    label: "glossary.submission_other",
+    routes: [
+      {
+        name: "submissions.review",
+        path: "/submissions/review",
+        label: "nav.review",
+      },
+      {
+        name: "submissions.publish",
+        path: "/submissions/publish",
+        label: "nav.publish",
+      },
+      {
+        name: "submissions.detail",
+        path: "/submissions/[slug]",
+        redirect: "/submissions/[slug]/details",
+        label: "glossary.submission",
+        routes: [
+          {
+            name: "submissions.detail.details",
+            path: "/submissions/[slug]/details",
+            label: "nav.details",
+          },
+          {
+            name: "submissions.detail.history",
+            path: "/submissions/[slug]/history",
+            label: "nav.history",
+          },
+          {
+            name: "submissions.detail.reviews",
+            path: "/submissions/[slug]/reviews",
+            label: "nav.reviews",
+          },
+        ],
+      },
+    ],
+  },
+  {
     name: "communities.search",
     path: "/communities/search",
     label: "Search Communities",
@@ -298,6 +396,12 @@ export const baseRoutes: BaseRoute[] = [
     name: "permalinks",
     path: "/permalinks",
     label: "nav.permalinks",
+    actions: ["settings.update"],
+  },
+  {
+    name: "settings",
+    path: "/settings",
+    label: "nav.global_settings",
     actions: ["settings.update"],
   },
   {

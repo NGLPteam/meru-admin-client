@@ -31,20 +31,22 @@ function ModelList<
   actions,
   disableSortBy,
   listId,
+  rowSelection,
+  onRowSelectionChange,
 }: ModelListProps<U, V>) {
   const { t } = useTranslation();
   const title = modelName ? t(modelName, { count: 2 }) : "";
 
   const queryState = useQueryStateContext();
 
-  // We can also retrieve `selection` from useModelList if we need it, which we eventually
-  // will.
   const { modelGridOrTableProps } = useModelList<U, V>({
     columns,
     actions,
     data,
     selectable,
     disableSortBy,
+    rowSelection,
+    onRowSelectionChange,
   });
 
   let ModelListType;

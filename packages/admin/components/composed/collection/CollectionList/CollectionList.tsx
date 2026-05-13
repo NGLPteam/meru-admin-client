@@ -96,7 +96,10 @@ function CollectionList({
   };
 
   const buttons = !hideHeader ? (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <ButtonControlDrawer drawer="addCollection" icon="plus">
         {t("actions.add.collection")}
       </ButtonControlDrawer>
@@ -119,8 +122,10 @@ function CollectionList({
   );
 }
 
-interface CollectionListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface CollectionListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   collections?: CollectionListFragment$key;
   search?: CollectionListSearchFragment$key;
 }

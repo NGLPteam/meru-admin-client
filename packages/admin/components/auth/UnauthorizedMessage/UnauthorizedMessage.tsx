@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import Link from "next/link";
 import useMaybeFragment from "@wdp/lib/api/hooks/useMaybeFragment";
 import { graphql } from "react-relay";
 import { MessageBlock } from "components/atomic";
@@ -34,6 +35,11 @@ export default function UnauthorizedMessage({
         Your account currently does not have admin access.
         <br /> Please check with your account manager if you need access to this
         tool.
+      </p>
+
+      <p>
+        If you&apos;re looking to submit, go to{" "}
+        <Link href="/my-submissions">your submissions page</Link>.
       </p>
     </div>
   );
