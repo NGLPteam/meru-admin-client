@@ -1,6 +1,6 @@
-import { graphql } from "react-relay";
+import { graphql, useFragment } from "react-relay";
 import { useTranslation } from "react-i18next";
-import { useMaybeFragment } from "hooks";
+import { useDestroyer } from "hooks";
 import ModelListPage from "components/composed/model/ModelListPage";
 import ModelColumns from "components/composed/model/ModelColumns";
 import PageHeader from "components/layout/PageHeader";
@@ -22,13 +22,17 @@ export default function SubmissionTargetReviewersList({
   hideHeader,
 }: Props) {
   const { t } = useTranslation();
+  const destroy = useDestroyer();
 
   const submissionTarget =
-    useMaybeFragment<SubmissionTargetReviewersListFragment$key>(fragment, data);
+    useFragment<SubmissionTargetReviewersListFragment$key>(
+      fragment,
+      data ?? null,
+    );
 
-  const users = useMaybeFragment<SubmissionTargetReviewersListDataFragment$key>(
+  const reviewers = useFragment<SubmissionTargetReviewersListDataFragment$key>(
     listDataFragment,
-    submissionTarget?.entity?.assignedUsers,
+    submissionTarget?.reviewers ?? null,
   );
 
   const submissionTargetId = submissionTarget?.submissionTargetId;
@@ -50,12 +54,11 @@ export default function SubmissionTargetReviewersList({
 
   const actions = {
     handleDelete: ({ row }: ModelTableActionProps<Node>) => {
-      // TODO: Wire up submissionTargetReviewerDestroy once the schema
-      // provides a reviewers connection with submissionTargetReviewerId
-      console.info("Remove reviewer", {
-        submissionTargetId,
-        userId: row.original.user?.id,
-      });
+      if (!row.original.id) return;
+      destroy.submissionTargetReviewer(
+        { submissionTargetReviewerId: row.original.id },
+        row.original.user?.name || "glossary.reviewer",
+      );
     },
   };
 
@@ -80,7 +83,7 @@ export default function SubmissionTargetReviewersList({
     <ModelListPage<SubmissionTargetReviewersListDataFragment$data, Node>
       modelName="role"
       columns={columns}
-      data={users}
+      data={reviewers}
       header={t("nav.reviewers")}
       headerStyle={headerStyle}
       hideHeader={hideHeader}
@@ -100,18 +103,14 @@ type Node =
 const fragment = graphql`
   fragment SubmissionTargetReviewersListFragment on SubmissionTarget {
     submissionTargetId: id
-    entity {
-      ... on Collection {
-        assignedUsers(order: USER_NAME_ASC, page: $page, perPage: 20) {
-          ...SubmissionTargetReviewersListDataFragment
-        }
-      }
+    reviewers(page: $page, perPage: 20) {
+      ...SubmissionTargetReviewersListDataFragment
     }
   }
 `;
 
 const listDataFragment = graphql`
-  fragment SubmissionTargetReviewersListDataFragment on ContextualPermissionConnection {
+  fragment SubmissionTargetReviewersListDataFragment on SubmissionTargetReviewerConnection {
     edges {
       node {
         id
