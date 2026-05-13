@@ -11,6 +11,9 @@ import { Authorize } from "components/auth";
 import { RouteHelper } from "routes";
 import { useIsAuthenticated } from "hooks";
 import { useGlobalContext, useViewerContext } from "contexts";
+import AvatarAlertBadge from "./badges/AvatarAlertBadge";
+import PendingReviewBadge from "./badges/PendingReviewBadge";
+import RevisionRequestedBadge from "./badges/RevisionRequestedBadge";
 import * as Styled from "./Header.styles";
 type NamedLinkProps = React.ComponentProps<typeof NamedLink>;
 type AuthorizeProps = React.ComponentProps<typeof Authorize>;
@@ -71,6 +74,7 @@ const HeaderAccount = ({ accountNav }: Props) => {
         disclosure={
           <Styled.AvatarLink as="button" $active={active}>
             <Avatar data={avatar} placeholder />
+            <AvatarAlertBadge />
           </Styled.AvatarLink>
         }
         menuItems={[
@@ -107,7 +111,11 @@ const HeaderAccount = ({ accountNav }: Props) => {
 
     return maybeAuthorize(
       <NamedLink route={route.name} passHref>
-        <NavLink active={active}>{t(item.label || "")}</NavLink>
+        <NavLink active={active}>
+          {t(item.label || "")}
+          {item.route === "my-reviews" && <PendingReviewBadge />}
+          {item.route === "my-submissions" && <RevisionRequestedBadge />}
+        </NavLink>
       </NamedLink>,
       item,
       i,

@@ -219,7 +219,13 @@
       "reviews": "Reviews",
       "my_publications": "My Publications",
       "reviewers": "Reviewers",
-      "settings": "Settings"
+      "settings": "Settings",
+      "pending_reviews_badge_one": "{{count}} pending review",
+      "pending_reviews_badge_other": "{{count}} pending reviews",
+      "revision_requested_badge_one": "{{count}} submission needs revision",
+      "revision_requested_badge_other": "{{count}} submissions need revision",
+      "account_alert_badge_one": "{{count}} submission notification",
+      "account_alert_badge_other": "{{count}} submission notifications"
     },
     "messages": {
       "marked_for_purge": "Marked for purge",

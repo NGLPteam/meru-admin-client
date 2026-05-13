@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ede2099b7730636970c3b38d572a80d5>>
+ * @generated SignedSource<<50494b7e55302ea1dba288f1c8e59c0a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,10 +11,8 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type SubmissionTargetReviewersListFragment$data = {
-  readonly entity: {
-    readonly assignedUsers?: {
-      readonly " $fragmentSpreads": FragmentRefs<"SubmissionTargetReviewersListDataFragment">;
-    };
+  readonly reviewers: {
+    readonly " $fragmentSpreads": FragmentRefs<"SubmissionTargetReviewersListDataFragment">;
   };
   readonly submissionTargetId: string;
   readonly " $fragmentType": "SubmissionTargetReviewersListFragment";
@@ -44,50 +42,27 @@ const node: ReaderFragment = {
     },
     {
       "alias": null,
-      "args": null,
-      "concreteType": null,
+      "args": [
+        {
+          "kind": "Variable",
+          "name": "page",
+          "variableName": "page"
+        },
+        {
+          "kind": "Literal",
+          "name": "perPage",
+          "value": 20
+        }
+      ],
+      "concreteType": "SubmissionTargetReviewerConnection",
       "kind": "LinkedField",
-      "name": "entity",
+      "name": "reviewers",
       "plural": false,
       "selections": [
         {
-          "kind": "InlineFragment",
-          "selections": [
-            {
-              "alias": null,
-              "args": [
-                {
-                  "kind": "Literal",
-                  "name": "order",
-                  "value": "USER_NAME_ASC"
-                },
-                {
-                  "kind": "Variable",
-                  "name": "page",
-                  "variableName": "page"
-                },
-                {
-                  "kind": "Literal",
-                  "name": "perPage",
-                  "value": 20
-                }
-              ],
-              "concreteType": "ContextualPermissionConnection",
-              "kind": "LinkedField",
-              "name": "assignedUsers",
-              "plural": false,
-              "selections": [
-                {
-                  "args": null,
-                  "kind": "FragmentSpread",
-                  "name": "SubmissionTargetReviewersListDataFragment"
-                }
-              ],
-              "storageKey": null
-            }
-          ],
-          "type": "Collection",
-          "abstractKey": null
+          "args": null,
+          "kind": "FragmentSpread",
+          "name": "SubmissionTargetReviewersListDataFragment"
         }
       ],
       "storageKey": null
@@ -97,6 +72,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "52fe5cac406181751a2e8529ab7ed0c4";
+(node as any).hash = "c114a643ec97f33e17d784cf668e78fe";
 
 export default node;
