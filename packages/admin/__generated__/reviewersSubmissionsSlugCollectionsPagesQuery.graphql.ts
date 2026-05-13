@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<da7100425b78205252b84b123a9ffb75>>
+ * @generated SignedSource<<225fa897ce6fc94fa7912cf65c39d9aa>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -126,165 +126,135 @@ return {
               },
               {
                 "alias": null,
-                "args": null,
-                "concreteType": null,
+                "args": [
+                  {
+                    "kind": "Variable",
+                    "name": "page",
+                    "variableName": "page"
+                  },
+                  {
+                    "kind": "Literal",
+                    "name": "perPage",
+                    "value": 20
+                  }
+                ],
+                "concreteType": "SubmissionTargetReviewerConnection",
                 "kind": "LinkedField",
-                "name": "entity",
+                "name": "reviewers",
                 "plural": false,
                 "selections": [
                   {
                     "alias": null,
                     "args": null,
-                    "kind": "ScalarField",
-                    "name": "__typename",
-                    "storageKey": null
-                  },
-                  (v3/*: any*/),
-                  {
-                    "kind": "InlineFragment",
+                    "concreteType": "SubmissionTargetReviewerEdge",
+                    "kind": "LinkedField",
+                    "name": "edges",
+                    "plural": true,
                     "selections": [
                       {
                         "alias": null,
-                        "args": [
-                          {
-                            "kind": "Literal",
-                            "name": "order",
-                            "value": "USER_NAME_ASC"
-                          },
-                          {
-                            "kind": "Variable",
-                            "name": "page",
-                            "variableName": "page"
-                          },
-                          {
-                            "kind": "Literal",
-                            "name": "perPage",
-                            "value": 20
-                          }
-                        ],
-                        "concreteType": "ContextualPermissionConnection",
+                        "args": null,
+                        "concreteType": "SubmissionTargetReviewer",
                         "kind": "LinkedField",
-                        "name": "assignedUsers",
+                        "name": "node",
                         "plural": false,
                         "selections": [
+                          (v3/*: any*/),
                           {
                             "alias": null,
                             "args": null,
-                            "concreteType": "ContextualPermissionEdge",
+                            "concreteType": "User",
                             "kind": "LinkedField",
-                            "name": "edges",
-                            "plural": true,
+                            "name": "user",
+                            "plural": false,
                             "selections": [
+                              (v3/*: any*/),
                               {
                                 "alias": null,
                                 "args": null,
-                                "concreteType": "ContextualPermission",
+                                "kind": "ScalarField",
+                                "name": "name",
+                                "storageKey": null
+                              },
+                              {
+                                "alias": null,
+                                "args": null,
+                                "kind": "ScalarField",
+                                "name": "email",
+                                "storageKey": null
+                              },
+                              {
+                                "alias": null,
+                                "args": null,
+                                "kind": "ScalarField",
+                                "name": "slug",
+                                "storageKey": null
+                              },
+                              {
+                                "alias": null,
+                                "args": null,
+                                "concreteType": "ImageAttachment",
                                 "kind": "LinkedField",
-                                "name": "node",
+                                "name": "avatar",
                                 "plural": false,
                                 "selections": [
-                                  (v3/*: any*/),
                                   {
                                     "alias": null,
                                     "args": null,
-                                    "concreteType": "User",
+                                    "kind": "ScalarField",
+                                    "name": "storage",
+                                    "storageKey": null
+                                  },
+                                  {
+                                    "alias": null,
+                                    "args": null,
+                                    "concreteType": "ImageSize",
                                     "kind": "LinkedField",
-                                    "name": "user",
+                                    "name": "small",
                                     "plural": false,
                                     "selections": [
-                                      (v3/*: any*/),
                                       {
                                         "alias": null,
                                         "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "name",
-                                        "storageKey": null
-                                      },
-                                      {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "email",
-                                        "storageKey": null
-                                      },
-                                      {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "slug",
-                                        "storageKey": null
-                                      },
-                                      {
-                                        "alias": null,
-                                        "args": null,
-                                        "concreteType": "ImageAttachment",
+                                        "concreteType": "ImageDerivative",
                                         "kind": "LinkedField",
-                                        "name": "avatar",
+                                        "name": "webp",
                                         "plural": false,
                                         "selections": [
                                           {
                                             "alias": null,
                                             "args": null,
                                             "kind": "ScalarField",
-                                            "name": "storage",
+                                            "name": "width",
                                             "storageKey": null
                                           },
                                           {
                                             "alias": null,
                                             "args": null,
-                                            "concreteType": "ImageSize",
-                                            "kind": "LinkedField",
-                                            "name": "small",
-                                            "plural": false,
+                                            "kind": "ScalarField",
+                                            "name": "height",
+                                            "storageKey": null
+                                          },
+                                          {
+                                            "kind": "InlineFragment",
                                             "selections": [
                                               {
                                                 "alias": null,
                                                 "args": null,
-                                                "concreteType": "ImageDerivative",
-                                                "kind": "LinkedField",
-                                                "name": "webp",
-                                                "plural": false,
-                                                "selections": [
-                                                  {
-                                                    "alias": null,
-                                                    "args": null,
-                                                    "kind": "ScalarField",
-                                                    "name": "width",
-                                                    "storageKey": null
-                                                  },
-                                                  {
-                                                    "alias": null,
-                                                    "args": null,
-                                                    "kind": "ScalarField",
-                                                    "name": "height",
-                                                    "storageKey": null
-                                                  },
-                                                  {
-                                                    "kind": "InlineFragment",
-                                                    "selections": [
-                                                      {
-                                                        "alias": null,
-                                                        "args": null,
-                                                        "kind": "ScalarField",
-                                                        "name": "alt",
-                                                        "storageKey": null
-                                                      },
-                                                      {
-                                                        "alias": null,
-                                                        "args": null,
-                                                        "kind": "ScalarField",
-                                                        "name": "url",
-                                                        "storageKey": null
-                                                      }
-                                                    ],
-                                                    "type": "Image",
-                                                    "abstractKey": "__isImage"
-                                                  }
-                                                ],
+                                                "kind": "ScalarField",
+                                                "name": "alt",
+                                                "storageKey": null
+                                              },
+                                              {
+                                                "alias": null,
+                                                "args": null,
+                                                "kind": "ScalarField",
+                                                "name": "url",
                                                 "storageKey": null
                                               }
                                             ],
-                                            "storageKey": null
+                                            "type": "Image",
+                                            "abstractKey": "__isImage"
                                           }
                                         ],
                                         "storageKey": null
@@ -297,73 +267,72 @@ return {
                               }
                             ],
                             "storageKey": null
-                          },
-                          {
-                            "kind": "InlineFragment",
-                            "selections": [
-                              {
-                                "alias": null,
-                                "args": null,
-                                "concreteType": "PageInfo",
-                                "kind": "LinkedField",
-                                "name": "pageInfo",
-                                "plural": false,
-                                "selections": [
-                                  {
-                                    "alias": null,
-                                    "args": null,
-                                    "kind": "ScalarField",
-                                    "name": "page",
-                                    "storageKey": null
-                                  },
-                                  {
-                                    "alias": null,
-                                    "args": null,
-                                    "kind": "ScalarField",
-                                    "name": "pageCount",
-                                    "storageKey": null
-                                  },
-                                  {
-                                    "alias": null,
-                                    "args": null,
-                                    "kind": "ScalarField",
-                                    "name": "perPage",
-                                    "storageKey": null
-                                  },
-                                  {
-                                    "alias": null,
-                                    "args": null,
-                                    "kind": "ScalarField",
-                                    "name": "hasNextPage",
-                                    "storageKey": null
-                                  },
-                                  {
-                                    "alias": null,
-                                    "args": null,
-                                    "kind": "ScalarField",
-                                    "name": "hasPreviousPage",
-                                    "storageKey": null
-                                  },
-                                  {
-                                    "alias": null,
-                                    "args": null,
-                                    "kind": "ScalarField",
-                                    "name": "totalCount",
-                                    "storageKey": null
-                                  }
-                                ],
-                                "storageKey": null
-                              }
-                            ],
-                            "type": "Paginated",
-                            "abstractKey": "__isPaginated"
                           }
                         ],
                         "storageKey": null
                       }
                     ],
-                    "type": "Collection",
-                    "abstractKey": null
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "InlineFragment",
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "PageInfo",
+                        "kind": "LinkedField",
+                        "name": "pageInfo",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "page",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "pageCount",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "perPage",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "hasNextPage",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "hasPreviousPage",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "totalCount",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      }
+                    ],
+                    "type": "Paginated",
+                    "abstractKey": "__isPaginated"
                   }
                 ],
                 "storageKey": null
@@ -379,12 +348,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "be610548f1ee8bb2538d21d37e8364ec",
+    "cacheID": "8ba0b490f03320ca0c116fdc508faee4",
     "id": null,
     "metadata": {},
     "name": "reviewersSubmissionsSlugCollectionsPagesQuery",
     "operationKind": "query",
-    "text": "query reviewersSubmissionsSlugCollectionsPagesQuery(\n  $slug: Slug!\n  $page: Int!\n) {\n  collection(slug: $slug) {\n    submissionTarget {\n      ...SubmissionTargetReviewersListFragment\n      id\n    }\n    id\n  }\n}\n\nfragment AvatarFragment on ImageAttachment {\n  storage\n  small {\n    webp {\n      ...ImageFragment\n      width\n      height\n    }\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionTargetReviewersListDataFragment on ContextualPermissionConnection {\n  edges {\n    node {\n      id\n      user {\n        id\n        name\n        email\n        slug\n        ...UserNameColumnCellFragment\n      }\n    }\n  }\n  ...ModelListPageFragment\n}\n\nfragment SubmissionTargetReviewersListFragment on SubmissionTarget {\n  submissionTargetId: id\n  entity {\n    __typename\n    ... on Collection {\n      assignedUsers(order: USER_NAME_ASC, page: $page, perPage: 20) {\n        ...SubmissionTargetReviewersListDataFragment\n      }\n    }\n    id\n  }\n}\n\nfragment UserAvatarFragment on User {\n  avatar {\n    ...AvatarFragment\n  }\n}\n\nfragment UserNameColumnCellFragment on User {\n  name\n  slug\n  ...UserAvatarFragment\n}\n"
+    "text": "query reviewersSubmissionsSlugCollectionsPagesQuery(\n  $slug: Slug!\n  $page: Int!\n) {\n  collection(slug: $slug) {\n    submissionTarget {\n      ...SubmissionTargetReviewersListFragment\n      id\n    }\n    id\n  }\n}\n\nfragment AvatarFragment on ImageAttachment {\n  storage\n  small {\n    webp {\n      ...ImageFragment\n      width\n      height\n    }\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment SubmissionTargetReviewersListDataFragment on SubmissionTargetReviewerConnection {\n  edges {\n    node {\n      id\n      user {\n        id\n        name\n        email\n        slug\n        ...UserNameColumnCellFragment\n      }\n    }\n  }\n  ...ModelListPageFragment\n}\n\nfragment SubmissionTargetReviewersListFragment on SubmissionTarget {\n  submissionTargetId: id\n  reviewers(page: $page, perPage: 20) {\n    ...SubmissionTargetReviewersListDataFragment\n  }\n}\n\nfragment UserAvatarFragment on User {\n  avatar {\n    ...AvatarFragment\n  }\n}\n\nfragment UserNameColumnCellFragment on User {\n  name\n  slug\n  ...UserAvatarFragment\n}\n"
   }
 };
 })();

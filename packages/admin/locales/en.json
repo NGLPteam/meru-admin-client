@@ -69,6 +69,8 @@
       "file_other": "files",
       "role": "role",
       "role_other": "roles",
+      "reviewer": "reviewer",
+      "reviewer_other": "reviewers",
       "access": "access",
       "access_other": "access",
       "schema": "Schema",
