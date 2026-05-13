@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a68bf5c6054f2f7ce257b82c9beec341>>
+ * @generated SignedSource<<6b7d762b7bd22f435cbbd3fdeca63e90>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,6 +16,7 @@ export type UpdateGlobalConfigurationInput = {
   clearLogo?: boolean | null | undefined;
   clientMutationId?: string | null | undefined;
   contributionRoles?: ContributionRoleConfigurationInput | null | undefined;
+  contributors?: ContributorsSettingsInput | null | undefined;
   depositing?: DepositingSettingsInput | null | undefined;
   entities?: EntitiesSettingsInput | null | undefined;
   institution?: InstitutionSettingsInput | null | undefined;
@@ -28,6 +29,10 @@ export type ContributionRoleConfigurationInput = {
   controlledVocabularyId: string;
   defaultItemId: string;
   otherItemId?: string | null | undefined;
+};
+export type ContributorsSettingsInput = {
+  claimable?: boolean | null | undefined;
+  ownerUpdatable?: boolean | null | undefined;
 };
 export type DepositingSettingsInput = {
   agreement?: string | null | undefined;

@@ -38,6 +38,8 @@ export const LinkText = styled.span`
   border-bottom: var(--nav-link-border);
   padding-block-end: 1px;
   ${tLabel("md")}
+  display: inline-flex;
+  align-items: center;
 
   &:focus-visible {
     outline: 0;

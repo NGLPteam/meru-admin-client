@@ -19,6 +19,8 @@ import HeaderWrapper from "./HeaderWrapper";
 import HeaderNavLinks from "./HeaderNavLinks";
 import * as Styled from "./Header.styles";
 import HeaderAccount from "./HeaderAccount";
+import PendingReviewBadge from "./badges/PendingReviewBadge";
+import RevisionRequestedBadge from "./badges/RevisionRequestedBadge";
 
 function Header() {
   const { t } = useTranslation();
@@ -109,7 +111,13 @@ function Header() {
               if (!RouteHelper.findRouteByName(item.route)) return null;
               const link = (
                 <NamedLink route={item.route} passHref>
-                  <a className="a-link">{t(item.label)}</a>
+                  <a className="a-link">
+                    {t(item.label)}
+                    {item.route === "my-reviews" && <PendingReviewBadge />}
+                    {item.route === "my-submissions" && (
+                      <RevisionRequestedBadge />
+                    )}
+                  </a>
                 </NamedLink>
               );
               return item.actions ? (

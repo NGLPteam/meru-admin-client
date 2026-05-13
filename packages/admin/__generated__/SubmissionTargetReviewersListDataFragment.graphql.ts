@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c5ba9235033ddeef53e0b3174c6caf4d>>
+ * @generated SignedSource<<144b414c7fc8dc15149b64bdd2494611>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -48,7 +48,7 @@ return {
     {
       "alias": null,
       "args": null,
-      "concreteType": "ContextualPermissionEdge",
+      "concreteType": "SubmissionTargetReviewerEdge",
       "kind": "LinkedField",
       "name": "edges",
       "plural": true,
@@ -56,7 +56,7 @@ return {
         {
           "alias": null,
           "args": null,
-          "concreteType": "ContextualPermission",
+          "concreteType": "SubmissionTargetReviewer",
           "kind": "LinkedField",
           "name": "node",
           "plural": false,
@@ -112,11 +112,11 @@ return {
       "name": "ModelListPageFragment"
     }
   ],
-  "type": "ContextualPermissionConnection",
+  "type": "SubmissionTargetReviewerConnection",
   "abstractKey": null
 };
 })();
 
-(node as any).hash = "9fa3a6683126949599b3a22caf1b5b4d";
+(node as any).hash = "f2d0facdfbadc4743a59db08066ca3cd";
 
 export default node;
