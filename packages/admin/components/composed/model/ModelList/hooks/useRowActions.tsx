@@ -42,6 +42,7 @@ type ActionKeys =
   | "delete"
   | "purge"
   | "view"
+  | "details"
   | "enable"
   | "disable"
   | "publish";
@@ -50,6 +51,7 @@ type ActionKeys =
 const ACTION_ORDER = [
   "download",
   "view",
+  "details",
   "publish",
   "edit",
   "enable",
@@ -99,6 +101,9 @@ const availableActions: ActionDefinitions = {
   },
   view: {
     label: i18next.t("common.view"),
+  },
+  details: {
+    label: i18next.t("nav.details"),
   },
   enable: {
     label: i18next.t("common.enable"),
@@ -258,6 +263,7 @@ export interface Actions<T extends Record<string, unknown>> {
   ) => React.ComponentProps<typeof EntityPurgeModal>;
   handleDownload?: (props: ModelTableActionProps<T>) => void;
   handleView?: (props: ModelTableActionProps<T>) => void;
+  handleDetails?: (props: ModelTableActionProps<T>) => void;
   handleEnable?: (props: ModelTableActionProps<T>) => void;
   hideEnable?: (props: ModelTableActionProps<T>) => boolean;
   handleDisable?: (props: ModelTableActionProps<T>) => void;
@@ -310,6 +316,9 @@ function useRowActions<D extends Record<string, unknown>>(
       }),
       ...(actions.handleView && {
         view: { handleLink: actions.handleView, handleClick: () => null },
+      }),
+      ...(actions.handleDetails && {
+        details: { handleClick: actions.handleDetails },
       }),
       ...(actions.handleEnable && {
         enable: {
