@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 import { useSignInOut } from "@wdp/lib/api/hooks/useIsAuthenticated";
 import { useIsAuthorized } from "hooks";
 import { useViewerContext } from "contexts";
@@ -11,6 +12,7 @@ export default function RouteGuard({ children }: Props) {
 
   // Check if the viewer context is loading (auth state is undetermined)
   const { loading } = useViewerContext();
+  const { t } = useTranslation();
 
   useEffect(() => {
     // If user is unauthenticated, redirect to the login screen
@@ -30,7 +32,7 @@ export default function RouteGuard({ children }: Props) {
   return isAuthorized || isOpenRoute ? (
     <>{children}</>
   ) : loading ? null : (
-    <UnauthorizedMessage />
+    <UnauthorizedMessage title={t("messages.unauthorized")} />
   );
 }
 
