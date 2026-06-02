@@ -123,6 +123,7 @@
       "canonical_column": "Canonical",
       "target_column": "Target",
       "updated_at_column": "Updated At",
+      "review_detail": "Review Detail",
       "avatar_column": "Avatar",
       "slug_column": "Slug",
       "header_column": "Header",

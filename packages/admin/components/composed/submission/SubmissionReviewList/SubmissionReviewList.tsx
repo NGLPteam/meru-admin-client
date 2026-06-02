@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { graphql } from "react-relay";
+import { useDialogState } from "reakit/Dialog";
 import { useTranslation } from "react-i18next";
 import { useMaybeFragment } from "@wdp/lib/api/hooks";
 import ModelListPage from "components/composed/model/ModelListPage";
@@ -12,8 +14,9 @@ import type {
 } from "@/relay/SubmissionReviewListFragment.graphql";
 import type { LayoutManageSubmissionQuery$data } from "@/relay/LayoutManageSubmissionQuery.graphql";
 import RequestReviewButton from "./RequestReviewButton";
+import DetailModal from "./DetailModal";
 import type { SubmissionReviewState } from "types/graphql-schema";
-import type { CellContext } from "@tanstack/react-table";
+import type { CellContext, ModelTableActionProps } from "@tanstack/react-table";
 
 type ReviewNode = SubmissionReviewListFragment$data["nodes"][number];
 
@@ -42,6 +45,9 @@ function SubmissionReviewList({
 
   const { t } = useTranslation();
 
+  const dialog = useDialogState({ visible: false, animated: true });
+  const [selectedReview, setSelectedReview] = useState<ReviewNode | null>(null);
+
   const canReview = !!reviews?.nodes?.[0]?.submission.canReview.value;
 
   const columns = [
@@ -65,20 +71,24 @@ function SubmissionReviewList({
           }),
         ]
       : []),
-    ModelColumns.UpdatedAtColumn<ReviewNode>({
-      enableSorting: false,
-    }),
     ...(canReview && mode !== "reviewer"
       ? [
           ModelColumns.StringColumn<ReviewNode>({
             id: "user",
-            header: () => t("glossary.user"),
+            header: () => t("glossary.reviewer"),
             accessorFn: (row: ReviewNode) => row.user?.name ?? "",
           }),
         ]
       : []),
+    ...(mode === "submission"
+      ? [
+          ModelColumns.UpdatedAtColumn<ReviewNode>({
+            enableSorting: false,
+          }),
+        ]
+      : []),
     ModelColumns.StatusColumn<ReviewNode>({
-      header: () => t("lists.status_column"),
+      header: () => t("forms.fields.decision"),
       accessorFn: (row: ReviewNode) => row.state,
       ...(mode === "reviewer"
         ? {
@@ -95,28 +105,43 @@ function SubmissionReviewList({
     }),
   ];
 
+  const actions = {
+    handleDetails: ({ row }: ModelTableActionProps<ReviewNode>) => {
+      setSelectedReview(row.original);
+      dialog.show();
+    },
+  };
+
   if (mode === "reviewer") {
     return (
-      <ModelListPage<SubmissionReviewListFragment$data, ReviewNode>
-        columns={columns}
-        data={reviews}
-        header={t("nav.my_reviews")}
-        currentFiltersOverride={<CurrentSubmissionReviewFilters />}
-      />
+      <>
+        <ModelListPage<SubmissionReviewListFragment$data, ReviewNode>
+          columns={columns}
+          data={reviews}
+          actions={actions}
+          header={t("nav.my_reviews")}
+          currentFiltersOverride={<CurrentSubmissionReviewFilters />}
+        />
+        <DetailModal dialog={dialog} review={selectedReview} mode="reviewer" />
+      </>
     );
   }
 
   return (
-    <ModelListPage<SubmissionReviewListFragment$data, ReviewNode>
-      columns={columns}
-      data={reviews}
-      hideHeader
-      countActions={
-        submission?.canRequestReview ? (
-          <RequestReviewButton submissionId={submission.id} />
-        ) : undefined
-      }
-    />
+    <>
+      <ModelListPage<SubmissionReviewListFragment$data, ReviewNode>
+        columns={columns}
+        data={reviews}
+        actions={actions}
+        hideHeader
+        countActions={
+          submission?.canRequestReview ? (
+            <RequestReviewButton submissionId={submission.id} />
+          ) : undefined
+        }
+      />
+      <DetailModal dialog={dialog} review={selectedReview} />
+    </>
   );
 }
 
