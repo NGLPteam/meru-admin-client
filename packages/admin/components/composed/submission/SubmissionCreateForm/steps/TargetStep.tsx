@@ -160,7 +160,7 @@ export default function TargetStep({
         )}
       </Forms.Grid>
       <Footer className="l-flex l-flex--gap">
-        <Button type="submit" disabled={!canContinue} onClick={onContinue}>
+        <Button type="button" disabled={!canContinue} onClick={onContinue}>
           {t("common.continue")}
         </Button>
         <Button type="button" onClick={onCancel} $secondary>
