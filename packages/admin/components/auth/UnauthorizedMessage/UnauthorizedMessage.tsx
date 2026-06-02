@@ -28,7 +28,7 @@ export default function UnauthorizedMessage({
     <div className="t-rte">
       <p>
         Welcome to the {name} admin interface, a tool that allows non-technical
-        users to manage content stored in the WDP API.
+        users to manage content stored in the Meru API.
       </p>
 
       <p>
@@ -38,7 +38,7 @@ export default function UnauthorizedMessage({
       </p>
 
       <p>
-        If you&apos;re looking to submit, go to{" "}
+        If you&apos;re here to submit, go to{" "}
         <Link href="/my-submissions">your submissions page</Link>.
       </p>
     </div>

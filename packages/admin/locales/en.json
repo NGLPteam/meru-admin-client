@@ -696,7 +696,7 @@
         "agreement_content_description": "If blank and certification is required, the default agreement for this installation will be used.",
         "accepted_schemas": "Accepted Submission Schemas",
         "accepted_schemas_description": "Users submitting to this collection will see only the selected schema options when creating submissions.",
-        "submissions_enabled": "Submissions enabled",
+        "submissions_enabled": "Submissions open",
         "submission_target": "Which collection are you submitting to?",
         "submission_target_description": "Collections currently accepting submissions are shown here. If the collection you're looking for isn't available, contact the collection administrator.",
         "child_submission_target": "Sub-Collection",
