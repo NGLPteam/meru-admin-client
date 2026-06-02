@@ -95,7 +95,9 @@ function SubmissionBulkPublishList({ data }: Props) {
 
   const actions = {
     handleView: ({ row }: ModelTableActionProps<SubmissionBulkPublishNode>) =>
-      row.original.entity?.slug ? `/preview/${row.original.entity.slug}` : null,
+      row.original.entity?.slug
+        ? `/preview/items/${row.original.entity.slug}`
+        : null,
     handlePublish: ({
       row,
     }: ModelTableActionProps<SubmissionBulkPublishNode>) =>

@@ -76,7 +76,7 @@ export default function SubmissionLayout({
       {canTransition && <TransitionSubmissionButton submission={submission} />}
       {canReview && submission?.entity && (
         <ButtonControlView
-          href={`${process.env.NEXT_PUBLIC_FE_URL}/preview/${submission.entity.slug}`}
+          href={`${process.env.NEXT_PUBLIC_FE_URL}/preview/items/${submission.entity.slug}`}
         >
           {t("common.preview")}
         </ButtonControlView>
