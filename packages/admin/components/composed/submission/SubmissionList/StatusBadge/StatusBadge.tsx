@@ -17,7 +17,7 @@ const STATUS_COLORS: Record<KnownSubmissionState, ColorConfig> = {
   UNDER_REVIEW: { bg: "var(--brand20)", color: "var(--brand100)" },
   REVISION_REQUESTED: {
     bg: "var(--yellowtint)",
-    color: "var(--yellowdark)",
+    color: "var(--yellowaa)",
   },
   APPROVED: { bg: "var(--greentint)", color: "var(--greendark)" },
   PUBLISHED: { bg: "var(--greentint)", color: "var(--greendark)" },
