@@ -9,4 +9,5 @@ export const Box = styled.div`
   padding-block-end: ${pxToRem(20)};
   padding-inline-start: ${pxToRem(24)};
   padding-inline-end: ${pxToRem(24)};
+  inline-size: 100%;
 `;

@@ -1,20 +1,13 @@
-import { useCallback } from "react";
-import { useForm, FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { graphql } from "react-relay";
-import { Grid, Select, Textarea } from "components/forms";
-import { Button } from "components/atomic";
+import MutationForm, { Forms } from "components/api/MutationForm";
 import BaseMarkdown from "components/atomic/Markdown/BaseMarkdown";
-import { Footer } from "components/api/MutationForm/MutationForm.styles";
-import { useLoadingMutation } from "components/api/hooks";
-import { useNotify } from "hooks";
 import type {
   SubmissionReviewFormMutation as Mutation,
-  SubmissionReviewFormMutation$data as Mutation$data,
+  SubmissionLeaveReviewInput,
   SubmissionReviewState,
 } from "@/relay/SubmissionReviewFormMutation.graphql";
 import * as Styled from "./SubmissionReviewForm.styles";
-import type { MutationAttributeError } from "types/graphql-schema";
 
 type Fields = {
   decision: SubmissionReviewState;
@@ -33,45 +26,6 @@ export default function SubmissionReviewForm({
   instructions?: string;
 }) {
   const { t } = useTranslation();
-  const notify = useNotify();
-  const form = useForm<Fields>();
-  const { register, handleSubmit } = form;
-
-  const [commit, inFlight] = useLoadingMutation<Mutation>(mutation);
-
-  const handleResponse = useCallback(
-    (data: Mutation$data["submissionLeaveReview"] | null | undefined) => {
-      if (!data) return;
-
-      const { globalErrors, attributeErrors, submission } = data;
-
-      if (submission) {
-        notify.success(t("messages.review_submitted"));
-        onSuccess?.();
-      } else if (globalErrors?.length) {
-        notify.mutationGlobalError(globalErrors);
-      } else if (attributeErrors?.length) {
-        notify.mutationAttributeError(
-          attributeErrors as MutationAttributeError[],
-        );
-      }
-    },
-    [notify, t, onSuccess],
-  );
-
-  const onSubmit = (data: Fields) => {
-    commit({
-      variables: {
-        input: {
-          submissionId,
-          toState: data.decision,
-          comment: data.comment || undefined,
-        },
-      },
-      onCompleted: (response) => handleResponse(response.submissionLeaveReview),
-      onError: (err) => notify.error(err.message),
-    });
-  };
 
   const decisionOptions = [
     { label: t("forms.fields.decision_approve"), value: "APPROVED" },
@@ -79,16 +33,33 @@ export default function SubmissionReviewForm({
     { label: t("forms.fields.decision_reject"), value: "REJECTED" },
   ];
 
+  const toVariables = (data: Fields): Mutation["variables"] => ({
+    input: {
+      submissionId,
+      toState: data.decision,
+      comment: data.comment || undefined,
+    } satisfies SubmissionLeaveReviewInput,
+  });
+
   return (
-    <FormProvider {...form}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid>
+    <MutationForm<Mutation, Fields>
+      name="submissionLeaveReview"
+      mutation={mutation}
+      toVariables={toVariables}
+      onSuccess={() => onSuccess?.()}
+      onCancel={onCancel}
+      successNotification="messages.review_submitted"
+      refetchTags={["submissions"]}
+      saveLabel="common.submit"
+    >
+      {({ form: { register } }) => (
+        <Forms.Grid>
           {!!instructions && (
             <Styled.Box>
               <BaseMarkdown>{instructions}</BaseMarkdown>
             </Styled.Box>
           )}
-          <Select
+          <Forms.Select
             label="forms.fields.decision"
             options={decisionOptions}
             placeholder={t("forms.fields.select_placeholder")}
@@ -96,25 +67,15 @@ export default function SubmissionReviewForm({
             isWide
             {...register("decision", { required: true })}
           />
-          <Textarea
+          <Forms.Textarea
             label="forms.fields.comments_for_depositor"
             description="forms.fields.comments_for_depositor_description"
             isWide
             {...register("comment")}
           />
-        </Grid>
-        <Footer className="l-flex l-flex--gap">
-          <Button type="submit" disabled={inFlight}>
-            {t("common.submit")}
-          </Button>
-          {onCancel && (
-            <Button type="button" onClick={onCancel} $secondary>
-              {t("common.cancel")}
-            </Button>
-          )}
-        </Footer>
-      </form>
-    </FormProvider>
+        </Forms.Grid>
+      )}
+    </MutationForm>
   );
 }
 
@@ -130,15 +91,7 @@ const mutation = graphql`
         state
         comment
       }
-      attributeErrors {
-        messages
-        path
-        type
-      }
-      globalErrors {
-        message
-        type
-      }
+      ...MutationForm_mutationErrors
     }
   }
 `;
