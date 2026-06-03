@@ -7,8 +7,8 @@ type Variant = "warning" | "info";
 const variantColors = {
   warning: {
     bg: "var(--yellowtint)",
-    border: "var(--yellowdark)",
-    header: "var(--yellowdark)",
+    border: "var(--yellowaa)",
+    header: "var(--yellowaa)",
   },
   info: {
     bg: "var(--brand10)",
