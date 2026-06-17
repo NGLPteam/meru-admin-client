@@ -21,6 +21,9 @@
     "node": "24.x"
   },
   "packageManager": "yarn@4.13.0",
+  "resolutions": {
+    "@codemirror/state": "^6.6.0"
+  },
   "scripts": {
     "dev": "yarn workspace @wdp/admin run dev",
     "build": "scripts/do.sh build",
