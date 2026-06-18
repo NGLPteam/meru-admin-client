@@ -141,7 +141,7 @@
       "count_column": "Count",
       "description_column": "Description",
       "record_count_column": "Record count",
-      "began_at_column": "Started At",
+      "began_at_column": "Latest Event",
       "ended_at_column": "Ended At",
       "status_column": "Status",
       "identifier_column": "Identifier",
