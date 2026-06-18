@@ -42,8 +42,7 @@ export interface ControlledVocabularyItem {
 /**
  * Items with a depth of 2. They have no children.
  */
-export interface ControlledVocabularySecondLevelItem
-  extends ControlledVocabularyItem {
+export interface ControlledVocabularySecondLevelItem extends ControlledVocabularyItem {
   /**
    * Final level of nesting. There are no children at this level, but the key is exposed
    * so that testing can be generic.
@@ -54,8 +53,7 @@ export interface ControlledVocabularySecondLevelItem
 /**
  * Items with a depth of 1. They may have children.
  */
-export interface ControlledVocabularyFirstChildItem
-  extends ControlledVocabularyItem {
+export interface ControlledVocabularyFirstChildItem extends ControlledVocabularyItem {
   /**
    * Second level of nesting. There are no children below this level.
    */
@@ -65,8 +63,7 @@ export interface ControlledVocabularyFirstChildItem
 /**
  * Top-level items with a depth of 0. They may have children.
  */
-export interface ControlledVocabularyTopLevelItem
-  extends ControlledVocabularyItem {
+export interface ControlledVocabularyTopLevelItem extends ControlledVocabularyItem {
   /**
    * First level of nesting.
    */

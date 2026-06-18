@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useMutation, graphql } from "react-relay";
+import { graphql } from "react-relay";
+import { useLoadingMutation } from "components/api/hooks";
 import { useNotify } from "hooks";
 import ButtonControlConfirm from "components/atomic/buttons/ButtonControl/patterns/ButtonControlConfirm";
 import type { UserResetPasswordModalMutation } from "@/relay/UserResetPasswordModalMutation.graphql";
@@ -19,7 +20,7 @@ export default function ResetPassword({
   const notify = useNotify();
 
   const [mutate, loading] =
-    useMutation<UserResetPasswordModalMutation>(mutation);
+    useLoadingMutation<UserResetPasswordModalMutation>(mutation);
 
   const handleResponse = useCallback(
     (

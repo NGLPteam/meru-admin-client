@@ -6,12 +6,13 @@ import { filterSearchableProperties } from "@wdp/lib/search";
 import { useTranslation } from "react-i18next";
 import { graphql, useFragment } from "react-relay";
 import { normalizeRouteQueryArray } from "@wdp/lib/routes";
-import { ButtonControl } from "components/atomic";
+import useQueryFilters from "hooks/useQueryFilters";
+import FilterTagList from "components/composed/search/FilterTagList";
 import {
   CurrentSearchFiltersFragment$data,
   CurrentSearchFiltersFragment$key,
 } from "@/relay/CurrentSearchFiltersFragment.graphql";
-import * as Styled from "./CurrentSearchFilters.styles";
+import type { FilterTag } from "components/composed/search/FilterTagList";
 
 export default function CurrentFilters({ data }: Props) {
   const searchData = useFragment(fragment, data);
@@ -20,7 +21,7 @@ export default function CurrentFilters({ data }: Props) {
 
   const { pathname, query, push } = useRouter();
 
-  const filters = query?.filters ? JSON.parse(String(query.filters)) : [];
+  const { filters, removeFilter } = useQueryFilters();
 
   const schemas = useMemo(() => {
     const schemaQuery = query?.schema
@@ -38,24 +39,6 @@ export default function CurrentFilters({ data }: Props) {
       };
     });
   }, [searchData, query]);
-
-  const handleFilterClick = (filterKey: string) => {
-    delete filters[filterKey];
-
-    push(
-      {
-        pathname,
-        query: {
-          ...query,
-          filters: JSON.stringify(filters),
-        },
-      },
-      undefined,
-      {
-        shallow: true,
-      },
-    );
-  };
 
   const handleSchemaClick = (schema: string) => {
     push(
@@ -116,40 +99,32 @@ export default function CurrentFilters({ data }: Props) {
           value,
         });
   };
-  return (
-    <Styled.Wrapper className="l-flex l-flex--gap-sm">
-      {Object.keys(filters).map((filterKey) => {
-        const filterLabel = renderFilter(filterKey, filters[filterKey]);
 
-        return filterLabel ? (
-          <ButtonControl
-            type="button"
-            key={filterKey}
-            icon="close"
-            onClick={(e: React.MouseEvent) => {
-              e.preventDefault();
-              handleFilterClick(filterKey);
-            }}
-          >
-            {filterLabel}
-          </ButtonControl>
-        ) : null;
-      })}
-      {schemas.map((schema) => (
-        <ButtonControl
-          type="button"
-          key={schema.value}
-          icon="close"
-          onClick={(e: React.MouseEvent) => {
-            e.preventDefault();
-            handleSchemaClick(schema.value);
-          }}
-        >
-          {schema.name}
-        </ButtonControl>
-      ))}
-    </Styled.Wrapper>
+  const filterTags = Object.keys(filters).reduce(
+    (arr: FilterTag[], filterKey) => {
+      const filterLabel = renderFilter(filterKey, filters[filterKey]);
+      if (filterLabel) {
+        return [
+          ...arr,
+          {
+            key: filterKey,
+            label: filterLabel,
+            onRemove: () => removeFilter(filterKey),
+          },
+        ];
+      }
+      return arr;
+    },
+    [],
   );
+
+  const schemaTags = schemas.map((schema) => ({
+    key: `schema-${schema.value}`,
+    label: schema.name ?? schema.value,
+    onRemove: () => handleSchemaClick(schema.value),
+  }));
+
+  return <FilterTagList tags={[...filterTags, ...schemaTags]} />;
 }
 
 interface Props {

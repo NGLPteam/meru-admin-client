@@ -10,6 +10,7 @@ export default function VariablePrecisionDateControl({
   label,
   required,
   isWide,
+  description,
 }: Props) {
   const defaultValue =
     useMaybeFragment<VariablePrecisionDateControlFragment$key>(fragment, data);
@@ -26,6 +27,7 @@ export default function VariablePrecisionDateControl({
         <Forms.VariableDatePicker
           label={label}
           required={required}
+          description={description}
           isWide={isWide}
           defaultValue={defaultValue}
           {...props}
@@ -37,7 +39,7 @@ export default function VariablePrecisionDateControl({
 
 type InputProps = Pick<
   React.ComponentProps<typeof Forms.VariableDatePicker>,
-  "name" | "label" | "required" | "isWide"
+  "name" | "label" | "required" | "isWide" | "description"
 >;
 
 interface Props extends InputProps {

@@ -14,7 +14,7 @@ const PageCountActions = ({
   loading,
 }: Props) => {
   const { t } = useTranslation();
-  const hasSelected = selectedCount > 1;
+  const hasSelected = selectedCount > 0;
   const page = pageInfo?.page || 1;
   const perPage = pageInfo?.perPage || 10;
   const totalCount = pageInfo?.totalCount || 0;
@@ -29,25 +29,35 @@ const PageCountActions = ({
       <Styled.Count className="t-label-md a-color-light">
         {loading ? (
           t("common.loading_ellipsis")
-        ) : hasSelected ? (
-          <Trans
-            i18nKey="lists.selected_count"
-            values={{
-              count: selectedCount,
-              total: totalCount.toLocaleString("en-US"),
-            }}
-            components={[<span key="color" className="a-color-accent"></span>]}
-          />
         ) : (
-          <Trans
-            i18nKey="lists.showing_count"
-            values={{
-              start: start.toLocaleString("en-US"),
-              end: end.toLocaleString("en-US"),
-              total: totalCount.toLocaleString("en-US"),
-            }}
-            components={[<span key="color" className="a-color-accent"></span>]}
-          />
+          <>
+            <Trans
+              i18nKey="lists.showing_count"
+              values={{
+                start: start.toLocaleString("en-US"),
+                end: end.toLocaleString("en-US"),
+                total: totalCount.toLocaleString("en-US"),
+              }}
+              components={[
+                <span key="color" className="a-color-accent"></span>,
+              ]}
+            />
+            {hasSelected && (
+              <>
+                {" · "}
+                <Trans
+                  i18nKey="lists.selected_count"
+                  values={{
+                    count: selectedCount,
+                    total: totalCount.toLocaleString("en-US"),
+                  }}
+                  components={[
+                    <span key="color" className="a-color-accent"></span>,
+                  ]}
+                />
+              </>
+            )}
+          </>
         )}
       </Styled.Count>
       {actions ? <Styled.Actions>{actions}</Styled.Actions> : null}

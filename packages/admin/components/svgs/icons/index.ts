@@ -27,3 +27,4 @@ export { default as File } from "./File";
 export { default as Avatar32 } from "./Avatar32";
 export { default as GrabHandle } from "./GrabHandle";
 export { default as Settings } from "./Settings";
+export { default as Check } from "./Check";

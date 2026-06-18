@@ -73,7 +73,10 @@ function EntityPagesList({
   };
 
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <ButtonControlDrawer
         drawer="addPage"
         drawerQuery={{
@@ -100,8 +103,10 @@ function EntityPagesList({
   );
 }
 
-interface EntityPagesListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface EntityPagesListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: EntityPagesListFragment$key | null;
 }
 

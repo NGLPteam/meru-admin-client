@@ -28,13 +28,25 @@ type ModelListPageProps<
   V extends Record<string, unknown> = Record<string, unknown>,
 > = Omit<ModelListProps<U, V>, "view"> &
   Pick<ModelListActionsProps, "viewOptions"> &
-  Pick<HeaderProps, "headerStyle" | "hideHeader"> & {
+  Pick<
+    HeaderProps,
+    "headerStyle" | "hideHeader" | "tabRoutes" | "tabLinksOnly"
+  > & {
     buttons?: React.ReactNode;
     header?: string | null;
     showSearch?: boolean;
     hideFilters?: boolean;
     searchData?: ModelListPageSearchFragment$key | null;
-  } & { countActions?: React.JSX.Element };
+    countActions?: React.JSX.Element;
+    /** Number of selected items, passed to PageCountActions */
+    selectedCount?: number;
+    /** Rendered between count row and table (e.g. SelectAll bar) */
+    selectionBar?: React.ReactNode;
+    /** Custom search element; overrides showSearch/hideFilters when provided */
+    searchOverride?: React.ReactNode;
+    /** Additional filter tags rendered below the search bar */
+    currentFiltersOverride?: React.ReactNode;
+  };
 
 function ModelListPage<
   U extends PaginatedConnectionish,
@@ -46,11 +58,17 @@ function ModelListPage<
   headerStyle,
   hideHeader,
   header,
+  tabRoutes,
+  tabLinksOnly,
   showSearch,
   hideFilters,
   data,
   searchData,
   countActions,
+  selectedCount,
+  selectionBar,
+  searchOverride,
+  currentFiltersOverride,
   ...modelListProps
 }: ModelListPageProps<U, V>) {
   const { t } = useTranslation();
@@ -85,6 +103,12 @@ function ModelListPage<
         ? ("COLLECTION" as const)
         : undefined;
 
+  const CurrentFiltersComponent = searchScope ? (
+    <CurrentSearchFilters data={searchScope} />
+  ) : currentFiltersOverride ? (
+    currentFiltersOverride
+  ) : undefined;
+
   return (
     <section>
       <PageHeader
@@ -92,6 +116,8 @@ function ModelListPage<
         buttons={buttons}
         headerStyle={headerStyle}
         hideHeader={hideHeader}
+        tabRoutes={tabRoutes}
+        tabLinksOnly={tabLinksOnly}
       />
       <ModelListActions
         viewOptions={viewOptions}
@@ -99,7 +125,9 @@ function ModelListPage<
         setView={setView}
         listId={listId}
         search={
-          hideFilters ? (
+          searchOverride ? (
+            searchOverride
+          ) : hideFilters ? (
             <Search />
           ) : (
             showSearch && (
@@ -108,8 +136,13 @@ function ModelListPage<
           )
         }
       />
-      {searchScope && <CurrentSearchFilters data={searchScope} />}
-      <ModelPageCountActions data={instance} actions={pageCountActions} />
+      {CurrentFiltersComponent}
+      <ModelPageCountActions
+        data={instance}
+        actions={pageCountActions}
+        selectedCount={selectedCount}
+      />
+      {selectionBar}
       <ModelList<U, V>
         {...modelListProps}
         data={data}

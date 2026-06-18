@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 import { useSignInOut } from "@wdp/lib/api/hooks/useIsAuthenticated";
 import { useIsAuthorized } from "hooks";
 import { useViewerContext } from "contexts";
@@ -6,9 +8,11 @@ import UnauthorizedMessage from "../UnauthorizedMessage";
 
 export default function RouteGuard({ children }: Props) {
   const { handleSignInOut, isAuthenticated } = useSignInOut();
+  const router = useRouter();
 
   // Check if the viewer context is loading (auth state is undetermined)
   const { loading } = useViewerContext();
+  const { t } = useTranslation();
 
   useEffect(() => {
     // If user is unauthenticated, redirect to the login screen
@@ -19,12 +23,16 @@ export default function RouteGuard({ children }: Props) {
     actions: "admin.access",
   });
 
-  // If the user is authorized, show children
+  // Allow authenticated users to access the homepage and my-submissions routes
+  const isOpenRoute =
+    router.pathname === "/" || router.pathname.startsWith("/my-submissions");
+
+  // If the user is authorized or on an open route, show children
   // If we've finished loading the page and the user is not authorized, show message
-  return isAuthorized ? (
+  return isAuthorized || isOpenRoute ? (
     <>{children}</>
   ) : loading ? null : (
-    <UnauthorizedMessage />
+    <UnauthorizedMessage title={t("messages.unauthorized")} />
   );
 }
 

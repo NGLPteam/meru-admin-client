@@ -52,7 +52,10 @@ function ContributorList({
   // TODO: We need an authorization check here. The contributors.create check doesn't
   //  exist yet in the API.
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <ButtonControlDrawer drawer="addPerson" icon="plus">
         {t("actions.create.contributor_person")}
       </ButtonControlDrawer>
@@ -79,8 +82,10 @@ function ContributorList({
   );
 }
 
-interface ContributorListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface ContributorListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: ContributorListFragment$key;
 }
 
@@ -89,7 +94,12 @@ type ContributorNode =
 
 const fragment = graphql`
   fragment ContributorListFragment on Query {
-    contributors(order: $order, page: $page, perPage: 20, prefix: $query) {
+    contributors(
+      order: $order
+      page: $page
+      perPage: 20
+      filters: { nameSearch: { needle: $query, strategy: FUZZY } }
+    ) {
       nodes {
         __typename
         ... on OrganizationContributor {

@@ -120,11 +120,10 @@ export default function HarvestMetadataMappingCreateForm({ sourceId }: Props) {
   );
 }
 
-interface Props
-  extends Pick<
-    React.ComponentProps<typeof MutationForm>,
-    "onSuccess" | "onCancel"
-  > {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess" | "onCancel"
+> {
   sourceId: string;
 }
 

@@ -66,7 +66,10 @@ function EntityAnnouncementsList({
   };
 
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <ButtonControlDrawer
         drawer="addAnnouncement"
         drawerQuery={{
@@ -93,8 +96,10 @@ function EntityAnnouncementsList({
   );
 }
 
-interface EntityAnnouncementsListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface EntityAnnouncementsListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: EntityAnnouncementsListFragment$key | null;
 }
 

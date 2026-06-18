@@ -101,8 +101,10 @@ export default function ParentSelectorModal({
   );
 }
 
-interface EntitySchemaVersion
-  extends Omit<Partial<SchemaVersion>, "enforcedParentVersions"> {
+interface EntitySchemaVersion extends Omit<
+  Partial<SchemaVersion>,
+  "enforcedParentVersions"
+> {
   enforcedParentVersions: readonly { identifier: string; namespace: string }[];
 }
 

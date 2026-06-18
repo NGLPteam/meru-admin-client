@@ -32,12 +32,13 @@ import EntityPageUpdateDrawer from "components/composed/pages/EntityPageUpdateDr
 import UserUpdateDrawer from "components/composed/user/UserUpdateDrawer";
 import EntityAnnouncementAddDrawer from "components/composed/announcements/EntityAnnouncementAddDrawer";
 import EntityAnnouncementUpdateDrawer from "components/composed/announcements/EntityAnnouncementUpdateDrawer";
-import GlobalSettingsEditDrawer from "components/composed/settings/GlobalSettingsEditDrawer";
 import EntityOrderingEditDrawer from "components/composed/ordering/EntityOrderingEditDrawer";
 import SearchFilterDrawer from "components/composed/search/SearchFilterDrawer";
 import EntityPermalinksAddDrawer from "components/composed/permalinks/EntityPermalinksAddDrawer";
 import EntityPermalinksUpdateDrawer from "components/composed/permalinks/EntityPermalinksUpdateDrawer";
 import InstancePermalinksAddDrawer from "components/composed/permalinks/InstancePermalinksAddDrawer";
+import SubmissionReviewDrawer from "components/composed/submission/SubmissionReviewDrawer";
+import SubmissionTargetReviewerAddDrawer from "components/composed/submissionTarget/SubmissionTargetReviewerAddDrawer";
 
 const drawerRegistry = {
   addPerson: ContributorCreatePersonDrawer,
@@ -69,12 +70,13 @@ const drawerRegistry = {
   editUser: UserUpdateDrawer,
   addAnnouncement: EntityAnnouncementAddDrawer,
   editAnnouncement: EntityAnnouncementUpdateDrawer,
-  editSettings: GlobalSettingsEditDrawer,
   editOrdering: EntityOrderingEditDrawer,
   searchFilters: SearchFilterDrawer,
   addPermalink: EntityPermalinksAddDrawer,
   editPermalink: EntityPermalinksUpdateDrawer,
   addInstancePermalink: InstancePermalinksAddDrawer,
+  reviewSubmission: SubmissionReviewDrawer,
+  addReviewer: SubmissionTargetReviewerAddDrawer,
 };
 
 export function useDrawerHelper() {

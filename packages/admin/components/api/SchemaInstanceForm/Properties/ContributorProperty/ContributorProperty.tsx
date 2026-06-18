@@ -17,10 +17,11 @@ export default function ContributorProperty(props: Props) {
 
   return (
     <ScalarProperty field={field}>
-      {({ label, required, name, isWide }) => (
+      {({ label, required, name, isWide, instructions }) => (
         <Select
           label={label}
           required={required}
+          description={instructions}
           options={options}
           isWide={isWide}
           {...register(name)}

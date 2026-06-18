@@ -100,8 +100,10 @@ function RoleAccessGrantsList({
   );
 }
 
-interface RoleAccessGrantsListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface RoleAccessGrantsListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: RoleAccessGrantsListFragment$key | null;
   header?: string;
   entityType?: "collection" | "community" | "item";

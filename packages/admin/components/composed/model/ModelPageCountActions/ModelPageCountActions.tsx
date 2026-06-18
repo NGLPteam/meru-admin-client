@@ -8,11 +8,13 @@ interface ModelPageCountActionsProps<
 > {
   data?: T | null;
   actions?: React.JSX.Element;
+  selectedCount?: number;
 }
 
 function ModelPageCountActions<T extends ModelPageCountActionsFragment$key>({
   data,
   actions,
+  selectedCount,
 }: ModelPageCountActionsProps<T>) {
   const enhancedData = useMaybeFragment<ModelPageCountActionsFragment$key>(
     fragment,
@@ -24,6 +26,7 @@ function ModelPageCountActions<T extends ModelPageCountActionsFragment$key>({
       loading={typeof enhancedData?.pageInfo.totalCount !== "number"}
       pageInfo={enhancedData?.pageInfo}
       actions={actions}
+      selectedCount={selectedCount}
     />
   );
 }

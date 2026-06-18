@@ -35,7 +35,7 @@ export default function EntityProperty(props: Props) {
 
   return (
     <ScalarProperty field={field}>
-      {({ label, required, name, isWide }) => (
+      {({ label, required, name, isWide, instructions }) => (
         <Controller
           control={control}
           name={name}
@@ -43,6 +43,7 @@ export default function EntityProperty(props: Props) {
             <Select
               label={label}
               required={required}
+              description={instructions}
               options={options}
               isWide={isWide}
               onChange={(value: React.ChangeEvent<HTMLSelectElement>) =>

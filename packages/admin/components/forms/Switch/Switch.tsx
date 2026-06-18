@@ -5,7 +5,7 @@ import type InputProps from "../inputType";
 
 const Switch = forwardRef(
   (
-    { label, name, text, hideLabel, isWide, ...inputProps }: Props,
+    { label, name, text, hideLabel, isWide, description, ...inputProps }: Props,
     ref: Ref<HTMLInputElement>,
   ) => {
     return (
@@ -13,6 +13,7 @@ const Switch = forwardRef(
         name={name}
         hideLabel={hideLabel}
         label={label}
+        description={description}
         required={inputProps.required}
         isWide={isWide}
       >

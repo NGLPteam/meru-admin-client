@@ -17,7 +17,7 @@ import useLazyRef from "hooks/useLazyRef";
 import useLatest from "@wdp/lib/hooks/useLatest";
 import useUppy from "hooks/useUppy";
 
-import { ProgressBar } from "components/atomic";
+import UploadProgressBar from "./UploadProgressBar";
 import BaseInputWrapper from "../../BaseInputWrapper";
 import type InputProps from "../../inputType";
 
@@ -223,7 +223,7 @@ export default function BaseFileUpload<T extends FieldValues = FieldValues>({
                 </>
               )}
             </Styled.Inner>
-            <ProgressBar
+            <UploadProgressBar
               loading={state.active}
               percentLoaded={state.percentUploaded}
             />

@@ -23,7 +23,10 @@ export default function HarvestMappingLayout({
   const { t } = useTranslation();
 
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       {slug && (
         <ButtonControlRoute
           route="harvestMapping.harvestAttempt.new"

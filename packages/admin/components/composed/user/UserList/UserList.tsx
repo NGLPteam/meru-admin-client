@@ -47,8 +47,10 @@ function UserList({ data, headerStyle, hideHeader }: UserListProps) {
   );
 }
 
-interface UserListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface UserListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: UserListFragment$key;
 }
 

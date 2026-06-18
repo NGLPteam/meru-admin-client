@@ -30,7 +30,10 @@ function RoleAccessList({
 
   const buttons =
     slug && entityType ? (
-      <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+      <ButtonControlGroup
+        toggleLabel={t("common.options")}
+        menuLabel={t("common.options")}
+      >
         <ButtonControlDrawer
           drawer="addRoleAccess"
           drawerQuery={{
@@ -88,8 +91,10 @@ function RoleAccessList({
   );
 }
 
-interface RoleAccessListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface RoleAccessListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: RoleAccessListFragment$key | null;
   header?: string;
   // Used to set specific labels on the drawer and form

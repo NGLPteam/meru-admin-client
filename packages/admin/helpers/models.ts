@@ -25,6 +25,7 @@ const MODEL_MAP = {
   MEMBER: "member",
   ACCESS: "access",
   PERMALINK: "permalink",
+  SUBMISSION: "submissions",
 };
 
 export type ModelNames = keyof typeof MODEL_MAP;

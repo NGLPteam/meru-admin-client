@@ -41,7 +41,6 @@ export default function useDisclosureState({
   const disclosureProps = {
     ref: disclosureRef,
     type: "button",
-    visible,
     "aria-expanded": visible,
     "aria-controls": id,
     onClick: toggleVisible,

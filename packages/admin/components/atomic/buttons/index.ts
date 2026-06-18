@@ -5,5 +5,6 @@ export {
   ButtonControlConfirm,
   ButtonControlRoute,
   ButtonControlDownload,
+  ButtonControlView,
 } from "./ButtonControl";
 export { default as ButtonControlGroup } from "./ButtonControlGroup";

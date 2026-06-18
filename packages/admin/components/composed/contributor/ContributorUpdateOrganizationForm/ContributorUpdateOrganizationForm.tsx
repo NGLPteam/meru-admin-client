@@ -97,11 +97,10 @@ type Fields = Omit<
   "contributorId" | "image"
 >;
 
-interface Props
-  extends Pick<
-    React.ComponentProps<typeof MutationForm>,
-    "onSuccess" | "onCancel"
-  > {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess" | "onCancel"
+> {
   data: ContributorUpdateOrganizationFormFragment$key;
 }
 

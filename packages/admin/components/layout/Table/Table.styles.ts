@@ -10,19 +10,20 @@ export const TableWrapper = styled.div<TableWrapperProps>`
   --table-margin-left: ${pxToRem(8)};
   --table-margin-right: ${pxToRem(8)};
   --checkbox-opacity: 0;
-  --checkbox-visibility: 0;
+  --checkbox-visibility: hidden;
 
   ${({ $selectable }) =>
     $selectable &&
     css`
-      --table-margin-left: ${pxToRem(52)};
+      --checkbox-opacity: 1;
+      --checkbox-visibility: visible;
     `}
 
   ${({ $showCheckboxes }) =>
     $showCheckboxes &&
     css`
       --checkbox-opacity: 1;
-      --checkbox-visibility: 1;
+      --checkbox-visibility: visible;
     `}
 
   border-top: var(--table-border);
@@ -58,17 +59,13 @@ export const HeaderCell = styled.th`
     cursor: pointer;
   }
 
-  &[data-select-cell="true"] {
-    padding-inline-start: var(--table-column-gap);
-    border-bottom: 0;
-  }
-
   &[role="presentation"] {
     border-bottom: 0;
   }
 `;
 
 export const HeaderCellInner = styled.span`
+  position: relative;
   display: flex;
   align-items: center;
   padding-block-start: ${pxToRem(7)};
@@ -135,17 +132,21 @@ export const Cell = styled.td`
 `;
 
 export const SelectCell = styled.td`
-  width: 0.1%;
-  max-width: auto;
   white-space: nowrap;
   padding: ${pxToRem(14)} var(--table-column-gap) 0;
-  border-top-left-radius: var(--table-border-radius);
-  border-bottom-left-radius: var(--table-border-radius);
+  text-align: center;
 `;
 
 export const SelectCellInner = styled.div`
   visibility: var(--checkbox-visibility);
   opacity: var(--checkbox-opacity);
+  display: flex;
+  justify-content: center;
+  margin-block-start: ${pxToRem(4)};
+
+  th & {
+    margin-block-start: 0;
+  }
 `;
 
 export const LoadingRow = styled.tr``;
@@ -169,8 +170,6 @@ export const Row = styled.tr`
 
     --button-control-opacity: 1;
     --button-control-visibility: 1;
-    --checkbox-opacity: 1;
-    --checkbox-visibility: 1;
   }
 `;
 
@@ -202,7 +201,5 @@ export const HeaderRow = styled.tr`
   &:focus-within {
     --button-control-opacity: 1;
     --button-control-visibility: 1;
-    --checkbox-opacity: 1;
-    --checkbox-visibility: 1;
   }
 `;

@@ -5,11 +5,10 @@ import BaseInputLabel from "../BaseInputLabel";
 import * as Styled from "./OrderingLinksSelection.styles";
 import type { UseFormRegisterReturn } from "react-hook-form";
 
-interface Props
-  extends Pick<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    "aria-label" | "id"
-  > {
+interface Props extends Pick<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "aria-label" | "id"
+> {
   contains: UseFormRegisterReturn;
   references: UseFormRegisterReturn;
 }

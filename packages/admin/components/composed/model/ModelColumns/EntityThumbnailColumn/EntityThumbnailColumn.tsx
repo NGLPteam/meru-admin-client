@@ -35,14 +35,19 @@ const EntityThumbnailColumn = <T extends Node>(
 
       const entity = readInlineData(fragment, value);
 
-      return entity ? (
+      if (!entity) return null;
+
+      const image =
+        entity.__typename === "Community" ? entity.logo : entity.thumbnail;
+
+      return (
         <ImageLink
-          route={entity.__typename === "Collection" ? "collection" : "item"}
+          route={entity.__typename.toLowerCase()}
           routeParams={{ slug: entity.slug || "" }}
         >
-          {entity.thumbnail?.storage ? (
+          {image?.storage ? (
             <Styled.Thumbnail
-              data={entity.thumbnail.thumb.webp}
+              data={image.thumb.webp}
               objectFit="contain"
               // height="auto"
             />
@@ -53,7 +58,7 @@ const EntityThumbnailColumn = <T extends Node>(
             />
           )}
         </ImageLink>
-      ) : null;
+      );
     },
     meta: {
       cellType: "thumbnail",
@@ -73,6 +78,16 @@ const fragment = graphql`
       thumb: small {
         webp {
           ...ImageFragment
+        }
+      }
+    }
+    ... on Community {
+      logo {
+        storage
+        thumb: small {
+          webp {
+            ...ImageFragment
+          }
         }
       }
     }

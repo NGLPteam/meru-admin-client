@@ -17,14 +17,16 @@ export default function ContributorsProperty(props: Props) {
 
   return (
     <ScalarProperty field={field}>
-      {({ label, required, name, isWide }) => (
+      {({ label, required, name, isWide, instructions }) => (
         <Controller
           name={name}
           control={control}
+          rules={{ required }}
           render={({ field }) => (
             <Multiselect
               label={label}
               required={required}
+              description={instructions}
               options={options}
               isWide={isWide}
               {...field}

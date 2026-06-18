@@ -39,7 +39,10 @@ function EntityPermalinksList({
   ];
 
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <ButtonControlDrawer
         drawer="addPermalink"
         drawerQuery={{
@@ -86,8 +89,10 @@ function EntityPermalinksList({
   );
 }
 
-interface EntityPermalinksListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface EntityPermalinksListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: EntityPermalinksListFragment$key;
 }
 

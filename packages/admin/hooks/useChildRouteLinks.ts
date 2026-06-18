@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { graphql } from "react-relay";
 import { useMaybeFragment } from "@wdp/lib/api/hooks";
-import { useViewerContext } from "contexts";
+import { useGlobalContext, useViewerContext } from "contexts";
 import { useChildRouteLinksFragment$key } from "@/relay/useChildRouteLinksFragment.graphql";
 import { RouteHelper } from "../routes";
 import useLatestPresentValue from "./useLatestPresentValue";
@@ -26,6 +26,10 @@ export function useChildRouteLinks(
 
   const viewer = useViewerContext();
 
+  const globalData = useGlobalContext();
+  const depositingEnabled =
+    globalData?.globalConfiguration?.depositing?.enabled ?? false;
+
   const childRoutes = useMemo(() => {
     if (!mainRoute || !mainRoute.routes) return [];
     return mainRoute.routes;
@@ -33,6 +37,7 @@ export function useChildRouteLinks(
 
   const links = useMemo(() => {
     const filteredRoutes = childRoutes.filter((route) => {
+      if (route.depositing && !depositingEnabled) return false;
       if (route.childKinds) {
         const allowed = route.childKinds.every((kind) =>
           memoizedEntity?.current?.schemaVersion?.enforcedChildKinds?.includes(
@@ -58,7 +63,7 @@ export function useChildRouteLinks(
       query: query,
       actions: childRoute.actions,
     }));
-  }, [childRoutes, memoizedEntity, query, viewer]);
+  }, [childRoutes, memoizedEntity, query, viewer, depositingEnabled]);
 
   return links;
 }

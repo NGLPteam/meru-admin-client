@@ -8,21 +8,18 @@ import type { ScalarPropertyFragment$key } from "@/relay/ScalarPropertyFragment.
  * generic interfaces.
  */
 export default function ScalarProperty(props: Props) {
-  const { name, label, required, path, type, isWide } =
+  const { name, label, required, path, type, isWide, instructions } =
     useFragment<ScalarPropertyFragment$key>(fragment, props.field);
 
-  // If we need to, we could override the label here
-
-  const childProps: RenderScalarProps = {
+  return props.children({
     name,
     label,
     required,
     path,
     type,
     isWide,
-  };
-
-  return props.children(childProps);
+    instructions: instructions ?? undefined,
+  });
 }
 
 interface Props {
@@ -37,6 +34,7 @@ interface RenderScalarProps {
   path: string;
   type: string;
   isWide?: boolean;
+  instructions?: string;
 }
 
 type RenderScalarProperty = (props: RenderScalarProps) => React.JSX.Element;
@@ -49,5 +47,6 @@ const fragment = graphql`
     required
     type
     isWide
+    instructions
   }
 `;

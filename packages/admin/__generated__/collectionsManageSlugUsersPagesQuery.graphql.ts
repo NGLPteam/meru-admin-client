@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7cbbcb43a3d5e0e30207f28cbaa457e8>>
+ * @generated SignedSource<<566a899873e595245c4b2a836599b689>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -81,7 +81,73 @@ v6 = {
   "kind": "ScalarField",
   "name": "slug",
   "storageKey": null
-};
+},
+v7 = [
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "storage",
+    "storageKey": null
+  },
+  {
+    "alias": "thumb",
+    "args": null,
+    "concreteType": "ImageSize",
+    "kind": "LinkedField",
+    "name": "small",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "ImageDerivative",
+        "kind": "LinkedField",
+        "name": "webp",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "InlineFragment",
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "alt",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "url",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "width",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "height",
+                "storageKey": null
+              }
+            ],
+            "type": "Image",
+            "abstractKey": "__isImage"
+          }
+        ],
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
+  }
+];
 return {
   "fragment": {
     "argumentDefinitions": [
@@ -201,73 +267,25 @@ return {
                                 "kind": "LinkedField",
                                 "name": "thumbnail",
                                 "plural": false,
+                                "selections": (v7/*: any*/),
+                                "storageKey": null
+                              },
+                              {
+                                "kind": "InlineFragment",
                                 "selections": [
                                   {
                                     "alias": null,
                                     "args": null,
-                                    "kind": "ScalarField",
-                                    "name": "storage",
-                                    "storageKey": null
-                                  },
-                                  {
-                                    "alias": "thumb",
-                                    "args": null,
-                                    "concreteType": "ImageSize",
+                                    "concreteType": "ImageAttachment",
                                     "kind": "LinkedField",
-                                    "name": "small",
+                                    "name": "logo",
                                     "plural": false,
-                                    "selections": [
-                                      {
-                                        "alias": null,
-                                        "args": null,
-                                        "concreteType": "ImageDerivative",
-                                        "kind": "LinkedField",
-                                        "name": "webp",
-                                        "plural": false,
-                                        "selections": [
-                                          {
-                                            "kind": "InlineFragment",
-                                            "selections": [
-                                              {
-                                                "alias": null,
-                                                "args": null,
-                                                "kind": "ScalarField",
-                                                "name": "alt",
-                                                "storageKey": null
-                                              },
-                                              {
-                                                "alias": null,
-                                                "args": null,
-                                                "kind": "ScalarField",
-                                                "name": "url",
-                                                "storageKey": null
-                                              },
-                                              {
-                                                "alias": null,
-                                                "args": null,
-                                                "kind": "ScalarField",
-                                                "name": "width",
-                                                "storageKey": null
-                                              },
-                                              {
-                                                "alias": null,
-                                                "args": null,
-                                                "kind": "ScalarField",
-                                                "name": "height",
-                                                "storageKey": null
-                                              }
-                                            ],
-                                            "type": "Image",
-                                            "abstractKey": "__isImage"
-                                          }
-                                        ],
-                                        "storageKey": null
-                                      }
-                                    ],
+                                    "selections": (v7/*: any*/),
                                     "storageKey": null
                                   }
                                 ],
-                                "storageKey": null
+                                "type": "Community",
+                                "abstractKey": null
                               },
                               {
                                 "kind": "TypeDiscriminator",
@@ -392,12 +410,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "d534df8ed96b2bc27e1ebb63b753099a",
+    "cacheID": "9282a862ad1a9fcce51709facdb17bda",
     "id": null,
     "metadata": {},
     "name": "collectionsManageSlugUsersPagesQuery",
     "operationKind": "query",
-    "text": "query collectionsManageSlugUsersPagesQuery(\n  $slug: Slug!\n  $order: SimpleOrder\n  $page: Int!\n) {\n  user(slug: $slug) {\n    collectionAccessGrants(order: $order, page: $page, perPage: 20) {\n      ...UserCollectionsListFragment\n    }\n    id\n  }\n}\n\nfragment EntityThumbnailColumnFragment on Entity {\n  __isEntity: __typename\n  __typename\n  title\n  thumbnail {\n    storage\n    thumb: small {\n      webp {\n        ...ImageFragment\n      }\n    }\n  }\n  ... on Node {\n    __isNode: __typename\n    id\n  }\n  ... on Sluggable {\n    __isSluggable: __typename\n    slug\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment UserCollectionsListFragment on UserCollectionAccessGrantConnection {\n  edges {\n    node {\n      id\n      collection {\n        id\n        title\n        slug\n        ...EntityThumbnailColumnFragment\n      }\n      role {\n        id\n        name\n      }\n      user {\n        id\n        slug\n      }\n    }\n  }\n  ...ModelListPageFragment\n}\n"
+    "text": "query collectionsManageSlugUsersPagesQuery(\n  $slug: Slug!\n  $order: SimpleOrder\n  $page: Int!\n) {\n  user(slug: $slug) {\n    collectionAccessGrants(order: $order, page: $page, perPage: 20) {\n      ...UserCollectionsListFragment\n    }\n    id\n  }\n}\n\nfragment EntityThumbnailColumnFragment on Entity {\n  __isEntity: __typename\n  __typename\n  title\n  thumbnail {\n    storage\n    thumb: small {\n      webp {\n        ...ImageFragment\n      }\n    }\n  }\n  ... on Community {\n    logo {\n      storage\n      thumb: small {\n        webp {\n          ...ImageFragment\n        }\n      }\n    }\n  }\n  ... on Node {\n    __isNode: __typename\n    id\n  }\n  ... on Sluggable {\n    __isSluggable: __typename\n    slug\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment UserCollectionsListFragment on UserCollectionAccessGrantConnection {\n  edges {\n    node {\n      id\n      collection {\n        id\n        title\n        slug\n        ...EntityThumbnailColumnFragment\n      }\n      role {\n        id\n        name\n      }\n      user {\n        id\n        slug\n      }\n    }\n  }\n  ...ModelListPageFragment\n}\n"
   }
 };
 })();

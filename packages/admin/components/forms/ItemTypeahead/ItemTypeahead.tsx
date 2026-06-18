@@ -87,8 +87,10 @@ const ItemTypeahead = <T extends FieldValues = FieldValues>(
   );
 };
 
-interface Props<T extends FieldValues = FieldValues>
-  extends Omit<TypeaheadProps, "options" | "name"> {
+interface Props<T extends FieldValues = FieldValues> extends Omit<
+  TypeaheadProps,
+  "options" | "name"
+> {
   control: Control<T>;
   name: Path<T>;
 }

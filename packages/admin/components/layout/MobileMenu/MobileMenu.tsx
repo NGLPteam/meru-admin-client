@@ -25,6 +25,10 @@ const MobileMenu = forwardRef(
       lastActive.current = active;
     }, [active]);
 
+    const handleContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
+      if ((e.target as HTMLElement).closest("a, button")) onClose();
+    };
+
     return (
       <Styled.Wrapper
         as="nav"
@@ -46,7 +50,7 @@ const MobileMenu = forwardRef(
             onToggle={onClose}
           />
         </Styled.Header>
-        <Styled.Content>{children}</Styled.Content>
+        <Styled.Content onClick={handleContentClick}>{children}</Styled.Content>
         {showProviderBar && <ProviderBar />}
       </Styled.Wrapper>
     );

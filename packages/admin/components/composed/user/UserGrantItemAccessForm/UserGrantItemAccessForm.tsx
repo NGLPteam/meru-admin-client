@@ -46,11 +46,10 @@ const UserGrantItemAccessForm = ({ onSuccess, onCancel, userId }: Props) => {
   );
 };
 
-interface Props
-  extends Pick<
-    React.ComponentProps<typeof MutationForm>,
-    "onSuccess" | "onCancel"
-  > {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess" | "onCancel"
+> {
   userId?: string;
 }
 

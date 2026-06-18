@@ -62,7 +62,10 @@ function InstancePermalinksList({
   };
 
   const buttons = (
-    <ButtonControlGroup toggleLabel={t("options")} menuLabel={t("options")}>
+    <ButtonControlGroup
+      toggleLabel={t("common.options")}
+      menuLabel={t("common.options")}
+    >
       <ButtonControlDrawer
         drawer="addInstancePermalink"
         icon="plus"
@@ -89,8 +92,10 @@ function InstancePermalinksList({
   );
 }
 
-interface InstancePermalinksListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface InstancePermalinksListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: InstancePermalinksListFragment$key;
 }
 

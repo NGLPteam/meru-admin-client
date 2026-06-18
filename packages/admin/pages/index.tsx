@@ -5,6 +5,7 @@ import {
   useIsAuthenticated,
   useSearchQueryVars,
 } from "hooks";
+import { useViewerContext } from "contexts";
 import { DashboardLayout } from "components/composed/dashboard";
 import { LoadingPage } from "components/atomic";
 import HtmlHead from "components/global/HtmlHead";
@@ -19,6 +20,7 @@ export default function HomePage({ initialQueryRef }: Props) {
   const queryVars = useBaseListQueryVars();
   const searchQueryVars = useSearchQueryVars();
   const isAuth = useIsAuthenticated();
+  const { id: viewerId } = useViewerContext();
 
   return (
     <>
@@ -27,7 +29,11 @@ export default function HomePage({ initialQueryRef }: Props) {
         <>
           <QueryLoaderWrapper<DashboardLayoutQuery>
             query={query}
-            variables={{ ...queryVars, ...searchQueryVars }}
+            variables={{
+              ...queryVars,
+              ...searchQueryVars,
+              viewerId: viewerId ?? "",
+            }}
             initialQueryRef={initialQueryRef}
             loadingFallback={<LoadingPage />}
           >

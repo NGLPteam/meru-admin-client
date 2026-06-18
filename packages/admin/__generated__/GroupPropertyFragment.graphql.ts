@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f808f55483f6f898480aeda24af2900a>>
+ * @generated SignedSource<<89117cbb31bcabee1656423922651f19>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,7 @@ export type GroupPropertyFragment$data = {
   readonly legend: string | null | undefined;
   readonly path: string;
   readonly properties: ReadonlyArray<{
+    readonly submittable: boolean;
     readonly " $fragmentSpreads": FragmentRefs<"SchemaPropertyFragment">;
   }>;
   readonly " $fragmentType": "GroupPropertyFragment";
@@ -52,6 +53,13 @@ const node: ReaderFragment = {
       "plural": true,
       "selections": [
         {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "submittable",
+          "storageKey": null
+        },
+        {
           "args": null,
           "kind": "FragmentSpread",
           "name": "SchemaPropertyFragment"
@@ -64,6 +72,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "adac117c59d8a44cdfb9750e08336ba2";
+(node as any).hash = "4045b0e1f34c7ff0f7da1ef65ccba3ad";
 
 export default node;

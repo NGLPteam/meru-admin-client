@@ -17,7 +17,7 @@ interface Props {
   id?: string;
   label: string;
   children: React.ReactNode;
-  description?: string;
+  description?: React.ReactNode;
   style?: CSSwithVars;
 }
 

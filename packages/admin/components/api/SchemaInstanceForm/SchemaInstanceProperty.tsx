@@ -27,7 +27,14 @@ const fragment = graphql`
   fragment SchemaInstancePropertyFragment on SchemaProperty {
     __typename
 
+    ... on ScalarProperty {
+      submittable
+    }
+
     ... on GroupProperty {
+      properties {
+        submittable
+      }
       # eslint-disable-next-line relay/must-colocate-fragment-spreads
       ...GroupPropertyFragment
     }

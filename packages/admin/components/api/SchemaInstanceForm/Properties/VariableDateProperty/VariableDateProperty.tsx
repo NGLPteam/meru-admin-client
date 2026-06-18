@@ -11,12 +11,13 @@ export default function VariableDateProperty(props: Props) {
 
   return (
     <ScalarProperty field={field}>
-      {({ label, required, name, isWide }) => (
+      {({ label, required, name, isWide, instructions }) => (
         <VariablePrecisionDateControl
           name={name}
           data={field?.dateWithPrecision}
           label={label}
           required={required}
+          description={instructions}
           isWide={isWide}
         />
       )}
