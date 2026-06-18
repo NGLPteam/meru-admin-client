@@ -552,6 +552,7 @@
         "identifier_description": "Optional custom identifier. If left blank, one will be assigned based on name. Cannot be changed after harvest source is created.",
         "target_entity": "Target Entity",
         "schedule": "Schedule",
+        "frequency_expression": "New Schedule",
         "frequency_expression_description": "Meru can automatically trigger harvest attempts from this mapping on a set schedule. This schedule can be specified either with a cron expression, e.g. \"0 6 * * *\", or with a human-readable expression such as, \"every day at 4 pm America/Los_Angeles\" or \"every 2 months\". After saving, attempts generated from the new schedule will be viewable in the Attempts tab. Leave or revert this field to blank if harvest attempts for this mapping should only be triggered manually.",
         "note": "Note",
         "max_records_description": "Default 80,000",
