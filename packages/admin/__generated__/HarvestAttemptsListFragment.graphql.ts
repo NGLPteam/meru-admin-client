@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3d08046137414727d6d1a19f279c7acf>>
+ * @generated SignedSource<<86fa2fc388bdc1923cc822799698e969>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,6 +15,7 @@ import { FragmentRefs } from "relay-runtime";
 export type HarvestAttemptsListFragment$data = {
   readonly nodes: ReadonlyArray<{
     readonly beganAt: string | null | undefined;
+    readonly createdAt: string;
     readonly currentState: HarvestAttemptState;
     readonly endedAt: string | null | undefined;
     readonly harvestRecords: {
@@ -30,6 +31,7 @@ export type HarvestAttemptsListFragment$data = {
     };
     readonly id: string;
     readonly mode: HarvestScheduleMode;
+    readonly scheduledAt: string | null | undefined;
     readonly slug: string;
   }>;
   readonly " $fragmentSpreads": FragmentRefs<"ModelListPageFragment">;
@@ -80,6 +82,20 @@ const node: ReaderFragment = {
           "args": null,
           "kind": "ScalarField",
           "name": "endedAt",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "scheduledAt",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "createdAt",
           "storageKey": null
         },
         {
@@ -174,6 +190,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "a3aa257368d6303a2e69bf67ec5ef7eb";
+(node as any).hash = "323d60a35e278e054d7f0265fdce98fa";
 
 export default node;
