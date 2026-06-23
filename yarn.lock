@@ -2531,10 +2531,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@transloadit/prettier-bytes@npm:0.0.7":
-  version: 0.0.7
-  resolution: "@transloadit/prettier-bytes@npm:0.0.7"
-  checksum: 10c0/cb9e6ef84298300f6b6cb4e64ebb44927a9350476e2122a1a07b652639c0ab44feb4d3e11a7b06d093c92bf2b17485d3f715f8ea6388f6f2d5cf2bd59eddbd6c
+"@transloadit/prettier-bytes@npm:^0.3.4":
+  version: 0.3.5
+  resolution: "@transloadit/prettier-bytes@npm:0.3.5"
+  checksum: 10c0/d00f40ef305388d805004540a51a3b6502a68684415daab5de618dd551d246661d898749e4cabaf60915510f854763f78289ad1c64388f68497dfdc3f558b19b
   languageName: node
   linkType: hard
 
@@ -3140,26 +3140,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uppy/core@npm:^1.20.1":
-  version: 1.20.1
-  resolution: "@uppy/core@npm:1.20.1"
+"@uppy/core@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "@uppy/core@npm:5.2.0"
   dependencies:
-    "@transloadit/prettier-bytes": "npm:0.0.7"
-    "@uppy/store-default": "npm:^1.2.7"
-    "@uppy/utils": "npm:^3.6.2"
-    cuid: "npm:^2.1.1"
-    lodash.throttle: "npm:^4.1.1"
+    "@transloadit/prettier-bytes": "npm:^0.3.4"
+    "@uppy/store-default": "npm:^5.0.0"
+    "@uppy/utils": "npm:^7.1.4"
+    lodash: "npm:^4.17.21"
     mime-match: "npm:^1.0.2"
     namespace-emitter: "npm:^2.0.1"
-    preact: "npm:8.2.9"
-  checksum: 10c0/9b60b6df5e5ee662063906c04fb0b26f3fbe33dcf9057dd4d904dfbaf693a9695bae8aebd0b640f7c9c3dc28a609721c6c012481381bcc1f910da9516e12d0b8
+    nanoid: "npm:^5.0.9"
+    preact: "npm:^10.5.13"
+  checksum: 10c0/a55a7b4e04d9584ba49eea6f36532281eeba14648fd714105d8d1b338de1bf1d565323929906a0aa775d6744cf8572ea8020412aea888433a445d6e5e7886441
   languageName: node
   linkType: hard
 
-"@uppy/store-default@npm:^1.2.7":
-  version: 1.2.7
-  resolution: "@uppy/store-default@npm:1.2.7"
-  checksum: 10c0/b679df1b31a68f95ea83d58b16708cac199bf6d8baf74da78325f71c9da45c7edb80a45a877ca8d75c5fbb3b1301f8e6a70086b13f6b3799a8bb791c3cc613f5
+"@uppy/store-default@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@uppy/store-default@npm:5.0.0"
+  checksum: 10c0/dd1ae6ca2b92193ddcb54dffdd0e64484b8eb37efd27bd10fe54cdb361f35d1556021a0c7ed10e6675d5c3332e9bd6f2649b752de429b530397e629be2e5e494
   languageName: node
   linkType: hard
 
@@ -3183,6 +3183,16 @@ __metadata:
     abortcontroller-polyfill: "npm:^1.4.0"
     lodash.throttle: "npm:^4.1.1"
   checksum: 10c0/a34fd908cae890dbe19998cd15b8564fb4c7977242f5870be02e9443318c7ad231a7c44c63098b9aa3f88e5a922597ecc0c1fb86186e5960c28659516105ffbb
+  languageName: node
+  linkType: hard
+
+"@uppy/utils@npm:^7.1.4":
+  version: 7.2.0
+  resolution: "@uppy/utils@npm:7.2.0"
+  dependencies:
+    lodash: "npm:^4.17.23"
+    preact: "npm:^10.26.10"
+  checksum: 10c0/c3f6dc66498aa02002b2b3d58e67d8eecd9abae6d5e95624e90a896c27167a43db12a0564c840b392aed8f2626f19482f19bdf48d7ec68fb25c1f08f44f16cda
   languageName: node
   linkType: hard
 
@@ -3280,7 +3290,7 @@ __metadata:
     "@uiw/codemirror-theme-material": "npm:^4.23.10"
     "@uiw/codemirror-theme-quietlight": "npm:^4.23.10"
     "@uiw/react-codemirror": "npm:^4.23.10"
-    "@uppy/core": "npm:^1.20.1"
+    "@uppy/core": "npm:^5.2.0"
     "@uppy/tus": "npm:^1.9.2"
     "@wdp/lib": "workspace:^"
     chunk-text: "npm:^2.0.1"
@@ -4651,13 +4661,6 @@ __metadata:
   version: 3.1.3
   resolution: "csstype@npm:3.1.3"
   checksum: 10c0/80c089d6f7e0c5b2bd83cf0539ab41474198579584fa10d86d0cafe0642202343cbc119e076a0b1aece191989477081415d66c9fefbf3c957fc2fc4b7009f248
-  languageName: node
-  linkType: hard
-
-"cuid@npm:^2.1.1":
-  version: 2.1.8
-  resolution: "cuid@npm:2.1.8"
-  checksum: 10c0/6514d247c6de3e5cd32f485821365f4816ee14b777841fa717d37b7a8f791f3cb268be9e37ca54b110f6f5f625e4f0af581c3226aa14f259790539ba20fdaf61
   languageName: node
   linkType: hard
 
@@ -7458,6 +7461,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash@npm:^4.17.23":
+  version: 4.18.1
+  resolution: "lodash@npm:4.18.1"
+  checksum: 10c0/757228fc68805c59789e82185135cf85f05d0b2d3d54631d680ca79ec21944ec8314d4533639a14b8bcfbd97a517e78960933041a5af17ecb693ec6eecb99a27
+  languageName: node
+  linkType: hard
+
 "log-symbols@npm:^4.0.0, log-symbols@npm:^4.1.0":
   version: 4.1.0
   resolution: "log-symbols@npm:4.1.0"
@@ -8089,6 +8099,15 @@ __metadata:
   bin:
     nanoid: bin/nanoid.cjs
   checksum: 10c0/e3fb661aa083454f40500473bb69eedb85dc160e763150b9a2c567c7e9ff560ce028a9f833123b618a6ea742e311138b591910e795614a629029e86e180660f3
+  languageName: node
+  linkType: hard
+
+"nanoid@npm:^5.0.9":
+  version: 5.1.11
+  resolution: "nanoid@npm:5.1.11"
+  bin:
+    nanoid: bin/nanoid.js
+  checksum: 10c0/91580d18c29263ac0e871734f0d86e7f906f523f974d3c30fc65354ccf387ccffd606c2a6c28acc2977a3950146347e790ce9e3f514133a48995af5ccdb308ce
   languageName: node
   linkType: hard
 
@@ -8763,10 +8782,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"preact@npm:8.2.9":
-  version: 8.2.9
-  resolution: "preact@npm:8.2.9"
-  checksum: 10c0/6fbf1079cbe602a974663d36745ab935af17d5d9dda3baab08c745b82d192357d5db551f83297c033a52bc5e79fabb4397ebdd997746d8951649e2d66fb8c02d
+"preact@npm:^10.26.10, preact@npm:^10.5.13":
+  version: 10.29.2
+  resolution: "preact@npm:10.29.2"
+  checksum: 10c0/2ee161274e475804524608d42bba8c79920636b322293248796a9e5bf4c3332336f8c0eca1b1566ed09cdee95e408eb20b5b7613d95820ea6b6eb8fc090ef60a
   languageName: node
   linkType: hard
 
