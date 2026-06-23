@@ -777,6 +777,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.25.0":
+  version: 7.29.7
+  resolution: "@babel/runtime@npm:7.29.7"
+  checksum: 10c0/ca11572f7146b21e0bde6a9ed4bb6a89eafbee5f0944c7eb54d0d8a2dac962c33638a1d611e14faa71dfbb92b4b5f9236232208568a6b7d5c6f3f39ddb91771e
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.16.7, @babel/template@npm:^7.18.10, @babel/template@npm:^7.20.7, @babel/template@npm:^7.22.15, @babel/template@npm:^7.23.9":
   version: 7.23.9
   resolution: "@babel/template@npm:7.23.9"
@@ -3308,7 +3315,7 @@ __metadata:
     react-hot-toast: "npm:^2.5.2"
     react-i18next: "npm:^14.0.5"
     react-markdown: "npm:^9.0.1"
-    react-relay: "npm:^16.2.0"
+    react-relay: "npm:^21.0.1"
     react-relay-network-modern: "npm:^6.2.2"
     react-relay-network-modern-ssr: "npm:^1.4.0"
     reakit: "npm:^1.3.11"
@@ -9123,18 +9130,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-relay@npm:^16.2.0":
-  version: 16.2.0
-  resolution: "react-relay@npm:16.2.0"
+"react-relay@npm:^21.0.1":
+  version: 21.0.1
+  resolution: "react-relay@npm:21.0.1"
   dependencies:
-    "@babel/runtime": "npm:^7.0.0"
+    "@babel/runtime": "npm:^7.25.0"
     fbjs: "npm:^3.0.2"
     invariant: "npm:^2.2.4"
     nullthrows: "npm:^1.1.1"
-    relay-runtime: "npm:16.2.0"
+    relay-runtime: "npm:21.0.1"
   peerDependencies:
-    react: ^16.9.0 || ^17 || ^18
-  checksum: 10c0/d68f2626d71ab1486644b7bfdf73d0bcac6e06e37e5b3f57eac273ebb7c560d9d936ca54aa9f18677b10f54fe541d060d9a0d93cc96cef0a9cd11ea6ed409ff0
+    react: ^16.9.0 || ^17 || ^18 || ^19
+  checksum: 10c0/906e7f108b02800d9749c5cfdae2404aa793c47c37820390eab404c6a735cd665a22eb1051271418ab55b366eeb1744a167d14c5886f773cc15fd7cb67c58202
   languageName: node
   linkType: hard
 
@@ -9329,6 +9336,17 @@ __metadata:
     fbjs: "npm:^3.0.2"
     invariant: "npm:^2.2.4"
   checksum: 10c0/770dc36203a3d0a7c285ac446ac601cfa8a87da2af8ee9a9cc3c5533c506655e457b276bc40c6e0f274556dce258b2407a5d17e6582bbc9902af5f1dd9081c3a
+  languageName: node
+  linkType: hard
+
+"relay-runtime@npm:21.0.1":
+  version: 21.0.1
+  resolution: "relay-runtime@npm:21.0.1"
+  dependencies:
+    "@babel/runtime": "npm:^7.25.0"
+    fbjs: "npm:^3.0.2"
+    invariant: "npm:^2.2.4"
+  checksum: 10c0/f8eac31bc7820412ffa270f1f8daec088beeee961a6ba8d74b416bd591a64214b056d9a54082dce3ffe744fcea831db3d78d52906df70cbad06298a8ae7e3733
   languageName: node
   linkType: hard
 
