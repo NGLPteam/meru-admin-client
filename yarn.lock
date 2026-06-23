@@ -2545,10 +2545,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/cookie@npm:^0.6.0":
-  version: 0.6.0
-  resolution: "@types/cookie@npm:0.6.0"
-  checksum: 10c0/5b326bd0188120fb32c0be086b141b1481fec9941b76ad537f9110e10d61ee2636beac145463319c71e4be67a17e85b81ca9e13ceb6e3bb63b93d16824d6c149
+"@types/cookie@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@types/cookie@npm:1.0.0"
+  dependencies:
+    cookie: "npm:*"
+  checksum: 10c0/d471539d289c6d9c6ab2986a881b10a55c9e489c2d35da0d1bdbbabdca9a8125de4cbc007bb525060265c64c14288c690f991ba6d84eea8c6ddacaa150179557
   languageName: node
   linkType: hard
 
@@ -3264,7 +3266,7 @@ __metadata:
     "@spissvinkel/alea": "npm:^1.2.1"
     "@tanstack/react-table": "npm:^8.5.15"
     "@types/chunk-text": "npm:^1.0.2"
-    "@types/cookie": "npm:^0.6.0"
+    "@types/cookie": "npm:^1.0.0"
     "@types/lodash": "npm:^4.14.202"
     "@types/node": "npm:^20.11.19"
     "@types/react": "npm:^18.2.57"
@@ -3285,7 +3287,7 @@ __metadata:
     "@wdp/lib": "workspace:^"
     chunk-text: "npm:^2.0.1"
     concurrently: "npm:^8.2.2"
-    cookie: "npm:^0.6.0"
+    cookie: "npm:^1.1.1"
     date-fns: "npm:^3.3.1"
     depcheck: "npm:^1.4.7"
     downshift: "npm:^8.3.2"
@@ -4486,17 +4488,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cookie@npm:*, cookie@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "cookie@npm:1.1.1"
+  checksum: 10c0/79c4ddc0fcad9c4f045f826f42edf54bcc921a29586a4558b0898277fa89fb47be95bc384c2253f493af7b29500c830da28341274527328f18eba9f58afa112c
+  languageName: node
+  linkType: hard
+
 "cookie@npm:^0.5.0":
   version: 0.5.0
   resolution: "cookie@npm:0.5.0"
   checksum: 10c0/c01ca3ef8d7b8187bae434434582288681273b5a9ed27521d4d7f9f7928fe0c920df0decd9f9d3bbd2d14ac432b8c8cf42b98b3bdd5bfe0e6edddeebebe8b61d
-  languageName: node
-  linkType: hard
-
-"cookie@npm:^0.6.0":
-  version: 0.6.0
-  resolution: "cookie@npm:0.6.0"
-  checksum: 10c0/f2318b31af7a31b4ddb4a678d024514df5e705f9be5909a192d7f116cfb6d45cbacf96a473fa733faa95050e7cff26e7832bb3ef94751592f1387b71c8956686
   languageName: node
   linkType: hard
 
