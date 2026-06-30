@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4cf2e85e0ff8c541e7b4371e08924c16>>
+ * @generated SignedSource<<f4d26f31139b46f8949836c10025125e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -86,14 +86,6 @@ v4 = {
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
-},
-v5 = {
-  "kind": "InlineFragment",
-  "selections": [
-    (v4/*: any*/)
-  ],
-  "type": "Node",
-  "abstractKey": "__isNode"
 };
 return {
   "fragment": {
@@ -143,7 +135,14 @@ return {
                         "name": "entity",
                         "plural": false,
                         "selections": [
-                          (v5/*: any*/)
+                          {
+                            "kind": "InlineFragment",
+                            "selections": [
+                              (v4/*: any*/)
+                            ],
+                            "type": "Node",
+                            "abstractKey": "__isNode"
+                          }
                         ],
                         "storageKey": null
                       }
@@ -217,7 +216,11 @@ return {
                             "name": "__typename",
                             "storageKey": null
                           },
-                          (v5/*: any*/)
+                          (v4/*: any*/),
+                          {
+                            "kind": "TypeDiscriminator",
+                            "abstractKey": "__isNode"
+                          }
                         ],
                         "storageKey": null
                       },
@@ -237,12 +240,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "2b681a8c964d47f7166d5d045a519dc7",
+    "cacheID": "f534691592a98c0f050f0a06f041f81c",
     "id": null,
     "metadata": {},
     "name": "CollectionTypeaheadQuery",
     "operationKind": "query",
-    "text": "query CollectionTypeaheadQuery(\n  $query: String!\n) {\n  search(visibility: ALL) {\n    results(prefix: $query, page: 1, perPage: 50, order: TITLE_ASCENDING, scope: COLLECTION) {\n      edges {\n        node {\n          title\n          entity {\n            __typename\n            ... on Node {\n              __isNode: __typename\n              id\n            }\n          }\n          id\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query CollectionTypeaheadQuery(\n  $query: String!\n) {\n  search(visibility: ALL) {\n    results(prefix: $query, page: 1, perPage: 50, order: TITLE_ASCENDING, scope: COLLECTION) {\n      edges {\n        node {\n          title\n          entity {\n            __typename\n            ... on Node {\n              __isNode: __typename\n              id\n            }\n            id\n          }\n          id\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();
