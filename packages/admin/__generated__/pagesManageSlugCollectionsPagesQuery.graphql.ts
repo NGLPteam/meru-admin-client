@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4ecca4ab6d841818d9f90a029e4a0da7>>
+ * @generated SignedSource<<b065f4b1ab9e6423ab1cd76c344f9660>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -125,14 +125,7 @@ v5 = [
                     "type": "Sluggable",
                     "abstractKey": "__isSluggable"
                   },
-                  {
-                    "kind": "InlineFragment",
-                    "selections": [
-                      (v4/*: any*/)
-                    ],
-                    "type": "Node",
-                    "abstractKey": "__isNode"
-                  }
+                  (v4/*: any*/)
                 ],
                 "storageKey": null
               },
@@ -360,12 +353,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "9a9b6ed277fc10614407f53bf55217e1",
+    "cacheID": "cba2357d3aff12345830f4ffb42cf75e",
     "id": null,
     "metadata": {},
     "name": "pagesManageSlugCollectionsPagesQuery",
     "operationKind": "query",
-    "text": "query pagesManageSlugCollectionsPagesQuery(\n  $slug: Slug!\n  $page: Int!\n) {\n  collection(slug: $slug) {\n    ...EntityPagesListFragment\n    id\n  }\n}\n\nfragment EntityPagesListDataFragment on PageConnection {\n  edges {\n    node {\n      id\n      title\n      slug\n      entity {\n        __typename\n        ... on Sluggable {\n          __isSluggable: __typename\n          slug\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      ...PageHeroColumnFragment\n    }\n  }\n  ...ModelListPageFragment\n}\n\nfragment EntityPagesListFragment on Entity {\n  __isEntity: __typename\n  ... on Community {\n    slug\n    pages(page: $page, perPage: 20) {\n      ...EntityPagesListDataFragment\n    }\n  }\n  ... on Collection {\n    slug\n    pages(page: $page, perPage: 20) {\n      ...EntityPagesListDataFragment\n    }\n  }\n  ... on Item {\n    slug\n    pages(page: $page, perPage: 20) {\n      ...EntityPagesListDataFragment\n    }\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment PageHeroColumnFragment on Page {\n  heroImage {\n    storage\n    thumb {\n      webp {\n        ...ImageFragment\n      }\n    }\n  }\n}\n"
+    "text": "query pagesManageSlugCollectionsPagesQuery(\n  $slug: Slug!\n  $page: Int!\n) {\n  collection(slug: $slug) {\n    ...EntityPagesListFragment\n    id\n  }\n}\n\nfragment EntityPagesListDataFragment on PageConnection {\n  edges {\n    node {\n      id\n      title\n      slug\n      entity {\n        __typename\n        ... on Sluggable {\n          __isSluggable: __typename\n          slug\n        }\n        id\n      }\n      ...PageHeroColumnFragment\n    }\n  }\n  ...ModelListPageFragment\n}\n\nfragment EntityPagesListFragment on Entity {\n  __isEntity: __typename\n  ... on Community {\n    slug\n    pages(page: $page, perPage: 20) {\n      ...EntityPagesListDataFragment\n    }\n  }\n  ... on Collection {\n    slug\n    pages(page: $page, perPage: 20) {\n      ...EntityPagesListDataFragment\n    }\n  }\n  ... on Item {\n    slug\n    pages(page: $page, perPage: 20) {\n      ...EntityPagesListDataFragment\n    }\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment ModelListPageFragment on Paginated {\n  __isPaginated: __typename\n  ...ModelPageCountActionsFragment\n  ...ModelPaginationFragment\n}\n\nfragment ModelPageCountActionsFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n    perPage\n    hasNextPage\n    hasPreviousPage\n    totalCount\n  }\n}\n\nfragment ModelPaginationFragment on Paginated {\n  __isPaginated: __typename\n  pageInfo {\n    page\n    pageCount\n  }\n}\n\nfragment PageHeroColumnFragment on Page {\n  heroImage {\n    storage\n    thumb {\n      webp {\n        ...ImageFragment\n      }\n    }\n  }\n}\n"
   }
 };
 })();

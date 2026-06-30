@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a3a6fc82d43f7dd4cc1836ef6d4f108e>>
+ * @generated SignedSource<<c521249849798013e7e1112a23ce3943>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -47,6 +47,28 @@ var v0 = [
 ],
 v1 = [
   {
+    "fields": [
+      {
+        "fields": [
+          {
+            "kind": "Variable",
+            "name": "needle",
+            "variableName": "query"
+          },
+          {
+            "kind": "Literal",
+            "name": "strategy",
+            "value": "FUZZY"
+          }
+        ],
+        "kind": "ObjectValue",
+        "name": "nameSearch"
+      }
+    ],
+    "kind": "ObjectValue",
+    "name": "filters"
+  },
+  {
     "kind": "Literal",
     "name": "order",
     "value": "NAME_ASCENDING"
@@ -60,11 +82,6 @@ v1 = [
     "kind": "Literal",
     "name": "perPage",
     "value": 50
-  },
-  {
-    "kind": "Variable",
-    "name": "prefix",
-    "variableName": "query"
   }
 ],
 v2 = {
@@ -237,16 +254,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "dd05a3932396090cb0151b35c9fa405b",
+    "cacheID": "684cf6510f04e582b0f590b1268255f6",
     "id": null,
     "metadata": {},
     "name": "ContributorTypeaheadQuery",
     "operationKind": "query",
-    "text": "query ContributorTypeaheadQuery(\n  $query: String!\n) {\n  contributors(prefix: $query, page: 1, perPage: 50, order: NAME_ASCENDING) {\n    edges {\n      node {\n        __typename\n        ... on PersonContributor {\n          __typename\n          givenName\n          familyName\n          id\n        }\n        ... on OrganizationContributor {\n          __typename\n          legalName\n          id\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query ContributorTypeaheadQuery(\n  $query: String!\n) {\n  contributors(filters: {nameSearch: {needle: $query, strategy: FUZZY}}, page: 1, perPage: 50, order: NAME_ASCENDING) {\n    edges {\n      node {\n        __typename\n        ... on PersonContributor {\n          __typename\n          givenName\n          familyName\n          id\n        }\n        ... on OrganizationContributor {\n          __typename\n          legalName\n          id\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "a24a78e78b7348615d2dd397accfa3a4";
+(node as any).hash = "925ef7d90320860a576e5766a3ba8d4f";
 
 export default node;

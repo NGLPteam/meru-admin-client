@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5d2fe5c7f4a314cb2e1ba009f043211c>>
+ * @generated SignedSource<<9dabe7e96dad49e16bfcc6e8a75d17ad>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -158,14 +158,7 @@ return {
                     "name": "title",
                     "storageKey": null
                   },
-                  {
-                    "kind": "InlineFragment",
-                    "selections": [
-                      (v3/*: any*/)
-                    ],
-                    "type": "Node",
-                    "abstractKey": "__isNode"
-                  }
+                  (v3/*: any*/)
                 ],
                 "storageKey": null
               },
@@ -180,12 +173,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "fc8fe2380c817f8bb17a2026ea1e21ac",
+    "cacheID": "3a0e1c7fcdf1efc415242ab2b2aadd18",
     "id": null,
     "metadata": {},
     "name": "entitiesHarvestRecordQuery",
     "operationKind": "query",
-    "text": "query entitiesHarvestRecordQuery(\n  $slug: Slug!\n) {\n  harvestRecord(slug: $slug) {\n    ...HarvestEntitiesListFragment\n    id\n  }\n}\n\nfragment HarvestEntitiesListFragment on HarvestRecord {\n  harvestEntities {\n    createdAt\n    identifier\n    schemaVersion {\n      identifier\n      name\n      id\n    }\n    entity {\n      __typename\n      slug\n      title\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n    }\n    id\n  }\n}\n"
+    "text": "query entitiesHarvestRecordQuery(\n  $slug: Slug!\n) {\n  harvestRecord(slug: $slug) {\n    ...HarvestEntitiesListFragment\n    id\n  }\n}\n\nfragment HarvestEntitiesListFragment on HarvestRecord {\n  harvestEntities {\n    createdAt\n    identifier\n    schemaVersion {\n      identifier\n      name\n      id\n    }\n    entity {\n      __typename\n      slug\n      title\n      id\n    }\n    id\n  }\n}\n"
   }
 };
 })();
