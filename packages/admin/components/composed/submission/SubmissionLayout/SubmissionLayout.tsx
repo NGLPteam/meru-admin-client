@@ -12,6 +12,7 @@ import HtmlHead from "components/global/HtmlHead";
 import type { SubmissionLayoutFragment$key } from "@/relay/SubmissionLayoutFragment.graphql";
 import SubmitForReviewButton from "./SubmitForReviewButton";
 import TransitionSubmissionButton from "./TransitionSubmissionButton";
+import DeleteSubmissionButton from "./DeleteSubmissionButton";
 
 const getRoutes = (mode: "deposit" | "review") => {
   if (mode === "deposit")
@@ -57,6 +58,7 @@ export default function SubmissionLayout({
     mode === "review";
   const canTransition =
     !!submission?.availableTransitions.length && mode === "review";
+  const canDelete = state === "DRAFT" && mode === "deposit";
 
   const buttons = (
     <ButtonControlGroup
@@ -74,6 +76,7 @@ export default function SubmissionLayout({
       )}
       {canSubmit && <SubmitForReviewButton submission={submission} />}
       {canTransition && <TransitionSubmissionButton submission={submission} />}
+      {canDelete && <DeleteSubmissionButton submission={submission} />}
       {canReview && submission?.entity && (
         <ButtonControlView
           href={`${process.env.NEXT_PUBLIC_FE_URL}/preview/items/${submission.entity.slug}`}

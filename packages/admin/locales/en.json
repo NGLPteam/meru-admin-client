@@ -485,6 +485,7 @@
         "bulk_publish": "Bulk Publish",
         "submit_for_review_confirm": "Are you sure you're ready to submit this for review?",
         "resubmit_for_review_confirm": "Are you sure you're ready to submit revisions?",
+        "delete_confirm": "Are you sure you want to delete this draft submission? You won't be able to edit this submission again in the future and will need to create a new submission if you decide to submit this work at a later date.",
         "publish_confirm_label": "Confirm Publish",
         "publish_confirm_body": "Are you sure you want to publish the {{count}} selected submission(s)?",
         "publish_confirm_body_single": "Are you sure you want to publish \"{{title}}\"?",

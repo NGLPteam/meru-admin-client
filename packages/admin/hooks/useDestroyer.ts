@@ -63,6 +63,10 @@ import type {
   SubmissionTargetReviewerDestroyInput,
   useDestroyerDestroySubmissionTargetReviewerMutation,
 } from "@/relay/useDestroyerDestroySubmissionTargetReviewerMutation.graphql";
+import type {
+  SubmissionDestroyInput,
+  useDestroyerDestroySubmissionMutation,
+} from "@/relay/useDestroyerDestroySubmissionMutation.graphql";
 import type { useDestroyerFragment$key } from "@/relay/useDestroyerFragment.graphql";
 import { useDestroyerRevokeAccessMutation } from "@/relay/useDestroyerRevokeAccessMutation.graphql";
 import {
@@ -557,6 +561,40 @@ export function useDestroyer() {
     ],
   );
 
+  /* Destroy a submission */
+  const [commitDestroySubmission, submissionInFlight] =
+    useLoadingMutation<useDestroyerDestroySubmissionMutation>(
+      destroySubmissionMutation,
+    );
+
+  const submission = useCallback(
+    async (
+      input: SubmissionDestroyInput,
+      label: string,
+      redirectPath?: RedirectPath,
+    ) => {
+      if (submissionInFlight) return;
+
+      const loadingToast = toast.loading(
+        t(`messages.delete.loading`, { name: label }),
+      );
+
+      commitDestroySubmission({
+        variables: { input },
+        onCompleted: (response) => {
+          toast.dismiss(loadingToast);
+          handleResponse(
+            response.submissionDestroy,
+            label,
+            ["submissions"],
+            redirectPath,
+          );
+        },
+      });
+    },
+    [commitDestroySubmission, handleResponse, submissionInFlight, t],
+  );
+
   /* Purge an entity and all its descendants */
   const [commitPurgeEntity, purgeInFlight] =
     useLoadingMutation<useDestroyerEntityPurgeMutation>(entityPurgeMutation);
@@ -600,6 +638,7 @@ export function useDestroyer() {
     harvestSourceInFlight ||
     harvestMappingInFlight ||
     submissionTargetReviewerInFlight ||
+    submissionInFlight ||
     purgeInFlight;
 
   return {
@@ -619,6 +658,7 @@ export function useDestroyer() {
     harvestMapping,
     harvestMetadataMapping,
     submissionTargetReviewer,
+    submission,
     purge,
     inFlight,
   };
@@ -787,6 +827,17 @@ const destroyHarvestMetadataMappingMutation = graphql`
     $input: HarvestMetadataMappingDestroyInput!
   ) {
     harvestMetadataMappingDestroy(input: $input) {
+      destroyedId @deleteRecord
+      ...useDestroyerFragment
+    }
+  }
+`;
+
+const destroySubmissionMutation = graphql`
+  mutation useDestroyerDestroySubmissionMutation(
+    $input: SubmissionDestroyInput!
+  ) {
+    submissionDestroy(input: $input) {
       destroyedId @deleteRecord
       ...useDestroyerFragment
     }
