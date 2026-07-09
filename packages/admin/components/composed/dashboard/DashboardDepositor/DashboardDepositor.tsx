@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { graphql, useFragment } from "react-relay";
 import { ContentHeader } from "components/layout";
+import { ButtonControlRoute } from "components/atomic";
 import ModelList from "components/composed/model/ModelList";
 import ModelColumns from "components/composed/model/ModelColumns";
 import ModelPageCountActions from "components/composed/model/ModelPageCountActions";
@@ -105,6 +106,11 @@ export default function DashboardDepositor({ data }: Props) {
         <ContentHeader
           headerStyle="secondary"
           title={t("nav.my_submissions")}
+          rightSide={
+            <ButtonControlRoute route="my-submissions.new" icon="plus">
+              {t("actions.add.submission")}
+            </ButtonControlRoute>
+          }
         />
         <ModelPageCountActions data={submissions} />
         <ModelList<DashboardDepositorSubmissionsFragment$data, SubmissionNode>
