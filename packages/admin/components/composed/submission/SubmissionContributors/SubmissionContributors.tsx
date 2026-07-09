@@ -7,7 +7,7 @@ import { IconFactory } from "components/factories";
 import { getContributorDisplayName } from "components/composed/contributor/ContributorDisplayName";
 import { useDestroyer } from "hooks";
 import type { SubmissionContributorsFragment$key } from "@/relay/SubmissionContributorsFragment.graphql";
-import AddContributorForm from "./AddContributorForm";
+import AddContributorModal from "./AddContributorModal";
 import * as Styled from "./SubmissionContributors.styles";
 
 interface Props {
@@ -105,7 +105,7 @@ export default function SubmissionContributors({
         hideOnClickOutside={false}
       >
         {({ handleClose }) => (
-          <AddContributorForm itemId={item.id} onClose={handleClose} />
+          <AddContributorModal itemId={item.id} onClose={handleClose} />
         )}
       </Modal>
     </>

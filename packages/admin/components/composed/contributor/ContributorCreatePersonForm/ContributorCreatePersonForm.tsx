@@ -3,7 +3,6 @@ import MutationForm, {
   useRenderForm,
   Forms,
 } from "components/api/MutationForm";
-
 import type {
   ContributorCreatePersonFormMutation,
   CreatePersonContributorInput,
