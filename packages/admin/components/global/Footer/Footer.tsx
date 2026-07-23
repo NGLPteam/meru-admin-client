@@ -5,7 +5,7 @@ import appData from "fixtures/app.data";
 import { InstallationLogo } from "components/global";
 import { renderNavLink } from "helpers";
 import { Authorize } from "components/auth";
-import { DrawerLink, Markdown } from "components/atomic";
+import { NamedLink, Markdown } from "components/atomic";
 import { useGlobalContext, useViewerContext } from "contexts";
 import { FooterFragment$key } from "@/relay/FooterFragment.graphql";
 import * as Styled from "./Footer.styles";
@@ -15,6 +15,8 @@ function Footer() {
   const { t } = useTranslation();
 
   const data = useGlobalContext();
+  const depositingEnabled =
+    data?.globalConfiguration?.depositing?.enabled ?? false;
   const { globalAdmin } = useViewerContext();
 
   const siteData = useMaybeFragment<FooterFragment$key>(
@@ -27,9 +29,9 @@ function Footer() {
   const renderGlobalSettings = () =>
     globalAdmin ? (
       <Styled.ListItem>
-        <DrawerLink key="settings" drawer="editSettings" passHref>
-          {t("nav.global_settings")}
-        </DrawerLink>
+        <NamedLink key="settings" route="settings" passHref>
+          <a>{t("nav.global_settings")}</a>
+        </NamedLink>
       </Styled.ListItem>
     ) : null;
 
@@ -52,9 +54,15 @@ function Footer() {
               <Styled.Header>{t(nav.header)}</Styled.Header>
               <Styled.List>
                 {nav.children &&
-                  nav.children.map((child, i) =>
-                    renderNavLink(child, i, Styled.ListItem),
-                  )}
+                  nav.children
+                    .filter(
+                      (child) =>
+                        depositingEnabled ||
+                        !("depositing" in child && child.depositing),
+                    )
+                    .map((child, i) =>
+                      renderNavLink(child, i, Styled.ListItem),
+                    )}
                 {globalAdmin && renderGlobalSettings()}
               </Styled.List>
             </div>

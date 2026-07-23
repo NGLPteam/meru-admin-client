@@ -10,6 +10,7 @@ export type BaseRoute = {
   routes?: BaseRoute[];
   actions?: string[];
   childKinds?: ChildEntityKind[];
+  depositing?: boolean;
 };
 
 export type Route = {

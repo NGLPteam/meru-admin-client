@@ -30,6 +30,15 @@ function Search({
     if (clearOnSubmit) reset();
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value && router.query.q) {
+      router.push({
+        pathname: route?.path || router.pathname,
+        query: { ...router.query, page: 1, q: null },
+      });
+    }
+  };
+
   return (
     <form className={className} onSubmit={handleSubmit(onSubmit)}>
       <Styled.SearchWrapper $darkTheme={darkTheme}>
@@ -38,7 +47,7 @@ function Search({
           type="search"
           placeholder={t("common.search")}
           defaultValue={defaultValue}
-          {...register("q")}
+          {...register("q", { onChange: handleChange })}
         />
         <button className="a-hidden" type="submit">
           {t("search.submit")}

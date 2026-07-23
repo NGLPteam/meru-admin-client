@@ -1,6 +1,7 @@
 import { useCallback } from "react";
-import { graphql, useMutation } from "react-relay";
+import { graphql } from "react-relay";
 import { useTranslation } from "react-i18next";
+import { useLoadingMutation } from "components/api/hooks";
 import { useNotify } from "hooks";
 import { Button } from "components/atomic";
 import {
@@ -38,9 +39,9 @@ export default function Confirm({
   const { t } = useTranslation();
 
   const [commitPruneAttempt] =
-    useMutation<ConfirmPruneFromHarvestAttemptMutation>(attemptMutation);
+    useLoadingMutation<ConfirmPruneFromHarvestAttemptMutation>(attemptMutation);
   const [commitPruneSource] =
-    useMutation<ConfirmPruneFromHarvestSourceMutation>(sourceMutation);
+    useLoadingMutation<ConfirmPruneFromHarvestSourceMutation>(sourceMutation);
 
   const handleResponse = useCallback(
     (

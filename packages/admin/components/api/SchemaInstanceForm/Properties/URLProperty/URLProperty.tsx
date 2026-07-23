@@ -16,9 +16,9 @@ export default function URLProperty(props: Props) {
 
   return (
     <ScalarProperty field={field}>
-      {({ label, name, required }) => {
+      {({ label, name, required, instructions }) => {
         return (
-          <Fieldset label={label}>
+          <Fieldset label={label} description={instructions}>
             <FormGrid>
               <Input
                 label={t("forms.fields.title")}

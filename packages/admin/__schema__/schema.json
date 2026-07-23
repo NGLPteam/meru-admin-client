@@ -10002,6 +10002,22 @@
             "deprecationReason": null
           },
           {
+            "name": "canPreview",
+            "description": "Whether the current user has permission to preview this entity.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AuthorizationResult",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "canPurge",
             "description": "Whether the current user has permission to purge this entity.\n",
             "args": [],
@@ -12821,6 +12837,22 @@
           {
             "name": "canManageAccess",
             "description": "Whether the current user has permission to manage access to this entity.\n\nThis opens up `grantAccess` and `revokeAccess` mutations.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AuthorizationResult",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "canPreview",
+            "description": "Whether the current user has permission to preview this entity.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -19116,6 +19148,22 @@
           {
             "name": "canManageAccess",
             "description": "Whether the current user has permission to manage access to this entity.\n\nThis opens up `grantAccess` and `revokeAccess` mutations.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AuthorizationResult",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "canPreview",
+            "description": "Whether the current user has permission to preview this entity.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -39056,6 +39104,11 @@
           },
           {
             "kind": "OBJECT",
+            "name": "SubmissionDestroyPayload",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "SubmissionTargetReviewerDestroyPayload",
             "ofType": null
           }
@@ -41518,6 +41571,22 @@
           {
             "name": "canManageAccess",
             "description": "Whether the current user has permission to manage access to this entity.\n\nThis opens up `grantAccess` and `revokeAccess` mutations.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AuthorizationResult",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "canPreview",
+            "description": "Whether the current user has permission to preview this entity.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -44386,6 +44455,22 @@
           {
             "name": "canManageAccess",
             "description": "Whether the current user has permission to manage access to this entity.\n\nThis opens up `grantAccess` and `revokeAccess` mutations.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AuthorizationResult",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "canPreview",
+            "description": "Whether the current user has permission to preview this entity.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -62906,6 +62991,22 @@
             "deprecationReason": null
           },
           {
+            "name": "canPreview",
+            "description": "Whether the current user has permission to preview this entity.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AuthorizationResult",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "canPurge",
             "description": "Whether the current user has permission to purge this entity.\n",
             "args": [],
@@ -74669,6 +74770,35 @@
             "type": {
               "kind": "OBJECT",
               "name": "SubmissionCreatePayload",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submissionDestroy",
+            "description": "Destroy a single `Submission` record.\n",
+            "args": [
+              {
+                "name": "input",
+                "description": "Parameters for SubmissionDestroy",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "SubmissionDestroyInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "SubmissionDestroyPayload",
               "ofType": null
             },
             "isDeprecated": false,
@@ -101367,6 +101497,11 @@
           },
           {
             "kind": "OBJECT",
+            "name": "SubmissionDestroyPayload",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "SubmissionLeaveReviewPayload",
             "ofType": null
           },
@@ -104977,6 +105112,187 @@
           {
             "kind": "INTERFACE",
             "name": "Sluggable",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "SubmissionDestroyInput",
+        "description": "Autogenerated input type of SubmissionDestroy",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "clientMutationId",
+            "description": "A unique identifier for the client performing the mutation.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "submissionId",
+            "description": "The submission to destroy.\n",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SubmissionDestroyPayload",
+        "description": "Autogenerated return type of SubmissionDestroy.",
+        "fields": [
+          {
+            "name": "attributeErrors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "MutationAttributeError",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "clientMutationId",
+            "description": "A unique identifier for the client performing the mutation.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "destroyed",
+            "description": "Whether or not the model was successfully destroyed. If false, check globalErrors",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "destroyedId",
+            "description": "The ID of the deleted model",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "errors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "UserError",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Use attributeErrors or globalErrors"
+          },
+          {
+            "name": "globalErrors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "MutationGlobalError",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "haltCode",
+            "description": "Not presently used",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "DestroyMutationPayload",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "StandardMutationPayload",
             "ofType": null
           }
         ],
@@ -120231,6 +120547,22 @@
           {
             "name": "canDestroy",
             "description": "Whether the current user has permission to destroy this record.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AuthorizationResult",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "canPreview",
+            "description": "Whether this user has the ability to preview content in the system.\n",
             "args": [],
             "type": {
               "kind": "NON_NULL",

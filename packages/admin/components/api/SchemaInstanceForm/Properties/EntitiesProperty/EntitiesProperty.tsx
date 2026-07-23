@@ -29,10 +29,11 @@ export default function EntitiesProperty({ schemaKind, ...props }: Props) {
 
   return (
     <ScalarProperty field={field}>
-      {({ label, required, name }) => (
+      {({ label, required, name, instructions }) => (
         <Controller
           name={name}
           control={control}
+          rules={{ required }}
           render={({ field: { ...props } }) => (
             <Multiselect
               label={label}
@@ -42,9 +43,10 @@ export default function EntitiesProperty({ schemaKind, ...props }: Props) {
               dragDropOrder
               disabled={options.length === 0}
               description={
-                options.length === 0
+                instructions ??
+                (options.length === 0
                   ? `There are no ${label} in this ${t(`glossary.${schemaKind.toLowerCase()}`)}.`
-                  : ""
+                  : "")
               }
               {...props}
             />

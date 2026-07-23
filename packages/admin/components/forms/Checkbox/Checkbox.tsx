@@ -1,17 +1,36 @@
-import React, { forwardRef, Ref } from "react";
+import React, { forwardRef, Ref, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import * as Styled from "./Checkbox.styles";
 
 function Checkbox(
-  { children, description, label, ...props }: Props,
+  { children, description, label, indeterminate, ...props }: Props,
   ref: Ref<HTMLInputElement>,
 ) {
   const { t } = useTranslation();
 
+  const combinedRef = useCallback(
+    (node: HTMLInputElement | null) => {
+      if (node) {
+        node.indeterminate = !!indeterminate;
+      }
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        (ref as React.MutableRefObject<HTMLInputElement | null>).current = node;
+      }
+    },
+    [ref, indeterminate],
+  );
+
   return (
     <div>
       <Styled.Label aria-label={props["aria-label"] || undefined}>
-        <input className="a-hidden" type="checkbox" ref={ref} {...props} />
+        <input
+          className="a-hidden"
+          type="checkbox"
+          ref={combinedRef}
+          {...props}
+        />
         <Styled.Icon icon="checkbox" data-checked="false" role="presentation" />
         {children && (
           <Styled.LabelText className="t-copy-sm">{children}</Styled.LabelText>

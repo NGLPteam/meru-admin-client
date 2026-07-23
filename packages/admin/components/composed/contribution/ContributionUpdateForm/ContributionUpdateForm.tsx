@@ -124,11 +124,10 @@ export default function ContributionUpdateForm({
   );
 }
 
-interface Props
-  extends Pick<
-    React.ComponentProps<typeof MutationForm>,
-    "onSuccess" | "onCancel"
-  > {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess" | "onCancel"
+> {
   data: ContributionUpdateFormFragment$key;
 }
 

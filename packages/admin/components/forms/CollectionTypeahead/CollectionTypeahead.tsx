@@ -13,7 +13,7 @@ import type { FieldValues, Control, Path } from "react-hook-form";
 type TypeaheadProps = React.ComponentProps<typeof BaseTypeahead>;
 
 const CollectionTypeahead = <T extends FieldValues = FieldValues>(
-  { control, name, label, disabled, required }: Props<T>,
+  { control, name, label, disabled, required, initialOption }: Props<T>,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _ref: Ref<HTMLInputElement>,
 ) => {
@@ -30,6 +30,14 @@ const CollectionTypeahead = <T extends FieldValues = FieldValues>(
         value: node.entity.id ?? "",
       };
     });
+
+    if (
+      initialOption &&
+      !options.some((o) => o.value === initialOption.value)
+    ) {
+      return [initialOption, ...options];
+    }
+
     return options;
   };
 
@@ -75,7 +83,9 @@ const CollectionTypeahead = <T extends FieldValues = FieldValues>(
       render={({ field }) => (
         <BaseTypeahead
           label={label}
-          options={data ? formatOptions(data) : []}
+          options={
+            data ? formatOptions(data) : initialOption ? [initialOption] : []
+          }
           onInputChange={debouncedOnChange}
           disabled={disabled}
           required={required}
@@ -87,10 +97,13 @@ const CollectionTypeahead = <T extends FieldValues = FieldValues>(
   );
 };
 
-interface Props<T extends FieldValues = FieldValues>
-  extends Omit<TypeaheadProps, "options" | "name"> {
+interface Props<T extends FieldValues = FieldValues> extends Omit<
+  TypeaheadProps,
+  "options" | "name"
+> {
   control: Control<T>;
   name: Path<T>;
+  initialOption?: { label: string; value: string };
 }
 
 export default CollectionTypeahead;

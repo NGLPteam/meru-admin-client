@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0d29d5376b7f54e71e6aa5ac508d64d5>>
+ * @generated SignedSource<<bfc9e26986b22d639948d0d643bbe20b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,14 @@ import { FragmentRefs } from "relay-runtime";
 export type EntityThumbnailColumnFragment$data = {
   readonly __typename: string;
   readonly id?: string;
+  readonly logo?: {
+    readonly storage: AttachmentStorage | null | undefined;
+    readonly thumb: {
+      readonly webp: {
+        readonly " $fragmentSpreads": FragmentRefs<"ImageFragment">;
+      };
+    };
+  };
   readonly slug?: string;
   readonly thumbnail: {
     readonly storage: AttachmentStorage | null | undefined;
@@ -36,6 +44,6 @@ const node: ReaderInlineDataFragment = {
   "name": "EntityThumbnailColumnFragment"
 };
 
-(node as any).hash = "28a3ccbf1848f57bac96107083e96ec8";
+(node as any).hash = "b1b5c77810fde34e893bd78b26b80427";
 
 export default node;

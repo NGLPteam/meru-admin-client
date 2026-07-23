@@ -6,7 +6,11 @@ import { toEntities } from "../helpers/toEntities";
 import useTableSorting from "./useTableSorting";
 import useRowActions, { Actions } from "./useRowActions";
 import useTableRowSelection from "./useTableRowSelection";
-import type { ColumnDef } from "@tanstack/react-table";
+import type {
+  ColumnDef,
+  OnChangeFn,
+  RowSelectionState,
+} from "@tanstack/react-table";
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export interface UseModelListProps<
@@ -19,6 +23,10 @@ export interface UseModelListProps<
   selectable?: boolean;
   /** Disable sorting on all columns */
   disableSortBy?: boolean;
+  /** Controlled row selection state (overrides internal state) */
+  rowSelection?: RowSelectionState;
+  /** Controlled row selection change handler */
+  onRowSelectionChange?: OnChangeFn<RowSelectionState>;
 }
 
 function useModelList<
@@ -30,6 +38,8 @@ function useModelList<
   actions = {},
   selectable = false,
   disableSortBy,
+  rowSelection: controlledRowSelection,
+  onRowSelectionChange: controlledOnRowSelectionChange,
 }: UseModelListProps<U, V>) {
   // Extract entities from the connectionish data
   const entities = useMemo(() => toEntities<U, V>(data), [data]);
@@ -42,8 +52,9 @@ function useModelList<
   // Set up sorting
   const [sorting, setSorting] = useTableSorting();
 
-  // Set up row selection
-  const [rowSelection, setRowSelection] = useTableRowSelection();
+  // Set up row selection (internal state, used when not controlled)
+  const [internalRowSelection, setInternalRowSelection] =
+    useTableRowSelection();
 
   // Get the columns with actions
   const allColumns = useRowActions(columns, actions);
@@ -55,10 +66,11 @@ function useModelList<
     getRowId,
     state: {
       sorting,
-      rowSelection,
+      rowSelection: controlledRowSelection ?? internalRowSelection,
     },
     onSortingChange: setSorting,
-    onRowSelectionChange: setRowSelection,
+    onRowSelectionChange:
+      controlledOnRowSelectionChange ?? setInternalRowSelection,
     enableMultisort: false,
     enableSorting: !disableSortBy,
     enableRowSelection: selectable,

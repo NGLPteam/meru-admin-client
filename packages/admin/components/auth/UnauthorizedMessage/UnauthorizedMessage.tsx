@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import Link from "next/link";
 import useMaybeFragment from "@wdp/lib/api/hooks/useMaybeFragment";
 import { graphql } from "react-relay";
 import { MessageBlock } from "components/atomic";
@@ -27,13 +28,18 @@ export default function UnauthorizedMessage({
     <div className="t-rte">
       <p>
         Welcome to the {name} admin interface, a tool that allows non-technical
-        users to manage content stored in the WDP API.
+        users to manage content stored in the Meru API.
       </p>
 
       <p>
         Your account currently does not have admin access.
         <br /> Please check with your account manager if you need access to this
         tool.
+      </p>
+
+      <p>
+        If you&apos;re here to submit, go to{" "}
+        <Link href="/my-submissions">your submissions page</Link>.
       </p>
     </div>
   );

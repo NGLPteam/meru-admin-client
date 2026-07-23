@@ -37,6 +37,7 @@ function ViewerContextProvider({ children, data }: Props) {
 }
 
 interface ViewerContextProps {
+  id?: string | null;
   name?: string | null;
   allowedActions: readonly string[];
   uploadAccess?: boolean;
@@ -44,6 +45,7 @@ interface ViewerContextProps {
   avatar?: AvatarFragment$key | null;
   globalAdmin?: boolean;
   loading?: boolean;
+  canReceiveReviewRequests?: { value: boolean };
 }
 
 interface Props {
@@ -58,6 +60,7 @@ export { ViewerContextProvider };
 const fragment = graphql`
   fragment ViewerContextFragment on Query {
     viewer {
+      id
       name
       allowedActions
       uploadAccess
@@ -66,6 +69,9 @@ const fragment = graphql`
         ...AvatarFragment
       }
       globalAdmin
+      canReceiveReviewRequests {
+        value
+      }
     }
   }
 `;

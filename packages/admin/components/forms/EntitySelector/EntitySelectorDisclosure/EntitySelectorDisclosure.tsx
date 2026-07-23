@@ -13,7 +13,7 @@ type EntitySelectorProps = React.ComponentProps<typeof EntitySelector>;
 type ControllerProps = React.ComponentProps<typeof EntitySelectorController>;
 
 interface Props extends Omit<EntitySelectorProps, "onSelect"> {
-  onSelect: (val: string) => void;
+  onSelect: (val: string, entity?: EntityOption) => void;
   selectableTypes: ControllerProps["selectableTypes"];
   startEntity?: EntityOption;
 }
@@ -35,7 +35,7 @@ export default function Disclosure(props: Props) {
   const internalOnSelect = useCallback(
     (entity: EntityOption | undefined) => {
       setSelected(entity);
-      onSelect(entity?.id ?? "");
+      onSelect(entity?.id ?? "", entity);
     },
     [setSelected, onSelect],
   );
@@ -45,6 +45,8 @@ export default function Disclosure(props: Props) {
     /* eslint-disable @typescript-eslint/no-empty-function */
     onBlur: () => {},
   });
+
+  const { visible, ...restContentProps } = contentProps;
 
   return (
     <>
@@ -70,10 +72,7 @@ export default function Disclosure(props: Props) {
             </ButtonControl>
           </Suspense>
         </Styled.Field>
-        <Styled.SelectorWrapper
-          $visible={contentProps.visible}
-          {...contentProps}
-        >
+        <Styled.SelectorWrapper $visible={visible} {...restContentProps}>
           <EntitySelector
             {...props}
             startSlug={selected?.slug ?? startSlug}
@@ -83,7 +82,7 @@ export default function Disclosure(props: Props) {
             }}
             selected={selected}
             isDisclosure
-            visible={contentProps.visible}
+            visible={visible}
             height={"400px"}
           />
         </Styled.SelectorWrapper>

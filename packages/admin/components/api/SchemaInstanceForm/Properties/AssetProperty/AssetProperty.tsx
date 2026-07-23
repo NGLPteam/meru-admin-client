@@ -13,7 +13,11 @@ import type { AssetPropertyFragment$key } from "@/relay/AssetPropertyFragment.gr
 import ScalarProperty from "../ScalarProperty";
 
 export default function AssetProperty(props: Props) {
-  const { assets: options, refetch } = useSchemaFormFieldsContext();
+  const {
+    assets: options,
+    refetch,
+    isSubmission,
+  } = useSchemaFormFieldsContext();
 
   const field = useFragment<AssetPropertyFragment$key>(fragment, props.field);
 
@@ -44,9 +48,18 @@ export default function AssetProperty(props: Props) {
     );
   };
 
+  const fallbackDescription = isSubmission ? undefined : (
+    <Trans
+      i18nKey="forms.asset_property_select.description"
+      components={{
+        filesLink: <LinkText />,
+      }}
+    />
+  );
+
   return (
     <ScalarProperty field={field}>
-      {({ label, required, name }) => (
+      {({ label, required, name, instructions }) => (
         <Controller
           name={name}
           control={control}
@@ -58,14 +71,7 @@ export default function AssetProperty(props: Props) {
               onChange={(value?: OnChangeInput) => onChange(value || null)}
               refetchAssets={handleRefetch}
               description={
-                props.description || (
-                  <Trans
-                    i18nKey="forms.asset_property_select.description"
-                    components={{
-                      filesLink: <LinkText />,
-                    }}
-                  />
-                )
+                instructions ?? props.description ?? fallbackDescription
               }
               isWide
               {...fieldProps}

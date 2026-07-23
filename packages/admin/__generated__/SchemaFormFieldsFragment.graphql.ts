@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0f66300a4e3a568e09debfd9d265e486>>
+ * @generated SignedSource<<fa9770770431791a134adcce7ae1c6bd>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,6 +12,11 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type SchemaFormFieldsFragment$data = {
   readonly properties: ReadonlyArray<{
+    readonly __typename: string;
+    readonly properties?: ReadonlyArray<{
+      readonly submittable: boolean;
+    }>;
+    readonly submittable?: boolean;
     readonly " $fragmentSpreads": FragmentRefs<"SchemaInstancePropertyFragment">;
   }>;
   readonly " $fragmentSpreads": FragmentRefs<"SchemaFormFieldsContextFragment" | "SchemaSelectorDataFragment">;
@@ -22,7 +27,17 @@ export type SchemaFormFieldsFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"SchemaFormFieldsFragment">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = [
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "submittable",
+    "storageKey": null
+  }
+];
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -36,6 +51,36 @@ const node: ReaderFragment = {
       "name": "schemaProperties",
       "plural": true,
       "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "__typename",
+          "storageKey": null
+        },
+        {
+          "kind": "InlineFragment",
+          "selections": (v0/*: any*/),
+          "type": "ScalarProperty",
+          "abstractKey": "__isScalarProperty"
+        },
+        {
+          "kind": "InlineFragment",
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "concreteType": null,
+              "kind": "LinkedField",
+              "name": "properties",
+              "plural": true,
+              "selections": (v0/*: any*/),
+              "storageKey": null
+            }
+          ],
+          "type": "GroupProperty",
+          "abstractKey": null
+        },
         {
           "args": null,
           "kind": "FragmentSpread",
@@ -58,7 +103,8 @@ const node: ReaderFragment = {
   "type": "SchemaInstance",
   "abstractKey": "__isSchemaInstance"
 };
+})();
 
-(node as any).hash = "4c91bc6d15af2140f890208addefd04d";
+(node as any).hash = "da0ec4823767c85ab4a68421d1e87e1a";
 
 export default node;

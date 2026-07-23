@@ -11,9 +11,14 @@ const SchemaFormFieldsContext = createContext<SchemaContextState>({
   defaultValues: {},
   fieldValues: {},
   refetch: null,
+  isSubmission: false,
 });
 
-function SchemaFormFieldsContextProvider({ data, children }: ProviderProps) {
+function SchemaFormFieldsContextProvider({
+  data,
+  isSubmission = false,
+  children,
+}: ProviderProps) {
   const [schema, refetch] = useRefetchableFragment<
     SchemaFormFieldsContextRefetchQuery,
     SchemaFormFieldsContextFragment$key
@@ -22,7 +27,9 @@ function SchemaFormFieldsContextProvider({ data, children }: ProviderProps) {
   const context = useSchemaContext(schema.context);
 
   return (
-    <SchemaFormFieldsContext.Provider value={{ ...context, refetch }}>
+    <SchemaFormFieldsContext.Provider
+      value={{ ...context, refetch, isSubmission }}
+    >
       {children}
     </SchemaFormFieldsContext.Provider>
   );
@@ -30,6 +37,7 @@ function SchemaFormFieldsContextProvider({ data, children }: ProviderProps) {
 
 interface ProviderProps {
   data: SchemaFormFieldsContextFragment$key;
+  isSubmission?: boolean;
   children: React.ReactNode;
 }
 

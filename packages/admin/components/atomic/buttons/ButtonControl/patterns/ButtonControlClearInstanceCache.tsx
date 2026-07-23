@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useMutation, graphql } from "react-relay";
+import { graphql } from "react-relay";
+import { useLoadingMutation } from "components/api/hooks";
 import { useNotify } from "hooks";
 import {
   ButtonControlClearInstanceCacheMutation as Mutation,
@@ -12,7 +13,7 @@ export default function ButtonControlClearInstanceCache() {
   const { t } = useTranslation();
   const notify = useNotify();
 
-  const [commitClearCache, inFlight] = useMutation<Mutation>(mutation);
+  const [commitClearCache, inFlight] = useLoadingMutation<Mutation>(mutation);
 
   const handleResponse = useCallback(
     (

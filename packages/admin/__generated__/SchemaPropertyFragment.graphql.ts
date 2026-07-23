@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6f9ebe484011933646d7c02690f7955f>>
+ * @generated SignedSource<<c16c12ffb07ae384e227766cf4efd392>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,85 +11,9 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type SchemaPropertyFragment$data = {
-  readonly __typename: "AssetProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"AssetPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "AssetsProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"AssetsPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "BooleanProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"BooleanPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "ContributorProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"ContributorPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "ContributorsProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"ContributorsPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "DateProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"DatePropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "EmailProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"EmailPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "EntitiesProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"EntitiesPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "EntityProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"EntityPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "FloatProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"FloatPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "FullTextProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"FullTextPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "IntegerProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"IntegerPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "MarkdownProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"MarkdownPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "MultiselectProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"MultiselectPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "SelectProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"SelectPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "StringProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"StringPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "TagsProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"TagsPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "URLProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"URLPropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  readonly __typename: "VariableDateProperty";
-  readonly " $fragmentSpreads": FragmentRefs<"VariableDatePropertyFragment">;
-  readonly " $fragmentType": "SchemaPropertyFragment";
-} | {
-  // This will never be '%other', but we need some
-  // value in case none of the concrete values match.
-  readonly __typename: "%other";
+  readonly __typename: string;
+  readonly submittable: boolean;
+  readonly " $fragmentSpreads": FragmentRefs<"AssetPropertyFragment" | "AssetsPropertyFragment" | "BooleanPropertyFragment" | "ContributorPropertyFragment" | "ContributorsPropertyFragment" | "DatePropertyFragment" | "EmailPropertyFragment" | "EntitiesPropertyFragment" | "EntityPropertyFragment" | "FloatPropertyFragment" | "FullTextPropertyFragment" | "IntegerPropertyFragment" | "MarkdownPropertyFragment" | "MultiselectPropertyFragment" | "SelectPropertyFragment" | "StringPropertyFragment" | "TagsPropertyFragment" | "URLPropertyFragment" | "VariableDatePropertyFragment">;
   readonly " $fragmentType": "SchemaPropertyFragment";
 };
 export type SchemaPropertyFragment$key = {
@@ -108,6 +32,13 @@ const node: ReaderFragment = {
       "args": null,
       "kind": "ScalarField",
       "name": "__typename",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "submittable",
       "storageKey": null
     },
     {
@@ -343,6 +274,6 @@ const node: ReaderFragment = {
   "abstractKey": "__isScalarProperty"
 };
 
-(node as any).hash = "f64381cb771fed56a182f43b2876749a";
+(node as any).hash = "c2e2db7f62d8b0c05aeea8fe1a340cac";
 
 export default node;

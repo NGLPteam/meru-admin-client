@@ -1,10 +1,11 @@
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { GraphQLTaggedNode, readInlineData } from "relay-runtime";
-import { useMutation, graphql } from "react-relay";
+import { graphql } from "react-relay";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useLoadingMutation } from "components/api/hooks";
 import { useNotify, usePageContext } from "hooks";
 import {
   DestroyAnnouncementInput,
@@ -58,6 +59,14 @@ import type {
   HarvestMetadataMappingDestroyInput,
   useDestroyerDestroyHarvestMetadataMappingMutation,
 } from "@/relay/useDestroyerDestroyHarvestMetadataMappingMutation.graphql";
+import type {
+  SubmissionTargetReviewerDestroyInput,
+  useDestroyerDestroySubmissionTargetReviewerMutation,
+} from "@/relay/useDestroyerDestroySubmissionTargetReviewerMutation.graphql";
+import type {
+  SubmissionDestroyInput,
+  useDestroyerDestroySubmissionMutation,
+} from "@/relay/useDestroyerDestroySubmissionMutation.graphql";
 import type { useDestroyerFragment$key } from "@/relay/useDestroyerFragment.graphql";
 import { useDestroyerRevokeAccessMutation } from "@/relay/useDestroyerRevokeAccessMutation.graphql";
 import {
@@ -125,7 +134,7 @@ export function useDestroyer() {
 
   /* Destroy a collection */
   const [commitDestroyCollection, collectionInFlight] =
-    useMutation<useDestroyerDestroyCollectionMutation>(
+    useLoadingMutation<useDestroyerDestroyCollectionMutation>(
       destroyCollectionMutation,
     );
 
@@ -159,7 +168,7 @@ export function useDestroyer() {
 
   /* Destroy a item */
   const [commitDestroyItem, itemInFlight] =
-    useMutation<useDestroyerDestroyItemMutation>(destroyItemMutation);
+    useLoadingMutation<useDestroyerDestroyItemMutation>(destroyItemMutation);
 
   const item = useCallback(
     async (
@@ -186,7 +195,7 @@ export function useDestroyer() {
 
   /* Destroy a contribution */
   const [commitDestroyContribution, contributionInFlight] =
-    useMutation<useDestroyerDestroyContributionMutation>(
+    useLoadingMutation<useDestroyerDestroyContributionMutation>(
       destroyContributionMutation,
     );
 
@@ -213,7 +222,9 @@ export function useDestroyer() {
 
   /* Destroy a community */
   const [commitDestroyCommunity, communityInFlight] =
-    useMutation<useDestroyerDestroyCommunityMutation>(destroyCommunityMutation);
+    useLoadingMutation<useDestroyerDestroyCommunityMutation>(
+      destroyCommunityMutation,
+    );
 
   const community = useCallback(
     async (
@@ -245,7 +256,7 @@ export function useDestroyer() {
 
   /* Destroy a contributor */
   const [commitDestroyContributor, contributorInFlight] =
-    useMutation<useDestroyerDestroyContributorMutation>(
+    useLoadingMutation<useDestroyerDestroyContributorMutation>(
       destroyContributorMutation,
     );
 
@@ -270,7 +281,7 @@ export function useDestroyer() {
 
   /* Destroy a file */
   const [commitDestroyAsset, fileInFlight] =
-    useMutation<useDestroyerDestroyAssetMutation>(destroyFileMutation);
+    useLoadingMutation<useDestroyerDestroyAssetMutation>(destroyFileMutation);
 
   const file = useCallback(
     async (input: DestroyAssetInput, label: string) => {
@@ -293,7 +304,9 @@ export function useDestroyer() {
 
   /* Disable or destroy an ordering */
   const [commitDisableOrDestroyOrdering, orderingInFlight] =
-    useMutation<useDestroyerDestroyOrderingMutation>(destroyOrderingMutation);
+    useLoadingMutation<useDestroyerDestroyOrderingMutation>(
+      destroyOrderingMutation,
+    );
 
   const ordering = useCallback(
     async (input: DestroyOrderingInput, label: string) => {
@@ -316,7 +329,7 @@ export function useDestroyer() {
 
   /* Revoke access */
   const [commitRevokeAccess, accessInFlight] =
-    useMutation<useDestroyerRevokeAccessMutation>(revokeAccessMutation);
+    useLoadingMutation<useDestroyerRevokeAccessMutation>(revokeAccessMutation);
 
   const access = useCallback(
     async (input: RevokeAccessInput, label: string) => {
@@ -339,7 +352,7 @@ export function useDestroyer() {
 
   /* Destroy a link */
   const [commitDestroyLink, linkInFlight] =
-    useMutation<useDestroyerDestroyEntityLinkMutation>(
+    useLoadingMutation<useDestroyerDestroyEntityLinkMutation>(
       destroyEntityLinkMutation,
     );
 
@@ -364,7 +377,7 @@ export function useDestroyer() {
 
   /* Destroy a page */
   const [commitDestroyPage, pageInFlight] =
-    useMutation<useDestroyerDestroyPageMutation>(destroyPageMutation);
+    useLoadingMutation<useDestroyerDestroyPageMutation>(destroyPageMutation);
 
   const page = useCallback(
     async (input: DestroyPageInput, label: string) => {
@@ -387,7 +400,9 @@ export function useDestroyer() {
 
   /* Destroy a permalink */
   const [commitDestroyPermalink, permalinkInFlight] =
-    useMutation<useDestroyerDestroyPermalinkMutation>(destroyPermalinkMutation);
+    useLoadingMutation<useDestroyerDestroyPermalinkMutation>(
+      destroyPermalinkMutation,
+    );
 
   const permalink = useCallback(
     async (input: PermalinkDestroyInput, label: string) => {
@@ -410,7 +425,7 @@ export function useDestroyer() {
 
   /* Destroy an announcement */
   const [commitDestroyAnnouncement, announcementInFlight] =
-    useMutation<useDestroyerDestroyAnnouncementMutation>(
+    useLoadingMutation<useDestroyerDestroyAnnouncementMutation>(
       destroyAnnouncementMutation,
     );
 
@@ -437,7 +452,7 @@ export function useDestroyer() {
 
   /* Destroy a harvest source */
   const [commitDestroyHarvestSource, harvestSourceInFlight] =
-    useMutation<useDestroyerDestroyHarvestSourceMutation>(
+    useLoadingMutation<useDestroyerDestroyHarvestSourceMutation>(
       destroyHarvestSourceMutation,
     );
 
@@ -464,7 +479,7 @@ export function useDestroyer() {
 
   /* Destroy a harvest mapping */
   const [commitDestroyHarvestMapping, harvestMappingInFlight] =
-    useMutation<useDestroyerDestroyHarvestMappingMutation>(
+    useLoadingMutation<useDestroyerDestroyHarvestMappingMutation>(
       destroyHarvestMappingMutation,
     );
 
@@ -493,7 +508,7 @@ export function useDestroyer() {
 
   /* Destroy a harvest metadata mapping */
   const [commitDestroyHarvestMetadataMapping] =
-    useMutation<useDestroyerDestroyHarvestMetadataMappingMutation>(
+    useLoadingMutation<useDestroyerDestroyHarvestMetadataMappingMutation>(
       destroyHarvestMetadataMappingMutation,
     );
 
@@ -512,9 +527,77 @@ export function useDestroyer() {
     [commitDestroyHarvestMetadataMapping, handleResponse, t],
   );
 
+  /* Destroy a submission target reviewer */
+  const [
+    commitDestroySubmissionTargetReviewer,
+    submissionTargetReviewerInFlight,
+  ] = useLoadingMutation<useDestroyerDestroySubmissionTargetReviewerMutation>(
+    destroySubmissionTargetReviewerMutation,
+  );
+
+  const submissionTargetReviewer = useCallback(
+    async (input: SubmissionTargetReviewerDestroyInput, label: string) => {
+      if (submissionTargetReviewerInFlight) return;
+
+      const loadingToast = toast.loading(
+        t(`messages.delete.loading`, { name: label }),
+      );
+
+      commitDestroySubmissionTargetReviewer({
+        variables: { input },
+        onCompleted: (response) => {
+          toast.dismiss(loadingToast);
+          handleResponse(response.submissionTargetReviewerDestroy, label, [
+            "reviewers",
+          ]);
+        },
+      });
+    },
+    [
+      commitDestroySubmissionTargetReviewer,
+      handleResponse,
+      submissionTargetReviewerInFlight,
+      t,
+    ],
+  );
+
+  /* Destroy a submission */
+  const [commitDestroySubmission, submissionInFlight] =
+    useLoadingMutation<useDestroyerDestroySubmissionMutation>(
+      destroySubmissionMutation,
+    );
+
+  const submission = useCallback(
+    async (
+      input: SubmissionDestroyInput,
+      label: string,
+      redirectPath?: RedirectPath,
+    ) => {
+      if (submissionInFlight) return;
+
+      const loadingToast = toast.loading(
+        t(`messages.delete.loading`, { name: label }),
+      );
+
+      commitDestroySubmission({
+        variables: { input },
+        onCompleted: (response) => {
+          toast.dismiss(loadingToast);
+          handleResponse(
+            response.submissionDestroy,
+            label,
+            ["submissions"],
+            redirectPath,
+          );
+        },
+      });
+    },
+    [commitDestroySubmission, handleResponse, submissionInFlight, t],
+  );
+
   /* Purge an entity and all its descendants */
   const [commitPurgeEntity, purgeInFlight] =
-    useMutation<useDestroyerEntityPurgeMutation>(entityPurgeMutation);
+    useLoadingMutation<useDestroyerEntityPurgeMutation>(entityPurgeMutation);
 
   const purge = useCallback(
     async (
@@ -554,6 +637,8 @@ export function useDestroyer() {
     announcementInFlight ||
     harvestSourceInFlight ||
     harvestMappingInFlight ||
+    submissionTargetReviewerInFlight ||
+    submissionInFlight ||
     purgeInFlight;
 
   return {
@@ -572,6 +657,8 @@ export function useDestroyer() {
     harvestSource,
     harvestMapping,
     harvestMetadataMapping,
+    submissionTargetReviewer,
+    submission,
     purge,
     inFlight,
   };
@@ -724,11 +811,33 @@ const destroyHarvestMappingMutation = graphql`
   }
 `;
 
+const destroySubmissionTargetReviewerMutation = graphql`
+  mutation useDestroyerDestroySubmissionTargetReviewerMutation(
+    $input: SubmissionTargetReviewerDestroyInput!
+  ) {
+    submissionTargetReviewerDestroy(input: $input) {
+      destroyedId @deleteRecord
+      ...useDestroyerFragment
+    }
+  }
+`;
+
 const destroyHarvestMetadataMappingMutation = graphql`
   mutation useDestroyerDestroyHarvestMetadataMappingMutation(
     $input: HarvestMetadataMappingDestroyInput!
   ) {
     harvestMetadataMappingDestroy(input: $input) {
+      destroyedId @deleteRecord
+      ...useDestroyerFragment
+    }
+  }
+`;
+
+const destroySubmissionMutation = graphql`
+  mutation useDestroyerDestroySubmissionMutation(
+    $input: SubmissionDestroyInput!
+  ) {
+    submissionDestroy(input: $input) {
       destroyedId @deleteRecord
       ...useDestroyerFragment
     }

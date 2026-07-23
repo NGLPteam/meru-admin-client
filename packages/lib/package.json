@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint --cache \"**/*.{ts,tsx}\"",
     "fix": "eslint --cache --fix \"**/*.{ts,tsx}\"",
-    "types": "npx tsc --strict -w",
+    "types": "npx tsc --strict",
     "depcheck": "depcheck"
   },
   "author": "",
@@ -25,7 +25,6 @@
     "@types/react-dom": "*",
     "@types/react-relay": "*",
     "@types/relay-runtime": "*",
-    "@types/relay-test-utils": "*",
     "@types/styled-components": "*",
     "chunk-text": "*",
     "cookie": "*",
@@ -46,12 +45,10 @@
     "relay-compiler-language-typescript": "*",
     "relay-config": "*",
     "relay-runtime": "*",
-    "relay-test-utils": "*",
     "styled-components": "*",
     "typescript": "*"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2",
     "depcheck": "^1.4.7",
     "eslint": "^8.57.0"
   }

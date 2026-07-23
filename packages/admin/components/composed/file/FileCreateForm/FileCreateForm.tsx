@@ -72,8 +72,10 @@ export default function FileCreateForm({ entityId, onSuccess }: Props) {
   );
 }
 
-interface Props
-  extends Pick<React.ComponentProps<typeof MutationForm>, "onSuccess"> {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess"
+> {
   entityId: string;
 }
 

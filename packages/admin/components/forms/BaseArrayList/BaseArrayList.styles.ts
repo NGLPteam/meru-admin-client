@@ -27,7 +27,8 @@ export const Item = styled.li<{ $isDragging?: boolean }>`
   margin-inline-end: ${pxToRem(12)};
   margin-block-end: ${pxToRem(12)};
   color: var(--accent-color);
-  transition: var(--color-transition), var(--border-transition),
+  transition:
+    var(--color-transition), var(--border-transition),
     var(--background-transition), var(--opacity-transition);
   opacity: var(--button-control-opacity, 1);
   visibility: var(--button-control-visibility, visible);

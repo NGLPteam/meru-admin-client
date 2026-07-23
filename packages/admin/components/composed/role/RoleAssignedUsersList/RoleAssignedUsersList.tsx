@@ -70,8 +70,10 @@ function RoleAssignedUsersList({
   );
 }
 
-interface RoleAssignedUsersListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface RoleAssignedUsersListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   data?: RoleAssignedUsersListFragment$key | null;
   header?: string;
 }

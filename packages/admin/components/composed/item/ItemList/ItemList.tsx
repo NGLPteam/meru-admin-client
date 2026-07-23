@@ -100,8 +100,10 @@ function ItemList({ items, search, headerStyle, hideHeader }: ItemListProps) {
   );
 }
 
-interface ItemListProps
-  extends Pick<HeaderProps, "headerStyle" | "hideHeader"> {
+interface ItemListProps extends Pick<
+  HeaderProps,
+  "headerStyle" | "hideHeader"
+> {
   items?: ItemListFragment$key;
   search?: ItemListSearchFragment$key;
 }

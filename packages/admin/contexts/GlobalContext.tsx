@@ -36,6 +36,9 @@ const fragment = graphql`
       ...FooterFragment
       ...InstallationLogoFragment
       ...HtmlHeadFragment
+      depositing {
+        enabled
+      }
     }
     ...SchemaSelectorSchemasFragment
   }

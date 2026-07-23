@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d4dfdfbfd47989e5a0834f9eb28559fd>>
+ * @generated SignedSource<<57a9e777dbda00b696c19d3b57d86049>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,6 +19,10 @@ export type GlobalSettingsEditFormFragment$data = {
     readonly defaultItem: {
       readonly id: string;
     };
+  };
+  readonly depositing: {
+    readonly agreement: string;
+    readonly enabled: boolean;
   };
   readonly entities: {
     readonly suppressExternalLinks: boolean;
@@ -155,6 +159,31 @@ return {
     {
       "alias": null,
       "args": null,
+      "concreteType": "DepositingSettings",
+      "kind": "LinkedField",
+      "name": "depositing",
+      "plural": false,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "enabled",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "agreement",
+          "storageKey": null
+        }
+      ],
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
       "concreteType": "EntitiesSettings",
       "kind": "LinkedField",
       "name": "entities",
@@ -223,6 +252,6 @@ return {
 };
 })();
 
-(node as any).hash = "d2ff15738bd7644866308a7d5cafb2eb";
+(node as any).hash = "44b0afe24cc67482f06af8e59f0bda27";
 
 export default node;

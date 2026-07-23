@@ -183,11 +183,10 @@ export default function HarvestMappingEditForm({
   );
 }
 
-interface Props
-  extends Pick<
-    React.ComponentProps<typeof MutationForm>,
-    "onSuccess" | "onCancel"
-  > {
+interface Props extends Pick<
+  React.ComponentProps<typeof MutationForm>,
+  "onSuccess" | "onCancel"
+> {
   data: HarvestMappingEditFormFragment$key;
 }
 
