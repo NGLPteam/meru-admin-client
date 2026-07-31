@@ -3294,7 +3294,7 @@ __metadata:
     i18next: "npm:^24.2.2"
     i18next-browser-languagedetector: "npm:^8.0.4"
     i18next-http-backend: "npm:^1.3.1"
-    keycloak-js: "npm:^12.0.4"
+    keycloak-js: "npm:25.0.6"
     lodash: "npm:^4.17.21"
     next: "npm:^14.1.0"
     next-i18next: "npm:^8.5.1"
@@ -3889,13 +3889,6 @@ __metadata:
   version: 1.0.2
   resolution: "balanced-match@npm:1.0.2"
   checksum: 10c0/9308baf0a7e4838a82bbfd11e01b1cb0f0cf2893bc1676c27c2a8c0e70cbae1c59120c3268517a8ae7fb6376b4639ef81ca22582611dbee4ed28df945134aaee
-  languageName: node
-  linkType: hard
-
-"base64-js@npm:1.3.1":
-  version: 1.3.1
-  resolution: "base64-js@npm:1.3.1"
-  checksum: 10c0/f111a2c2b105eb9ee3818c30154e047fb00370699a03c2130d0944f10914697677ceb5faec64ea851e00710b80539afb03e9aa098e19c183a5e7a1cdc18abb29
   languageName: node
   linkType: hard
 
@@ -7140,10 +7133,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-sha256@npm:0.9.0":
-  version: 0.9.0
-  resolution: "js-sha256@npm:0.9.0"
-  checksum: 10c0/f20b9245f6ebe666f42ca05536f777301132fb1aa7fbc22f10578fa302717a6cca507344894efdeaf40a011256eb2f7d517b94ac7105bd5cf087fa61551ad634
+"js-sha256@npm:^0.11.0":
+  version: 0.11.1
+  resolution: "js-sha256@npm:0.11.1"
+  checksum: 10c0/ef8e294b6f38f218e4834cb653471dd1a76808cea93dc66eaffcb04124116bc36d6cebc4e8866753e184ab4e57892b6ef21918e8ab0450179a7e093ea962d974
   languageName: node
   linkType: hard
 
@@ -7282,13 +7275,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"keycloak-js@npm:^12.0.4":
-  version: 12.0.4
-  resolution: "keycloak-js@npm:12.0.4"
+"jwt-decode@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "jwt-decode@npm:4.0.0"
+  checksum: 10c0/de75bbf89220746c388cf6a7b71e56080437b77d2edb29bae1c2155048b02c6b8c59a3e5e8d6ccdfd54f0b8bda25226e491a4f1b55ac5f8da04cfbadec4e546c
+  languageName: node
+  linkType: hard
+
+"keycloak-js@npm:25.0.6":
+  version: 25.0.6
+  resolution: "keycloak-js@npm:25.0.6"
   dependencies:
-    base64-js: "npm:1.3.1"
-    js-sha256: "npm:0.9.0"
-  checksum: 10c0/d55ed636863d2bcacccee1ed0b9e9067eacf3b5bf1d5007d9728c74fb84543e53bb282bc2049f201e6249edd0664473f16e8dd8ce025834f7929ae18b62eff95
+    js-sha256: "npm:^0.11.0"
+    jwt-decode: "npm:^4.0.0"
+  checksum: 10c0/56d4cc7b463096da20da3389af60b5dd889dad260fd8474d4ed912c25070fcb43559bd6a335b23462075a2e59e36a8a104f2a200317d3ff46ded4d801391bab2
   languageName: node
   linkType: hard
 
