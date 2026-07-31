@@ -48,9 +48,27 @@ export function useSignInOut(): SignInOut {
   const isAuthenticated = useIsAuthenticated();
 
   const signIn = useCallback(() => {
-    keycloak?.login();
+    if (!keycloak) {
+      console.error("[auth] Cannot sign in because Keycloak is unavailable.");
+
+      return;
+    }
+
+    keycloak.login().catch((error: unknown) => {
+      console.error("[auth] Keycloak login failed.", error);
+    });
   }, [keycloak]);
-  const signOut = useCallback(() => keycloak?.logout(), [keycloak]);
+  const signOut = useCallback(() => {
+    if (!keycloak) {
+      console.error("[auth] Cannot sign out because Keycloak is unavailable.");
+
+      return;
+    }
+
+    keycloak.logout().catch((error: unknown) => {
+      console.error("[auth] Keycloak logout failed.", error);
+    });
+  }, [keycloak]);
 
   const handleSignInOut = isAuthenticated ? signOut : signIn;
 

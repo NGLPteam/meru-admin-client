@@ -46,6 +46,15 @@ const NGLPApp = ({
     keycloakConfig,
     LoadingComponent: <LoadingPage />,
     persistor,
+    onEvent: (event, error) => {
+      if (error) {
+        console.error("[auth] Keycloak event error.", { event, error });
+      }
+
+      if (event === "onAuthError" || event === "onAuthRefreshError") {
+        console.error("[auth] Keycloak authentication error event.", { event });
+      }
+    },
   };
 
   // Handle redirect routes.
