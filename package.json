@@ -18,9 +18,9 @@
   "description": "NGLP Web Delivery Platform client application",
   "main": "index.js",
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
-  "packageManager": "yarn@4.13.0",
+  "packageManager": "yarn@4.18.1",
   "scripts": {
     "dev": "yarn workspace @wdp/admin run dev",
     "build": "scripts/do.sh build",

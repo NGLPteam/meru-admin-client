@@ -17,26 +17,8 @@ jobs:
       - name: "Check out code"
         uses: actions/checkout@v4
 
-      - name: "Install Node"
-        uses: actions/setup-node@v4
-        with:
-          node-version: "24.x"
-
-      - name: "Restore Node dependencies from cache"
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-node-module-cache-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-module-cache-
-
-      - name: "Install Node dependencies"
-        env:
-          NODE_ENV: development
-        run: |
-          corepack enable
-          yarn install
-        working-directory: ./
+      - name: "Install tools and Node dependencies"
+        uses: ./.github/actions/setup
 
       - name: "Lint Client"
         run: |
@@ -48,12 +30,7 @@ jobs:
     name: "Ensure build completes"
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: "package.json"
-          cache: "yarn"
-      - run: yarn install
+      - uses: ./.github/actions/setup
       - env:
           NODE_ENV: development
         run: yarn build:ci

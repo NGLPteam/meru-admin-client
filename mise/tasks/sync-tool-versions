@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#MISE description = "Sync packageManager, Node engine, and Docker Node image with the tool versions in mise.toml (called as part of a hook)"
+#MISE hide = true
+#MISE env = { "MISE_YARN_VERSION" = "{{vars.yarn_version}}", "MISE_NODE_VERSION" = "{{vars.node_version}}", "MISE_NODE_ENGINE" = "{{vars.node_engine}}" }
+
+if [ -f package.json ]; then
+  : "${MISE_YARN_VERSION:?yarn_version is not set in the mise environment}"
+  : "${MISE_NODE_ENGINE:?node_engine is not set in the mise environment}"
+  npm pkg set "packageManager=yarn@$MISE_YARN_VERSION" \
+    "engines.node=$MISE_NODE_ENGINE"
+fi
+
+if [ -f Dockerfile ]; then
+  : "${MISE_NODE_VERSION:?node_version is not set in the mise environment}"
+  # Pin the base image to the exact Node version so Docker builds match mise.
+  # Only the numeric part of the tag is replaced; a variant suffix such as
+  # `-trixie-slim` is kept.
+  # `-i.bak` is the in-place form that both BSD and GNU sed accept.
+  sed -i.bak -E "s/^(FROM (--platform=[^ ]+ )?node:)[0-9.]+/\1${MISE_NODE_VERSION}/" Dockerfile
+  rm Dockerfile.bak
+fi

@@ -1,8 +1,14 @@
-FROM node:24-bullseye AS base
+# The Node version in the FROM line below is managed from mise.toml by
+# mise/tasks/sync-tool-versions. Change it there, not here.
+FROM node:24.22.3-trixie-slim AS base
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends nano && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+RUN corepack enable
 
 FROM base AS deps
-RUN apt-get update
-RUN apt-get install -y nano libglib2.0-0 libglib2.0-dev libvips libvips-tools libvips-dev
 ENV NODE_ENV=production
 ENV WDP_APP=admin
 WORKDIR /app
@@ -13,7 +19,6 @@ COPY packages/tsconfig/package.json ./packages/tsconfig/
 COPY packages/lib/package.json ./packages/lib/
 COPY packages/admin/package.json ./packages/admin/
 
-RUN corepack enable
 RUN --mount=type=cache,target=/root/.yarn YARN_CACHE_FOLDER=/root/.yarn yarn install
 
 FROM base AS builder
@@ -50,8 +55,6 @@ COPY packages/eslint ./packages/eslint
 COPY packages/tsconfig ./packages/tsconfig
 COPY packages/lib ./packages/lib
 COPY packages/admin ./packages/admin
-
-RUN corepack enable
 
 RUN --mount=type=cache,target=/app/packages/admin/.next/cache yarn build:admin
 

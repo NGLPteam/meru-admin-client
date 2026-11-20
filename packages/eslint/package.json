@@ -9,7 +9,7 @@
     "depcheck": "depcheck"
   },
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "devDependencies": {
     "@eslint/js": "^8.57.0",
