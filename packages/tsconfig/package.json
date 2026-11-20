@@ -7,7 +7,7 @@
     "access": "restricted"
   },
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "scripts": {
     "depcheck": "depcheck"
